@@ -55,13 +55,13 @@
   };
 </script>
 
-  <meta name="description" content="一、三大特性 封装 继承 多态   二、类图 泛化关系 (Generalization) 实现关系 (Realization) 聚合关系 (Aggregation) 组合关系 (Composition) 关联关系 (Association) 依赖关系 (Dependency)   三、设计原则 S.O.L.I.D 其他常见原则   参考资料     一、三大特性封装利用抽象数据类型将数据和基于">
+  <meta name="description" content="一、三大特性 封装 继承 多态   二、类图 泛化关系 (Generalization) 实现关系 (Realization) 聚合关系 (Aggregation) 组合关系 (Composition) 关联关系 (Association) 依赖关系 (Dependency)   三、设计原则 S.O.L.I.D 其他常见原则   [四、Java IO/NIO](#四、Java IO/NIO)">
 <meta name="keywords" content="code">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象-Java">
 <meta property="og:url" content="http://yoursite.com/2019/01/15/面向对象-Java/index.html">
 <meta property="og:site_name" content="Leon">
-<meta property="og:description" content="一、三大特性 封装 继承 多态   二、类图 泛化关系 (Generalization) 实现关系 (Realization) 聚合关系 (Aggregation) 组合关系 (Composition) 关联关系 (Association) 依赖关系 (Dependency)   三、设计原则 S.O.L.I.D 其他常见原则   参考资料     一、三大特性封装利用抽象数据类型将数据和基于">
+<meta property="og:description" content="一、三大特性 封装 继承 多态   二、类图 泛化关系 (Generalization) 实现关系 (Realization) 聚合关系 (Aggregation) 组合关系 (Composition) 关联关系 (Association) 依赖关系 (Dependency)   三、设计原则 S.O.L.I.D 其他常见原则   [四、Java IO/NIO](#四、Java IO/NIO)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/c0874e0a-dba3-467e-9c86-dd9313e0843e.jpg">
 <meta property="og:image" content="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/83d466bd-946b-4430-854a-cf7b0696d4c8.jpg">
@@ -69,10 +69,22 @@
 <meta property="og:image" content="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/6a88a398-c494-41f5-bb62-9f7fb811df7c.jpg">
 <meta property="og:image" content="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/a3e4dc62-0da5-4d22-94f2-140078281812.jpg">
 <meta property="og:image" content="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/379444c9-f1d1-45cd-b7aa-b0c18427d388.jpg">
-<meta property="og:updated_time" content="2019-10-09T09:13:16.702Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15267089312034.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15267023963428.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15263482717424.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15263488660716.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15263493121606.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15263496139671.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15263505327822.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15263523909429.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15276920363669.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15264350580615.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15263490496683.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/images/15268031792473.jpg">
+<meta property="og:updated_time" content="2019-10-10T05:17:58.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象-Java">
-<meta name="twitter:description" content="一、三大特性 封装 继承 多态   二、类图 泛化关系 (Generalization) 实现关系 (Realization) 聚合关系 (Aggregation) 组合关系 (Composition) 关联关系 (Association) 依赖关系 (Dependency)   三、设计原则 S.O.L.I.D 其他常见原则   参考资料     一、三大特性封装利用抽象数据类型将数据和基于">
+<meta name="twitter:description" content="一、三大特性 封装 继承 多态   二、类图 泛化关系 (Generalization) 实现关系 (Realization) 聚合关系 (Aggregation) 组合关系 (Composition) 关联关系 (Association) 依赖关系 (Dependency)   三、设计原则 S.O.L.I.D 其他常见原则   [四、Java IO/NIO](#四、Java IO/NIO)">
 <meta name="twitter:image" content="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/c0874e0a-dba3-467e-9c86-dd9313e0843e.jpg">
   <link rel="canonical" href="http://yoursite.com/2019/01/15/面向对象-Java/">
 
@@ -276,7 +288,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-09 17:13:16" itemprop="dateModified" datetime="2019-10-09T17:13:16+08:00">2019-10-09</time>
+                <time title="Modified: 2019-10-10 13:17:58" itemprop="dateModified" datetime="2019-10-10T13:17:58+08:00">2019-10-10</time>
               </span>
             
           
@@ -314,6 +326,9 @@
 <li><a href="#其他常见原则">其他常见原则</a></li>
 </ul>
 </li>
+<li>[四、Java IO/NIO](#四、Java IO/NIO)</li>
+<li>[五、JVM](# 五、JVM)</li>
+<li>[六、thread](# 六、thread)</li>
 <li><a href="#参考资料">参考资料</a><!-- GFM-TOC -->
 
 
@@ -498,14 +513,790 @@
 <h3 id="3-共同封闭原则"><a href="#3-共同封闭原则" class="headerlink" title="3. 共同封闭原则"></a>3. 共同封闭原则</h3><p>一起修改的类，应该组合在一起（同一个包里）。如果必须修改应用程序里的代码，我们希望所有的修改都发生在一个包里（修改关闭），而不是遍布在很多包里。</p>
 <h3 id="4-稳定抽象原则"><a href="#4-稳定抽象原则" class="headerlink" title="4. 稳定抽象原则"></a>4. 稳定抽象原则</h3><p>最稳定的包应该是最抽象的包，不稳定的包应该是具体的包，即包的抽象程度跟它的稳定性成正比。</p>
 <h3 id="5-稳定依赖原则"><a href="#5-稳定依赖原则" class="headerlink" title="5. 稳定依赖原则"></a>5. 稳定依赖原则</h3><p>包之间的依赖关系都应该是稳定方向依赖的，包要依赖的包要比自己更具有稳定性。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>Java 编程思想</li>
-<li>敏捷软件开发：原则、模式与实践</li>
+<h1 id="四、Java-IO-NIO"><a href="#四、Java-IO-NIO" class="headerlink" title="四、Java IO/NIO"></a>四、Java IO/NIO</h1><h1 id="一-linux-底层实现"><a href="#一-linux-底层实现" class="headerlink" title="一. linux 底层实现"></a>一. linux 底层实现</h1><h2 id="1-1-kernel-IO"><a href="#1-1-kernel-IO" class="headerlink" title="1.1 kernel IO"></a>1.1 kernel IO</h2><p>用户进程进行I/O操作的时候实际上交给了kernel进行执行，kernel执行的I/O操作可以分为两个阶段：</p>
+<div align="center"> <img src="../images/15267089312034.jpg" width="400"> </div>
+
+
+<ul>
+<li><strong>准备阶段</strong>：在执行I/O操作的时候需要等待I/O是否就绪，因为此刻IO设备在忙状态。以网络IO为例，在读取远程数据时，需要阻塞等待远程将数据发送过来，很多时候数据在一开始还没有到达（比如，还没有收到一个完整的UDP包），这个时候kernel就要等待足够的数据到来。 </li>
+</ul>
+<div align="center"> <img src="../images/15267023963428.jpg" width="400"> </div>
+
+<ul>
+<li><strong>用户进程空间和内核空间的数据拷贝</strong> : 当等到数据准备好了，kernel就会将数据从从kernel中拷贝到用户内存，然后kernel返回结果，用户进程才解除block的状态，重新运行起来。</li>
+</ul>
+<p>准备阶段时，CPU内容发送指令给IO通道，让IO通道负责执行IO的读写操作。CPU不用一直阻塞可以继续执行别的逻辑，但此刻IO线程会挂起，等待IO通道读写操作完成通知。 IO通道将操作交给DMA，DMA直接连接设备控制器负责将设备控制器中的数据直接读入到内核内存中。读完成后通知通道告知IO处理完成，IO通道发送中断给CPU，原内核IO线程醒来继续执行后续工作</p>
+<h2 id="1-1-I-O-模型"><a href="#1-1-I-O-模型" class="headerlink" title="1.1 I/O 模型"></a>1.1 I/O 模型</h2><p>根据IO对kernel IO操作两个阶段的感知能力可以分为一下四种IO模型：</p>
+<ul>
+<li><strong>阻塞（Blocking）</strong>：阻塞等待IO就绪，这期间用户线程不可以做其他事情。</li>
+<li><strong>非阻塞（Non-blocking）</strong>：轮询感知IO就绪，用户线程可以做其他事情。</li>
+<li><strong>同步（Synchronous）</strong>：同步等待读IO读写结果。</li>
+<li><strong>异步（Asynchronous）</strong>：异步等待kernel通知IO读写结果。</li>
+</ul>
+<p><strong>IO阻塞和非阻塞主要关注IO的就绪状态的感知方式，同步和异步关注IO读写操作的结果获取方式</strong>。同步是指函数完成之前会一直等待；阻塞 是指系统调用的时候进程会被设置为Sleep状态直到等待的事件发生（比如有新的数据）。</p>
+<h3 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h3><p>阻塞和非阻塞是一种<strong>调用机制</strong>，用来描述进程处理调用的方式。在IO中两者的<strong>区别主要体现在I/O未准备好时，用户线程是否可以做其他事情</strong>。比如网络读操作，根据是否需要等待kernel数据准备好。</p>
+<p>阻塞是等待某个事件的就绪/发生，当前线程会被<strong>挂起</strong>，一直处于等待消息通知，不能执行其他业务。<strong>阻塞通信意味着通信方法在尝试访问套接字或者读写数据时阻塞了对套接字的访问</strong>。以网络读操作为例，用户线程在socket中调用recv函数时，如果缓冲区中没有数据，则需要一直阻塞等待服务端发来的数据，这时候线程会挂起等待。 </p>
+<p>非阻塞和阻塞的概念相对应，指在不能立刻得到结果之前，该函数不会阻塞当前线程，而会立刻返回。非阻塞IO是用户线程不会一直阻塞待待IO就绪，通过不断轮询的方式来查看就绪状态。。</p>
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>同步和异步是一种<strong>通信机制</strong>，涉及到调用方和被调用方，<strong>关注的是IO操作结果的获知方式，主要区别在于IO结果未返回时用户线程是否可以做其他事情</strong>：</p>
+<ul>
+<li><strong>同步</strong>是调用方需要保持等待直到IO操作完成，进而通过返回获得结果；</li>
+<li><strong>异步</strong>则调用方在IO操作的执行过程中不需要保持等待，而是在操作完成后被动的接受（通过消息或回调）被调用方推送的结果。</li>
+</ul>
+<p>以下是同步和异步定义：</p>
+<blockquote>
+<p><strong>A synchronous I/O</strong> operation causes the requesting process to be blocked until that I/O operation completes;<br><strong>An asynchronous I/O</strong> operation does not cause the requesting process to be blocked;</p>
+</blockquote>
+<p>同步和异步的区别也在于在进行整个IO操作的时候会用户进程<strong>是否会阻塞等待结果</strong>，linux中IO模型中blocking IO，non-blocking IO，IO multiplexing都属于synchronous IO。</p>
+<h2 id="1-2-linux-I-O-模型"><a href="#1-2-linux-I-O-模型" class="headerlink" title="1.2 linux I/O 模型"></a>1.2 linux I/O 模型</h2><p>linux根据用户进程对这个两个阶段的感知方式分为5中I/O模型：</p>
+<ul>
+<li>阻塞I/O（bloking IO）</li>
+<li>非阻塞I/O（non-blocking IO）</li>
+<li>多路复用IO（multiplexing IO）</li>
+<li>信号驱动式IO（signal-driven IO）</li>
+<li>异步IO（asynchronous IO）</li>
+</ul>
+<h3 id="1）-阻塞IO（blocking-IO）"><a href="#1）-阻塞IO（blocking-IO）" class="headerlink" title="1） 阻塞IO（blocking IO）"></a>1） 阻塞IO（blocking IO）</h3><p>默认情况下所有的socket都是blocking</p>
+<div align="center"> <img src="../images/15263482717424.jpg" width="500"> </div>
+
+<p> 当用户进程调用了recvfrom这个系统调用，就<strong>阻塞等待结果</strong>。kernel负责完成IO操作，完成后返回给用户。用户进程需要阻塞等待kernel完成两个阶段操作：<strong>准备数据(wait for data)</strong>、 <strong>数据拷贝到用户进程空间(copy data from kenel to user)</strong>。 阻塞IO是同步阻塞IO, 准备数据阶段会阻塞并同步等待I/O结果。在准备阶段和数据拷贝阶段中，用户线程都会被阻塞。</p>
+<p>使用linux中进行网络编程时，一般都从listen()、send()、recv() 等接口开始，这些接口都是阻塞型。使用这些接口可以方便构建服务器/客户机模型。下面是一个简单地“一问一答”服务器。 整体流程如下:</p>
+<div align="center"> <img src="../images/15263488660716.jpg" width="300"> </div>
+
+
+<p><strong>服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理</strong>，如果这个连接不做任何事情会造成不必要的线程开销。通常会对它的线程模型进行优化，后端通过一个线程池来处理多个客户端的请求接入。通过“线程池”减少创建和销毁线程的频率，其维持一定合理数量的线程，并让空闲的线程重新承担新的执行任务，提高系统性能。</p>
+<div align="center"> <img src="../images/15263493121606.jpg" width="600"> </div>
+
+
+<p>java 的BIO就是采用这种模式实现的。</p>
+<h3 id="2）非阻塞IO（non-blocking-IO）"><a href="#2）非阻塞IO（non-blocking-IO）" class="headerlink" title="2）非阻塞IO（non-blocking IO）"></a>2）非阻塞IO（non-blocking IO）</h3><div align="center"> <img src="../images/15263496139671.jpg" width="500"> </div>
+
+<p>当用户进程发出read操作时，如果kernel中的数据还没有准备好，那么它<strong>并不会block用户进程，而是立刻返回一个error</strong>。整体流程是：</p>
+<ol>
+<li>用户线程轮询查看kernel是否准备好数据（datagram ready）。这个过程kernel主要处于wait for data阶段。</li>
+<li>当用户调用read, kernel已准备好数据，则执行数据拷贝操作，<strong>用户线程阻塞直到数据读取完成</strong>。kernel读取数据完成后，返回给用户数据。 </li>
+</ol>
+<p>从用户进程角度讲 ，它发起一个read操作后，并不需要等待，而是马上就得到了一个结果。用户进程判断结果是一个error时，它就知道数据还没有准备好，于是它可以再次发送read操作。一旦kernel中的数据准备好了，并且又再次收到了用户进程的system call，那么它马上就将数据拷贝到了用户内存，然后返回。</p>
+<p><strong>在非阻塞式IO中，用户进程其实是需要不断的主动询问kernel数据准备好了没有，非阻塞的接口相比于阻塞型接口的显著差异在于，在被调用之后立即返回。</strong></p>
+<p><strong>non-blocking IO在执行recvfrom这个系统调用的时候，如果kernel的数据没有准备好，这时候不会block进程。但是当kernel中数据准备好的时候，recvfrom会将数据从kernel拷贝到用户内存中，这个时候进程是被block了，在这段时间内进程是被block的</strong>，因此属于同步IO。</p>
+<p>优点：</p>
+<ol>
+<li>用户进程不会被阻塞，可以在期间做一些别的事情。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>用户线程不知道什么时候完成，需要不断的轮询查看I/O操作结果。看是否已经读取完成，增加了用户使用的复杂度。</li>
+<li>在数据copy部分用户进程还是需要阻塞。</li>
+</ol>
+<h3 id="3）多路复用IO（IO-multiplexing）"><a href="#3）多路复用IO（IO-multiplexing）" class="headerlink" title="3）多路复用IO（IO multiplexing）"></a>3）多路复用IO（IO multiplexing）</h3><p>IO multiplexing，也称这种IO方式为<strong>事件驱动IO(event driven IO)</strong>。非阻塞IO（non-blocking IO）模式需要用户自己去轮询查看是否数据准备好，如果准备好则阻塞调用kernel进行copy。多路复用IO就是解决这种轮询问题，linux内部提供了select/poll/epoll来完成IO复用。</p>
+<p>select/poll/epoll的好处就在于单个process就可以同时处理多个网络连接的IO。它的基本原理就是select/poll/epoll这个function会不断的轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程。它的流程如图：</p>
+<div align="center"> <img src="../images/15263505327822.jpg" width="500"> </div>
+
+<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><p>select的调用过程如下所示：</p>
+<div align="center"> <img src="../images/15263523909429.jpg" width="400"> </div>
+
+<p>select负责管理多个FD文件描述符，kernel就会<strong>轮询</strong>检查所有select负责的fd，看是否有一个FD的数据已准备好。select会返回kernel数据准备就绪的FD， FD调用read操作让kernel完成数据的拷贝。 select解决了非阻塞状态下用户进程需要自己轮询的问题，同时可以用一个线程管理多个用户进程的读写操作。</p>
+<p>select的缺点：</p>
+<ul>
+<li>单个进程能够监视的文件描述符的<strong>数量存在最大限制</strong>，<strong>通常是1024</strong>，当然可以更改数量。</li>
+<li>对socket进行扫描时是线性扫描，即采用轮询的方法，效率较低。</li>
+<li>内核/用户空间内存拷贝问题。每次调用select，<strong>都需要把fd集合从用户态拷贝到内核态</strong>，这个开销在fd(客户端套接字)很多时会很大。</li>
+</ul>
+<h4 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h4><p><strong>poll本质上和select没有区别，它将用户传入的数组拷贝到内核空间</strong>。然后查询每个fd对应的设备状态，如果设备就绪则在设备等待队列中加入一项并继续遍历，如果遍历完所有fd后没有发现就绪设备，则挂起当前进程，直到设备就绪或者主动超时，被唤醒后它又要再次遍历fd。这个过程经历了多次无谓的遍历。</p>
+<p><strong>它没有最大连接数的限制，原因是它是基于链表来存储的</strong>，但是同样有一个缺点：</p>
+<ul>
+<li>1）大量的fd的数组被整体复制于用户态和内核地址空间之间，而不管这样的复制是不是有意义。</li>
+<li>2）poll还有一个特点是“水平触发”，如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</li>
+</ul>
+<h4 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h4><p>在linux 没有实现epoll事件驱动机制之前，我们一般选择用select或者poll等IO多路复用的方法来实现并发服务程序。epoll是在2.6内核中提出的，是之前的select和poll的增强版本。相对于select和poll来说，epoll更加灵活，没有描述符限制。<strong>epoll使用一个文件描述符管理多个描述符，将用户关系的文件描述符的事件存放到内核的一个事件表中</strong>，这样在用户空间和内核空间的copy只需一次。</p>
+<p>基本原理：epoll支持水平触发和边缘触发，最大的特点在于边缘触发，它只告诉进程哪些fd刚刚变为就绪态，并且只会通知一次。还有一个特点是，<strong>epoll使用“事件”的就绪通知方式</strong>，通过epoll_ctl注册fd，一旦该fd就绪，内核就会采用类似<strong>callback的回调机制来激活该fd</strong>，epoll_wait便可以收到通知。</p>
+<p>epoll的优点：</p>
+<ol>
+<li><strong>没有最大并发连接的限制</strong>，能打开的FD的上限远大于1024（1G的内存上能监听约10万个端口）。</li>
+<li><strong>效率提升，不是轮询的方式，不会随着FD数目的增加效率下降</strong>。只有活跃可用的FD才会调用callback函数；即Epoll最大的优点就在于它只管你“活跃”的连接，而跟连接总数无关，因此在实际的网络环境中，Epoll的效率就会远远高于select和poll。</li>
+<li><strong>内存拷贝，利用mmap()文件映射内存加速与内核空间的消息传递</strong>；即epoll使用mmap减少复制开销。</li>
+</ol>
+<h3 id="4）信号驱动式IO"><a href="#4）信号驱动式IO" class="headerlink" title="4）信号驱动式IO"></a>4）信号驱动式IO</h3><p>当用户进程发出read操作时，如果kernel中的数据还没有准备好，那么它<strong>并不会block用户进程，而是立刻返回一个, 用户进程可以执行自己的程序不用轮询结果。kernel在IO就绪时会发送一个信号给用户进程告知IO准备好，可以执行后续操作</strong>。整体流程是：</p>
+<ol>
+<li>用户线程调用read, kernel执行IO准备阶段，这个过程不阻塞用户线程。</li>
+<li>数据就绪后内核给用户线程发signal。 </li>
+<li>当用户调用read, kernel执行数据拷贝操作，<strong>用户线程阻塞直到数据读取完成</strong>。kernel读取数据完成后，返回给用户数据。 </li>
+</ol>
+<p>应用进程使用 sigaction 系统调用，内核立即返回，应用进程可以继续执行，也就是说等待数据阶段应用进程是非阻塞的。内核在数据到达时向应用进程发送 SIGIO 信号，应用进程收到之后在信号处理程序中调用 recvfrom 将数据从内核复制到应用进程中。</p>
+<p>相比于非阻塞式 I/O 的轮询方式，信号驱动 I/O 的 CPU 利用率更高。这样避免了用户线程进行不断轮询的操作。</p>
+<div align="center"> <img src="../images/15276920363669.jpg" width="500"> </div>
+
+
+<h3 id="5）异步IO（Asynchronous-I-O）"><a href="#5）异步IO（Asynchronous-I-O）" class="headerlink" title="5）异步IO（Asynchronous I/O）"></a>5）异步IO（Asynchronous I/O）</h3><div align="center"> <img src="../images/15264350580615.jpg" width="500"> </div>
+
+<p>用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以<strong>不会对用户进程产生任何block</strong>。然后，kernel会等待数据准备完成，然后将数据拷贝到用户内存，<strong>当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了</strong>。 </p>
+<p>和同步方式不同，kernel的数据准备好以后不需要用户进程再次发送拷贝指令并阻塞等待kernel拷贝完成。</p>
+<h1 id="Java-IO-分类"><a href="#Java-IO-分类" class="headerlink" title="Java IO 分类"></a>Java IO 分类</h1><ul>
+<li><p><strong>Java BIO</strong>： 同步并阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。 </p>
+</li>
+<li><p><strong>Java NIO</strong> ： 同步非阻塞，服务器实现模式为一个请求一个线程，即当一个连接创建后，不需要对应一个线程，这个连接会被注册到<strong>多路复用器</strong>上面，所以所有的连接只需要一个线程就可以搞定，当这个线程中的多路复用器进行轮询的时候，发现连接上有请求的话，才开启一个线程进行处理，也就是一个请求一个线程模式。BIO与NIO一个比较重要的不同，是我们使用BIO的时候往往会引入多线程，每个连接一个单独的线程；而NIO则是使用单线程或者只使用少量的多线程，每个连接共用一个线程。</p>
+</li>
+<li><p><strong>Java AIO(NIO.2)</strong> ： 异步非阻塞，服务器实现模式为一个有效请求一个线程，客户端的I/O请求都是由OS先完成了再通知服务器应用去启动线程进行处理。</p>
+</li>
+</ul>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><ul>
+<li><strong>同步</strong>:指的是用户进程触发IO操作需要等待或者轮询的去查看IO操作执行完成才能执行其他操作.这种方式性能比较差，只有一些对数据安全性要求比较高的场景中才会使用．</li>
+<li><strong>异步</strong>:异步是指用户进程触发IO操作以后便开始做自己的事情，而当IO操作已经完成的时候会得到IO完成的通知（异步的特点就是通知）</li>
+<li><strong>阻塞</strong>：所谓阻塞方式的意思是指, 当试图对该文件描述符进行读写时, 如果当时没有东西可读,或者暂时不可写, 程序就进入等待 状态, 直到有东西可读或者可写为止</li>
+<li><strong>非阻塞</strong>：非阻塞状态下, 如果没有东西可读, 或者不可写, 读写函数马上返回, 而不会等待</li>
+</ul>
+<h2 id="Java-BIO"><a href="#Java-BIO" class="headerlink" title="Java BIO"></a>Java BIO</h2><p>在JDK 1.4推出Java NIO之前，基于Java的所有Socket通信都采用了同步阻塞模式（BIO），<strong>这种一请求一应答的通信模型简化了上层的应用开发，但是在性能和可靠性方面却存在着巨大的瓶颈</strong>。当并发访问量增大、响应时间延迟增大之后，采用Java BIO开发的服务端软件只有通过硬件的不断扩容来满足高并发和低时延，它极大地增加了企业的成本，并且随着集群规模的不断膨胀，系统的可维护性也面临巨大的挑战，只能通过采购性能更高的硬件服务器来解决问题，这会导致恶性循环,传统采用BIO的Java Web服务器如下所示（典型的如Tomcat的BIO模式）：</p>
+<div align="center"> <img src="../images/15263490496683.jpg" width="600"> </div>
+
+
+<p>采用该线程模型的服务器调度特点如下：</p>
+<ol>
+<li>服务端监听线程Acceptor负责客户端连接的接入，每当有新的客户端接入，就会创建一个新的I/O线程负责处理Socket</li>
+<li>客户端请求消息的读取和应答的发送，都有I/O线程负责</li>
+<li>除了I/O读写操作，默认情况下业务的逻辑处理，例如DB操作等，也都在I/O线程处理</li>
+<li>I/O操作采用同步阻塞操作，读写没有完成，I/O线程会同步阻塞</li>
+</ol>
+<p>BIO线程模型主要存在如下三个问题：</p>
+<ol>
+<li><strong>性能问题</strong>：一连接一线程模型导致服务端的并发接入数和系统吞吐量受到极大限制</li>
+<li><strong>可靠性问题</strong>：由于I/O操作采用同步阻塞模式，当网络拥塞或者通信对端处理缓慢会导致I/O线程被挂住，阻塞时间无法预测</li>
+<li><strong>可维护性问题</strong>：I/O线程数无法有效控制、资源无法有效共享（多线程并发问题），系统可维护性差</li>
+</ol>
+<h2 id="BIO、NIO、AIO适用场景分析"><a href="#BIO、NIO、AIO适用场景分析" class="headerlink" title="BIO、NIO、AIO适用场景分析"></a>BIO、NIO、AIO适用场景分析</h2><ul>
+<li>BIO方式适用于<strong>连接数目比较小且固定的架构</strong>，这种方式对服务器<strong>资源要求比较高</strong>，并发局限于应用中，JDK1.4以前的唯一选择，但程序直观简单易理解。</li>
+<li>NIO方式适用于连接数目多且连接比较短（轻操作）的架构，比如聊天服务器，并发局限于应用中，编程比较复杂，JDK1.4开始支持。</li>
+<li>AIO方式使用于连接数目多且连接比较长（重操作）的架构，比如相册服务器，充分调用OS参与并发操作，编程比较复杂，JDK7开始支持。 </li>
+</ul>
+<h3 id="Java-NIO和IO的主要区别"><a href="#Java-NIO和IO的主要区别" class="headerlink" title="Java NIO和IO的主要区别"></a>Java NIO和IO的主要区别</h3><ol>
+<li>面向流与面向缓冲.</li>
+</ol>
+<p>Java NIO和IO之间第一个最大的区别是，IO是面向流的，NIO是面向缓冲区的。Java IO面向流意味着每次从流中读一个或多个字节，直至读取所有字节，它们没有被缓存在任何地方。此外，它不能前后移动流中的数据。如果需要前后移动从流中读取的数据，需要先将它缓存到一个缓冲区。 Java NIO的缓冲导向方法略有不同。数据读取到一个它稍后处理的缓冲区，需要时可在缓冲区中前后移动。这就增加了处理过程中的灵活性。</p>
+<ol start="2">
+<li>阻塞与非阻塞IO</li>
+</ol>
+<p>Java IO的各种流是阻塞的。这意味着，当一个线程调用read() 或 write()时，该线程被阻塞，直到有一些数据被读取，或数据完全写入。该线程在此期间不能再干任何事情了。 Java NIO的非阻塞模式，使一个线程从某通道发送请求读取数据，但是它仅能得到目前可用的数据，如果目前没有数据可用时，该线程可以继续做其他的事情。 非阻塞写也是如此。一个线程请求写入一些数据到某通道，但不需要等待它完全写入，这个线程同时可以去做别的事情。线程通常将非阻塞IO的空闲时间用于在其它通道上执行IO操作，所以一个单独的线程现在可以管理多个输入和输出通道（channel）。</p>
+<ol start="3">
+<li>选择器（Selectors）</li>
+</ol>
+<p>Java NIO的选择器允许一个单独的线程来监视多个输入通道，你可以注册多个通道使用一个选择器，然后使用一个单独的线程来“选择”通道：这些通道里已经有可以处理的输入，或者选择已准备写入的通道。这种选择机制，使得一个单独的线程很容易来管理多个通道。</p>
+<h1 id="五、JVM"><a href="#五、JVM" class="headerlink" title="五、JVM"></a>五、JVM</h1><p>虚拟机面试一般包含以下几个知识点：</p>
+<ul>
+<li>JVM内存划分</li>
+<li>JVM垃圾回收，垃圾回收可从几个点出发：<ul>
+<li>什么对象需要回收</li>
+<li>什么时候回收</li>
+<li>怎么回收<ul>
+<li>垃圾回收算法</li>
+<li>垃圾收集器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何使用工具观察和解决虚拟机问题</li>
+<li>参数调优</li>
+<li>类加载机制<ul>
+<li>加载过程</li>
+<li>双亲委派原理<ul>
+<li>执行引擎</li>
+</ul>
+</li>
+<li>动态委派和静态委派。这里涉及到java多态的概念。   </li>
+</ul>
+</li>
+</ul>
+<h2 id="介绍JVM中7个区域，然后把每个区域可能造成内存的溢出的情况说明"><a href="#介绍JVM中7个区域，然后把每个区域可能造成内存的溢出的情况说明" class="headerlink" title="介绍JVM中7个区域，然后把每个区域可能造成内存的溢出的情况说明"></a>介绍JVM中7个区域，然后把每个区域可能造成内存的溢出的情况说明</h2><ul>
+<li><p><strong>程序计数器</strong>：看做当前线程所执行的<strong>字节码行号指示器</strong>。是线程<strong>私有</strong>的内存，且唯一一块不报OutOfMemoryError异常的内存区域。</p>
+</li>
+<li><p><strong>Java虚拟机栈</strong>：用于描述java方法的<strong>内存模型</strong>：每个方法被执行时都会同时创建一个<strong>栈帧</strong>用于存储<strong>局部变量表、操作数栈、动态链接、方法出口</strong>等信息。每一个方法被调用直至执行完成的过程就对应着一个栈帧在虚拟机中从入栈到出栈的过程。如果线程请求的<strong>栈深度</strong>大于虚拟机所允许的深度就报StackOverflowError, 如果虚拟机栈可以动态<strong>扩展</strong>，当拓展时无法申请到足够的内存会抛出OutOfMemoryError. 是线程<strong>私有</strong>的。</p>
+</li>
+<li><p><strong>本地方法栈</strong>：与虚拟机栈相似，不同的在于它是为虚拟机使用到<strong>Native</strong>方法服务的。会抛出StackOverflowError和OutOfMemoryError。是线程<strong>私有</strong>的。</p>
+</li>
+<li><p><strong>Java堆</strong>: 是所有线程共享的一块内存，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。如果堆上没有内存完成实例的分配就会报OutOfMemoryError.</p>
+</li>
+<li><p><strong>方法区（永久代）</strong>：用于存储已被虚拟机加载的<strong>类信息、常量、静态变量、即时编译器编译后的代码</strong>等数据。当方法区无法满足内存分配需求时，会抛出OutOfMemoryError。是共享内存。</p>
+</li>
+<li><p><strong>运行时常量池</strong>：用于存放编译器生成的各种字面量和符号引用，是方法区的一部分。无法申请内存时抛出OutOfMemoryError。</p>
+</li>
+<li><p><strong>直接内存</strong>：不是虚拟机运行时数据的一部分，也不是java虚拟机规范中定义的区域，是计算机直接的内存空间。这部分也被频繁使用，如JAVA NIO的引入基于通道和缓存区的I/O使用native函数直接分配堆外内存。如果内存不足会报OutOfMemoryError。</p>
+</li>
+</ul>
+<h2 id="GC的两种判定方法：引用计数与根搜索算法"><a href="#GC的两种判定方法：引用计数与根搜索算法" class="headerlink" title="GC的两种判定方法：引用计数与根搜索算法"></a>GC的两种判定方法：引用计数与根搜索算法</h2><ul>
+<li><p><strong>引用计数</strong>： 给对象添加一个引用计数器，每当有一个地方引用该对象时，计数器值加1，当引用失效时，计数器值减1,。任何时候计数器都为0的对象就是不可能再被使用的。它很难解决对象之间相互<strong>循环引用</strong>问题。</p>
+</li>
+<li><p><strong>根搜索算法（GC Roots Traceing）:</strong> 通过一系列名为“GC Roots”的对象作为起点，从这些节点开始向下搜索，搜索走过的路径成为<strong>引用链</strong>，当一个对象到GC Roots没有任何引用链相连时，则证明此对象不可用。</p>
+<p>GC Roots对象一般是：虚拟机栈中的引用对象，方法区中类静态属性引用的对象，方法区常量引用的对象等。</p>
+</li>
+</ul>
+<h2 id="Java中的四种引用"><a href="#Java中的四种引用" class="headerlink" title="Java中的四种引用"></a>Java中的四种引用</h2><p>Java中提供这四种引用类型主要有两个目的：第一是可以让程序员通过代码的方式决定某些对象的生命周期；第二是有利于JVM进行垃圾回收。</p>
+<ul>
+<li><p><strong>强引用</strong>：程序代码中的普通引用。如Object obj = new Object(),只要强引用存在，垃圾回收器就不会回收。在不使用对象时应及时将引用设置为null，便于垃圾回收。</p>
+</li>
+<li><p><strong>软引用</strong>：描述一些有用但并非必须的对象。对于软引用关联的对象在系统将要<strong>发生内存溢出异常之前</strong>，将会把这些对象列进回收范围之中进行第二次回收。<strong>SoftRefence</strong></p>
+</li>
+<li><p><strong>弱引用</strong>：描述非必须对象，比软引用弱一些。被弱引用关联的对象只能<strong>生存到下一次垃圾收集发生之前</strong>。无论当前内存是否足够，都会回收掉只被弱引用关联的对象。<strong>WeakRefence</strong></p>
+</li>
+<li><p><strong>虚引用</strong>：最弱的引用，不管是否有虚引用存在，完全不会对对象生存时间构成影响，也无法通过虚引用来取得一个对象实例。唯一目的是希望能够在这个对象被垃圾回收器之前收到系统通知。<strong>PhantomReference</strong></p>
+</li>
+</ul>
+<p>相关参考：<a href="https://www.cnblogs.com/dolphin0520/p/3784171.html" target="_blank" rel="noopener">Java 如何有效地避免OOM：善于利用软引用和弱引用</a></p>
+<h2 id="对象创建方法，对象的内存分配，对象的访问定位。"><a href="#对象创建方法，对象的内存分配，对象的访问定位。" class="headerlink" title="对象创建方法，对象的内存分配，对象的访问定位。"></a>对象创建方法，对象的内存分配，对象的访问定位。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Object();</span><br></pre></td></tr></table></figure>
+
+<p>obj 保存在java栈中的局部变量表里，作为一个引用数据出现。 New Object()会在java堆上分配一块存储Object类型实例的所有数值的结构化内存，根据类型以及虚拟机实现的对象内存布局不同。这块内存是不固定的。</p>
+<p>对象访问方式有两种：<strong>句柄和直接指针</strong>。</p>
+<ul>
+<li><p><strong>句柄</strong>：在java堆中会划分出一块内存作为句柄池，reference中存储的对象是句柄地址。<strong>而句柄中包含对象实例数据和类型数据各自的具体地址信息</strong>。最大的好处是如果对象地址发生变化不需要改变reference的值，只需要改变句柄中实例数据指针。</p>
+</li>
+<li><p><strong>直接指针访问</strong>：reference直接存储对象的地址，最大的好处是<strong>速度更快</strong>。</p>
+</li>
+</ul>
+<h2 id="内存溢出和内存泄漏"><a href="#内存溢出和内存泄漏" class="headerlink" title="内存溢出和内存泄漏"></a>内存溢出和内存泄漏</h2><ul>
+<li><p><strong>内存溢出</strong>：通俗理解就是<strong>内存不够</strong>，程序所需要的内存远远超出了你虚拟机分配的内存大小，就叫内存溢出</p>
+</li>
+<li><p><strong>内存泄露</strong>：内存泄漏也称作“存储渗漏”，用动态存储分配函数动态开辟的空间，在<strong>使用完毕后未释放</strong>，结果导致<strong>一直占据该内存单元</strong>。直到程序结束。（其实说白了就是该内存空间使用完毕之后未回收）即所谓内存泄漏</p>
+</li>
+</ul>
+<h2 id="内存溢出了怎么办"><a href="#内存溢出了怎么办" class="headerlink" title="内存溢出了怎么办"></a>内存溢出了怎么办</h2><p>通过内存映像工具如jhat、jconsole等对dump出来的堆转存储快照进行分析，重点是确认内存是出现内存泄露还是内存溢出。</p>
+<p>如果是<strong>内存泄露</strong>进一步使用工具查看泄露的对象到GC Roots的引用链。于是就能找到泄露对象是通过怎样的路径与GC Roots相关联并导致垃圾收集器无法自动回收它们。掌握泄露对象的信息，以及GC Roots引用链的信息，就可以比较准确定位泄露代码的位置。</p>
+<p>如果不存在<strong>内存泄露</strong>，那就需要通过jinfo、Jconsole等工具分析java堆参数与机器物理内存对比是否还可以调大，从代码上检查是否存在某些对象生命周期过长，持有状态过长的情况，尝试减少程序的运行消耗。</p>
+<h2 id="Java-中有内存泄露吗？"><a href="#Java-中有内存泄露吗？" class="headerlink" title="Java 中有内存泄露吗？"></a>Java 中有内存泄露吗？</h2><p>有，Java中，造成内存泄露的原因有很多种。典型的例子是<strong>长生命周期的对象持有短生命周期对象的引用就很可能发生内存泄露</strong>，尽管短生命周期对象已经不再需要，但是因为长生命周期对象持有它的引用而导致不能被回收，这就是java中内存泄露的发生场景，通俗地说，就是程序员可能创建了一个对象，以后一直不再使用这个对象，这个对象却一直被引用，即这个对象无用但是却无法被垃圾回收器回收的，这就是java中可能出现内存泄露的情况，例如，缓存系统，我们加载了一个对象放在缓存中(例如放在一个全局map对象中)，然后一直不再使用它，这个对象一直被缓存引用，但却不再被使用。</p>
+<p>检查java中的内存泄露，一定要让程序将各种分支情况都完整执行到程序结束，然后看某个对象是否被使用过，如果没有，则才能判定这个对象属于内存泄露。（采用什么工具？）</p>
+<p><strong>如果一个外部类的实例对象的方法返回了一个内部类的实例对象</strong>，这个内部类对象被长期引用了，即使那个外部类实例对象不再被使用，但由于内部类持久外部类的实例对象，这个外部类对象将不会被垃圾回收，这也会造成内存泄露。</p>
+<p><a href="http://www.mamicode.com/info-detail-504269.html" target="_blank" rel="noopener">http://www.mamicode.com/info-detail-504269.html</a></p>
+<h2 id="什么时候会发生jvm堆（持久区）内存溢出"><a href="#什么时候会发生jvm堆（持久区）内存溢出" class="headerlink" title="什么时候会发生jvm堆（持久区）内存溢出"></a>什么时候会发生jvm堆（持久区）内存溢出</h2><p>简单的来说 java的堆内存分为两块:permantspace（持久代） 和 heap space。</p>
+<p>持久带中主要存放用于存放静态类型数据，如 Java Class, Method 等， 与垃圾收集器要收集的Java对象关系不大。</p>
+<p>而heapspace分为年轻代和年老代:</p>
+<ul>
+<li>年轻代的垃圾回收叫 Young GC， 年老代的垃圾回收叫 Full GC。</li>
+<li>在年轻代中经历了N次（可配置）垃圾回收后仍然存活的对象，就会被复制到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象</li>
+<li>年老代溢出原因有  循环上万次的字符串处理、创建上千万个对象、在一段代码内申请上百M甚至上G的内存</li>
+</ul>
+<p><strong>持久代溢出原因动态加载了大量Java类而导致溢出，以及生产大量的常量</strong>。 </p>
+<p><strong>永久代内存泄露</strong>: 以一个部署到应用程序服务器的Java web程序来说，当该应用程序被卸载的时候，你的EAR/WAR包中的所有类都将变得无用。只要应用程序服务器还活着，JVM将继续运行，但是一大堆的类定义将不再使用，理应将它们从永久代（PermGen）中移除。如果不移除的话，我们在永久代（PermGen）区域就会有内存泄漏。</p>
+<h2 id="堆里面的分区：Eden，survivor-from-to，老年代，各自的特点。"><a href="#堆里面的分区：Eden，survivor-from-to，老年代，各自的特点。" class="headerlink" title="堆里面的分区：Eden，survivor from to，老年代，各自的特点。"></a>堆里面的分区：Eden，survivor from to，老年代，各自的特点。</h2><p>新生代：朝生夕死</p>
+<p>老年代一般是放对象和长期存活对象。当一个对象分配的内存空间大于某个阈值时或则年龄增加到一定程度（默认15岁）就进入老年代。</p>
+<h2 id="OOM你遇到过哪些情况"><a href="#OOM你遇到过哪些情况" class="headerlink" title="OOM你遇到过哪些情况"></a>OOM你遇到过哪些情况</h2><ul>
+<li><p>java.lang.OutOfMemoryError: Java heap space ——&gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。 </p>
+</li>
+<li><p>java.lang.OutOfMemoryError: PermGen space ——&gt;java永久代溢出，即方法区溢出了，<strong>一般出现于大量Class或者jsp页面</strong>，或者采用cglib等反射机制的情况，因为上述情况会产生大量的Class信息存储于方法区。 </p>
+</li>
+<li><p>java.lang.StackOverflowError ——&gt; 不会抛OOM error，但也是比较常见的Java内存溢出。JAVA虚拟机栈溢出，一般是由于程序中存在<strong>死循环或者深度递归调用</strong>造成的，栈大小设置太小也会出现此种溢出。可以通过虚拟机参数<strong>-Xss</strong>来设置栈的大小。</p>
+</li>
+</ul>
+<h2 id="GC的收集方法的原理与特点，分别用在什么地方，如果让你优化收集方法，有什么思路？"><a href="#GC的收集方法的原理与特点，分别用在什么地方，如果让你优化收集方法，有什么思路？" class="headerlink" title="GC的收集方法的原理与特点，分别用在什么地方，如果让你优化收集方法，有什么思路？"></a>GC的收集方法的原理与特点，分别用在什么地方，如果让你优化收集方法，有什么思路？</h2><ul>
+<li><p><strong>标记清理</strong>：首先标记所有需要回收的对象，在标记完成后<strong>统一回收掉</strong>所有被标记的对象，它的标记的对象。缺点是<strong>效率低</strong>，且存在<strong>内存碎片</strong>。主要用于老生代垃圾回收。</p>
+</li>
+<li><p><strong>标记整理</strong>：首先标记所有需要回收的对象，在标记完成后让所有存活的对象都向一端移动，然后直接清理掉端边界意外的内存。用于老年代。</p>
+</li>
+<li><p><strong>复制算法</strong>：将内存按容量划分为大小相等的一块，每次只用其中一块。当内存用完了，将还存活的对象复制到另一块内存，然后把已使用过的内存空间一次清理掉。实现简单，高效。一般用于新生代。一般是将内存分为一块较大的<strong>Eden空间</strong>和两块较小的<strong>Survivor</strong>空间。HotSpot虚拟机默认比例是<strong>8:1</strong>,。每次使用Eden和一块Survivor，当回收时将这两块内存中还存活的对象复制到Survivor然后清理掉刚才Eden和Survivor的空间。如果复制过程内存不够使用则向老年代分配担保。</p>
+</li>
+<li><p><strong>分代收集算法</strong>：根据对象的生存周期将内存划分为新生代和老年代，根据年代的特点采用最适当的收集算法。</p>
+</li>
+</ul>
+<h2 id="GC收集器有哪些？CMS收集器与G1收集器的特点。"><a href="#GC收集器有哪些？CMS收集器与G1收集器的特点。" class="headerlink" title="GC收集器有哪些？CMS收集器与G1收集器的特点。"></a>GC收集器有哪些？CMS收集器与G1收集器的特点。</h2><ul>
+<li><p><strong>Serial</strong>: 单线程收集器，只会使用一个CPU或一条收集器线程去完成，垃圾回收工作，更重要的是在进行垃圾回收时，必须暂停其他所有的工作线程。（Stop the world）。简单高效，用于新生代。</p>
+</li>
+<li><p><strong>ParNew</strong>: 是Serial收集器的<strong>多线程版本</strong>，垃圾回收时采用多线程方式进行回收。默认情况下使用的线程数是cpu数量。除了serial收集器，目前只有它能和CMS收集器配合工作。是server模式下首选的新生代收集器。</p>
+</li>
+<li><p><strong>Parallel Scavenge</strong>: 使用<strong>复制算法</strong>收集器，也是一个并行的多线程收集器。Parallel Scavenge收集器与其他收集器关注点不同，其它收集器主要关注缩短垃圾回收时用户线程的停顿时间。而它关心<strong>吞吐量</strong>，即<strong>运行用户代码时间/(运行用户代码时间 + 垃圾收集时间)</strong>。停顿时间越短越适合需要与用户交互的程序，高吞吐量则可以最高效率的利用CPU时间。</p>
+</li>
+<li><p><strong>Serial Old</strong>: 老年代，单线程收集器，使用<strong>标记整理算法</strong>。主要有两个用途，一是和Parallel Scavenge 收集器配合使用，二是作为CMS的后备方案在并发收集器发生<strong>Concurrent Mode Failure</strong>时候使用。</p>
+</li>
+<li><p><strong>Parallel Old</strong>:并行的老年代版本收集器，使用标记整理算法。主要与Parallel Scavenge配合使用。</p>
+</li>
+<li><p><strong>CMS</strong>：是以获得<strong>最短回收停顿时间为</strong>目标的收集器，使用<strong>标记清除算法</strong>。整个过程包括4个：</p>
+<ul>
+<li><strong>初始标记</strong>: 标记Gc ROOTS能直接关联到的对象</li>
+<li><strong>并发标记</strong>：进行Roots Traceing的过程</li>
+<li><strong>重新标记</strong>：修正并发标记期间因用户继续工作导致标记产生变动</li>
+<li><strong>并发清除</strong>：并发清除数据。<br>初始标记和重新标记需要stop the world. 并发标记和并发清除过程用户线程和收集器线程可以并行执行。</li>
+</ul>
+</li>
+<li><p><strong>G1(Garbage First):</strong> 基于<strong>标记-整理算法</strong>的收集器,不会产生空间碎片.它可以精确控制停顿,能够让使用者明确指定一个长度为M毫秒的时间片段内,消耗集上的时间不超过N秒.是不牺牲吞吐量的前提下完成低停顿的.<strong>G1将整个java堆(新生和老生)划分为大小相同的区,并跟踪这些区上发生的变化.在后台维护一个优先列表,每次根据允许的收集时间优先回收垃圾最多的区域</strong>.</p>
+</li>
+</ul>
+<p>现在公司中很多都采用了G1 垃圾回收期，建议大家多深入了解下G1，更多参考: <a href="./G1垃圾回收器.md">G1垃圾回收器</a></p>
+<h2 id="Minor-GC与Full-GC分别在什么时候发生？"><a href="#Minor-GC与Full-GC分别在什么时候发生？" class="headerlink" title="Minor GC与Full GC分别在什么时候发生？"></a>Minor GC与Full GC分别在什么时候发生？</h2><p>FullGC 一般是发生在老年代的GC，出现一个FullGC经常会伴随至少一次的Minor GC。速度比MinorGC慢10倍以上。</p>
+<h3 id="FUll-GC"><a href="#FUll-GC" class="headerlink" title="FUll GC"></a>FUll GC</h3><p>FULL GC发生的情况:</p>
+<ul>
+<li><strong>1) 老年代空间不足</strong><br>老年代空间只有在新生代对象转入及创建为大对象、大数组时才会出现不足的现象，当执行Full GC后空间仍然不足，则抛出如下错误：java.lang.OutOfMemoryError: Java heap space.</li>
+</ul>
+<p>措施:为避免以上两种状况引起的FullGC，调优时应尽量做到让对象在Minor GC阶段被回收、让对象在新生代多存活一段时间及不要创建过大的对象及数组</p>
+<ul>
+<li><p><strong>2) Permanet Generation(方法区或永久代)空间满</strong><br>PermanetGeneration中存放的为一些class的信息等，当系统中要加载的类、反射的类和调用的方法较多时，Permanet Generation可能会被占满，在未配置为采用CMS GC的情况下会执行Full GC。如果经过Full GC仍然回收不了，那么JVM会抛出如下错误信息：java.lang.OutOfMemoryError: PermGen space </p>
+<p>措施:为避免Perm Gen占满造成Full GC现象，可采用的方法为增大Perm Gen空间或转为使用CMS GC。</p>
+</li>
+<li><p><strong>3) CMS GC时出现promotion failed和concurrent mode failure</strong><br>对于采用CMS进行老年代GC的程序而言，尤其要注意GC日志中是否有promotion failed和concurrent mode failure两种状况，当这两种状况出现时可能会触发Full GC。promotion failed是在进行Minor GC时，survivor space放不下、对象只能放入老年代，而此时老年代也放不下造成的；</p>
+<p>concurrent mode failure: CMS在执行垃圾回收时需要一部分的内存空间并且此刻用户程序也在运行需要预留一部分内存给用户程序，如果预留的内存无法满足程序需求就出现一次”Concurrent mod failure”,并触发一次Full GC。</p>
+<p>应对措施为：增大survivor space、老年代空间或调低触发并发GC的比率，</p>
+</li>
+<li><p><strong>4) 空间分配担保</strong><br>统计得到的Minor GC晋升到老年代的平均大小大于老年代的剩余空间，Hotspot为了避免由于新生代对象晋升到老年代导致旧生代空间不足的现象，在进行Minor GC时，做了一个判断。如果之前统计所得到的Minor GC晋升到老年代的平均大小大于老年代的剩余空间，那么就直接触发Full GC。如果小于并且不允许担保失败也会发生一次Full GC。</p>
+</li>
+</ul>
+<h3 id="MinorGC"><a href="#MinorGC" class="headerlink" title="MinorGC"></a>MinorGC</h3><p>MinorGC 指发生在新生代的垃圾收集动作，非常频繁，回收速度也快。一般发生在新生代空间不足时,另外一个FullGC经常会伴随至少一次的Minor GC. 当虚拟检测晋升到到老年代的平均大小是否小于老年代剩余空间大小,如果小于并且允许担保失败,则执行Minor GC.</p>
+<h2 id="几种常用的内存调试工具：jmap、jstack、jconsole。"><a href="#几种常用的内存调试工具：jmap、jstack、jconsole。" class="headerlink" title="几种常用的内存调试工具：jmap、jstack、jconsole。"></a>几种常用的内存调试工具：jmap、jstack、jconsole。</h2><p>(如何用工具分析jvm状态)</p>
+<ul>
+<li><strong>jps</strong>: 列出正在虚拟机运行的虚拟机进程，并显示虚拟机执行主类的名称，以及这些进程的本地虚拟机的唯一ID。</li>
+<li><strong>jstat</strong> : 监视虚拟机各种运行状态信息的命令。可以显示本地或远程虚拟机进程中<strong>类装载、垃圾收集、JIT编译、内存</strong>等数据。</li>
+<li><strong>jinfo</strong>: 实时查看和调整虚拟机的各项参数。</li>
+<li><strong>jmap</strong>: 生成<strong>堆转存储快照</strong>，查询fianlize执行队列、java堆和永生代详细信息，如空间使用率，当前用的是那种收集器。</li>
+<li><strong>Jhat</strong>: 和jmap搭配使用，来分析jmap生成的堆转存储快照。内置一个微型的HTTP/HTML服务器，生成dump文件的分析结果后，可以通过浏览器查看。</li>
+<li><strong>jstack</strong>:用于生成当前时刻<strong>线程快照</strong>.线程快照是当前虚拟机内每一条线程正在执行的方法堆栈的集合.生成线程快照的主要目的是为了定位线程长时间停顿的原因.如死锁、死循环、请求外部资源导致的长时间等待.</li>
+<li><strong>JConsole</strong>: 可视化监视和管理工具,几乎包括以上工具的所有功能</li>
+<li><strong>VisualVM</strong></li>
+</ul>
+<h2 id="GC-是什么？为什么要有-GC"><a href="#GC-是什么？为什么要有-GC" class="headerlink" title="GC 是什么？为什么要有 GC"></a>GC 是什么？为什么要有 GC</h2><p>GC 是垃圾收集的意思，内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java 提供的 GC 功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的，Java 语言没有提供释放已分配内存的显示操作方法。Java 程序员不用担心内存管理，因为垃圾收集器会自动进行管理。要请求垃圾收集，可以调用下面的方法之一：System.gc() 或Runtime.getRuntime().gc() ，但 JVM 可以屏蔽掉显示的垃圾回收调用。</p>
+<p>垃圾回收可以有效的防止内存泄露，有效的使用可以使用的内存。垃圾回收器通常是作为一个单独的低优先级的线程运行，不可预知的情况下对内存堆中已经死亡的或者长时间没有使用的对象进行清除和回收，程序员不能实时的调用垃圾回收器对某个对象或所有对象进行垃圾回收。在 Java 诞生初期，垃圾回收是 Java 最大的亮点之一，因为服务器端的编程需要有效的防止内存泄露问题，然而时过境迁，如今 Java 的垃圾回收机制已经成为被诟病的东西。移动智能终端用户通常觉得 iOS 的系统比 Android 系统有更好的用户体验，其中一个深层次的原因就在于 Android 系统中垃圾回收的不可预知性。</p>
+<h2 id="JVM-加载-class-文件的原理机制"><a href="#JVM-加载-class-文件的原理机制" class="headerlink" title="JVM 加载 class 文件的原理机制"></a>JVM 加载 class 文件的原理机制</h2><p>JVM 中类的装载是由类加载器（ClassLoader） 和它的子类来实现的，Java 中的类加载器是一个重要的 Java 运行时系统组件，它负责在运行时查找和装入类文件中的类。</p>
+<p>由于 Java 的跨平台性，经过编译的 Java 源程序并不是一个可执行程序，而是一个或多个类文件。当 Java 程序需要使用某个类时，JVM 会确保这个类已经被加载、连接(验证、准备和解析)和初始化。类的加载是指把类的 .class 文件中的数据读入到内存中，通常是创建一个字节数组读入 .class 文件，然后产生与所加载类对应的 Class 对象。加载完成后，Class 对象还不完整，所以此时的类还不可用。当类被加载后就进入连接阶段，这一阶段包括验证、准备(为静态变量分配内存并设置默认的初始值)和解析(将符号引用替换为直接引用)三个步骤。最后 JVM 对类进行初始化，包括：</p>
+<ol>
+<li>如果类存在直接的父类并且这个类还没有被初始化，那么就先初始化父类；</li>
+<li>如果类中存在初始化语句，就依次执行这些初始化语句。</li>
+</ol>
+<p>类的加载是由类加载器完成的，类加载器包括：<strong>启动类加载器（BootStrap）、扩展加载器（Extension）、应用程序加载器（Application）和用户自定义类加载器（java.lang.ClassLoader的子类）</strong>。从JDK 1.2开始，类加载过程采取了父亲委托机制(PDM)。PDM 更好的保证了 Java 平台的安全性，在该机制中，JVM 自带的 Bootstrap 是根加载器，其他的加载器都有且仅有一个父类加载器。类的加载首先请求父类加载器加载，父类加载器无能为力时才由其子类加载器自行加载。JVM 不会向 Java 程序提供对 Bootstrap 的引用。下面是关于几个类加载器的说明：</p>
+<ul>
+<li><strong>Bootstrap</strong>：启动类加载器，一般用本地代码实现，负责加载JVM基础核心类库。加载存放在<java_home>/lib目录中的类库（如rt.jar）；</java_home></li>
+<li><strong>Extension ClassLoader</strong>：扩展加载器， 负责加载<java_home>/lib/ext目录中的<br>，或被java.ext.dirs 系统属性所指定的目录中加载类库，它的父加载器是 Bootstrap；</java_home></li>
+<li><strong>Application ClassLoader</strong>：应用程序加载器，其父类是Extension。它是应用最广泛的类加载器。它从环境变量 classpath 或者系统属性 java.class.path 所指定的目录中记载类，是用户自定义加载器的默认父加载器。</li>
+</ul>
+<p>缺点: </p>
+<ul>
+<li>双亲委派模型很好地解决了各个类加载器的基础类统一问题(越基础的类由越上层的加载器进行加载)，基础类之所以被称为“基础”，是因为它们总是作为被调用代码调用的API。但是，如果基础类又要调用用户的代码时，双亲委派模型无法满足要求。 因为Bootstrap加载器无法找到永不代码类。</li>
+</ul>
+<p>为了解决这个困境，Java设计团队只好引入了一个不太优雅的设计：<strong>线程上下文件类加载器(Thread Context ClassLoader)</strong>。这个类加载器可以通过java.lang.Thread类的setContextClassLoader()方法进行设置，如果创建线程时还未设置，它将会从父线程中继承一个；如果在应用程序的全局范围内都没有设置过，那么这个类加载器默认就是应用程序类加载器。了有线程上下文类加载器，JNDI服务使用这个线程上下文类加载器去加载所需要的SPI代码，也就是父类加载器请求子类加载器去完成类加载动作，这种行为实际上就是打通了双亲委派模型的层次结构来逆向使用类加载器，已经违背了双亲委派模型，但这也是无可奈何的事情。<strong>Java中所有涉及SPI的加载动作基本上都采用这种方式</strong>，例如JNDI,JDBC,JCE,JAXB和JBI等。 Dubbo的SPI也是采用这种机制实现。</p>
+<h2 id="类加载的五个过程：加载、验证、准备、解析、初始化。"><a href="#类加载的五个过程：加载、验证、准备、解析、初始化。" class="headerlink" title="类加载的五个过程：加载、验证、准备、解析、初始化。"></a>类加载的五个过程：加载、验证、准备、解析、初始化。</h2><ul>
+<li><p><strong>加载</strong>: 根据全限定名来获取定义类的二进制字节流,然后将该字节流所代表的静态结构转化为方法区的运行时数据结构,最后在生成一个代表该类的Class对象,作为方法区这些数据的访问入口.</p>
+</li>
+<li><p><strong>验证</strong>:主要时为了确保class文件的字节流中包含的信息符合当前虚拟机的要求,并且不会危害虚拟机自身的安全.包含四个阶段的验证过程:</p>
+<ul>
+<li><strong>文件格式验证</strong>:保证输入的字节流能够正确地解析并存储在方法区之内,格式上符合描述一个java类型信息的要求</li>
+<li><strong>元数据验证</strong>:字节码语义信息的验证,以保证描述的信息符合java语言规范.验证点有:这个类是否有父类等.</li>
+<li><strong>字节码验证</strong>:主要是进行数据流和控制流分析,保证被校验类的方法在运行时不会做出危害虚拟机安全的行为.</li>
+<li><strong>符号引用验证</strong>:对符号引用转化为直接引用过程的验证.</li>
+</ul>
+</li>
+<li><p><strong>准备</strong>:为类变量分配内存并设置变量的初始值,这些内存在方法区进行分配.</p>
+</li>
+<li><p><strong>解析</strong>:将虚拟机常量池中的符号引用转化为直接引用的过程.解析主要是针对类或接口、字段、类方法、类接口方法四类.</p>
+</li>
+<li><p><strong>初始化</strong>:执行静态变量的赋值操作以及静态代码块,完成初识化.初始化过程保证了父类中定义的初始化优先于子类的初始化.但接口不需要执行父类的初始化.</p>
+</li>
+</ul>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>除了顶层的启动类加载器外,其余的类加载器都应当有自己的父类加载器.顺序依次是:</p>
+<ul>
+<li>Bootstrap ClassLoader: 启动类加载器,加载java_home/lib中的类</li>
+<li>Extension ClassLoader: 扩展类加载器,加载java_home/lib/ext目录下的类库</li>
+<li>Application ClassLoader: 应用程序类加载器,加载用户类路径上指定类库.</li>
+</ul>
+<p>双亲委派模型的工作原理是:如果一个类加载器受到了类加载请求,它首先不会自己去尝试加载这个类,而把这个请求委派给父类加载器去完成,每一层次的类加载器都是如此,因此所有的加载请求最终都应该传送到顶层的启动类加载器中,只有当父类加载器反馈自己无法完成加载请求时,加载器才尝试自己加载.这种方式保证了Oject类(JDK 核心类)在各个加载器加载环境中都是同一个类.</p>
+<h2 id="分派：静态分派与动态分派。"><a href="#分派：静态分派与动态分派。" class="headerlink" title="分派：静态分派与动态分派。"></a>分派：静态分派与动态分派。</h2><p>多态性特征的一些最基本的体现. <strong>静态类型是编译期可知的,动态类型是在运行时可知</strong>.Human h =new Man(); Human是静态类型,Man时动态类型.</p>
+<p>所有依赖于静态类型定位方法执行版本的分派动作称作<strong>静态分派</strong>,最典型的应用是方法重载.静态分派发生在编译阶段。</p>
+<p><strong>动态分派</strong>是根据动态类型来确定执行的版本,所以只有到运行时才能确定具体的执行方法版本.典型的代表时重写.其过程如下:</p>
+<ul>
+<li>1) 首先找到操作数栈栈顶的第一个元素所执向对象的实际类型,记做C.</li>
+<li>2) 如果在类型C中找到和常量中的描述符和简单名称都相符的方法,则进行范围权限校验.如果通过则返回该方法的直接引用,否则抛出IllegalAccessError异常.</li>
+<li>3) 否则按照继承关系从下往上一次对C的各个父类进行第2步的搜索和验证过程.</li>
+<li>4) 如果始终没有找到就抛出AbstractMethodError异常.<br>方法的接受者和方法的参数统称方法宗量,根据分配基于多少中宗量可以分为单分派和多分派.java是静态多分派,动态分派属于单分派.</li>
+</ul>
+<p><strong>动态分派的实现:</strong><br>动态分派时非常频繁的动作,而且动态分派的方法版本选择过程需要运行时在类的方法元数据中搜索合适的目标方法,因此出于性能的考虑,在方法区中建立一个<strong>虚方法表</strong>,用来保存各个方法的实际入口地址.如果某个方法的子类中没有被重写,那么子类的虚方法表里面的地址入口和父类相同方法的地址入口是一致的.都是指向父类的实现入口,如果子类中重写了这个方法,子类方法表中的地址将会被替换为指向子类实现版本的入口地址.虚方法表在类加载的连接阶段进行初始化.</p>
+<h2 id="Jvm-自动内存管理（什么时候触发-gc-）"><a href="#Jvm-自动内存管理（什么时候触发-gc-）" class="headerlink" title="Jvm 自动内存管理（什么时候触发 gc ）"></a>Jvm 自动内存管理（什么时候触发 gc ）</h2><p><a href="http://jeromecen1021.blog.163.com/blog/static/18851527120117274624888/" target="_blank" rel="noopener">http://jeromecen1021.blog.163.com/blog/static/18851527120117274624888/</a><br>FULL GC 和 Minor GC 的触发时间<br>程序员不能具体控制时间，系统在不可预测的时间调用System.gc()函数的时候；当然可以通过调优，用NewRatio控制newObject和oldObject的比例，用MaxTenuringThreshold 控制进入oldObject的次数，使得oldObject 存储空间延迟达到full gc,从而使得计时器引发gc时间延迟OOM的时间延迟，以延长对象生存期。</p>
+<h2 id="GC停顿原因，如何降低停顿"><a href="#GC停顿原因，如何降低停顿" class="headerlink" title="GC停顿原因，如何降低停顿"></a>GC停顿原因，如何降低停顿</h2><h2 id="JVM如何调优、参数怎么调"><a href="#JVM如何调优、参数怎么调" class="headerlink" title="JVM如何调优、参数怎么调"></a>JVM如何调优、参数怎么调</h2><h2 id="jvm的体系结构及各个部分的职责"><a href="#jvm的体系结构及各个部分的职责" class="headerlink" title="jvm的体系结构及各个部分的职责"></a>jvm的体系结构及各个部分的职责</h2><p>JVM都有两种机制，一个是装载具有合适名称的类(类或是接口)，包含类的装载 连接 初始化的过程叫做<strong>类装载子系统</strong>；另外的一个负责执行包含在已装载的类或接口中的指令，叫做<strong>运行引擎</strong>。每个JVM又包括方法区、堆、Java栈、程序计数器和本地方法栈这五个部分，这几个部分和类装载机制与运行引擎机制一起组成的体系结构图为:</p>
+<img src="../images/15268031792473.jpg" width="340px">
+
+<ul>
+<li>JVM的每个实例都有一个它自己的方法域和一个堆，运行于JVM内的所有的线程都共享这些区域；</li>
+<li>当虚拟机装载类文件的时候，它解析其中的二进制数据所包含的类信息，并把它们放到方法域中；</li>
+<li>当程序运行的时候，JVM把程序初始化的所有对象置于堆上；</li>
+<li>而每个线程创建的时候，都会拥有自己的程序计数器和Java栈，其中程序计数器中的值指向下一条即将被执行的指令，线程的Java栈则存储为该线程调用Java方法的状态；</li>
+<li>本地方法调用的状态被存储在本地方法栈，该方法栈依赖于具体的实现。</li>
+</ul>
+<p><a href="http://blog.csdn.net/dongdong_java/article/details/24797307" target="_blank" rel="noopener">http://blog.csdn.net/dongdong_java/article/details/24797307</a><br><a href="http://blog.csdn.net/longyulu/article/details/8350622" target="_blank" rel="noopener">http://blog.csdn.net/longyulu/article/details/8350622</a></p>
+<h2 id="如果想不被-GC-怎么办"><a href="#如果想不被-GC-怎么办" class="headerlink" title="如果想不被 GC 怎么办"></a>如果想不被 GC 怎么办</h2><p>可以先说那些对象可以被GC,然后说java对象会不会回收，决定于是否还被引用，不被引用了就有可能被GC回收，一直被引用着就不会被回收. </p>
+<ol start="2">
+<li>jvm性能调优都做了什么</li>
+<li>介绍GC 和GC Root不正常引用。</li>
+<li>自己从classload 加载方式，加载机制说开去，从程序运行时数据区，讲到内存分配，讲到String常量池，讲到JVM垃圾回收机制，算法，hotspot。反正就是各种扩展</li>
+<li>数组多大放在 JVM 老年代（不只是设置 PretenureSizeThreshold ，问通常多大，没做过一问便知）</li>
+<li>老年代中数组的访问方式</li>
+<li>GC 算法，永久代对象如何 GC ， GC 有环怎么处理</li>
+<li>jvm 如何分配直接内存??</li>
+<li>new 对象如何不分配在堆而是栈上?</li>
+<li>常量池解析</li>
+</ol>
+<h2 id="运行期优化"><a href="#运行期优化" class="headerlink" title="运行期优化"></a>运行期优化</h2><h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h2 id="Student-s-new-Student-在内存中做了那些事情"><a href="#Student-s-new-Student-在内存中做了那些事情" class="headerlink" title="Student s= new Student(),在内存中做了那些事情"></a>Student s= new Student(),在内存中做了那些事情</h2><ol>
+<li>加载Student.class 文件进内存</li>
+<li>在栈内存为s开辟空间</li>
+<li>在堆内存为Student对象开辟空间</li>
+<li>学生对象的成员变量进行显示初始化</li>
+<li>通过构造方法对学生对象变量赋值</li>
+<li>学生对象初始完毕，把对象地址赋值给s变量</li>
+</ol>
+<h2 id="常用参数配置"><a href="#常用参数配置" class="headerlink" title="常用参数配置"></a>常用参数配置</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-Xms</td>
+<td>表示初始堆大小</td>
+<td>默认为物理内存的1/64(&lt;1GB)</td>
+<td>默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制.</td>
+</tr>
+<tr>
+<td>-Xmx</td>
+<td>最大堆大小</td>
+<td>物理内存的1/4(&lt;1GB)</td>
+<td>(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制</td>
+</tr>
+<tr>
+<td>-Xmn</td>
+<td>年轻代大小(1.4or lator)</td>
+<td></td>
+<td>注意：此处的大小是（eden+ 2 survivor space).与jmap -heap中显示的New gen是不同的整个堆大小=年轻代大小 + 年老代大小 + 持久代大小.增大年轻代后,将会减小年老代大小.此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8</td>
+</tr>
+<tr>
+<td>-XX:NewSize</td>
+<td>设置年轻代大小(for 1.3/1.4)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-XX:MaxNewSize</td>
+<td>年轻代最大值(for 1.3/1.4)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-XX:PermSize</td>
+<td>设置持久代(perm gen)初始值</td>
+<td>物理内存的1/64</td>
+<td></td>
+</tr>
+<tr>
+<td>-XX:MaxPermSize</td>
+<td>设置持久代最大值</td>
+<td>物理内存的1/4</td>
+<td></td>
+</tr>
+<tr>
+<td>-Xss</td>
+<td>每个线程的堆栈大小</td>
+<td></td>
+<td>JDK5.0以后每个线程堆栈大小为1M,以前每个线程堆栈大小为256K.更具应用的线程所需内存大小进行 调整.在相同物理内存下,减小这个值能生成更多的线程.但是操作系统对一个进程内的线程数还是有限制的,不能无限生成,经验值在3000~5000左右一般小的应用， 如果栈不是很深， 应该是128k够用的 大的应用建议使用256k。这个选项对性能影响比较大，需要严格的测试。（校长）和threadstacksize选项解释很类似,官方文档似乎没有解释,在论坛中有这样一句话-Xss is translated in a VM flag named ThreadStackSize一般设置这个值就可以了。</td>
+</tr>
+<tr>
+<td>-XX:NewRatio</td>
+<td>年轻代(包括Eden和两个Survivor区)与年老代的比值(除去持久代)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-XX:NewRatio</td>
+<td>=4表示年轻代与年老代所占比值为1:4, 年轻代占整个堆栈的1/5 Xms = Xmx并且设置了Xmn的情况下，该参数不需要进行设置。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-XX:SurvivorRatio</td>
+<td>Eden区与Survivor区的大小比值</td>
+<td></td>
+<td>设置为8,则两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10</td>
+</tr>
+<tr>
+<td>-XX:MaxTenuringThreshold</td>
+<td>垃圾最大年龄</td>
+<td>如果设置为0的话,则年轻代对象不经过Survivor区,直接进入年老代. 对于年老代比较多的应用,可以提高效率.如果将此值设置为一个较大值,则年轻代对象会在Survivor区进行多次复制,这样可以增加对象再年轻代的存活 时间,增加在年轻代即被回收的概率该参数只有在串行GC时才有效.</td>
+<td></td>
+</tr>
+<tr>
+<td>-XX:PretenureSizeThreshold</td>
+<td>对象超过多大是直接在旧生代分配</td>
+<td>0    单位字节</td>
+<td>新生代采用Parallel Scavenge GC时无效另一种直接在旧生代分配的情况是大的数组对象,且数组中无外部引用对象.</td>
+</tr>
+</tbody></table>
+<h1 id="六、thread"><a href="#六、thread" class="headerlink" title="六、thread"></a>六、thread</h1><h2 id="什么叫线程安全？举例说明"><a href="#什么叫线程安全？举例说明" class="headerlink" title="什么叫线程安全？举例说明"></a>什么叫线程安全？举例说明</h2><p>多个线程访问某个类时，不管运行时环境采用何种调度方式或者这些线程将如何交替执行，并且在主调代码中不需要任何额外的同步或者协同，这个类都能表现出正确的行为，那么就称这个类是线程安全的。<br>比如无状态对象一定是线程安全的。</p>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p>调度: 线程是调度的基本单位，进程是拥有资源的基本单位。同一进程的中线程的切换不会引起进程的切换，不同进程中进行线程切换会引起进程的切换。</p>
+<p>拥有资源：进程是拥有资源的基本单位，线程除了自身的栈外一般不拥有资源。而是和其他线程共享同一进程中的资源。</p>
+<p>系统开销：由于创建进程或者撤销进程时，系统都要分配和回收资源，如内存空间，I/O设备等，操作系统所付出的开销远大于创建或撤销进程时的开销。</p>
+<h2 id="volatile的理解"><a href="#volatile的理解" class="headerlink" title="volatile的理解"></a>volatile的理解</h2><p><strong>Volatile自身特性</strong>：</p>
+<ol>
+<li>Volatile 是轻量级的synchronized，它在多处理器开发过程中保证了共享变量的“<strong>可见性</strong>”，可见性是指当一个线程的某个共享变量发生改变时，另一个线程能够读取到这个修改的值。Voaltile变量修饰的变量在进行写操作时在多核处理器下首先将当前处理器缓存行的数据写回到系统内存中。为了保证一致性，其他处理器嗅探到总线上传播的数据，发现数据被修改了使自己缓存地址的数据无效。</li>
+<li>Volatile 可以<strong>禁止重排序</strong>，</li>
+<li>Volatile 能保持单个简单volatile变量的读/写操作的具有原子性。但不能保证自增自减的<strong>原子性</strong>。</li>
+</ol>
+<p>从<strong>内存语义</strong>来讲:</p>
+<ul>
+<li>volatile变量的写-读与锁的释放-获取具有相同语义，volatile的写与锁的释放有相同的内存语义，volatile读与锁的获取具有相同语义。</li>
+<li>线程A写一个volatile变量，实质上是线程A向接下来要读这个volatile变量的某个线程发出消息</li>
+<li>线程B读一个volatile变量，实质上是线程B接收了之前某个线程发出的消息。</li>
+<li>线程A写volatile变量，随后线程B读这个变量，这个过程实质上线程A通过内存向B发送消息。</li>
+</ul>
+<p>内存语义的实现，也是禁止重排序特性：<br>为了实现volatile内存语义，JMM限制了对volatile重排序做了限制：</p>
+<ol>
+<li>当第二个操作是volatile写时，不管第一个操作时什么，都不能重排序。</li>
+<li>当第一个操作是volatile读时，不管第二个操作是什么，都不能重排序。</li>
+<li>当第一个操作是volatile写，第二个操作是volatile读时，不重排序。</li>
+</ol>
+<p>为了实现volatile的内存语义，编译器生成字节码时，会在指令序列中插入内存屏障来禁止特定类型的处理器重排序。JMM采取保守策略:</p>
+<ol>
+<li>在每个volatile写操作前面插入一个StoreStore屏障</li>
+<li>在每个volatile写操作后面插入一个StoreLoad屏障</li>
+<li>在每个volatile读操作后面插入一个LoadLoad屏障</li>
+<li>在每个volatile读操作后面插入一个LoadStore屏障</li>
+</ol>
+<p>具体参考《java并发编程的艺术》</p>
+<h2 id="原子性实现机制"><a href="#原子性实现机制" class="headerlink" title="原子性实现机制"></a>原子性实现机制</h2><p>处理器提供总线锁定和缓存锁定两种方式来保证复杂内存操作的原子性。</p>
+<ul>
+<li><p>总线型：就是使用处理器提供一个LOCK信号，当一个处理器在总线传输信号时，其他处理器的请求将被阻塞住，那么该处理独占内存。所以总线锁定开销大。</p>
+</li>
+<li><p>缓存锁定：内存区域如果被缓存在缓存行中，且在在lock期间被锁定，当它执行锁操作写回内存时，处理器总线不在锁定而是通过修改内部的内存地址并使用缓存一致性制阻止同时修改保证操作的原子性。缓存一致性进制两个以上的处理器同时修改内存区域数据，其他处理器回写被锁定并且使其缓存行无效。</p>
+</li>
+</ul>
+<h2 id="Java原子性操作实现原理"><a href="#Java原子性操作实现原理" class="headerlink" title="Java原子性操作实现原理"></a>Java原子性操作实现原理</h2><p>使用循环CAS实现原子性操作，CAS是在操作期间先比较旧值，如果旧值没有发生改变，才交换成新值，发生了变化则不交换。这种方式会产生以下几种问题：</p>
+<ol>
+<li>ABA问题，通过加版本号解决；</li>
+<li>循环时间过长开销大，一般采用自旋方式实现；</li>
+<li>只能保证一个共享变量的原子操作。 </li>
+</ol>
+<h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><p>Java内存模型控制线程之间的通信，决定了一个线程对共享变量的写入何时对另一个线程可见。它属于语言级的内存模型，它确保在不同编译器和不同的处理平台之上，通过禁止特定类型的编译器重排序和处理器重排序，为程序员提供一致的内存可见性保证。JMM的核心目标是找到一个好的平衡点，一方面是为程序员提供足够强的内存可见性保证（提供happens-before规则），另一方面对编译器和处理器的限制尽可能地放松（只要不改变程序结果，怎么优化都可以）</p>
+<p>1) <strong>可见性保证</strong></p>
+<p>为了提供内存可见性保证，JMM向程序员保证了以下hapens-before规则:</p>
+<ol>
+<li><strong>程序顺序规则</strong>：一个线程的每个操作happen-before与该线程的任意后续操作。</li>
+<li><strong>监视器锁规则</strong>：一个锁的解锁，happens-before于随后这个锁的加锁。</li>
+<li><strong>Volatile变量规则</strong>：对一个volatile域的写，happens-before于任意后续这个域的读。</li>
+<li><strong>传递性</strong>, 如果A happens-before B, 且B happens-before C 那么A happens-before C</li>
+<li><strong>线程启动规则</strong>：如果线程A执行操作ThreadB.start().那么线程A中的任意操作happens-before与线程B中的任意操作。</li>
+<li><strong>线程结束规则</strong>: 线程中的任何操作都必须在其线程检测到该线程已经结束之前执行，或者从Thread.join中成功返回，或者在调用Thread.isAlive时返回false.</li>
+<li><strong>中断规则</strong>:当一个线程在另一个线程上调用interrupt时，必须在被中断线程检测到interrupt调用之前执行(通过抛出InterruptedException,或者调用isInterrupted和interrupted)</li>
+<li><strong>终结器规则</strong>: 对象的构造函数必须在启动该对象的终结器之前执行完成。</li>
+</ol>
+<p><strong>2) 禁止重排序</strong></p>
+<p>为了保证内存可见性，java编辑器在生成指令序列的适当位置插入内存屏障指令来禁止特定类型的处理器重排序。</p>
+<p>重排序：编译器和处理器为了优化程序性能对指令进行重新排序的一种手段。</p>
+<ul>
+<li>1) 编译器优化的重排序: 编译器在不改变单线程程序语义的前提下可以重新安排语句顺序。</li>
+<li>2) 指令级并行的重排序.现代处理器采用指令级并行技术来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变对应指令的执行顺序。</li>
+<li>3) 内存系统重排序。由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能在乱序执行。</li>
+</ul>
+<h2 id="Final域的内存语义"><a href="#Final域的内存语义" class="headerlink" title="Final域的内存语义"></a>Final域的内存语义</h2><p>对于final域编译器和处理器要遵守两个重排序规则：</p>
+<ol>
+<li>在构造器函数内对final域的写入，与随后把这个被构造对象的引用赋值给一个引用变量，这两个操作之间不能重排序。（保证了对象引用为任何线程可见之前，对象的final域已经被正确初始化过）</li>
+<li>初次读一个包含final域的对象引用，与随后初次读这个final域这两个操作不能重排序。</li>
+</ol>
+<p>为何保证其内存语义：可以为java程序员提供安全保证，只要对象是正确构造的，那么不需要使用同步就可以保证线程都能看到这个fianal域在构造函数中被初始化之后的值。</p>
+<h2 id="避免死锁的常见方法："><a href="#避免死锁的常见方法：" class="headerlink" title="避免死锁的常见方法："></a>避免死锁的常见方法：</h2><ul>
+<li>1)避免一个线程同时获取多个锁</li>
+<li>2)避免一个线程在锁内同时占用多个资源，尽量保证每个锁只占用一个资源</li>
+<li>3)尝试使用定时锁，使用lock.tryLock(timeout)来替代使用内部锁机制。</li>
+<li>4)对数据库锁，加锁和解锁必须在一个数据库连接里，否则会出现解锁失败的情况。</li>
+</ul>
+<h2 id="死锁的必要条件？怎么克服？"><a href="#死锁的必要条件？怎么克服？" class="headerlink" title="死锁的必要条件？怎么克服？"></a>死锁的必要条件？怎么克服？</h2><p>答：产生死锁的四个必要条件：</p>
+<ul>
+<li><strong>互斥条件</strong>：一个资源每次只能被一个进程使用。</li>
+<li><strong>请求与保持条件</strong>：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
+<li><strong>不剥夺条件</strong>:进程已获得的资源，在末使用完之前，不能强行剥夺。</li>
+<li><strong>循环等待条件</strong>:若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ul>
+<p>这四个条件是死锁的必要条件，只要系统发生死锁，这些条件必然成立，而只要上述条件之一不满足，就不会发生死锁。</p>
+<p>死锁的解决方法:</p>
+<ul>
+<li>撤消陷于死锁的全部进程；</li>
+<li>逐个撤消陷于死锁的进程，直到死锁不存在；</li>
+<li>从陷于死锁的进程中逐个强迫放弃所占用的资源，直至死锁消失。</li>
+<li>从另外一些进程那里强行剥夺足够数量的资源分配给死锁进程，以解除死锁状态</li>
+</ul>
+<h2 id="CountDownLatch-闭锁-与CyclicBarrier-栅栏-的区别"><a href="#CountDownLatch-闭锁-与CyclicBarrier-栅栏-的区别" class="headerlink" title="CountDownLatch(闭锁) 与CyclicBarrier(栅栏)的区别"></a>CountDownLatch(闭锁) 与CyclicBarrier(栅栏)的区别</h2><p>CountDownLatch: <strong>允许一个或多个线程等待其他线程完成操作</strong>. </p>
+<p>CyclicBarrier：<strong>让一组线程到达一个屏障(同步点)被阻塞，直到最后一个线程到达屏障时，所有被屏障拦截的线程才会往下执行</strong>。 </p>
+<ol>
+<li>闭锁用于等待事件、栅栏是等待线程.</li>
+<li>闭锁CountDownLatch做减计数，而栅栏CyclicBarrier则是加计数。</li>
+<li>CountDownLatch是一次性的，CyclicBarrier可以重用。</li>
+<li>CountDownLatch一个线程(或者多个)，等待另外N个线程完成某个事情之后才能执行。CyclicBarrier是N个线程相互等待，任何一个线程完成之前，所有的线程都必须等待。 </li>
+</ol>
+<p>CountDownLatch 是<strong>计数器</strong>, 线程完成一个就记一个,就像报数一样, 只不过是递减的.</p>
+<p>而CyclicBarrier更像一个<strong>水闸</strong>, 线程执行就像水流, 在水闸处都会堵住, 等到水满(线程到齐)了, 才开始泄流.</p>
+<h2 id="execute-和submit的区别"><a href="#execute-和submit的区别" class="headerlink" title="execute 和submit的区别"></a>execute 和submit的区别</h2><p>Execute()用于提交不需要返回值得任务，submit()用于提交需要返回值的任务，发挥Future类型的对象。</p>
+<h2 id="Shutdown和shutdownNow的区别"><a href="#Shutdown和shutdownNow的区别" class="headerlink" title="Shutdown和shutdownNow的区别"></a>Shutdown和shutdownNow的区别</h2><p>它们的原理都是遍历线程池中的工作线程，然后逐个调用线程的Internet方法来中断线程，所以无法响应中断的任务可能永远无法终止。</p>
+<p>ShutdownNow首先将线程池的状态设置成STOP, 然后尝试停止所有正在执行或暂停的任务，并返回等待执行任务的列表。而shutdown只是将线程池设置成SHUTDOWN状态，然后中断没有正在执行任务的线程。</p>
+<h2 id="ThreadLocal的设计理念与作用。"><a href="#ThreadLocal的设计理念与作用。" class="headerlink" title="ThreadLocal的设计理念与作用。"></a>ThreadLocal的设计理念与作用。</h2><p>ThreadLocal并不是一个Thread，而是Thread的局部变量, 当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本</p>
+<p><a href="http://blog.csdn.net/lufeng20/article/details/24314381" target="_blank" rel="noopener">http://blog.csdn.net/lufeng20/article/details/24314381</a></p>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>同步就是协同步调，按预定的先后次序进行运行。</p>
+<h2 id="sleep-和-wait-区别"><a href="#sleep-和-wait-区别" class="headerlink" title="sleep() 和 wait() 区别"></a>sleep() 和 wait() 区别</h2><p>答：sleep()方法是<strong>线程类（Thread）的静态方法</strong>，导致此线程暂停执行指定时间，将执行机会给其他线程，但是监控状态依然保持，到时后会自动恢复（线程回到就绪（ready）状态），因为调用 sleep <strong>不会释放对象锁</strong>。</p>
+<p>wait() 是 <strong>Object 类的方法</strong>，对此对象调用 wait()方法导致本线程放弃对象锁(线程暂停执行)，<strong>释放资源并</strong>进入等待此对象的等待锁定池，只有针对此对象发出 notify 方法（或 notifyAll）后本线程才进入对象锁定池准备获得对象锁进入就绪状态。</p>
+<h2 id="sleep-和-yield-区别"><a href="#sleep-和-yield-区别" class="headerlink" title="sleep() 和 yield() 区别"></a>sleep() 和 yield() 区别</h2><ul>
+<li>① sleep() 方法给其他线程运行机会时<strong>不考虑线程的优先级</strong>，因此会给低优先级的线程以运行的机会；yield() 方法<strong>只会给相同优先级或更高优先级</strong>的线程以运行的机会；</li>
+<li>② 线程执行 sleep() 方法后转入<strong>阻塞</strong>（blocked）状态，而执行 yield() 方法后转入<strong>就绪（ready）</strong>状态；</li>
+<li>③ sleep() 方法声明抛出InterruptedException，而 yield() 方法没有声明任何异常；</li>
+<li>④ sleep() 方法比 yield() 方法（跟操作系统相关）具有更好的可移植性。</li>
+</ul>
+<h2 id="线程同步相关的方法。"><a href="#线程同步相关的方法。" class="headerlink" title="线程同步相关的方法。"></a>线程同步相关的方法。</h2><ul>
+<li><strong>wait()</strong>:使一个线程处于等待（阻塞）状态，并且释放所持有的对象的锁；</li>
+<li><strong>sleep()</strong>:使一个正在运行的线程处于睡眠状态，是一个静态方法，调用此方法要捕捉InterruptedException 异常；</li>
+<li><strong>notify()</strong>:唤醒一个处于等待状态的线程，当然在调用此方法的时候，并不能确切的唤醒某一个等待状态的线程，而是由JVM确定唤醒哪个线程，而且与优先级无关；</li>
+<li><strong>notityAll()</strong>:唤醒所有处入等待状态的线程，注意并不是给所有唤醒线程一个对象的锁，而是让它们竞争；</li>
+</ul>
+<h2 id="什么是线程池（thread-pool）"><a href="#什么是线程池（thread-pool）" class="headerlink" title="什么是线程池（thread pool）"></a>什么是线程池（thread pool）</h2><p>在面向对象编程中，<strong>创建和销毁对象是很费时间的</strong>，因为创建一个对象要获取内存资源或者其它更多资源。在 Java 中更是如此，虚拟机将试图跟踪每一个对象，以便能够在对象销毁后进行垃圾回收。所以提高服务程序效率的一个手段就是<strong>尽可能减少创建和销毁对象的次数</strong>，特别是一些很耗资源的对象创建和销毁，这就是”<strong>池化资源</strong>“技术产生的原因。</p>
+<p>线程池顾名思义就是事先创建若干个可执行的线程放入一个池（容器）中，需要的时候从池中获取线程不用自行创建，使用完毕不需要销毁线程而是放回池中，从而减少创建和销毁线程对象的开销。</p>
+<p><a href="http://www.cnblogs.com/dolphin0520/p/3932921.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3932921.html</a></p>
+<h2 id="ConcurrentHashMap实现原理"><a href="#ConcurrentHashMap实现原理" class="headerlink" title="ConcurrentHashMap实现原理"></a>ConcurrentHashMap实现原理</h2><p>ConcurrentHashMap和Hashtable主要区别就是围绕着锁的粒度以及如何锁。<br>Hashtabl在竞争激烈的环境下表现效率低下的原因是一把锁锁住整张表，导致所有线程同时竞争一个锁。ConcurrentHashMap采用<strong>分段锁</strong>，每把锁锁住容器中的一个Segment。那么多线程访问容器里不同的Segment的数据时线程就不会存在竞争，从而有效提高并发访问效率。首先是将数据分层多个Segment存储，并为每个Segment分配一把锁，当一个线程范围其中一段数据时，其他线程可以访问其他段的数据。</p>
+<p>数据结构：</p>
+<p>ConcurrentHashMap内部是有<strong>Segment</strong>数组和<strong>HashEntry</strong>数组组成。一个ConcurrentHashMap里包含一个Segment数组，而Segment的结构和HashMap一样，里面是由一个数组和链表结构组成，所以一个Segment内部包含一个HashEntry数组。每个HashEntry是一个链表结构，对于HashEntry数组进行修改时首先需要获取与它对应的Segment锁。默认情况下有16个Segment</p>
+<p>Segment的定位:</p>
+<p>使用Wang/Jenkins hash变种算法对元素的hashCode进行一次再散列，目的是为了减少散列冲突。</p>
+<p>ConcurrentHashMap的操作:</p>
+<ul>
+<li>get</li>
+</ul>
+<p>get操作实现非常简单高效。先经过一次<strong>再散列</strong>，然后用这个散列值通过散列运算定位到Segment，<strong>再通过散列算法定位到元素</strong>。get之所以高效是因为整个get过程不需要加锁，除非读到空值才会加锁重读。实现该技术的技术保证是保证<strong>HashEntry是不可变的</strong>。</p>
+<p>第一步是访问count变量，这是一个volatile变量，由于所有的修改操作在进行结构修改时都会在最后一步写count 变量，通过这种机制保证get操作能够得到几乎最新的结构更新。对于非结构更新，也就是结点值的改变，由于HashEntry的value变量是 volatile的，也能保证读取到最新的值。接下来就是根据hash和key对hash链进行遍历找到要获取的结点，如果没有找到，直接访回null。</p>
+<p>对hash链进行遍历<strong>不需要加锁的原因在于链指针next是final的、entry是不可变类</strong>。但是头指针却不是final的，这是通过getFirst(hash)方法返回，也就是存在 table数组中的值。这使得getFirst(hash)可能返回过时的头结点，例如，当执行get方法时，刚执行完getFirst(hash)之后，另一个线程执行了删除操作并更新头结点，这就导致get方法中返回的头结点不是最新的。这是可以允许，通过对count变量的协调机制，get能读取到几乎最新的数据，虽然可能不是最新的。要得到最新的数据，只有采用完全的同步。</p>
+<ul>
+<li>put</li>
+</ul>
+<p>该方法也是在持有段锁(锁定当前segment)的情况下执行的，这当然是为了并发的安全，修改数据是不能并发进行的，必须得有个判断是否超限的语句以确保容量不足时能够rehash。首先根据计算得到的散列值定位到segment及该segment中的散列桶中。接着判断是否存在同样一个key的结点，如果存在就直接替换这个结点的值。否则创建一个新的结点并添加到hash链的头部，这时一定要修改modCount和count的值，同样修改count的值一定要放在最后一步。</p>
+<ul>
+<li>remove<br>HashEntry中除了value不是final的，其它值都是final的，这意味着不能从hash链的中间或尾部添加或删除节点，因为这需要修改next 引用值，所有的节点的修改只能从头部开始。对于put操作，可以一律添加到Hash链的头部。但是对于remove操作，可能需要从中间删除一个节点，这就需要将要删除节点的前面所有节点整个复制一遍，最后一个节点指向要删除结点的下一个结点。</li>
+</ul>
+<p>首先定位到要删除的节点e。如果不存在这个节点就直接返回null，否则就要将e前面的结点复制一遍，尾结点指向e的下一个结点。e后面的结点不需要复制，它们可以重用。</p>
+<ul>
+<li>size()<br>每个Segment都有一个count变量，是一个volatile变量。当调用size方法时，首先先尝试2次通过不锁住segment的方式统计各个Segment的count值得总和，如果两次值不同则将锁住整个ConcurrentHashMap然后进行计算。</li>
+</ul>
+<p>参见《java并发编程的艺术》P156<br><a href="http://www.cnblogs.com/ITtangtang/p/3948786.html" target="_blank" rel="noopener">http://www.cnblogs.com/ITtangtang/p/3948786.html</a></p>
+<h2 id="线程的几种可用状态"><a href="#线程的几种可用状态" class="headerlink" title="线程的几种可用状态"></a>线程的几种可用状态</h2><p>线程在运行周期里有6中不同的状态：</p>
+<ol>
+<li>New 新建</li>
+<li>RUNNABLE 运行状态,操作系统中运行与就绪两种状态统称运行中</li>
+<li>BLOCKED 阻塞状态</li>
+<li>WAITING    等待状态</li>
+<li>TIME_WAITING 超时等待</li>
+<li>TERMINATED    终止状态</li>
+</ol>
+<h2 id="同步方法和同步代码块的区别是什么"><a href="#同步方法和同步代码块的区别是什么" class="headerlink" title="同步方法和同步代码块的区别是什么"></a>同步方法和同步代码块的区别是什么</h2><ol>
+<li><p>同步方法只能锁定当前对象或class对象， 而同步方法块可以使用其他对象、当前对象及当前对象的class作为锁。</p>
+</li>
+<li><p>从反编译后的结果看，对于同步块使用了<strong>monitorenter</strong>和<strong>monitorexit</strong>指令，而同步方法则是依靠方法上的修饰符<strong>ACC_SYNCHRONIZED</strong>来完成，但它们的本质都是对一个对象监视器进行获取，而这个获取过程是排他的。</p>
+</li>
+</ol>
+<h3 id="显示锁ReentrantLock与内置锁synchronized的相同与区别"><a href="#显示锁ReentrantLock与内置锁synchronized的相同与区别" class="headerlink" title="显示锁ReentrantLock与内置锁synchronized的相同与区别"></a>显示锁ReentrantLock与内置锁synchronized的相同与区别</h3><p>相同：显示锁与内置锁在加锁和内存上提供的语义相同(互斥访问临界区)</p>
+<p>不同：</p>
+<ol>
+<li><strong>使用方式</strong>：内置无需指定释放锁，简化锁操作。显示锁拥有锁获取和释放的可操作性。</li>
+<li><strong>功能上</strong>：显示锁提供了其他很多功能如定时锁等待、可中断锁等待、公平性、尝试非阻塞获取锁、以及实现非结构化的加锁。（一个线程获取不到锁而被阻塞在synchronized之外时，对该线程进行中断操作，此时该线程的中断表示为会被修改，但线程依旧会被阻塞在synchronized上，等待获取锁。）</li>
+<li><strong>对死锁的处理</strong>：内置只能重启，显示可以通过设置超时获取锁来避免</li>
+<li><strong>性能上</strong>：java1.5 显示远超内置，java1.6 显示锁稍微比内置好</li>
+<li>atomicinteger和Volatile等线程安全操作的关键字的理解和使用</li>
+</ol>
+<p>SOF你遇到过哪些情况。</p>
+<h3 id="实现多线程的3种方法：Thread与Runable。"><a href="#实现多线程的3种方法：Thread与Runable。" class="headerlink" title="实现多线程的3种方法：Thread与Runable。"></a>实现多线程的3种方法：Thread与Runable。</h3><ul>
+<li><strong>1)继承Tread类，重写run函数</strong></li>
+<li><strong>2)实现Runnable接口</strong></li>
+<li><strong>3)实现Callable接口</strong></li>
+</ul>
+<h3 id="如何选择多线程池"><a href="#如何选择多线程池" class="headerlink" title="如何选择多线程池"></a>如何选择多线程池</h3><ol start="22">
+<li>线程同步的方法：sychronized、lock、reentrantLock等。</li>
+<li>锁的等级：方法锁、对象锁、类锁。</li>
+<li>ThreadPool用法与优势。</li>
+<li>Callable和Runnable的区别</li>
+<li>Concurrent包里的其他东西：ArrayBlockingQueue、CountDownLatch等等。</li>
+<li>foreach与正常for循环效率对比。</li>
+<li>反射的作用于原理。</li>
+<li>泛型常用特点，List<string>能否转为List<object>。</object></string></li>
+<li>设计模式：单例、工厂、适配器、责任链、观察者等等。</li>
+<li>JNI的使用。</li>
+<li>java的代理是怎么实现的  </li>
+<li>Java1.7与1.8新特性。</li>
+<li>lmbda表达式</li>
+<li>Java8新特性</li>
+<li>连接池使用使用什么数据结构实现</li>
+<li>实现连接池</li>
+<li>结束一条 Thread 有什么方法？ interrupt 底层实现有看过吗？线程的状态是怎么样的？如果给你实现会怎么样做？</li>
+<li>Java 中有内存泄露吗？是怎么样的情景？为什么不用循环计数？</li>
+<li>java都有哪些加锁方式</li>
+<li>AIO与BIO的区别</li>
+<li>生产者与消费者，手写代码</li>
+<li>Java创建线程之后，直接调用start()方法和run()的区别</li>
+<li>常用的线程池模式以及不同线程池的使用场景</li>
+<li>newFixedThreadPool此种线程池如果线程数达到最大值后会怎么办，底层原理。</li>
+<li>多线程之间通信的同步问题，synchronized锁的是对象，衍伸出和synchronized相关很多的具体问题，例如同一个类不同方法都有synchronized锁，一个对象是否可以同时访问。或者一个类的static构造方法加上synchronized之后的锁的影响。</li>
+<li>了解可重入锁的含义，以及ReentrantLock 和synchronized的区别</li>
+<li>同步的数据结构，例如concurrentHashMap的源码理解以及内部实现原理，为什么他是同步的且效率高</li>
+<li>线程间通信，wait和notify</li>
+<li>定时线程的使用</li>
+<li>场景：在一个主线程中，要求有大量(很多很多)子线程执行完之后，主线程才执行完成。多种方式，考虑效率。</li>
+<li>并发、同步的接口或方法</li>
+<li>J.U.C下的常见类的使用。 ThreadPool的深入考察； BlockingQueue的使用。（take，poll的区别，put，offer的区别）；原子类的实现。</li>
+<li>简单介绍下多线程的情况，从建立一个线程开始。然后怎么控制同步过程，多线程常用的方法和结构</li>
+<li>实现多线程有几种方式，多线程同步怎么做，说说几个线程里常用的方法</li>
+</ol>
+<h2 id="写出生产者消费者模式。"><a href="#写出生产者消费者模式。" class="headerlink" title="写出生产者消费者模式。"></a>写出生产者消费者模式。</h2><pre><code>public class ProducerConsumerPattern {
+    public static void main(String args[]){
+     BlockingQueue sharedQueue = new LinkedBlockingQueue();
+     Thread prodThread = new Thread(new Producer(sharedQueue));
+     Thread consThread = new Thread(new Consumer(sharedQueue));
+     prodThread.start();
+     consThread.start();
+    }
+}
+
+//Producer Class in java
+class Producer implements Runnable {
+    private final BlockingQueue sharedQueue;
+    public Producer(BlockingQueue sharedQueue) {
+        this.sharedQueue = sharedQueue;
+    }
+    @Override
+    public void run() {
+        for(int i=0; i&lt;10; i++){
+            try {
+                System.out.println(&quot;Produced: &quot; + i);
+                sharedQueue.put(i);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+}
+
+//Consumer Class in Java
+class Consumer implements Runnable{
+    private final BlockingQueue sharedQueue;
+    public Consumer (BlockingQueue sharedQueue) {
+        this.sharedQueue = sharedQueue;
+    }
+    @Override
+    public void run() {
+        while(true){
+            try {
+                System.out.println(&quot;Consumed: &quot;+ sharedQueue.take());
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Consumer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+}</code></pre><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="http://bbym010.iteye.com/blog/2100868" target="_blank" rel="noopener">http://bbym010.iteye.com/blog/2100868</a></li>
+<li><a href="http://developer.51cto.com/art/201112/307463.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201112/307463.htm</a></li>
+<li><a href="http://ifeve.com/java-nio-vs-io/" target="_blank" rel="noopener">http://ifeve.com/java-nio-vs-io/</a></li>
+<li><a href="https://www.cnblogs.com/findumars/p/6361627.html" target="_blank" rel="noopener">5种网络IO模型（有图，很清楚）</a></li>
+<li><a href="http://www.uml.org.cn/zjjs/201711241.asp" target="_blank" rel="noopener">gRPC线程模型分析</a> | InfoQ</li>
+<li><a href="https://blog.csdn.net/qq546770908/article/details/53082870" target="_blank" rel="noopener"></a></li>
+<li><a href="http://www.cnblogs.com/Anker/archive/2013/08/14/3258674.html" target="_blank" rel="noopener">IO多路复用之select总结</a></li>
+<li><a href="https://www.cnblogs.com/jeakeven/p/5435916.html" target="_blank" rel="noopener">IO多路复用之select、poll、epoll详解</a></li>
+<li><a href="https://blog.csdn.net/a627088424/article/details/54582360" target="_blank" rel="noopener">透彻 Linux (Unix) 五种 IO 模型</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/32400397" target="_blank" rel="noopener">设备管理 | I/O软件</a></li>
+<li><a href="https://tech.meituan.com/about-desk-io.html" target="_blank" rel="noopener">磁盘I/O那些事</a> | 美团</li>
+<li><a href="https://www.kancloud.cn/kancloud/ldd3/61083" target="_blank" rel="noopener">《Linux 设备驱动 Edition 3》</a></li>
+<li><a href="https://segmentfault.com/a/1190000007692223" target="_blank" rel="noopener">磁盘及网络IO工作方式解析</a></li>
+<li><a href="https://github.com/CyC2018/Interview-Notebook/blob/master/notes/Socket.md" target="_blank" rel="noopener">Socket</a></li>
 <li><a href="http://www.cnblogs.com/shanyou/archive/2009/09/21/1570716.html" target="_blank" rel="noopener">面向对象设计的 SOLID 原则</a></li>
 <li><a href="http://design-patterns.readthedocs.io/zh_CN/latest/read_uml.html#generalization" target="_blank" rel="noopener">看懂 UML 类图和时序图</a></li>
 <li><a href="http://www.cnblogs.com/wolf-sun/p/UML-Sequence-diagram.html" target="_blank" rel="noopener">UML 系列——时序图（顺序图）sequence diagram</a></li>
 <li><a href="http://blog.csdn.net/jianyuerensheng/article/details/51602015" target="_blank" rel="noopener">面向对象编程三大特性 —— 封装、继承、多态</a></li>
-</ul>
+</ol>
 
     </div>
 
@@ -589,7 +1380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、三大特性"><span class="nav-number">1.</span> <span class="nav-text">一、三大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">1.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">1.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">1.3.</span> <span class="nav-text">多态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、类图"><span class="nav-number">2.</span> <span class="nav-text">二、类图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#泛化关系-Generalization"><span class="nav-number">2.1.</span> <span class="nav-text">泛化关系 (Generalization)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现关系-Realization"><span class="nav-number">2.2.</span> <span class="nav-text">实现关系 (Realization)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合关系-Aggregation"><span class="nav-number">2.3.</span> <span class="nav-text">聚合关系 (Aggregation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合关系-Composition"><span class="nav-number">2.4.</span> <span class="nav-text">组合关系 (Composition)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联关系-Association"><span class="nav-number">2.5.</span> <span class="nav-text">关联关系 (Association)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖关系-Dependency"><span class="nav-number">2.6.</span> <span class="nav-text">依赖关系 (Dependency)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、设计原则"><span class="nav-number">3.</span> <span class="nav-text">三、设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#S-O-L-I-D"><span class="nav-number">3.1.</span> <span class="nav-text">S.O.L.I.D</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-单一责任原则"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. 单一责任原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-开放封闭原则"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. 开放封闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-里氏替换原则"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. 里氏替换原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-接口分离原则"><span class="nav-number">3.1.4.</span> <span class="nav-text">4. 接口分离原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-依赖倒置原则"><span class="nav-number">3.1.5.</span> <span class="nav-text">5. 依赖倒置原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他常见原则"><span class="nav-number">3.2.</span> <span class="nav-text">其他常见原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-迪米特法则"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. 迪米特法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-合成复用原则"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. 合成复用原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-共同封闭原则"><span class="nav-number">3.2.3.</span> <span class="nav-text">3. 共同封闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-稳定抽象原则"><span class="nav-number">3.2.4.</span> <span class="nav-text">4. 稳定抽象原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-稳定依赖原则"><span class="nav-number">3.2.5.</span> <span class="nav-text">5. 稳定依赖原则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、三大特性"><span class="nav-number">1.</span> <span class="nav-text">一、三大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">1.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">1.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">1.3.</span> <span class="nav-text">多态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、类图"><span class="nav-number">2.</span> <span class="nav-text">二、类图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#泛化关系-Generalization"><span class="nav-number">2.1.</span> <span class="nav-text">泛化关系 (Generalization)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现关系-Realization"><span class="nav-number">2.2.</span> <span class="nav-text">实现关系 (Realization)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合关系-Aggregation"><span class="nav-number">2.3.</span> <span class="nav-text">聚合关系 (Aggregation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合关系-Composition"><span class="nav-number">2.4.</span> <span class="nav-text">组合关系 (Composition)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联关系-Association"><span class="nav-number">2.5.</span> <span class="nav-text">关联关系 (Association)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖关系-Dependency"><span class="nav-number">2.6.</span> <span class="nav-text">依赖关系 (Dependency)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、设计原则"><span class="nav-number">3.</span> <span class="nav-text">三、设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#S-O-L-I-D"><span class="nav-number">3.1.</span> <span class="nav-text">S.O.L.I.D</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-单一责任原则"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. 单一责任原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-开放封闭原则"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. 开放封闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-里氏替换原则"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. 里氏替换原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-接口分离原则"><span class="nav-number">3.1.4.</span> <span class="nav-text">4. 接口分离原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-依赖倒置原则"><span class="nav-number">3.1.5.</span> <span class="nav-text">5. 依赖倒置原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他常见原则"><span class="nav-number">3.2.</span> <span class="nav-text">其他常见原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-迪米特法则"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. 迪米特法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-合成复用原则"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. 合成复用原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-共同封闭原则"><span class="nav-number">3.2.3.</span> <span class="nav-text">3. 共同封闭原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-稳定抽象原则"><span class="nav-number">3.2.4.</span> <span class="nav-text">4. 稳定抽象原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-稳定依赖原则"><span class="nav-number">3.2.5.</span> <span class="nav-text">5. 稳定依赖原则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、Java-IO-NIO"><span class="nav-number">4.</span> <span class="nav-text">四、Java IO/NIO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-linux-底层实现"><span class="nav-number">5.</span> <span class="nav-text">一. linux 底层实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-kernel-IO"><span class="nav-number">5.1.</span> <span class="nav-text">1.1 kernel IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-I-O-模型"><span class="nav-number">5.2.</span> <span class="nav-text">1.1 I/O 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞和非阻塞"><span class="nav-number">5.2.1.</span> <span class="nav-text">阻塞和非阻塞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步和异步"><span class="nav-number">5.2.2.</span> <span class="nav-text">同步和异步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-linux-I-O-模型"><span class="nav-number">5.3.</span> <span class="nav-text">1.2 linux I/O 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）-阻塞IO（blocking-IO）"><span class="nav-number">5.3.1.</span> <span class="nav-text">1） 阻塞IO（blocking IO）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）非阻塞IO（non-blocking-IO）"><span class="nav-number">5.3.2.</span> <span class="nav-text">2）非阻塞IO（non-blocking IO）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）多路复用IO（IO-multiplexing）"><span class="nav-number">5.3.3.</span> <span class="nav-text">3）多路复用IO（IO multiplexing）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#select"><span class="nav-number">5.3.3.1.</span> <span class="nav-text">select</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#poll"><span class="nav-number">5.3.3.2.</span> <span class="nav-text">poll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#epoll"><span class="nav-number">5.3.3.3.</span> <span class="nav-text">epoll</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4）信号驱动式IO"><span class="nav-number">5.3.4.</span> <span class="nav-text">4）信号驱动式IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5）异步IO（Asynchronous-I-O）"><span class="nav-number">5.3.5.</span> <span class="nav-text">5）异步IO（Asynchronous I/O）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-IO-分类"><span class="nav-number">6.</span> <span class="nav-text">Java IO 分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#名词解释"><span class="nav-number">6.1.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-BIO"><span class="nav-number">6.2.</span> <span class="nav-text">Java BIO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BIO、NIO、AIO适用场景分析"><span class="nav-number">6.3.</span> <span class="nav-text">BIO、NIO、AIO适用场景分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-NIO和IO的主要区别"><span class="nav-number">6.3.1.</span> <span class="nav-text">Java NIO和IO的主要区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、JVM"><span class="nav-number">7.</span> <span class="nav-text">五、JVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍JVM中7个区域，然后把每个区域可能造成内存的溢出的情况说明"><span class="nav-number">7.1.</span> <span class="nav-text">介绍JVM中7个区域，然后把每个区域可能造成内存的溢出的情况说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC的两种判定方法：引用计数与根搜索算法"><span class="nav-number">7.2.</span> <span class="nav-text">GC的两种判定方法：引用计数与根搜索算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的四种引用"><span class="nav-number">7.3.</span> <span class="nav-text">Java中的四种引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象创建方法，对象的内存分配，对象的访问定位。"><span class="nav-number">7.4.</span> <span class="nav-text">对象创建方法，对象的内存分配，对象的访问定位。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存溢出和内存泄漏"><span class="nav-number">7.5.</span> <span class="nav-text">内存溢出和内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存溢出了怎么办"><span class="nav-number">7.6.</span> <span class="nav-text">内存溢出了怎么办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-中有内存泄露吗？"><span class="nav-number">7.7.</span> <span class="nav-text">Java 中有内存泄露吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候会发生jvm堆（持久区）内存溢出"><span class="nav-number">7.8.</span> <span class="nav-text">什么时候会发生jvm堆（持久区）内存溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆里面的分区：Eden，survivor-from-to，老年代，各自的特点。"><span class="nav-number">7.9.</span> <span class="nav-text">堆里面的分区：Eden，survivor from to，老年代，各自的特点。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OOM你遇到过哪些情况"><span class="nav-number">7.10.</span> <span class="nav-text">OOM你遇到过哪些情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC的收集方法的原理与特点，分别用在什么地方，如果让你优化收集方法，有什么思路？"><span class="nav-number">7.11.</span> <span class="nav-text">GC的收集方法的原理与特点，分别用在什么地方，如果让你优化收集方法，有什么思路？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC收集器有哪些？CMS收集器与G1收集器的特点。"><span class="nav-number">7.12.</span> <span class="nav-text">GC收集器有哪些？CMS收集器与G1收集器的特点。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minor-GC与Full-GC分别在什么时候发生？"><span class="nav-number">7.13.</span> <span class="nav-text">Minor GC与Full GC分别在什么时候发生？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FUll-GC"><span class="nav-number">7.13.1.</span> <span class="nav-text">FUll GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MinorGC"><span class="nav-number">7.13.2.</span> <span class="nav-text">MinorGC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种常用的内存调试工具：jmap、jstack、jconsole。"><span class="nav-number">7.14.</span> <span class="nav-text">几种常用的内存调试工具：jmap、jstack、jconsole。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC-是什么？为什么要有-GC"><span class="nav-number">7.15.</span> <span class="nav-text">GC 是什么？为什么要有 GC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-加载-class-文件的原理机制"><span class="nav-number">7.16.</span> <span class="nav-text">JVM 加载 class 文件的原理机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载的五个过程：加载、验证、准备、解析、初始化。"><span class="nav-number">7.17.</span> <span class="nav-text">类加载的五个过程：加载、验证、准备、解析、初始化。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双亲委派模型"><span class="nav-number">7.18.</span> <span class="nav-text">双亲委派模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分派：静态分派与动态分派。"><span class="nav-number">7.19.</span> <span class="nav-text">分派：静态分派与动态分派。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jvm-自动内存管理（什么时候触发-gc-）"><span class="nav-number">7.20.</span> <span class="nav-text">Jvm 自动内存管理（什么时候触发 gc ）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC停顿原因，如何降低停顿"><span class="nav-number">7.21.</span> <span class="nav-text">GC停顿原因，如何降低停顿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM如何调优、参数怎么调"><span class="nav-number">7.22.</span> <span class="nav-text">JVM如何调优、参数怎么调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jvm的体系结构及各个部分的职责"><span class="nav-number">7.23.</span> <span class="nav-text">jvm的体系结构及各个部分的职责</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果想不被-GC-怎么办"><span class="nav-number">7.24.</span> <span class="nav-text">如果想不被 GC 怎么办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行期优化"><span class="nav-number">7.25.</span> <span class="nav-text">运行期优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">7.26.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Student-s-new-Student-在内存中做了那些事情"><span class="nav-number">7.27.</span> <span class="nav-text">Student s= new Student(),在内存中做了那些事情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数配置"><span class="nav-number">7.28.</span> <span class="nav-text">常用参数配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、thread"><span class="nav-number">8.</span> <span class="nav-text">六、thread</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么叫线程安全？举例说明"><span class="nav-number">8.1.</span> <span class="nav-text">什么叫线程安全？举例说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的区别"><span class="nav-number">8.2.</span> <span class="nav-text">进程和线程的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile的理解"><span class="nav-number">8.3.</span> <span class="nav-text">volatile的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子性实现机制"><span class="nav-number">8.4.</span> <span class="nav-text">原子性实现机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java原子性操作实现原理"><span class="nav-number">8.5.</span> <span class="nav-text">Java原子性操作实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java内存模型"><span class="nav-number">8.6.</span> <span class="nav-text">Java内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Final域的内存语义"><span class="nav-number">8.7.</span> <span class="nav-text">Final域的内存语义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免死锁的常见方法："><span class="nav-number">8.8.</span> <span class="nav-text">避免死锁的常见方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁的必要条件？怎么克服？"><span class="nav-number">8.9.</span> <span class="nav-text">死锁的必要条件？怎么克服？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CountDownLatch-闭锁-与CyclicBarrier-栅栏-的区别"><span class="nav-number">8.10.</span> <span class="nav-text">CountDownLatch(闭锁) 与CyclicBarrier(栅栏)的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#execute-和submit的区别"><span class="nav-number">8.11.</span> <span class="nav-text">execute 和submit的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shutdown和shutdownNow的区别"><span class="nav-number">8.12.</span> <span class="nav-text">Shutdown和shutdownNow的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal的设计理念与作用。"><span class="nav-number">8.13.</span> <span class="nav-text">ThreadLocal的设计理念与作用。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">8.14.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sleep-和-wait-区别"><span class="nav-number">8.15.</span> <span class="nav-text">sleep() 和 wait() 区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sleep-和-yield-区别"><span class="nav-number">8.16.</span> <span class="nav-text">sleep() 和 yield() 区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程同步相关的方法。"><span class="nav-number">8.17.</span> <span class="nav-text">线程同步相关的方法。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是线程池（thread-pool）"><span class="nav-number">8.18.</span> <span class="nav-text">什么是线程池（thread pool）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcurrentHashMap实现原理"><span class="nav-number">8.19.</span> <span class="nav-text">ConcurrentHashMap实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的几种可用状态"><span class="nav-number">8.20.</span> <span class="nav-text">线程的几种可用状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步方法和同步代码块的区别是什么"><span class="nav-number">8.21.</span> <span class="nav-text">同步方法和同步代码块的区别是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示锁ReentrantLock与内置锁synchronized的相同与区别"><span class="nav-number">8.21.1.</span> <span class="nav-text">显示锁ReentrantLock与内置锁synchronized的相同与区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现多线程的3种方法：Thread与Runable。"><span class="nav-number">8.21.2.</span> <span class="nav-text">实现多线程的3种方法：Thread与Runable。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何选择多线程池"><span class="nav-number">8.21.3.</span> <span class="nav-text">如何选择多线程池</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写出生产者消费者模式。"><span class="nav-number">8.22.</span> <span class="nav-text">写出生产者消费者模式。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">8.23.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
