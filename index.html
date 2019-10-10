@@ -2359,6 +2359,130 @@ class Consumer implements Runnable{
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/10/hbase-协处理器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon">
+      <meta itemprop="description" content="挪威的森林">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/03/10/hbase-协处理器/" class="post-title-link" itemprop="url">hbase 协处理器</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-03-10 17:10:48" itemprop="dateCreated datePublished" datetime="2018-03-10T17:10:48+08:00">2018-03-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-10 17:20:39" itemprop="dateModified" datetime="2019-10-10T17:20:39+08:00">2019-10-10</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>HBASE-OBSERVER</p>
+<h1 id="一、-代码模块："><a href="#一、-代码模块：" class="headerlink" title="一、    代码模块："></a>一、    代码模块：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">package cn.com.hbase.observer;</span><br><span class="line"></span><br><span class="line">import com.sun.org.apache.commons.logging.Log;</span><br><span class="line">import com.sun.org.apache.commons.logging.LogFactory;</span><br><span class="line">import org.apache.hadoop.hbase.Cell;</span><br><span class="line">import org.apache.hadoop.hbase.CellUtil;</span><br><span class="line">import org.apache.hadoop.hbase.CoprocessorEnvironment;</span><br><span class="line">import org.apache.hadoop.hbase.client.Delete;</span><br><span class="line">import org.apache.hadoop.hbase.client.Durability;</span><br><span class="line">import org.apache.hadoop.hbase.client.Put;</span><br><span class="line">import org.apache.hadoop.hbase.coprocessor.BaseRegionObserver;</span><br><span class="line">import org.apache.hadoop.hbase.coprocessor.ObserverContext;</span><br><span class="line">import org.apache.hadoop.hbase.coprocessor.RegionCoprocessorEnvironment;</span><br><span class="line">import org.apache.hadoop.hbase.regionserver.wal.WALEdit;</span><br><span class="line">import org.apache.hadoop.hbase.util.Bytes;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author greatwall</span><br><span class="line"> * observer协处理器测试</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class MyRegionObserver extends BaseRegionObserver &#123;</span><br><span class="line">    private static final Log LOG = LogFactory.getLog(MyRegionObserver.class);</span><br><span class="line"></span><br><span class="line">    private RegionCoprocessorEnvironment env = null;</span><br><span class="line">    // 设定只有F族下的列才能被操作，且A列只写，B列只读。的语言</span><br><span class="line">    private static final String FAMAILLY_NAME = &quot;F&quot;;</span><br><span class="line">    private static final String ONLY_PUT_COL = &quot;A&quot;;</span><br><span class="line">    private static final String ONLY_READ_COL = &quot;B&quot;;</span><br><span class="line"></span><br><span class="line">    // 协处理器是运行于region中的，每一个region都会加载协处理器</span><br><span class="line">    // 这个方法会在regionserver打开region时候执行（还没有真正打开）</span><br><span class="line">    @Override</span><br><span class="line">    public void start(CoprocessorEnvironment e) throws IOException &#123;</span><br><span class="line">        env = (RegionCoprocessorEnvironment) e;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 这个方法会在regionserver关闭region时候执行（还没有真正关闭）</span><br><span class="line">    @Override</span><br><span class="line">    public void stop(CoprocessorEnvironment e) throws IOException &#123;</span><br><span class="line">        // nothing to do here</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 需求 1.不允许插入B列</span><br><span class="line">     *      2.只能插入A列</span><br><span class="line">     *      3.插入的数据必须为整数</span><br><span class="line">     *      4.插入A列的时候自动插入B列</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void prePut(final ObserverContext&lt;RegionCoprocessorEnvironment&gt; e,</span><br><span class="line">                       final Put put, final WALEdit edit, final Durability durability)</span><br><span class="line">            throws IOException &#123;</span><br><span class="line"></span><br><span class="line">        // 首先查看单个put中是否有对只读列有写操作</span><br><span class="line">                List&lt;Cell&gt; cells = put.get(Bytes.toBytes(FAMAILLY_NAME),</span><br><span class="line">                Bytes.toBytes(ONLY_READ_COL));</span><br><span class="line">        if (cells != null &amp;&amp; cells.size() != 0) &#123;</span><br><span class="line">            LOG.warn(&quot;User is not allowed to write read_only col.&quot;);</span><br><span class="line">            throw new IOException(&quot;User is not allowed to write read_only col.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 检查A列</span><br><span class="line">        cells = put.get(Bytes.toBytes(FAMAILLY_NAME),</span><br><span class="line">                Bytes.toBytes(ONLY_PUT_COL));</span><br><span class="line">        if (cells == null || cells.size() == 0) &#123;</span><br><span class="line">            // 当不存在对于A列的操作的时候则不做任何的处理，直接放行即可</span><br><span class="line">            LOG.info(&quot;No A col operation, just do it.&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 当A列存在的情况下在进行值得检查，查看是否插入了整数</span><br><span class="line">        byte[] aValue = null;</span><br><span class="line">        for (Cell cell : cells) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                aValue = CellUtil.cloneValue(cell);</span><br><span class="line">                LOG.warn(&quot;aValue = &quot; + Bytes.toString(aValue));</span><br><span class="line">                Integer.valueOf(Bytes.toString(aValue));</span><br><span class="line">            &#125; catch (Exception e1) &#123;</span><br><span class="line">                LOG.warn(&quot;Can not put un number value to A col.&quot;);</span><br><span class="line">                throw new IOException(&quot;Can not put un number value to A col.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 当一切都ok的时候再去构建B列的值，因为按照需求，插入A列的时候需要同时插入B列</span><br><span class="line">        LOG.info(&quot;B col also been put value!&quot;);</span><br><span class="line">        put.addColumn(Bytes.toBytes(FAMAILLY_NAME),</span><br><span class="line">                Bytes.toBytes(ONLY_READ_COL), aValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 需求 1.不能删除B列 2.只能删除A列 3.删除A列的时候需要一并删除B列</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void preDelete(</span><br><span class="line">            final ObserverContext&lt;RegionCoprocessorEnvironment&gt; e,</span><br><span class="line">            final Delete delete, final WALEdit edit, final Durability durability)</span><br><span class="line">            throws IOException &#123;</span><br><span class="line"></span><br><span class="line">        // 首先查看是否对于B列进行了指定删除</span><br><span class="line">        List&lt;Cell&gt; cells = delete.getFamilyCellMap().get(</span><br><span class="line">                Bytes.toBytes(FAMAILLY_NAME));</span><br><span class="line">        if (cells == null || cells.size() == 0) &#123;</span><br><span class="line">            // 如果客户端没有针对于FAMAILLY_NAME列族的操作则不用关心，让其继续操作即可。</span><br><span class="line">            LOG.info(&quot;NO F famally operation ,just do it.&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 开始检查F列族内的操作情况</span><br><span class="line">        byte[] qualifierName = null;</span><br><span class="line">        boolean aDeleteFlg = false;</span><br><span class="line">        for (Cell cell : cells) &#123;</span><br><span class="line">            qualifierName = CellUtil.cloneQualifier(cell);</span><br><span class="line"></span><br><span class="line">            // 检查是否对B列进行了删除，这个是不允许的</span><br><span class="line">            if (Arrays.equals(qualifierName, Bytes.toBytes(ONLY_READ_COL))) &#123;</span><br><span class="line">                LOG.info(&quot;Can not delete read only B col.&quot;);</span><br><span class="line">                throw new IOException(&quot;Can not delete read only B col.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 检查是否存在对于A队列的删除</span><br><span class="line">            if (Arrays.equals(qualifierName, Bytes.toBytes(ONLY_PUT_COL))) &#123;</span><br><span class="line">                LOG.info(&quot;there is A col in delete operation!&quot;);</span><br><span class="line">                aDeleteFlg = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 如果对于A列有删除，则需要对B列也要删除</span><br><span class="line">        if (aDeleteFlg)</span><br><span class="line">        &#123;</span><br><span class="line">            LOG.info(&quot;B col also been deleted!&quot;);</span><br><span class="line">            delete.addColumn(Bytes.toBytes(FAMAILLY_NAME), Bytes.toBytes(ONLY_READ_COL));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、-JAR包上传到HDFS"><a href="#二、-JAR包上传到HDFS" class="headerlink" title="二、    JAR包上传到HDFS"></a>二、    JAR包上传到HDFS</h1><p>hadoop fs -put Hbase-test.jar /user/test_lyq/liu</p>
+<p>HBASE操作<br>1.建表：<br>hbase(main):001:0&gt; create ‘coprocessor_table’,’F’<br>0 row(s) in 2.7570 seconds</p>
+<p>=&gt; Hbase::Table - coprocessor_table</p>
+<p>2.加载协处理器代码：<br>alter ‘coprocessor_table’ , METHOD =&gt;’table_att’,’coprocessor’=&gt;’hdfs://ns1/testdata/Test-HBase-Observer.jar|cn.com.newbee.feng.MyRegionObserver|1001’<br>其中：’coprocessor’=&gt;’jar文件在hdfs上的绝对路径|协处理器主类|优先级|协处理器参数<br>上述协处理器并没有参数，所以未给出参数。</p>
+<p>3.检查协处理器是否加载成功：<br>hbase(main):021:0&gt; describe ‘coprocessor_table’<br>Table coprocessor_table is ENABLED<br>coprocessor_table, {TABLE_ATTRIBUTES =&gt; {coprocessor$1 =&gt; ‘hdfs://ns1/testdata/T<br>est-HBase-Observer.jar|cn.com.newbee.feng.MyRegionObserver|1001’}<br>COLUMN FAMILIES DESCRIPTION<br>{NAME =&gt; ‘F’, DATA_BLOCK_ENCODING =&gt; ‘NONE’, BLOOMFILTER =&gt; ‘ROW’, REPLICATION_S<br>COPE =&gt; ‘0’, VERSIONS =&gt; ‘1’, COMPRESSION =&gt; ‘NONE’, MIN_VERSIONS =&gt; ‘0’, TTL =&gt;<br> ‘FOREVER’, KEEP_DELETED_CELLS =&gt; ‘FALSE’, BLOCKSIZE =&gt; ‘65536’, IN_MEMORY =&gt; ‘f<br>alse’, BLOCKCACHE =&gt; ‘true’}<br>1 row(s) in 0.0300 seconds</p>
+<h1 id="三、-Hbase操作："><a href="#三、-Hbase操作：" class="headerlink" title="三、    Hbase操作："></a>三、    Hbase操作：</h1><p>1： 正常插入A列<br>复制代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):024:0&gt; scan &apos;coprocessor_table&apos;</span><br><span class="line">ROW                   COLUMN+CELL                                               </span><br><span class="line">0 row(s) in 0.0100 seconds</span><br><span class="line">hbase(main):025:0&gt; put &apos;coprocessor_table&apos;,&apos;row1&apos;,&apos;F:A&apos;,123</span><br><span class="line">0 row(s) in 0.0210 seconds</span><br><span class="line"></span><br><span class="line">hbase(main):026:0&gt; scan &apos;coprocessor_table&apos;</span><br><span class="line">ROW                   COLUMN+CELL                                               </span><br><span class="line"> row1                 column=F:A, timestamp=1469838240645, value=123            </span><br><span class="line"> row1                 column=F:B, timestamp=1469838240645, value=123            </span><br><span class="line">1 row(s) in 0.0180 seconds</span><br></pre></td></tr></table></figure>
+
+<p>结果：B列也被插入，OK</p>
+<p>2：插入A列，但是值不为整数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):027:0&gt; put &apos;coprocessor_table&apos;,&apos;row1&apos;,&apos;F:A&apos;,&apos;cc&apos;</span><br><span class="line">ERROR: Failed 1 action: IOException: 1 time, </span><br><span class="line">结果：插入失败，服务端报如下错误，OK</span><br><span class="line">2016-07-29 20:25:45,406 WARN  [B.defaultRpcServer.handler=3,queue=0,port=60020] feng.MyRegionObserver: Can not put un number value to A col.</span><br></pre></td></tr></table></figure>
+
+<p>3：插入B列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):028:0&gt; put &apos;coprocessor_table&apos;,&apos;row1&apos;,&apos;F:B&apos;,123</span><br><span class="line">ERROR: Failed 1 action: IOException: 1 time,</span><br><span class="line">结果：插入失败，服务器报如下错误，OK</span><br><span class="line">2016-07-29 20:27:13,342 WARN  [B.defaultRpcServer.handler=20,queue=2,port=60020] feng.MyRegionObserver: User is not allowed to write read_only col.</span><br></pre></td></tr></table></figure>
+
+<p>4：删除B列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):029:0&gt; delete &apos;coprocessor_table&apos;,&apos;row1&apos;,&apos;F:B&apos;</span><br><span class="line">ERROR: java.io.IOException: Can not delete read only B col.</span><br></pre></td></tr></table></figure>
+
+<p>结果：删除失败，OK</p>
+<p>5：删除A列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hbase(main):030:0&gt; scan &apos;coprocessor_table&apos;</span><br><span class="line">ROW                   COLUMN+CELL                                                </span><br><span class="line"> row1                 column=F:A, timestamp=1469838240645, value=123             </span><br><span class="line"> row1                 column=F:B, timestamp=1469838240645, value=123             </span><br><span class="line">1 row(s) in 0.0230 seconds</span><br><span class="line"></span><br><span class="line">hbase(main):031:0&gt; delete &apos;coprocessor_table&apos;,&apos;row1&apos;,&apos;F:A&apos;</span><br><span class="line">0 row(s) in 0.0060 seconds</span><br><span class="line"></span><br><span class="line">hbase(main):032:0&gt; scan &apos;coprocessor_table&apos;</span><br><span class="line">ROW                   COLUMN+CELL                                                </span><br><span class="line">0 row(s) in 0.0070 seconds</span><br></pre></td></tr></table></figure>
+
+<p>结果：A列和B列同时被删除了。</p>
+<h2 id="kafka-tips"><a href="#kafka-tips" class="headerlink" title="kafka tips:"></a>kafka tips:</h2><p>Kafka:如何保障发送时数据不丢失 1. 需要设置几个关键的参数，如下:</p>
+<h3 id="unclean-leader-election-enable-false"><a href="#unclean-leader-election-enable-false" class="headerlink" title="unclean.leader.election.enable=false"></a>unclean.leader.election.enable=false</h3><ul>
+<li>在哪里设置:(broker / topic)</li>
+<li>默认值: true (在 Kafka 0.11.0.0 中默认值已更改为 false ) </li>
+<li>有效值:[true, false]<h3 id="在哪里设置"><a href="#在哪里设置" class="headerlink" title="在哪里设置:"></a>在哪里设置:</h3></li>
+<li>(broker / topic) 默认值:1</li>
+<li>有效值:[1, …]</li>
+<li>acks=all<br>在哪里设置:producer 默认值:1 有效值:[all, ‐1, 0, 1]<br>必须设置以上所有参数，这样在调用 get() 返回发送结果时，无异常则可认为消息已成功写入 Kafka，无丢失。<br>producer.send(new ProducerRecord(topic, key, value)).get();</li>
+</ul>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p> 我们首先考虑在使用上述参数默认值的情况下，消息为什么会丢失。</p>
+<ul>
+<li>unclean.leader.election.enable=true</li>
+<li>min.insync.replicas=1</li>
+<li>acks=1</li>
+</ul>
+<p>设置 1 表示当该分区所有副本代理都下线的情况下，Kafka 会选第一个上线的代理作为 leader，而不管<br>它下线之前是不是在 ISR[1] 中，那么如果这个新 leader 下线之前并不是 leader 或者不在 ISR 中，有一部 分消息便丢失了。</p>
+<ul>
+<li>设置 2 和 设置 3 共同作用。即生产时，只要 leader 确认消息已收到，即认为该消息已成功写入 Kafka。 因为需要 leader 确认同时满足最小同步副本数为 1 的设置。<br>如果我们把设置 3 更改为 acks=all ，消息仍然有可能丢失。</li>
+<li>一方面是设置 1 的影响，另一方面，更改后的设置 3 要求生产时，需要得到该分区所有在线副本代理 的确认，这里重点是只要在线，如果该分区当时只有 leader 在线，也满足设置 2，那么就会认为消息已 成功写入 Kafka。<br>所以我们需要在上一步的基础上把设置 1 禁用，设置 2 更改为 min.insync.replicas=副本数‐1 ，这 样便达到了消息发送成功的最强保障。<br>禁用设置 1 ，Kafka 会在该分区所有副本代理都下线的情况下，从 ISR 中选择第一个上线的代理作为 leader。更改后的设置 2 和设置 3 共同作用，要求生产时，需要得到该分区所有在线副本代理的确认，并且确 认数要大于等于(副本数‐1)，这样就保证了每次生产，有绝大多数副本代理确认收到消息后才认为消 息已成功写入 Kafka。这样如果在非常情况下进行 leader 选举，Kafka 既能很快恢复，也保障了数据不 丢失。 已同步的副本集。即该分区当前活着并且已跟上 leader 的副本们。 ↩</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/09/浅谈云计算服务模型关键技术/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2557,7 +2681,7 @@ class Consumer implements Runnable{
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
