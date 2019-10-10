@@ -64,7 +64,7 @@
 <meta property="og:description" content="一、解决的问题 二、与虚拟机的比较 三、优势 四、使用场景 五、镜像与容器 参考资料     一、解决的问题由于不同的机器有不同的操作系统，以及不同的库和组件，在将一个应用部署到多台机器上需要进行大量的环境配置操作。 Docker 主要解决环境配置问题，它是一种虚拟化技术，对进程进行隔离，被隔离的进程独立于宿主操作系统和其它隔离的进程。使用 Docker 可以不修改应用程序代码，不需要开发人员">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/05/10/docker/e705eb01-9990-424f-8967-f63d4de49904.png">
-<meta property="og:updated_time" content="2019-10-10T07:18:20.694Z">
+<meta property="og:updated_time" content="2019-10-10T13:35:40.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker">
 <meta name="twitter:description" content="一、解决的问题 二、与虚拟机的比较 三、优势 四、使用场景 五、镜像与容器 参考资料     一、解决的问题由于不同的机器有不同的操作系统，以及不同的库和组件，在将一个应用部署到多台机器上需要进行大量的环境配置操作。 Docker 主要解决环境配置问题，它是一种虚拟化技术，对进程进行隔离，被隔离的进程独立于宿主操作系统和其它隔离的进程。使用 Docker 可以不修改应用程序代码，不需要开发人员">
@@ -249,7 +249,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-10 15:18:20" itemprop="dateModified" datetime="2019-10-10T15:18:20+08:00">2019-10-10</time>
+                <time title="Modified: 2019-10-10 21:35:40" itemprop="dateModified" datetime="2019-10-10T21:35:40+08:00">2019-10-10</time>
               </span>
             
           
@@ -292,6 +292,18 @@
 <p>Docker 具有轻量级以及隔离性的特点，在将代码集成到一个 Docker 中不会对其它 Docker 产生影响。</p>
 <h2 id="提供可伸缩的云服务"><a href="#提供可伸缩的云服务" class="headerlink" title="提供可伸缩的云服务"></a>提供可伸缩的云服务</h2><p>根据应用的负载情况，可以很容易地增加或者减少 Docker。</p>
 <h2 id="搭建微服务架构"><a href="#搭建微服务架构" class="headerlink" title="搭建微服务架构"></a>搭建微服务架构</h2><p>Docker 轻量级的特点使得它很适合用于部署、维护、组合微服务。</p>
+<h2 id="docker与swarm"><a href="#docker与swarm" class="headerlink" title="docker与swarm"></a>docker与swarm</h2><p>Docker集群管理和编排的特性是通过SwarmKit进行构建的， 其中Swarm mode是Docker Engine内置支持的一种默认实现。Docker 1.12以及更新的版本，都支持Swarm mode，我们可以基于Docker Engine来构建Swarm集群，然后就可以将我们的应用服务（Application Service）部署到Swarm集群中。创建Swarm集群的方式很简单，先初始化一个Swarm集群，然后将其他的Node加入到该集群即可。本文主要基于Docker Swarm官网文档，学习总结。</p>
+<p>Docker Swarm具有如下基本特性：</p>
+<p>集群管理集成进Docker Engine<br>使用内置的集群管理功能，我们可以直接通过Docker CLI命令来创建Swarm集群，然后去部署应用服务，而不再需要其它外部的软件来创建和管理一个Swarm集群。</p>
+<p>去中心化设计<br>Swarm集群中包含Manager和Worker两类Node，我们可以直接基于Docker Engine来部署任何类型的Node。而且，在Swarm集群运行期间，我们既可以对其作出任何改变，实现对集群的扩容和缩容等，如添加Manager Node，如删除Worker Node，而做这些操作不需要暂停或重启当前的Swarm集群服务。</p>
+<p>声明式服务模型（Declarative Service Model）<br>在我们实现的应用栈中，Docker Engine使用了一种声明的方式，让我们可以定义我们所期望的各种服务的状态，例如，我们创建了一个应用服务栈：一个Web前端服务、一个后端数据库服务、Web前端服务又依赖于一个消息队列服务。</p>
+<p>服务扩容缩容<br>对于我们部署的每一个应用服务，我们可以通过命令行的方式，设置启动多少个Docker容器去运行它。已经部署完成的应用，如果有扩容或缩容的需求，只需要通过命令行指定需要几个Docker容器即可，Swarm集群运行时便能自动地、灵活地进行调整。</p>
+<p>协调预期状态与实际状态的一致性<br>Swarm集群Manager Node会不断地监控集群的状态，协调集群状态使得我们预期状态和实际状态保持一致。例如我们启动了一个应用服务，指定服务副本为10，则会启动10个Docker容器去运行，如果某个Worker Node上面运行的2个Docker容器挂掉了，则Swarm Manager会选择集群中其它可用的Worker Node，并创建2个服务副本，使实际运行的Docker容器数仍然保持与预期的10个一致。</p>
+<p>多主机网络<br>我们可以为待部署应用服务指定一个Overlay网络，当应用服务初始化或者进行更新时，Swarm Manager在给定的Overlay网络中为Docker容器自动地分配IP地址，实际是一个虚拟IP地址（VIP）。</p>
+<p>服务发现<br>Swarm Manager会给集群中每一个服务分配一个唯一的DNS名称，对运行中的Docker容器进行负载均衡。我们可以通过Swarm内置的DNS Server，查询Swarm集群中运行的Docker容器状态。</p>
+<p>负载均衡<br>在Swarm内部，可以指定如何在各个Node之间分发服务容器（Service Container），实现负载均衡。如果想要使用Swarm集群外部的负载均衡器，可以将服务容器的端口暴露到外部。</p>
+<p>安全策略<br>在Swarm集群内部的Node，强制使用基于TLS的双向认证，并且在单个Node上以及在集群中的Node之间，都进行安全的加密通信。我们可以选择使用自签名的根证书，或者使用自定义的根CA（Root CA）证书。</p>
+<p>滚动更新（Rolling Update）<br>对于服务需要更新的场景，我们可以在多个Node上进行增量部署更新，Swarm Manager支持通过使用Docker CLI设置一个delay时间间隔，实现多个服务在多个Node上依次进行部署。这样可以非常灵活地控制，如果有一个服务更新失败，则暂停后面的更新操作，重新回滚到更新之前的版本。</p>
 <h1 id="五、镜像与容器"><a href="#五、镜像与容器" class="headerlink" title="五、镜像与容器"></a>五、镜像与容器</h1><p>镜像是一种静态的结构，可以看成面向对象里面的类，而容器是镜像的一个实例。</p>
 <p>镜像包含着容器运行时所需要的代码以及其它组件，它是一种分层结构，每一层都是只读的（read-only layers）。构建镜像时，会一层一层构建，前一层是后一层的基础。镜像的这种分层存储结构很适合镜像的复用以及定制。</p>
 <p>构建容器时，通过在镜像的基础上添加一个可写层（writable layer），用来保存着容器运行过程中的修改。</p>
@@ -313,7 +325,32 @@
 <li>掌握RAID，ipmi等服务器技术原理和应用 </li>
 </ol>
 <hr>
-<h1 id="K8S"><a href="#K8S" class="headerlink" title="K8S"></a>K8S</h1><h2 id="HA"><a href="#HA" class="headerlink" title="HA"></a>HA</h2><p><strong>TTL Mechanism</strong> and <strong>Lease</strong> </p>
+<h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><ul>
+<li>Kubernetes是什么</li>
+</ul>
+<p>Kubernetes是一个开源的容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。我们在完成一个应用程序的开发时，需要冗余部署该应用的多个实例，同时需要支持对应用的请求进行负载均衡，在Kubernetes中，我们可以把这个应用的多个实例分别启动一个容器，每个容器里面运行一个应用实例，然后通过内置的负载均衡策略，实现对这一组应用实例的管理、发现、访问，而这些细节都不需要应用开发和运维人员去进行复杂的手工配置和处理。<br>Kubernetes是Google基于内部Borg开源的容器编排引擎，关于Borg的设计，可以查看对应的论文《Large-scale cluster management at Google with Borg》。这里，我们先说一说Borg系统，它是Google内部的集群管理系统，使用它能够获得如下好处：</p>
+<p>在一个分布式系统中进行资源管理是非常复杂的，构建于Borg系统之上的其他系统，无需关心这些资源管理的复杂细节<br>在大型分布式系统中处理异常也是非常困难的，Borg也屏蔽了运行于其上系统对失败或异常情况的处理，用户可以将精力集中在开发自己的应用系统上<br>支持高可靠性、高可用性<br>Borg支持不同Workload，并且都能够非常高效地运行<br>从应用的视角来看，Google内部的很多系统都构建于Borg之上：应用框架，如MapReduce、FlumeJava、MillWheel、Pregel；存储系统，如GFS、CFS、Bigtable、Megastore。<br>从用户的视角来看， 运行在Borg集群之上的Workload主要分为两类：一类是long-running服务，这类服务一旦运行就不应该终止，比如Gmail、Google Docs、Google Search；另一类是批量作业，这类批量作业可能运行几秒到几天不等，比如MapReduce作业。</p>
+<ul>
+<li>主要特性</li>
+</ul>
+<p>自动化部署<br>应用部署到容器中，Kubernetes能够根据应用程序的计算资源需求和其它一些限制条件，自动地将运行应用程序的容器调度到集群中指定的Node上，在这个过程中并不会影响应用程序的可用性。</p>
+<p>系统自愈<br>当Kubernetes集群中某些容器失败时，会重新启动他们。当某些Node挂掉后，Kubernetes会自动重新调度这些Node上的容器到其他可用的Node上。如果某些容器没有满足用户定义的健康检查条件，这些容器会被判定为无法正常工作的，集群会自动Kill掉这些容器，在这个过程中直到容器被重新启动或重新调度，直到可用以后才会对调用的客户端可见。</p>
+<p>水平扩展<br>在Kubernetes中，通过一个命令就可以实现应用程序的水平扩展，实现这个功能的是HPA（Horizontal Pod Autoscaler）对象。HPA是通过Kubernetes API Resource和Controller的方式实现的，其中Resource决定了Controller的行为，而Controller周期性地调整Replication Controller或Deployment中的副本数，使得观察到的平均CPU使用情况与用户定义的能够匹配。</p>
+<p>服务发现和负载均衡<br>Kubernetes内置实现了服务发现的功能，他会给每个容器指派一个IP地址，给一组容器指派一个DNS名称，通过这个就可以实现服务的负载均衡功能。</p>
+<p>自动更新和回滚<br>当我们开发的应用程序发生变更，Kubernetes可以实现滚动更新，同时监控应用的状态，确保不会在同一时刻杀掉所有的实例，造成应用在一段时间范围内不可用。如果某些时候应用更新出错，Kubernetes能够自动地将应用恢复到原来正确的状态。</p>
+<p>密钥和配置管理<br>Kubernetes提供了一种机制（ConfigMap），能够使我们的配置数据与应用对应的Docker镜像解耦合，如果配置需要变更，不需要重新构建Docker镜像，这为应用开发部署提供很大的灵活性。<br>同时，对于应用所依赖的一些敏感信息，如用户名和密码、令牌、秘钥等信息，Kubernetes也通过Secret对象实现了将这些敏感配置信息与应用的解耦合，这对应用的快速开发和交付提供了便利，在一定程上提供了也安全保障。</p>
+<p>存储挂载<br>Kubernetes可以支持挂载不同类型存储系统，比如本地存储、公有云存储（如AWS、GCP）、网络存储系统（如NFS、iSCSI、Gluster、Ceph、Cinder、Flocker）等，我们可以进行灵活的选择。</p>
+<p>批量作业执行<br>Kubernetes也支持批量作业的处理、监控、恢复。作业提交以后，直到作业运行完成即退出。如果运行失败，Kubernetes能够使失败的作业自动重新运行，直到作业运行成功为止。</p>
+<p>总体架构</p>
+<p>首先给出一个概念：Kubernetes Control Plane，翻译过来就是“Kubernetes控制平面”，它表示Kubernetes为了实现最终的目标而构建的一组集群范围内的进程，这组进程相互协调，保证整个集群系统达到用户所期望的目标状态，比如，容器失败自动调度并重启，应用服务的扩容缩容，等等。<br>Kubernetes Control Plane管理了Kubernetes集群中的所有Kubernetes对象及其状态，这些对象包括Pod、Service、Volume、Namespace、ReplicaSet、Deployment、StatefulSet、DaemonSet、Job等等。</p>
+<p>Kubernetes Control Plane主要包含两部分，一部分是Kubernetes集群Master上一组关键进程，另一个部分是在每个工作的Node节点上的一组关键进程，下面我们分别详细说明：</p>
+<p>Kubernetes Master</p>
+<p>Kubernetes Master主要由kube-apiserver、kube-controller-manager和kube-scheduler三个进程组成，它们运行在集群中一个单独的节点上，具体说明如下：<br>kube-apiserver进程：想要操作Kubernetes集群中的任何对象，都需要经过kube-apiserver，它封装了对Kubernetes对象的所有操作，以REST接口方式提供给想要与Kubernetes交互的任何客户端。经过kube-apiserver的所有对Kubernetes对象的修改操作都将持久化到etcd存储中。<br>kube-controller-manager进程：负责运行各种Controller，这些Controller主要包括：</p>
+<p>Node Controller<br>Replication Controller<br>Endpoints Controller<br>Service Account<br>Token Controller<br>kube-scheduler进程：负责Kubernetes集群内部的资源调度，主要负责监视Kubernetes集群内部已创建但没有被调度到某个Node上的Pod，然后将该Pod调度到一个选定的Node上面运行。</p>
+<p>Kubernetes Node</p>
+<p>Kubernetes集群中，每个工作的Node节点上主要运行如下两个进程：<br>kubelet进程：kubelet负责监视指派到它所在Node上的Pod，还负责处理如下工作：</p>
+<p>为Pod挂载Volume<br>下载Pod拥有的Secret<br>运行属于Pod的容器<br>周期性地检查Pod中的容器是否存活<br>向Master报告当前Node上Pod的状态信息<br>向Master报告当前Node的状态信息<br>kube-proxy进程：在Kubernetes集群中，每个Node上面都有一个该网络代理进程，它主要负责为Pod对象提供代理：定期从etcd存储中获取所有的Service对象，并根据Service信息创建代理。当某个Client要访问一个Pod时，请求会经过该Node上的代理进程进行请求转发。</p>
+<h2 id="HA"><a href="#HA" class="headerlink" title="HA"></a>HA</h2><p><strong>TTL Mechanism</strong> and <strong>Lease</strong> </p>
 <p><code>bidirectional gRPC stream</code></p>
 <h2 id="自签名SSL证书"><a href="#自签名SSL证书" class="headerlink" title="自签名SSL证书"></a>自签名SSL证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir secrets</span><br><span class="line">$ openssl req -newkey rsa:4096 -nodes -sha256 -keyout secrets/domain.key -x509 -day 365 -out secrets/domain.crt</span><br><span class="line">$ ls secrets</span><br><span class="line">$ openssl rand -hex -out secrets/http.secret 8</span><br><span class="line">$ docker run -i httpd /bin/bash -c &apos;echo my-super-secure-password | /usr/local/apache2/bin/htpasswd -nBi user01&apos; &gt; secrets/registry_passwd</span><br><span class="line">$ kubectl create secret generic registry-secrets --from-file secrets/</span><br></pre></td></tr></table></figure>
 
@@ -370,8 +407,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/01/09/code-软件基础/" rel="prev" title="code -- 软件基础">
-                  code -- 软件基础 <i class="fa fa-chevron-right"></i>
+                <a href="/2018/05/20/Mybatis-动态sql/" rel="prev" title="Mybatis 动态sql">
+                  Mybatis 动态sql <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -418,7 +455,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、解决的问题"><span class="nav-number">1.</span> <span class="nav-text">一、解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、与虚拟机的比较"><span class="nav-number">2.</span> <span class="nav-text">二、与虚拟机的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动速度"><span class="nav-number">2.1.</span> <span class="nav-text">启动速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#占用资源"><span class="nav-number">2.2.</span> <span class="nav-text">占用资源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、优势"><span class="nav-number">3.</span> <span class="nav-text">三、优势</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易迁移"><span class="nav-number">3.1.</span> <span class="nav-text">更容易迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易维护"><span class="nav-number">3.2.</span> <span class="nav-text">更容易维护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易扩展"><span class="nav-number">3.3.</span> <span class="nav-text">更容易扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、使用场景"><span class="nav-number">4.</span> <span class="nav-text">四、使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#持续集成"><span class="nav-number">4.1.</span> <span class="nav-text">持续集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供可伸缩的云服务"><span class="nav-number">4.2.</span> <span class="nav-text">提供可伸缩的云服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建微服务架构"><span class="nav-number">4.3.</span> <span class="nav-text">搭建微服务架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、镜像与容器"><span class="nav-number">5.</span> <span class="nav-text">五、镜像与容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Troubleshooting"><span class="nav-number">6.</span> <span class="nav-text">Docker Troubleshooting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#get-Container-ID-through-PID"><span class="nav-number">6.0.1.</span> <span class="nav-text">get Container ID through PID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goal"><span class="nav-number">6.0.2.</span> <span class="nav-text">Goal</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#K8S"><span class="nav-number">7.</span> <span class="nav-text">K8S</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HA"><span class="nav-number">7.1.</span> <span class="nav-text">HA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自签名SSL证书"><span class="nav-number">7.2.</span> <span class="nav-text">自签名SSL证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群管理高级"><span class="nav-number">7.3.</span> <span class="nav-text">集群管理高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kubeconfig-高阶配置"><span class="nav-number">7.3.1.</span> <span class="nav-text">kubeconfig 高阶配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Context"><span class="nav-number">7.3.1.1.</span> <span class="nav-text">Context</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node-资源配置"><span class="nav-number">7.3.2.</span> <span class="nav-text">node 资源配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebUI"><span class="nav-number">7.3.3.</span> <span class="nav-text">WebUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RESTful-API"><span class="nav-number">7.3.4.</span> <span class="nav-text">RESTful API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-DNS"><span class="nav-number">7.3.5.</span> <span class="nav-text">Kubernetes DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authentication-and-Authorization"><span class="nav-number">7.3.6.</span> <span class="nav-text">Authentication and Authorization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、解决的问题"><span class="nav-number">1.</span> <span class="nav-text">一、解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、与虚拟机的比较"><span class="nav-number">2.</span> <span class="nav-text">二、与虚拟机的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动速度"><span class="nav-number">2.1.</span> <span class="nav-text">启动速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#占用资源"><span class="nav-number">2.2.</span> <span class="nav-text">占用资源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、优势"><span class="nav-number">3.</span> <span class="nav-text">三、优势</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易迁移"><span class="nav-number">3.1.</span> <span class="nav-text">更容易迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易维护"><span class="nav-number">3.2.</span> <span class="nav-text">更容易维护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易扩展"><span class="nav-number">3.3.</span> <span class="nav-text">更容易扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、使用场景"><span class="nav-number">4.</span> <span class="nav-text">四、使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#持续集成"><span class="nav-number">4.1.</span> <span class="nav-text">持续集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供可伸缩的云服务"><span class="nav-number">4.2.</span> <span class="nav-text">提供可伸缩的云服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建微服务架构"><span class="nav-number">4.3.</span> <span class="nav-text">搭建微服务架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker与swarm"><span class="nav-number">4.4.</span> <span class="nav-text">docker与swarm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、镜像与容器"><span class="nav-number">5.</span> <span class="nav-text">五、镜像与容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Troubleshooting"><span class="nav-number">6.</span> <span class="nav-text">Docker Troubleshooting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#get-Container-ID-through-PID"><span class="nav-number">6.0.1.</span> <span class="nav-text">get Container ID through PID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goal"><span class="nav-number">6.0.2.</span> <span class="nav-text">Goal</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kubernetes"><span class="nav-number">7.</span> <span class="nav-text">Kubernetes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HA"><span class="nav-number">7.1.</span> <span class="nav-text">HA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自签名SSL证书"><span class="nav-number">7.2.</span> <span class="nav-text">自签名SSL证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群管理高级"><span class="nav-number">7.3.</span> <span class="nav-text">集群管理高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kubeconfig-高阶配置"><span class="nav-number">7.3.1.</span> <span class="nav-text">kubeconfig 高阶配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Context"><span class="nav-number">7.3.1.1.</span> <span class="nav-text">Context</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node-资源配置"><span class="nav-number">7.3.2.</span> <span class="nav-text">node 资源配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebUI"><span class="nav-number">7.3.3.</span> <span class="nav-text">WebUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RESTful-API"><span class="nav-number">7.3.4.</span> <span class="nav-text">RESTful API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-DNS"><span class="nav-number">7.3.5.</span> <span class="nav-text">Kubernetes DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authentication-and-Authorization"><span class="nav-number">7.3.6.</span> <span class="nav-text">Authentication and Authorization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -443,7 +480,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">tags</span>
         
       </div>
