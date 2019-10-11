@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/avatar.png?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="linux(CentOS6.7) 环境Mysql 5.7.17安装教程分享给大家，供大家参考，具体内容如下：1系统约定安装文件下载目录：/data/softwareMysql目录安装位置：/usr/local/mysql数据库保存位置：/data/mysql日志保存位置：/data/log/mysql 2下载mysql在官网：http://dev.mysql.com/downloads/mysql">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql 配置安装">
+<meta property="og:url" content="http://yoursite.com/2018/08/12/mysql-配置安装/index.html">
+<meta property="og:site_name" content="Leon">
+<meta property="og:description" content="linux(CentOS6.7) 环境Mysql 5.7.17安装教程分享给大家，供大家参考，具体内容如下：1系统约定安装文件下载目录：/data/softwareMysql目录安装位置：/usr/local/mysql数据库保存位置：/data/mysql日志保存位置：/data/log/mysql 2下载mysql在官网：http://dev.mysql.com/downloads/mysql">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-11T10:34:37.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql 配置安装">
+<meta name="twitter:description" content="linux(CentOS6.7) 环境Mysql 5.7.17安装教程分享给大家，供大家参考，具体内容如下：1系统约定安装文件下载目录：/data/softwareMysql目录安装位置：/usr/local/mysql数据库保存位置：/data/mysql日志保存位置：/data/log/mysql 2下载mysql在官网：http://dev.mysql.com/downloads/mysql">
+  <link rel="canonical" href="http://yoursite.com/2018/08/12/mysql-配置安装/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>mysql 配置安装 | Leon</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Live for Real</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-commonweal">
+      
+    
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeats"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/12/mysql-配置安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon">
+      <meta itemprop="description" content="挪威的森林">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">mysql 配置安装
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-08-12 18:33:28" itemprop="dateCreated datePublished" datetime="2018-08-12T18:33:28+08:00">2018-08-12</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-11 18:34:37" itemprop="dateModified" datetime="2019-10-11T18:34:37+08:00">2019-10-11</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="linux-CentOS6-7-环境Mysql-5-7-17安装教程分享给大家，供大家参考，具体内容如下："><a href="#linux-CentOS6-7-环境Mysql-5-7-17安装教程分享给大家，供大家参考，具体内容如下：" class="headerlink" title="linux(CentOS6.7) 环境Mysql 5.7.17安装教程分享给大家，供大家参考，具体内容如下："></a>linux(CentOS6.7) 环境Mysql 5.7.17安装教程分享给大家，供大家参考，具体内容如下：</h1><p>1系统约定<br>安装文件下载目录：/data/software<br>Mysql目录安装位置：/usr/local/mysql<br>数据库保存位置：/data/mysql<br>日志保存位置：/data/log/mysql</p>
+<p>2下载mysql<br>在官网：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">http://dev.mysql.com/downloads/mysql/</a> 中，选择以下版本的mysql下载：</p>
+<p>执行如下命名：<br>#mkdir /data/software<br>#cd /data/software</p>
+<p>–下载安装包 </p>
+<p>–建议：在windows上使用迅雷下载，速度很快（我的是1M/s），然后用工具（Xftp）上传到 /data/software目录下；<br>#wget <a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz" target="_blank" rel="noopener">http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz</a></p>
+<p>3解压压缩包到目标位置</p>
+<p>#cd /data/software</p>
+<p>–解压压缩包</p>
+<p>#tar -xzvf /data/software/mysql-5.7.17-linux-glibc2.5-x86_64.tar.gz</p>
+<p>–移动并修改文件名</p>
+<p>#mv /data/software/mysql-5.7.17-linux-glibc2.5-x86_64 /usr/local/mysql</p>
+<p>4创建数据仓库目录</p>
+<p>–/data/mysql 数据仓库目录</p>
+<h1 id="mkdir-data-mysql"><a href="#mkdir-data-mysql" class="headerlink" title="mkdir /data/mysql"></a>mkdir /data/mysql</h1><p>#ls /data/</p>
+<p>5新建mysql用户、组及目录</p>
+<h1 id="—新建一个msyql组"><a href="#—新建一个msyql组" class="headerlink" title="—新建一个msyql组"></a>—新建一个msyql组</h1><h1 id="useradd-r-s-sbin-nologin-g-mysql-mysql-d-usr-local-mysql-—新建msyql用户禁止登录shell"><a href="#useradd-r-s-sbin-nologin-g-mysql-mysql-d-usr-local-mysql-—新建msyql用户禁止登录shell" class="headerlink" title="useradd -r -s /sbin/nologin -g mysql mysql -d /usr/local/mysql     —新建msyql用户禁止登录shell"></a>useradd -r -s /sbin/nologin -g mysql mysql -d /usr/local/mysql     —新建msyql用户禁止登录shell</h1><p>6改变目录属有者</p>
+<p>#cd /usr/local/mysql<br>#pwd<br>#chown -R mysql .<br>#chgrp -R mysql .</p>
+<p>#chown -R mysql /data/mysql</p>
+<p>7配置参数</p>
+<h1 id="bin-mysqld-–initialize-–user-mysql-–basedir-usr-local-mysql-–datadir-data-mysql"><a href="#bin-mysqld-–initialize-–user-mysql-–basedir-usr-local-mysql-–datadir-data-mysql" class="headerlink" title="bin/mysqld –initialize –user=mysql –basedir=/usr/local/mysql –datadir=/data/mysql"></a>bin/mysqld –initialize –user=mysql –basedir=/usr/local/mysql –datadir=/data/mysql</h1><p> 此处需要注意记录生成的临时密码，如上文结尾处的：YLi&gt;7ecpe;YP<br>#bin/mysql_ssl_rsa_setup  –datadir=/data/mysql</p>
+<p>8修改系统配置文件</p>
+<p>#cd /usr/local/mysql/support-files</p>
+<h1 id="cp-my-default-cnf-etc-my-cnf"><a href="#cp-my-default-cnf-etc-my-cnf" class="headerlink" title="cp my-default.cnf /etc/my.cnf"></a>cp my-default.cnf /etc/my.cnf</h1><h1 id="cp-mysql-server-etc-init-d-mysql"><a href="#cp-mysql-server-etc-init-d-mysql" class="headerlink" title="cp mysql.server /etc/init.d/mysql"></a>cp mysql.server /etc/init.d/mysql</h1><h1 id="vim-etc-init-d-mysql"><a href="#vim-etc-init-d-mysql" class="headerlink" title="vim /etc/init.d/mysql"></a>vim /etc/init.d/mysql</h1><p>修改以下内容：</p>
+<p>9启动mysql</p>
+<h1 id="etc-init-d-mysql-start"><a href="#etc-init-d-mysql-start" class="headerlink" title="/etc/init.d/mysql start"></a>/etc/init.d/mysql start</h1><p>–登陆</p>
+<h1 id="mysql-hlocalhost-uroot-p"><a href="#mysql-hlocalhost-uroot-p" class="headerlink" title="mysql -hlocalhost -uroot -p"></a>mysql -hlocalhost -uroot -p</h1><p>　　–如果出现：-bash: mysql: command not found</p>
+<p>　　–就执行： # ln -s /usr/local/mysql/bin/mysql /usr/bin –没有出现就不用执行</p>
+<p>–输入第6步生成的临时密码</p>
+<p>–修改密码</p>
+<p>mysql&gt; set password=password(‘root’);</p>
+<p>–设置root账户的host地址（修改了才可以远程连接）</p>
+<p>mysql&gt;grant all privileges on <em>.</em> to ‘root’@’%’ identified by ‘root’;<br>mysql&gt;flush privileges;</p>
+<p>–查看表</p>
+<p>mysql&gt; use mysql;<br>mysql&gt; select host,user from user;</p>
+<p>–这里就可以使用远程连接测试了；</p>
+<p>10添加系统路径</p>
+<h1 id="vim-etc-profile"><a href="#vim-etc-profile" class="headerlink" title="vim /etc/profile"></a>vim /etc/profile</h1><p>添加：<br>export PATH=/usr/local/mysql/bin:$PATH<br>如下：</p>
+<h1 id="source-etc-profile"><a href="#source-etc-profile" class="headerlink" title="source /etc/profile"></a>source /etc/profile</h1><p>11配置mysql自动启动</p>
+<h1 id="chmod-755-etc-init-d-mysql"><a href="#chmod-755-etc-init-d-mysql" class="headerlink" title="chmod 755 /etc/init.d/mysql"></a>chmod 755 /etc/init.d/mysql</h1><h1 id="chkconfig-–add-mysql"><a href="#chkconfig-–add-mysql" class="headerlink" title="chkconfig –add mysql"></a>chkconfig –add mysql</h1><h1 id="chkconfig-–level-345-mysql-on"><a href="#chkconfig-–level-345-mysql-on" class="headerlink" title="chkconfig –level 345 mysql on"></a>chkconfig –level 345 mysql on</h1><p>以上就是linux环境Mysql 5.7.13安装教程，希望对大家的学习有所帮助。</p>
+<p>补充：</p>
+<p>–退出mysql命令窗口</p>
+<p>#exit</p>
+<p> –查看mysql状态</p>
+<p>#service mysql status</p>
+<p>–停止mysql</p>
+<p>#service mysql stop</p>
+<p>–启动mysql</p>
+<p>#service mysql start</p>
+<p>附my.cnf（这是一个配置mysql配置文件，暂时可以不用管，如你想钻研 你可以百度或google “mysql my.cnf 配置详情”）</p>
+<p>/etc/my.cnf</p>
+<h1 id="For-advice-on-how-to-change-settings-please-see"><a href="#For-advice-on-how-to-change-settings-please-see" class="headerlink" title="For advice on how to change settings please see"></a>For advice on how to change settings please see</h1><h1 id="http-dev-mysql-com-doc-refman-5-7-en-server-configuration-defaults-html"><a href="#http-dev-mysql-com-doc-refman-5-7-en-server-configuration-defaults-html" class="headerlink" title="http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html"></a><a href="http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html</a></h1><h1 id="DO-NOT-EDIT-THIS-FILE-It’s-a-template-which-will-be-copied-to-the"><a href="#DO-NOT-EDIT-THIS-FILE-It’s-a-template-which-will-be-copied-to-the" class="headerlink" title="*** DO NOT EDIT THIS FILE. It’s a template which will be copied to the"></a>*** DO NOT EDIT THIS FILE. It’s a template which will be copied to the</h1><h1 id="default-location-during-install-and-will-be-replaced-if-you"><a href="#default-location-during-install-and-will-be-replaced-if-you" class="headerlink" title="*** default location during install, and will be replaced if you"></a>*** default location during install, and will be replaced if you</h1><h1 id="upgrade-to-a-newer-version-of-MySQL"><a href="#upgrade-to-a-newer-version-of-MySQL" class="headerlink" title="*** upgrade to a newer version of MySQL."></a>*** upgrade to a newer version of MySQL.</h1><p>[mysqld]</p>
+<h1 id="Remove-leading-and-set-to-the-amount-of-RAM-for-the-most-important-data"><a href="#Remove-leading-and-set-to-the-amount-of-RAM-for-the-most-important-data" class="headerlink" title="Remove leading # and set to the amount of RAM for the most important data"></a>Remove leading # and set to the amount of RAM for the most important data</h1><h1 id="cache-in-MySQL-Start-at-70-of-total-RAM-for-dedicated-server-else-10"><a href="#cache-in-MySQL-Start-at-70-of-total-RAM-for-dedicated-server-else-10" class="headerlink" title="cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%."></a>cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.</h1><p>innodb_buffer_pool_size = 10G</p>
+<h1 id="Remove-leading-to-turn-on-a-very-important-data-integrity-option-logging"><a href="#Remove-leading-to-turn-on-a-very-important-data-integrity-option-logging" class="headerlink" title="Remove leading # to turn on a very important data integrity option: logging"></a>Remove leading # to turn on a very important data integrity option: logging</h1><h1 id="changes-to-the-binary-log-between-backups"><a href="#changes-to-the-binary-log-between-backups" class="headerlink" title="changes to the binary log between backups."></a>changes to the binary log between backups.</h1><p>log_bin<br>character-set-server=utf8<br>collation-server=utf8_bin<br>init-connect=’SET NAMES utf8’</p>
+<h1 id="These-are-commonly-set-remove-the-and-set-as-required"><a href="#These-are-commonly-set-remove-the-and-set-as-required" class="headerlink" title="These are commonly set, remove the # and set as required."></a>These are commonly set, remove the # and set as required.</h1><p>basedir = /usr/local/mysql<br>datadir = /export/mysql/var<br>port = 3306       q<br>server_id = 22206<br>socket = /export/mysql/mysql.sock<br>binlog_format = statement</p>
+<h1 id="Remove-leading-to-set-options-mainly-useful-for-reporting-servers"><a href="#Remove-leading-to-set-options-mainly-useful-for-reporting-servers" class="headerlink" title="Remove leading # to set options mainly useful for reporting servers."></a>Remove leading # to set options mainly useful for reporting servers.</h1><h1 id="The-server-defaults-are-faster-for-transactions-and-fast-SELECTs"><a href="#The-server-defaults-are-faster-for-transactions-and-fast-SELECTs" class="headerlink" title="The server defaults are faster for transactions and fast SELECTs."></a>The server defaults are faster for transactions and fast SELECTs.</h1><h1 id="Adjust-sizes-as-needed-experiment-to-find-the-optimal-values"><a href="#Adjust-sizes-as-needed-experiment-to-find-the-optimal-values" class="headerlink" title="Adjust sizes as needed, experiment to find the optimal values."></a>Adjust sizes as needed, experiment to find the optimal values.</h1><p>join_buffer_size = 128M<br>sort_buffer_size = 2M<br>read_rnd_buffer_size = 2M<br>log_bin_trust_function_creators = on<br>sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</p>
+<p>lower_case_table_names=1</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/07/11/分布式开发/" rel="next" title="分布式开发基础">
+                  <i class="fa fa-chevron-left"></i> 分布式开发基础
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/08/22/dubbo-相关/" rel="prev" title="dubbo 相关">
+                  dubbo 相关 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux-CentOS6-7-环境Mysql-5-7-17安装教程分享给大家，供大家参考，具体内容如下："><span class="nav-number">1.</span> <span class="nav-text">linux(CentOS6.7) 环境Mysql 5.7.17安装教程分享给大家，供大家参考，具体内容如下：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mkdir-data-mysql"><span class="nav-number">2.</span> <span class="nav-text">mkdir /data/mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#—新建一个msyql组"><span class="nav-number">3.</span> <span class="nav-text">—新建一个msyql组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#useradd-r-s-sbin-nologin-g-mysql-mysql-d-usr-local-mysql-—新建msyql用户禁止登录shell"><span class="nav-number">4.</span> <span class="nav-text">useradd -r -s /sbin/nologin -g mysql mysql -d /usr/local/mysql     —新建msyql用户禁止登录shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bin-mysqld-–initialize-–user-mysql-–basedir-usr-local-mysql-–datadir-data-mysql"><span class="nav-number">5.</span> <span class="nav-text">bin/mysqld –initialize –user=mysql –basedir=/usr/local/mysql –datadir=/data/mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cp-my-default-cnf-etc-my-cnf"><span class="nav-number">6.</span> <span class="nav-text">cp my-default.cnf /etc/my.cnf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cp-mysql-server-etc-init-d-mysql"><span class="nav-number">7.</span> <span class="nav-text">cp mysql.server /etc/init.d/mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim-etc-init-d-mysql"><span class="nav-number">8.</span> <span class="nav-text">vim /etc/init.d/mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#etc-init-d-mysql-start"><span class="nav-number">9.</span> <span class="nav-text">/etc/init.d/mysql start</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql-hlocalhost-uroot-p"><span class="nav-number">10.</span> <span class="nav-text">mysql -hlocalhost -uroot -p</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim-etc-profile"><span class="nav-number">11.</span> <span class="nav-text">vim /etc/profile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#source-etc-profile"><span class="nav-number">12.</span> <span class="nav-text">source /etc/profile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chmod-755-etc-init-d-mysql"><span class="nav-number">13.</span> <span class="nav-text">chmod 755 /etc/init.d/mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chkconfig-–add-mysql"><span class="nav-number">14.</span> <span class="nav-text">chkconfig –add mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chkconfig-–level-345-mysql-on"><span class="nav-number">15.</span> <span class="nav-text">chkconfig –level 345 mysql on</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For-advice-on-how-to-change-settings-please-see"><span class="nav-number">16.</span> <span class="nav-text">For advice on how to change settings please see</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-dev-mysql-com-doc-refman-5-7-en-server-configuration-defaults-html"><span class="nav-number">17.</span> <span class="nav-text">http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DO-NOT-EDIT-THIS-FILE-It’s-a-template-which-will-be-copied-to-the"><span class="nav-number">18.</span> <span class="nav-text">*** DO NOT EDIT THIS FILE. It’s a template which will be copied to the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default-location-during-install-and-will-be-replaced-if-you"><span class="nav-number">19.</span> <span class="nav-text">*** default location during install, and will be replaced if you</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#upgrade-to-a-newer-version-of-MySQL"><span class="nav-number">20.</span> <span class="nav-text">*** upgrade to a newer version of MySQL.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-leading-and-set-to-the-amount-of-RAM-for-the-most-important-data"><span class="nav-number">21.</span> <span class="nav-text">Remove leading # and set to the amount of RAM for the most important data</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cache-in-MySQL-Start-at-70-of-total-RAM-for-dedicated-server-else-10"><span class="nav-number">22.</span> <span class="nav-text">cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-leading-to-turn-on-a-very-important-data-integrity-option-logging"><span class="nav-number">23.</span> <span class="nav-text">Remove leading # to turn on a very important data integrity option: logging</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#changes-to-the-binary-log-between-backups"><span class="nav-number">24.</span> <span class="nav-text">changes to the binary log between backups.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#These-are-commonly-set-remove-the-and-set-as-required"><span class="nav-number">25.</span> <span class="nav-text">These are commonly set, remove the # and set as required.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remove-leading-to-set-options-mainly-useful-for-reporting-servers"><span class="nav-number">26.</span> <span class="nav-text">Remove leading # to set options mainly useful for reporting servers.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-server-defaults-are-faster-for-transactions-and-fast-SELECTs"><span class="nav-number">27.</span> <span class="nav-text">The server defaults are faster for transactions and fast SELECTs.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adjust-sizes-as-needed-experiment-to-find-the-optimal-values"><span class="nav-number">28.</span> <span class="nav-text">Adjust sizes as needed, experiment to find the optimal values.</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Leon</p>
+  <div class="site-description" itemprop="description">挪威的森林</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/ReonYu" title="GitHub &rarr; https://github.com/ReonYu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon</span>
+</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.1</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+  <script defer src="/lib/three/three.min.js"></script>
+    
+    <script defer src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

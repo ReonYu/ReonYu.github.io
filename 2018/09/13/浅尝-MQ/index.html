@@ -11,9 +11,9 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/avatar.png?v=7.4.1" color="#222">
 
 <link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
@@ -70,7 +70,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/09/13/浅尝-MQ/images/a0de8d416add777aef97683192fd15db.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/浅尝-MQ/images/7d529fbf2f856582c2eb3ee787ede5fd.png">
 <meta property="og:image" content="http://yoursite.com/2018/09/13/浅尝-MQ/images/09d68167fcb34b075259add9b81809cd.png">
-<meta property="og:updated_time" content="2019-10-11T06:44:49.318Z">
+<meta property="og:updated_time" content="2019-10-11T09:29:44.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅尝 MQ">
 <meta name="twitter:description" content="MQ消息队列技术(Message Queue) 是分布式应用间交换信息的一种技术。消息队列可驻留在内存或磁盘上, 队列存储消息直到它们被应用程序读走。通过消息队列，应用程序可独立地执行 ———— 它们不需要知道彼此的位置、或在继续执行前不需要等待接收程序接收此消息。在分布式计算环境中，为了集成分布式应用，开发者需要对异构网络环境下的分布式应用提供有效的通信手段。 MQ使用场景 异步通信：有些业务不">
@@ -255,7 +255,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-11 14:44:49" itemprop="dateModified" datetime="2019-10-11T14:44:49+08:00">2019-10-11</time>
+                <time title="Modified: 2019-10-11 17:29:44" itemprop="dateModified" datetime="2019-10-11T17:29:44+08:00">2019-10-11</time>
               </span>
             
           
@@ -414,6 +414,53 @@
 <li>写 <code>N</code> 个内存 <code>queue</code> ，具有相同 <code>key</code> 的数据都到同一个内存 <code>queue</code> ；然后对于 N 个线程，每个线程分别消费一个内存 <code>queue</code> 即可，这样就能保证顺序性。</li>
 </ul>
 <p><img src="images/09d68167fcb34b075259add9b81809cd.png" alt="image"></p>
+<ul>
+<li>1、kafka在高并发的情况下,如何避免消息丢失和消息重复?</li>
+</ul>
+<p>消息丢失解决方案:</p>
+<p>首先对kafka进行限速， 其次启用重试机制，重试间隔时间设置长一些，最后Kafka设置acks=all，即需要相应的所有处于ISR的分区都确认收到该消息后，才算发送成功</p>
+<p>消息重复解决方案:</p>
+<p>消息可以使用唯一id标识</p>
+<p>生产者（ack=all 代表至少成功发送一次)</p>
+<p>消费者 （offset手动提交，业务逻辑成功处理后，提交offset）</p>
+<p>落表（主键或者唯一索引的方式，避免重复数据）</p>
+<p>业务逻辑处理（选择唯一主键存储到Redis或者mongdb中，先查询是否存在，若存在则不处理；若不存在，先插入Redis或Mongdb,再进行业务逻辑处理）</p>
+<ul>
+<li>2、kafka怎么保证数据消费一次且仅消费一次</li>
+</ul>
+<p>幂等producer：保证发送单个分区的消息只会发送一次，不会出现重复消息</p>
+<p>事务(transaction)：保证原子性地写入到多个分区，即写入到多个分区的消息要么全部成功，要么全部回滚流处理EOS：流处理本质上可看成是“读取-处理-写入”的管道。此EOS保证整个过程的操作是原子性。注意，这只适用于Kafka Streams</p>
+<ul>
+<li>3、kafka保证数据一致性和可靠性</li>
+</ul>
+<p>数据一致性保证</p>
+<p>一致性定义：若某条消息对client可见，那么即使Leader挂了，在新Leader上数据依然可以被读到</p>
+<p>HW-HighWaterMark: client可以从Leader读到的最大msg offset，即对外可见的最大offset， HW=max(replica.offset)</p>
+<p>对于Leader新收到的msg，client不能立刻消费，Leader会等待该消息被所有ISR中的replica同步后，更新HW，此时该消息才能被client消费，这样就保证了如果Leader fail，该消息仍然可以从新选举的Leader中获取。</p>
+<p>对于来自内部Broker的读取请求，没有HW的限制。同时，Follower也会维护一份自己的HW，Folloer.HW = min(Leader.HW, Follower.offset)</p>
+<p>数据可靠性保证</p>
+<p>当Producer向Leader发送数据时，可以通过acks参数设置数据可靠性的级别</p>
+<p>0: 不论写入是否成功，server不需要给Producer发送Response，如果发生异常，server会终止连接，触发Producer更新meta数据；</p>
+<p>1: Leader写入成功后即发送Response，此种情况如果Leader fail，会丢失数据</p>
+<p>-1: 等待所有ISR接收到消息后再给Producer发送Response，这是最强保证</p>
+<ul>
+<li>4、kafka到spark streaming怎么保证数据完整性，怎么保证数据不重复消费？</li>
+</ul>
+<p>保证数据不丢失（at-least）</p>
+<p>spark RDD内部机制可以保证数据at-least语义。</p>
+<p>Receiver方式</p>
+<p>开启WAL（预写日志），将从kafka中接受到的数据写入到日志文件中，所有数据从失败中可恢复。</p>
+<p>Direct方式</p>
+<p>依靠checkpoint机制来保证。</p>
+<p>保证数据不重复（exactly-once）</p>
+<p>要保证数据不重复，即Exactly once语义。</p>
+<ul>
+<li><p>幂等操作：重复执行不会产生问题，不需要做额外的工作即可保证数据不重复。</p>
+</li>
+<li><p>业务代码添加事务操作</p>
+</li>
+</ul>
+<p>就是说针对每个partition的数据，产生一个uniqueId，只有这个partition的所有数据被完全消费，则算成功，否则算失效，要回滚。下次重复执行这个uniqueId时，如果已经被执行成功，则skip掉。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jasongj.com/2015/03/10/KafkaColumn1/" target="_blank" rel="noopener">Kafka设计解析</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues.md#kafka-%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7" target="_blank" rel="noopener">Kafka的高可用</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-that-messages-are-not-repeatedly-consumed.md" target="_blank" rel="noopener">Kafka幂等性</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-the-reliable-transmission-of-messages.md#kafka" target="_blank" rel="noopener">Kafka消息丢失</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/mq-interview.md" target="_blank" rel="noopener">消息队列面试场景</a></p>
 
     </div>
@@ -514,7 +561,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -523,7 +570,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span>
         
       </div>
