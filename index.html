@@ -2119,6 +2119,228 @@ class Consumer implements Runnable{
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/浅尝-MQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon">
+      <meta itemprop="description" content="挪威的森林">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/09/13/浅尝-MQ/" class="post-title-link" itemprop="url">浅尝 MQ</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-09-13 14:39:09" itemprop="dateCreated datePublished" datetime="2018-09-13T14:39:09+08:00">2018-09-13</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-11 14:44:49" itemprop="dateModified" datetime="2019-10-11T14:44:49+08:00">2019-10-11</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h1><p>消息队列技术(Message Queue) 是分布式应用间交换信息的一种技术。消息队列可驻留在内存或磁盘上, 队列存储消息直到它们被应用程序读走。通过消息队列，应用程序可独立地执行 ———— 它们不需要知道彼此的位置、或在继续执行前不需要等待接收程序接收此消息。在分布式计算环境中，为了集成分布式应用，开发者需要对异构网络环境下的分布式应用提供有效的通信手段。</p>
+<h2 id="MQ使用场景"><a href="#MQ使用场景" class="headerlink" title="MQ使用场景"></a>MQ使用场景</h2><ol>
+<li><p><strong>异步通信</strong>：有些业务不想也不需要立即处理消息。消息队列提供了异步处理机制，允许用户把一个消息放入队列，但并不立即处理它。想向队列中放入多少消息就放多少，然后在需要的时候再去处理它们。</p>
+</li>
+<li><p><strong>解耦</strong>：降低工程间的强依赖程度，针对异构系统进行适配。在项目启动之初来预测将来项目会碰到什么需求，是极其困难的。通过消息系统在处理过程中间插入了一个隐含的、基于数据的接口层，两边的处理过程都要实现这一接口，当应用发生变化时，可以独立的扩展或修改两边的处理过程，只要确保它们遵守同样的接口约束</p>
+</li>
+<li><p><strong>冗余</strong>：有些情况下，处理数据的过程会失败。除非数据被持久化，否则将造成丢失。消息队列把数据进行持久化直到它们已经被完全处理，通过这一方式规避了数据丢失风险。许多消息队列所采用的”插入-获取-删除”范式中，在把一个消息从队列中删除之前，需要你的处理系统明确的指出该消息已经被处理完毕，从而确保你的数据被安全的保存直到你使用完毕。</p>
+</li>
+<li><p><strong>扩展性</strong>：因为消息队列解耦了你的处理过程，所以增大消息入队和处理的频率是很容易的，只要另外增加处理过程即可。不需要改变代码、不需要调节参数。便于分布式扩容</p>
+</li>
+<li><p><strong>过载保护</strong>：在访问量剧增的情况下，应用仍然需要继续发挥作用，但是这样的突发流量无法提取预知；如果以为了能处理这类瞬间峰值访问为标准来投入资源随时待命无疑是巨大的浪费。使用消息队列能够使关键组件顶住突发的访问压力，而不会因为突发的超负荷的请求而完全崩溃</p>
+</li>
+<li><p><strong>可恢复性</strong>：系统的一部分组件失效时，不会影响到整个系统。消息队列降低了进程间的耦合度，所以即使一个处理消息的进程挂掉，加入队列中的消息仍然可以在系统恢复后被处理。 </p>
+</li>
+<li><p><strong>顺序保证</strong>：在大多使用场景下，数据处理的顺序都很重要。大部分消息队列本来就是排序的，并且能保证数据会按照特定的顺序来处理。 </p>
+</li>
+<li><p><strong>缓冲</strong>：在任何重要的系统中，都会有需要不同的处理时间的元素。消息队列通过一个缓冲层来帮助任务最高效率的执行，该缓冲有助于控制和优化数据流经过系统的速度。以调节系统响应时间。</p>
+</li>
+<li><p><strong>数据流处理</strong>：分布式系统产生的海量数据流，如：业务日志、监控数据、用户行为等，针对这些数据流进行实时或批量采集汇总，然后进行大数据分析是当前互联网的必备技术，通过消息队列完成此类数据收集是最好的选择</p>
+</li>
+</ol>
+<h2 id="MQ缺点"><a href="#MQ缺点" class="headerlink" title="MQ缺点"></a>MQ缺点</h2><ol>
+<li><p>系统可用性降低：系统引入的外部依赖越多，越容易挂掉。本来你就是 <code>A</code> 系统调用 <code>BCD</code> 三个系统的接口就好了， <code>ABCD</code> 四个系统好好的，没啥问题，你偏加个 <code>MQ</code> 进来，万一 <code>MQ</code> <code>挂了咋整，MQ</code> 一挂，整套系统崩溃的，你不就完了？如何保证消息队列的高可用。</p>
+</li>
+<li><p>系统复杂度提高：硬生生加个 <code>MQ</code> 进来，你怎么保证消息没有重复消费？怎么处理消息丢失的情况？怎么保证消息传递的顺序性？头大头大，问题一大堆，痛苦不已。</p>
+</li>
+<li><p>一致性问题： <code>A</code> 系统处理完了直接返回成功了，人都以为你这个请求就成功了；但是问题是，要是 <code>BCD</code> 三个系统那里， <code>BD</code> 两个系统写库成功了，结果 <code>C</code> 系统写库失败了，咋整？你这数据就不一致了。</p>
+</li>
+</ol>
+<h2 id="MQ常用协议"><a href="#MQ常用协议" class="headerlink" title="MQ常用协议"></a>MQ常用协议</h2><ul>
+<li><p><strong>AMQP协议</strong> AMQP即Advanced Message Queuing Protocol,一个提供统一消息服务的应用层标准高级消息队列协议,是应用层协议的一个开放标准,为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同开发语言等条件的限制。</p>
+<blockquote>
+<p>优点：可靠、通用</p>
+</blockquote>
+</li>
+<li><p><strong>MQTT协议</strong> MQTT（Message Queuing Telemetry Transport，消息队列遥测传输）是IBM开发的一个即时通讯协议，有可能成为物联网的重要组成部分。该协议支持所有平台，几乎可以把所有联网物品和外部连接起来，被用来当做传感器和致动器（比如通过Twitter让房屋联网）的通信协议。 </p>
+<blockquote>
+<p>优点：格式简洁、占用带宽小、移动端通信、PUSH、嵌入式系统</p>
+</blockquote>
+</li>
+<li><p><strong>STOMP协议</strong> STOMP（Streaming Text Orientated Message Protocol）是流文本定向消息协议，是一种为MOM(Message Oriented Middleware，面向消息的中间件)设计的简单文本协议。STOMP提供一个可互操作的连接格式，允许客户端与任意STOMP消息代理（Broker）进行交互。 </p>
+<blockquote>
+<p>优点：命令模式（非topic/queue模式）</p>
+</blockquote>
+</li>
+<li><p><strong>XMPP协议</strong> XMPP（可扩展消息处理现场协议，Extensible Messaging and Presence Protocol）是基于可扩展标记语言（XML）的协议，多用于即时消息（IM）以及在线现场探测。适用于服务器之间的准即时操作。核心是基于XML流传输，这个协议可能最终允许因特网用户向因特网上的其他任何人发送即时消息，即使其操作系统和浏览器不同。</p>
+<blockquote>
+<p>优点：通用公开、兼容性强、可扩展、安全性高，但XML编码格式占用带宽大</p>
+</blockquote>
+</li>
+<li><p><strong>其他基于TCP/IP自定义的协议</strong>：有些特殊框架（如：redis、kafka、zeroMq等）根据自身需要未严格遵循MQ规范，而是基于TCP\IP自行封装了一套协议，通过网络socket接口进行传输，实现了MQ的功能。</p>
+</li>
+</ul>
+<h2 id="MQ的通讯模式"><a href="#MQ的通讯模式" class="headerlink" title="MQ的通讯模式"></a>MQ的通讯模式</h2><ol>
+<li><p><strong>点对点通讯</strong>：点对点方式是最为传统和常见的通讯方式，它支持一对一、一对多、多对多、多对一等多种配置方式，支持树状、网状等多种拓扑结构。</p>
+</li>
+<li><p><strong>多点广播</strong>：MQ适用于不同类型的应用。其中重要的，也是正在发展中的是”多点广播”应用，即能够将消息发送到多个目标站点(Destination List)。可以使用一条MQ指令将单一消息发送到多个目标站点，并确保为每一站点可靠地提供信息。MQ不仅提供了多点广播的功能，而且还拥有智能消息分发功能，在将一条消息发送到同一系统上的多个用户时，MQ将消息的一个复制版本和该系统上接收者的名单发送到目标MQ系统。目标MQ系统在本地复制这些消息，并将它们发送到名单上的队列，从而尽可能减少网络的传输量。</p>
+</li>
+<li><p><strong>发布/订阅(Publish/Subscribe)模式</strong>：发布/订阅功能使消息的分发可以突破目的队列地理指向的限制，使消息按照特定的主题甚至内容进行分发，用户或应用程序可以根据主题或内容接收到所需要的消息。发布/订阅功能使得发送者和接收者之间的耦合关系变得更为松散，发送者不必关心接收者的目的地址，而接收者也不必关心消息的发送地址，而只是根据消息的主题进行消息的收发。在MQ家族产品中，MQ Event Broker是专门用于使用发布/订阅技术进行数据通讯的产品，它支持基于队列和直接基于TCP/IP两种方式的发布和订阅。</p>
+</li>
+<li><p><strong>集群(Cluster)</strong>：为了简化点对点通讯模式中的系统配置，MQ提供 Cluster 的解决方案。集群类似于一个 域(Domain) ，集群内部的队列管理器之间通讯时，不需要两两之间建立消息通道，而是采用 Cluster 通道与其它成员通讯，从而大大简化了系统配置。此外，集群中的队列管理器之间能够自动进行负载均衡，当某一队列管理器出现故障时，其它队列管理器可以接管它的工作，从而大大提高系统的高可靠性</p>
+</li>
+</ol>
+<h2 id="消息投递保证"><a href="#消息投递保证" class="headerlink" title="消息投递保证"></a>消息投递保证</h2><ul>
+<li><code>At most once</code>：消息可能会丢，但绝不会重复投递</li>
+<li><code>At least one</code>：消息绝不会丢，但可能会重复投递</li>
+<li><code>Exactly once</code>：每条消息肯定会被投递一次且仅投递一次，很多时候这是用户所想要的。</li>
+</ul>
+<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><ul>
+<li><strong>Broker</strong>：Kafka 集群包含一个或多个服务器，这种服务器被称为 <code>broker</code> 。</li>
+<li><strong>Topic</strong>：每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个 Topic 的消息虽然保存于一个或多个 broker 上，但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）。</li>
+<li><strong>Partition</strong>： <code>Partition</code> 是物理上的概念，每个 <code>Topic</code> 包含一个或多个 <code>Partition</code> 。</li>
+<li><strong>Producer</strong>：负责发布消息到 Kafka broker。</li>
+<li><strong>Consumer</strong>：消息消费者，向 Kafka broker 读取消息的客户端。</li>
+<li><strong>Consumer Group</strong>：每个 <code>Consumer</code> 属于一个特定的 <code>Consumer Group</code>（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。</li>
+</ul>
+<h2 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h2><p><img src="images/9a9bab37c896c086e2fee7b3e15a9ae3.png" alt="image"></p>
+<p>如上图所示，一个典型的 <code>Kafka</code> 集群中包含若干 <code>Producer</code> （可以是web前端产生的Page View，或者是服务器日志，系统CPU、Memory等），若干 <code>broker</code> （Kafka支持水平扩展，一般broker数量越多，集群吞吐率越高），若干 <code>Consumer Group</code> ，以及一个 <code>Zookeeper</code> 集群。 <code>Kafka</code> 通过 <code>Zookeeper</code> 管理集群配置，选举 <code>leader</code> ，以及在 <code>Consumer Group</code> 发生变化时进行 rebalance。 <code>Producer</code> 使用 push 模式将消息发布到broker，Consumer使用pull模式从broker订阅并消费消息。</p>
+<h2 id="Topic-amp-Partition"><a href="#Topic-amp-Partition" class="headerlink" title="Topic &amp; Partition"></a>Topic &amp; Partition</h2><p><strong>Topic 在逻辑上可以被认为是一个 queue</strong> ，每条消费都必须指定它的 <code>Topic</code> ，可以简单理解为必须指明把这条消息放进哪个 <code>queue</code> 里。为了使得 Kafka 的吞吐率可以线性提高，<strong>物理上把 <code>Topic</code> 分成一个或多个 <code>Partition</code></strong> ，每个 <code>Partition</code> 在物理上对应一个文件夹，该文件夹下存储这个 <code>Partition</code> 的所有消息和索引文件。若创建 <code>topic1</code> 和 <code>topic2</code> 两个 <code>topic</code> ，且分别有 13 个和 19 个分区，则整个集群上会相应会生成共 32 个文件夹（本文所用集群共8个节点，此处 <code>topic1</code> 和 <code>topic2</code> <code>replication-factor</code> 均为1）。</p>
+<blockquote>
+<p>Partition 都是通过 顺序读写，所以效率很高</p>
+</blockquote>
+<blockquote>
+<p>replication-factor 配置 partition 副本数。配置副本之后,每个 partition 都有一个唯一的 leader ，有 0 个或多个 follower 。所有的读写操作都在 leader 上完成，followers 从 leader 消费消息来复制 message，就跟普通的 consumer 消费消息一样。一般情况下 partition 的数量大于等于 broker 的数量，并且所有 partition 的 leader 均匀分布在 broker 上。</p>
+</blockquote>
+<p>对于传统的 MQ 而言，一般会删除已经被消费的消息，而 Kafka 集群会保留所有的消息，无论其被消费与否。当然，因为磁盘限制，不可能永久保留所有数据（实际上也没必要），因此 Kafka 提供两种策略删除旧数据。一是基于时间，二是基于 Partition 文件大小。</p>
+<h2 id="Producer-消息路由"><a href="#Producer-消息路由" class="headerlink" title="Producer 消息路由"></a>Producer 消息路由</h2><p>Producer 发送消息到 broker 时，会根据 Paritition 机制选择将其存储到哪一个 Partition 。如果 Partition 机制设置合理，所有消息可以均匀分布到不同的 Partition 里，这样就实现了负载均衡。如果一个 Topic 对应一个文件，那这个文件所在的机器I/O将会成为这个 Topic 的性能瓶颈，而有了 Partition 后，不同的消息可以并行写入不同 broker 的不同 Partition 里，极大的提高了吞吐率。</p>
+<p>可以在 <code>$KAFKA_HOME/config/server.properties</code> 中通过配置项 <code>num.partitions</code> 来指定新建 <code>Topic</code> 的默认 <code>Partition</code> 数量，也可在创建 <code>Topic</code> 时通过参数指定，同时也可以在 Topic 创建之后通过 Kafka 提供的工具修改。</p>
+<p>在发送一条消息时，可以指定这条消息的 <code>key</code> ，Producer 根据这个 <code>key</code> 和 Partition 机制来判断应该将这条消息发送到哪个 Parition 。Paritition机制可以通过指定 Producer 的 <code>paritition.class</code> 这一参数来指定，该 class 必须实现 <code>kafka.producer.Partitioner</code> 接口。</p>
+<h2 id="Consumer-Group"><a href="#Consumer-Group" class="headerlink" title="Consumer Group"></a>Consumer Group</h2><p><img src="images/e54deac5512215cfc6801890bb83d792.png" alt="image"></p>
+<p>这是 Kafka 用来实现一个 Topic 消息的广播（发给所有的 Consumer ）和单播（发给某一个 Consumer ）的手段。一个 Topic 可以对应多个 Consumer Group 。如果需要实现广播，只要每个 Consumer 有一个独立的 Group 就可以了。要实现单播只要所有的 Consumer 在同一个 Group 里。用 Consumer Group 还可以将 Consumer 进行自由的分组而不需要多次发送消息到不同的 Topic 。</p>
+<h2 id="Consumer-个数与-Parition-数有什么关系？"><a href="#Consumer-个数与-Parition-数有什么关系？" class="headerlink" title="Consumer 个数与 Parition 数有什么关系？"></a>Consumer 个数与 Parition 数有什么关系？</h2><p><strong>topic 下的一个分区只能被同一个 consumer group 下的一个 consumer 线程来消费</strong>，但反之并不成立，即一个 consumer 线程可以消费多个分区的数据。比如 Kafka 提供的 <code>ConsoleConsumer</code> ，默认就只是一个线程来消费所有分区的数据。</p>
+<blockquote>
+<p>即分区数决定了同组消费者个数的上限</p>
+</blockquote>
+<p><img src="images/5290a719713da5ce4e83422ded5bdf0c.png" alt="image"></p>
+<p>所以，如果你的分区数是 N ，那么最好线程数也保持为 N ，这样通常能够达到最大的吞吐量。超过 N 的配置只是浪费系统资源，因为多出的线程不会被分配到任何分区。</p>
+<h2 id="Push-vs-Pull"><a href="#Push-vs-Pull" class="headerlink" title="Push vs. Pull　　"></a>Push vs. Pull　　</h2><p>作为一个消息系统，Kafka 遵循了传统的方式，选择由 Producer 向 broker <code>push</code> 消息并由 Consumer 从 broker <code>pull</code> 消息。事实上，push 模式和 pull 模式各有优劣。</p>
+<ul>
+<li>Push模式 很难适应消费速率不同的消费者，因为消息发送速率是由broker决定的。push模式的目标是尽可能以最快速度传递消息，但是这样很容易造成 Consumer 来不及处理消息，典型的表现就是拒绝服务以及网络拥塞。</li>
+<li>Pull模式 可以根据Consumer的消费能力以适当的速率消费消息。</li>
+</ul>
+<p>对于 Kafka 而言，Pull模式 更合适。Pull模式 可简化 broker 的设计，Consumer 可自主控制消费消息的速率，同时 Consumer 可以自己控制消费方式——即可批量消费也可逐条消费，同时还能选择不同的提交方式从而实现不同的传输语义。</p>
+<h2 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h2><p><code>Kafka 0.8</code> 以前，是没有 HA 机制的，就是任何一个 <code>broker</code> 宕机了，那个 <code>broker</code> 上的 <code>partition</code> 就废了，没法写也没法读，没有什么高可用性可言。</p>
+<p>比如说，我们假设创建了一个 <code>topic</code> ，指定其 <code>partition</code> 数量是 <code>3</code> 个，分别在三台机器上。但是，如果第二台机器宕机了，会导致这个 <code>topic</code> 的 <code>1/3</code> 的数据就丢了，因此这个是做不到高可用的。</p>
+<p><img src="images/ab965081f1e5ff28386d90ba18a17d6d.png" alt="image"></p>
+<p><code>Kafka 0.8</code> 以后，提供了 <code>HA</code> 机制，就是 <code>replica</code> <strong>副本机制</strong>。每个 <code>partition</code> 的数据都会同步到其它机器上，形成自己的多个 <code>replica</code> 副本。所有 <code>replica</code> 会选举一个 <code>leader</code> 出来，那么生产和消费都跟这个 <code>leader</code> 打交道，然后其他 <code>replica</code> 就是 <code>follower</code> 。写的时候， <code>leader</code> 会负责把数据同步到所有 <code>follower</code> 上去，读的时候就直接读 <code>leader</code> 上的数据即可。 <code>Kafka</code> 会均匀地将一个 <code>partition</code> 的所有 <code>replica</code> 分布在不同的机器上，这样才可以提高容错性。</p>
+<p><img src="images/a0de8d416add777aef97683192fd15db.png" alt="image"></p>
+<p>这么搞，就有所谓的高可用性了，因为如果某个 <code>broker</code> 宕机了，没事儿，那个 <code>broker</code> 上面的 <code>partition</code> 在其他机器上都有副本的，如果这上面有某个 <code>partition</code> 的 <code>leader</code> ，那么此时会从 <code>follower</code> 中 <strong>重新选举</strong> 一个新的 <code>leader</code> 出来，大家继续读写那个新的 <code>leader</code> 即可。这就有所谓的高可用性了。</p>
+<ul>
+<li><strong>写数据</strong> 的时候，生产者就写 <code>leader</code> ，然后 <code>leader</code> 将数据落地写本地磁盘，接着其他 <code>follower</code> 自己主动从 <code>leader</code> 来 <code>pull</code> 数据。一旦所有 <code>follower</code> 同步好数据了，就会发送 <code>ack</code> 给 <code>leader</code> ， <strong><code>leader</code> 收到所有 <code>follower</code> 的 <code>ack</code> 之后，就会返回写成功的消息给生产者</strong>。（当然，这只是其中一种模式，还可以适当调整这个行为）</li>
+<li><strong>消费</strong> 的时候，只会从 <code>leader</code> 去读，但是 <strong>只有当一个消息已经被所有 <code>follower</code> 都同步成功返回 <code>ack</code> 的时候，这个消息才会被消费者读到</strong>。</li>
+</ul>
+<h2 id="消息幂等性"><a href="#消息幂等性" class="headerlink" title="消息幂等性"></a>消息幂等性</h2><p><code>Kafka</code> 实际上有个 <code>offset</code> 的概念，就是每个消息写进去，都有一个 <code>offset</code> ，代表消息的序号，然后 <strong><code>consumer</code> 消费了数据之后，每隔一段时间（定时定期），会把自己消费过的消息的 <code>offset</code> 提交一下</strong>，表示“我已经消费过了，下次我要是重启啥的，你就让我继续从上次消费到的 <code>offset</code> 来继续消费吧”。</p>
+<p>但是凡事总有意外，比如我们之前生产经常遇到的，就是你有时候重启系统，看你怎么重启了，如果碰到点着急的，直接 <code>kill</code> 进程了，再重启。这会导致 <code>consumer</code> 有些消息处理了，但是没来得及提交 <code>offset</code> ，尴尬了。重启之后，<strong>少数消息会再次消费一次</strong>。</p>
+<p>幂等性，通俗点说，<strong>一个数据，或者一个请求，给你重复来多次，你得确保对应的数据是不会改变的，不能出错</strong>。其实重复消费不可怕，可怕的是你没考虑到重复消费之后，怎么保证幂等性？其实还是得 <strong>结合业务来思考</strong>，这里给几个思路：</p>
+<ul>
+<li>比如你拿个数据要写库，你先根据主键查一下，如果这数据都有了，你就别插入了，update 一下好吧。</li>
+<li>比如你是写 Redis ，那没问题了，反正每次都是 set，天然幂等性。</li>
+<li>比如你不是上面两个场景，那做的稍微复杂一点，你需要让生产者发送每条数据的时候，里面加一个全局唯一的 id，类似订单 id 之类的东西，然后你这里消费到了之后，先根据这个 id 去比如 Redis 里查一下，之前消费过吗？如果没有消费过，你就处理，然后这个 id 写 Redis。如果消费过了，那你就别处理了，保证别重复处理相同的消息即可。</li>
+<li>比如基于数据库的唯一键来保证重复数据不会重复插入多条。因为有唯一键约束了，重复数据插入只会报错，不会导致数据库中出现脏数据。</li>
+</ul>
+<h2 id="消息丢失"><a href="#消息丢失" class="headerlink" title="消息丢失"></a>消息丢失</h2><h3 id="消费端弄丢了数据"><a href="#消费端弄丢了数据" class="headerlink" title="消费端弄丢了数据"></a>消费端弄丢了数据</h3><p>唯一可能导致消费者弄丢数据的情况，就是说，你消费到了这个消息，然后消费者那边 <strong>自动提交了 <code>offset</code></strong> ，让 <code>Kafka</code> 以为你已经消费好了这个消息，但其实你才刚准备处理这个消息，你还没处理，你自己就挂了，此时这条消息就丢咯。</p>
+<p><code>Kafka</code> 会自动提交 <code>offset</code> ，那么只要关闭自动提交 <code>offset</code> ，在处理完之后自己手动提交 <code>offset</code> ，就可以保证数据不会丢。但是此时确实还是可能会有重复消费，比如你刚处理完，还没提交 <code>offset</code> ，结果自己挂了，此时肯定会重复消费一次，自己 <strong>保证幂等性</strong> 就好了。</p>
+<h3 id="Kafka-弄丢了数据"><a href="#Kafka-弄丢了数据" class="headerlink" title="Kafka 弄丢了数据"></a>Kafka 弄丢了数据</h3><p>这块比较常见的一个场景，就是 <code>Kafka</code> 某个 <code>broker</code> 宕机，然后重新选举 <code>partition</code> 的 <code>leader</code> 。大家想想，要是此时其他的 <code>follower</code> 刚好还有些数据没有同步，结果此时 <code>leader</code> 挂了，然后选举某个 <code>follower</code> 成 <code>leader</code> 之后，不就少了一些数据？这就丢了一些数据啊。</p>
+<p>此时一般是要求起码设置如下 4 个参数：</p>
+<ul>
+<li>给 <code>topic</code> 设置 <code>replication.factor</code> 参数：这个值必须大于 1，要求每个 <code>partition</code> 必须有 <strong>至少</strong> 2 个副本。</li>
+<li>在 <code>Kafka</code> 服务端设置 <code>min.insync.replicas</code> 参数：这个值必须大于 1，这个是 <strong>要求一个 <code>leader</code> 至少感知到有至少一个 <code>follower</code> 还跟自己保持联系</strong>，没掉队，这样才能确保 <code>leader</code> 挂了还有一个 <code>follower</code> 吧。</li>
+<li>在 <code>producer</code> 端设置 <code>acks=all</code>：这个是要求每条数据，<strong>必须是写入所有 <code>replica</code> 之后，才能认为是写成功了</strong>。</li>
+<li>在 <code>producer</code> 端设置 <code>retries=MAX</code>（很大很大很大的一个值，无限次重试的意思）：这个是要求 <strong>一旦写入失败，就无限重试</strong>，卡在这里了。</li>
+</ul>
+<p>这样配置之后，至少在 Kafka <code>broker</code> 端就可以保证在 <code>leader</code> 所在 <code>broker</code> 发生故障，进行 <code>leader</code> 切换时，数据不会丢失。</p>
+<h3 id="生产者会不会弄丢数据？"><a href="#生产者会不会弄丢数据？" class="headerlink" title="生产者会不会弄丢数据？"></a>生产者会不会弄丢数据？</h3><p>如果按照上述的思路设置了 <code>acks=all</code>，一定不会丢，要求是，你的 <code>leader</code> 接收到消息，所有的 <code>follower</code> 都同步到了消息之后，才认为本次写成功了。如果没满足这个条件，生产者可以自动不断的重试，重试无限次。</p>
+<h2 id="消息的顺序性"><a href="#消息的顺序性" class="headerlink" title="消息的顺序性"></a>消息的顺序性</h2><p>比如说我们建了一个 <code>topic</code> ，有三个 <code>partition</code> 。生产者在写的时候，其实可以指定一个 <code>key</code> ，比如说我们指定了某个订单 <code>id</code> 作为 <code>key</code> ，那么这个订单相关的数据，一定会被分发到同一个 <code>partition</code> 中去，而且这个 <code>partition</code> 中的数据一定是有顺序的。</p>
+<p>消费者从 <code>partition</code> 中取出来数据的时候，也一定是有顺序的。到这里，顺序还是 <code>ok</code> 的，没有错乱。接着，我们在消费者里可能会搞 <strong>多个线程来并发处理消息</strong>。而多个线程并发跑的话，顺序可能就乱掉了。</p>
+<p><img src="images/7d529fbf2f856582c2eb3ee787ede5fd.png" alt="image"></p>
+<p>解决方案：</p>
+<ul>
+<li>一个 <code>topic</code> ，一个 <code>partition</code> ，一个 <code>consumer</code> ，内部单线程消费，单线程吞吐量太低，一般不会用这个。</li>
+<li>写 <code>N</code> 个内存 <code>queue</code> ，具有相同 <code>key</code> 的数据都到同一个内存 <code>queue</code> ；然后对于 N 个线程，每个线程分别消费一个内存 <code>queue</code> 即可，这样就能保证顺序性。</li>
+</ul>
+<p><img src="images/09d68167fcb34b075259add9b81809cd.png" alt="image"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jasongj.com/2015/03/10/KafkaColumn1/" target="_blank" rel="noopener">Kafka设计解析</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-high-availability-of-message-queues.md#kafka-%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7" target="_blank" rel="noopener">Kafka的高可用</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-that-messages-are-not-repeatedly-consumed.md" target="_blank" rel="noopener">Kafka幂等性</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/how-to-ensure-the-reliable-transmission-of-messages.md#kafka" target="_blank" rel="noopener">Kafka消息丢失</a><br><a href="https://github.com/doocs/advanced-java/blob/master/docs/high-concurrency/mq-interview.md" target="_blank" rel="noopener">消息队列面试场景</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/dubbo-相关/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3193,165 +3415,12 @@ class Consumer implements Runnable{
   
 
     
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/09/浅谈云计算服务模型关键技术/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leon">
-      <meta itemprop="description" content="挪威的森林">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leon">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2017/08/09/浅谈云计算服务模型关键技术/" class="post-title-link" itemprop="url">浅谈云计算服务模型关键技术</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2017-08-09 16:58:12" itemprop="dateCreated datePublished" datetime="2017-08-09T16:58:12+08:00">2017-08-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-09 17:31:38" itemprop="dateModified" datetime="2019-10-09T17:31:38+08:00">2019-10-09</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="浅谈云计算服务模型关键技术"><a href="#浅谈云计算服务模型关键技术" class="headerlink" title="浅谈云计算服务模型关键技术"></a>浅谈云计算服务模型关键技术</h1><hr>
-<ul>
-<li>摘要：</li>
-</ul>
-<p>随着科技水平的不断提高，企业信息化成为企业发展和前进的巨大推动力。然而，传统的企业IT架构存在信息化成本过高以及原有技术基础架构可扩展性低等问题。这些问题逐渐成为企业提高竞争力的瓶颈。定制全新的、模块化的企业应用系统可以在一定程度解决现有问题，但是，由于新旧应用系统在功能上并无太大差异，因此仅仅为了革新软件架构而采购全新应用系统往往成本太高。了降低企业信息化成本、提升企业竞争力，云计算作为一种全新的商业计算模式应运而生。它以高可靠性、高扩展性、低成本等特点吸引了多家企业使用网络云服务来满足自身信息化需求。但是采用网络云服务仍然有以下问题：</p>
-<p>1）网络云服务针对性不高，无法满足企业特色需求。</p>
-<p>2）无法保留企业原有硬件、软件的投入成本。</p>
-<p>3）企业数据存储在“云”端会带来安全风险。</p>
-<p>4）云计算对企业过于透明。</p>
-<hr>
-<h3 id="课题背景"><a href="#课题背景" class="headerlink" title="课题背景"></a>课题背景</h3><p>企业的信息技术发展可以分为基础应用、关键应用、扩展整合与战略应用四个阶段。</p>
-<ul>
-<li>基础应用仅仅为企业提供日常工作的简单支持，如签到系统、官方网页等；关键应用通常涉及企业核心业务，可以较高提高企业效益；第三阶段则是将基础应用和关键应用整合与扩展。战略应用则是从企业发展战略高度优化升级系统、整合数据服务于高层决策。这四个阶段层层递进，每个阶段都是上一阶段信息化的进步，但这四个阶段发展阶段性差异明显，阶段性问题较为突出，如何减少差异，整合有效资源，实现企业信息化平稳发展，也成为当前企业的一个突出问题。</li>
-<li>云计算的出现则在一定程度上解决了这个难题。云计算是一种全新的商业计算模式它是在网格计算、分布式计算和并行计算的基础上发展整合起来的。</li>
-<li>云计算的原理是通过计算资源池的方式为用户提供计算、存储等资源。借助于云计算，企业用户可以享受更加方便、更加高效、更加廉价的服务。一方面云计算按需付费的特征可以将企业高额的一次性信息化投入，比如ERP</li>
-<li>软件购买和服务器购买，转变为小额的运营费用支出，这样就可以有效的降低了企业的信息化成本；另一方面，云计算高弹性、高可扩展性的特征可以使得企业的IT架构更为灵活，从而可以轻易的应对IT服务需求变化的情况。</li>
-</ul>
-<hr>
-<h3 id="国内外研究现状"><a href="#国内外研究现状" class="headerlink" title="国内外研究现状"></a>国内外研究现状</h3><ul>
-<li>应用系统云化决策支持</li>
-<li>在应用系统云计算化前期，企业需要考虑经济、风险、安全，合法性和其他非技术类因素。如果这些先决条件没有满足，IaaS层将很难云化。主要关注云迁移方面的决策支持，<br>Sattaluri阐述了各种情况下应用系统IaaS层云化的需要，Yunus研究了应用系统云化的风险和消耗，Mossburg则从整体角度上提出了应用系统云化的4个关键点。 </li>
-<li>应用系统角度云化</li>
-<li>在应用系统角度上，研究者主要通过对应用系统功能、架构的分析，在根据其普遍功能架构特点的基础上提出了多种应用系统云化方法，Binz把云化方法主要分为两类：应用系统功能模块云化，应用系统整体云化。功能模块云化是把应用系统中的部分功能模块迁移部署到云端。整体云化是把整个应用系统中的所有功能模块分别迁移到云端，从而实现应用系统整体云化方案。对于应用整体云化策略，该文提出的一种云化框架可以利用现有应用系统模型并对复杂应用迁移提供支持。<br>定义了四种应用系统角度云化方法。第一种方法是通过已有的云服务，比如云监控、云存储等服务，替换应用系统现有的服务。第二种方法是把应用的部分功能迁移到云环境中。最常见的方法是把整栈应用迁移到云端。最后一种方法企业需要把原有的数据和商业逻辑全部迁移到云端。</li>
-<li>云计算角度云化</li>
-<li><h2 id="与应用系统角度相反，在云计算角度上，研究者主要关注的是云计算的特性，以及如何借助这些特性打造云时代的应用系统。Gartner提出了企业IT应用利用云计算的五种建议，这些建议分别是将应用系统完全部署到云端、基于IaaS平台改造应用系统、基于PaaS平台改造应用系统、基于PaaS平台重构应用系统、通过SaaS软件替换企业现有的应用系统。-思科公司在它发布的白皮书中认为，企业只需要根据SaaS、PaaS、IaaS三种模式的特点就可以开展传统应用系统云化工作。它认为SaaS层的云化可以确切地定义未应用系统的替换，即企业放弃现有应用系统，在将数据导入SaaS平台后，完全使用SaaS平台软件工作。对于基于Java-EE和-NET的商业应用来说，PaaS层服务模型下的云化也是一个很好的选择。IaaS层云化策略通常只涉及到应用系统在IaaS云平台的部署。-与思科看待应用系统云计算化的方式相同，Solentive公司同样把云化定义为IaaS、PaaS、SaaS三种方式，他们公司的白皮书详细地分析了这三种方式的优缺点。在IaaS、PaaS层上的云化策略与思科等公司基本一致，但他们把SaaS层的云化策略进一步分为了三种子策略：应用系统完全替换、应用系统部分替换、应用系统改造。"><a href="#与应用系统角度相反，在云计算角度上，研究者主要关注的是云计算的特性，以及如何借助这些特性打造云时代的应用系统。Gartner提出了企业IT应用利用云计算的五种建议，这些建议分别是将应用系统完全部署到云端、基于IaaS平台改造应用系统、基于PaaS平台改造应用系统、基于PaaS平台重构应用系统、通过SaaS软件替换企业现有的应用系统。-思科公司在它发布的白皮书中认为，企业只需要根据SaaS、PaaS、IaaS三种模式的特点就可以开展传统应用系统云化工作。它认为SaaS层的云化可以确切地定义未应用系统的替换，即企业放弃现有应用系统，在将数据导入SaaS平台后，完全使用SaaS平台软件工作。对于基于Java-EE和-NET的商业应用来说，PaaS层服务模型下的云化也是一个很好的选择。IaaS层云化策略通常只涉及到应用系统在IaaS云平台的部署。-与思科看待应用系统云计算化的方式相同，Solentive公司同样把云化定义为IaaS、PaaS、SaaS三种方式，他们公司的白皮书详细地分析了这三种方式的优缺点。在IaaS、PaaS层上的云化策略与思科等公司基本一致，但他们把SaaS层的云化策略进一步分为了三种子策略：应用系统完全替换、应用系统部分替换、应用系统改造。" class="headerlink" title="与应用系统角度相反，在云计算角度上，研究者主要关注的是云计算的特性，以及如何借助这些特性打造云时代的应用系统。Gartner提出了企业IT应用利用云计算的五种建议，这些建议分别是将应用系统完全部署到云端、基于IaaS平台改造应用系统、基于PaaS平台改造应用系统、基于PaaS平台重构应用系统、通过SaaS软件替换企业现有的应用系统。 思科公司在它发布的白皮书中认为，企业只需要根据SaaS、PaaS、IaaS三种模式的特点就可以开展传统应用系统云化工作。它认为SaaS层的云化可以确切地定义未应用系统的替换，即企业放弃现有应用系统，在将数据导入SaaS平台后，完全使用SaaS平台软件工作。对于基于Java EE和.NET的商业应用来说，PaaS层服务模型下的云化也是一个很好的选择。IaaS层云化策略通常只涉及到应用系统在IaaS云平台的部署。 与思科看待应用系统云计算化的方式相同，Solentive公司同样把云化定义为IaaS、PaaS、SaaS三种方式，他们公司的白皮书详细地分析了这三种方式的优缺点。在IaaS、PaaS层上的云化策略与思科等公司基本一致，但他们把SaaS层的云化策略进一步分为了三种子策略：应用系统完全替换、应用系统部分替换、应用系统改造。"></a>与应用系统角度相反，在云计算角度上，研究者主要关注的是云计算的特性，以及如何借助这些特性打造云时代的应用系统。Gartner提出了企业IT应用利用云计算的五种建议，这些建议分别是将应用系统完全部署到云端、基于IaaS平台改造应用系统、基于PaaS平台改造应用系统、基于PaaS平台重构应用系统、通过SaaS软件替换企业现有的应用系统。 思科公司在它发布的白皮书中认为，企业只需要根据SaaS、PaaS、IaaS三种模式的特点就可以开展传统应用系统云化工作。它认为SaaS层的云化可以确切地定义未应用系统的替换，即企业放弃现有应用系统，在将数据导入SaaS平台后，完全使用SaaS平台软件工作。对于基于Java EE和.NET的商业应用来说，PaaS层服务模型下的云化也是一个很好的选择。IaaS层云化策略通常只涉及到应用系统在IaaS云平台的部署。 与思科看待应用系统云计算化的方式相同，Solentive公司同样把云化定义为IaaS、PaaS、SaaS三种方式，他们公司的白皮书详细地分析了这三种方式的优缺点。在IaaS、PaaS层上的云化策略与思科等公司基本一致，但他们把SaaS层的云化策略进一步分为了三种子策略：应用系统完全替换、应用系统部分替换、应用系统改造。</h2></li>
-</ul>
-<h3 id="云计算服务模型"><a href="#云计算服务模型" class="headerlink" title="云计算服务模型"></a>云计算服务模型</h3><ul>
-<li><p>IaaS层服务模型关键技术</p>
-</li>
-<li><p>基础设施即服务（IaaS）是云计算中最基础的服务模型，它将服务器中的硬件设备整合成一个虚拟的资源池供用户申请使用。在该服务模型下，用户通过网络便可获取包括存储和计算在内的各种资源。<br>本文涉及的IaaS关键技术主要包括虚拟化技术、虚拟机迁移技术和分布式块存储技术。</p>
-</li>
-<li><p>虚拟化技术</p>
-</li>
-<li><p>云计算中的虚拟化是指通过虚拟化技术重新组织原有的物理资源。用户在使用云计算提供的资源和服务时，完全不需要关注提供服务的原理和内部细节，他们只需要一个可联网的应用终端就可以在任意位置获取云计算所提供的服务。资源在虚拟化之后被云平台统一组织和管理，用户使用其中资源时的体验与使用本地计算机基本一致。<br>虚拟化技术对于提高服务稳定性也很重要。Linux内核占据了操作系统唯一的地址空间，这意味着内核或任何驱动程序的故障都会导致整个操作系统的崩溃，从而影响操作系统上的其他应用。借助于虚拟化技术，用户可以运行多个操作系统，每个操作系统都有自己的地址空间，其中一个系统发生故障导致崩溃后，不会影响运行在其他操作系统上的应用。<br>虚拟化技术还可以提高系统资源利用率，在一台物理服务器上虚拟出多台虚拟机后，每个虚拟机可以承载一个应用的运行，在应用隔离的前提下，增加了资源利用率。而且，这种方式也可以节约电力、空间、制冷等成本。</p>
-</li>
-<li><p>虚拟机迁移技术</p>
-</li>
-<li><p>虚拟机迁移技术是IaaS层服务模型中的核心技术之一，简单点来说，就是对一个虚拟机进行内存复制，然后把该虚拟机从源物理机迁移到目标物理机上运行。<br>在迁移过程中，虚拟机内存状态被不间断地从源物理机迁移到目标物理机，在迁移完成前，虚拟机仍然在源物理机上保持正常运行状态。当最后一部分内存页面被拷贝到目标物理机后，源物理机上的虚拟机将终止运行，目标物理机上的虚拟机将开始运行，至此，整个虚拟机迁移过程完成。<br>在虚拟机文件系统中，需要用到大量的数据，假如要实现文件系统迁移，将耗费非常多的时间。由于共享文件系统既能被源物理机又能被目标物理机访问，这样就可以避免传输大数据量的虚拟机文件，提高虚拟机的迁移效率。因此，很多虚拟化软件都采用共享的网络文件系统来存储虚拟机文件。</p>
-</li>
-<li><p>分布式块存储技术 </p>
-</li>
-<li><p>云计算环境下的数据通常有多个备份，被分别存储在一个数据中心的不同节点上，甚至跨数据中心存储。数据的位置和组织方式是由已定义的云计算存储机制管理，对用户来讲是透明的。用户通常只需要通过服务商提供的数据接口向数据中心存取数据即可。云计算将用户从数据中心的构建和管理中解放出来，减轻了用户负担，降低了用户成本。他们只需要根据自身所使用的资源支付相应的费用，就能够方便地把数据存储到数据中心上。<br>分布式存储技术是云计算的基础，主要研究如何存储、组织和管理数据中心上的大规模海量数据。它在可扩展性、容错性等方面都拥有很大优势。<br>分布式块存储是分布式存储中的一种类型，它将不同的块设备整合，提供了弹性扩展能力和容错等特性。<br>块设备是一种具有一定结构的随机存取设备，它将信息存储在固定大小的块中。因此需要按块读写该设备，每个块都有自己的地址，在缓冲区中存放中间状态数据，满足一定条件后，从缓存一次性写入设备或从设备中一次性读出放入到缓冲区，磁盘是最常见的块设备。</p>
-</li>
-<li><p>PaaS层服务模型关键技术<br>相对于IaaS层，PaaS层中增加了更多软件层面的考量。因此包含的技术种类更加繁杂，本文主要涉及到以下几种技术： </p>
-</li>
-<li><p>REST机制 </p>
-</li>
-<li><p>该机制即为表述性状态转移技术。它并不是一种技术标准而是一种设计风格。REST通常基于HTTP，URI和XML以及HTML这些现有的广泛流行的协议和标准[28]。 基于REST的HTTP设计通常具备以下原则：资源是由URI来指定；HTTP协议提供的GET、POST、PUT和DELETE方法对应着资源获取、资源创建、资源修改和资源删除动作；通过操作资源的表现形式来操作资源；资源的表现形式取决于读者。在机器与人之间、消费web服务的客户软件与web浏览器之间，表现形式各不相同。 在PaaS平台中，由于该机制提供了统一接口，从而避免了多个能力组件由于大量接口而导致的不兼容。采用REST技术可以很方便的将这些能力提供给开发者使用。由于REST是无状态的，所以会话状态信息不需要云平台维护，从而使应用服务器的负载大大减轻，提高了系统性能。</p>
-</li>
-<li><p>负载均衡技术 </p>
-</li>
-<li><p>负载均衡技术主要用在分布式系统中来提高服务器集群的整体性能。由于集群中服务器性能有差异或者并发访问量过大，会导致某些服务器负载过重而另一些负载过轻的现象，这就需要负载均衡技术来进行调节，提高每个节点的利用率从而减少请求响应时间。<br>从理论上来讲，负载均衡包含两个方面。一个方面是将负载划分成多个无联系可独立执行的部分，并将这些部分分别发送到多个服务器节点上进行处理，每个服务器节点只负责处理本节点获取到的那一部分，而不用关心其他部分。每个节点处理结束之后，将自己的处理结果返回给代理节点，代理节点把所有返回结果综合后返回给客户端[46]。这种并行处理方式可以大大减少一些服务器承载大量运算任务而另外一些服务器出现闲置情况的概率，从而很大程度提高集群的处理能力。<br>另一方面，负载均衡能将海量的用户的并发请求采用某种策略合理透明地分摊到多个处理结点上，使各结点承受相对应其性能的负载量，从而避免出现服务器资源使用上的不平衡，在整体上缩短请求的平均响应时间，达到服务资源优化配置的目标。对于Web服务器、FTP服务器和其它关键应用服务器来说，负载均衡是保证它们正常运行、减少用户等待时间的一项必不可少的措施。单一服务器的处理能力有限，并且可靠性和扩展性都比较差，集群与负载均衡技术可以使这两方面得到改善。 </p>
-</li>
-<li><p>在负载均衡层面上，负载均衡策略至关重要，负载策略是保证集群达到负载平衡的关键所在，根据负载调节策略的不同，负载均衡可划分为静态负载均衡和动态负载均衡两类。</p>
-</li>
-<li><p>轮询策略</p>
-</li>
-<li><p>轮询策略是所有负载均衡策略中实现最简单的一种策略。该策略的核心思想是釆用轮询的方式，将服务请求按照时间顺序依次调度的不同的服务器上，假设Web集群有n台服务器，每次调度到的服务器i=（G+l）mod n台，依次进行循环选择。 </p>
-</li>
-<li><p>加权轮询策略<br>加权轮询策略的核心是对不同处理能力的服务器分配不同的权值，资源调度的时候只需要给服务器分配相应权值数量的服务请求便可。 </p>
-</li>
-<li><p>最小链接策略<br>最小链接策略是一种动态调度算法，该策略核心是实时记录每个服务器当前活跃的连接数量，以此数量来预估服务器的负载情况，然后把连接数量最小的服务器分配给当前用户的连接请求。</p>
-</li>
-<li><p>动态反馈负载均衡策略<br>动态反馈负载均衡策略是通过对每个服务器性能进行监控，通过所得到的监控信息控制新连接的分配，从而控制各个服务器的负载。 </p>
-</li>
-<li><p>Web服务 </p>
-</li>
-<li><p>Web服务是面向服务的体系结构（SOA）背后的关键性支持技术之一，它具有自包含、自描述以及模块化应用等特点，可以在Web上发布、被发现与被使用。在面向服务的体系结构中有3个基本的角色：服务提供商、服务代理商、服务请求者。角色之间有三个基本操作：服务的发布、服务的查找和绑定，服务的调用。<br><a href="https://reonyu.github.io/images/Pic2.png" target="_blank" rel="noopener">picture</a></p>
-</li>
-<li><p>服务的创建、发布、维护由服务提供商实现，服务代理商维护着整个Web服务列表，并自建索引加快服务查询速度，同时它还负责对事务进行监控、对服务安全进行映射以及实现路由等多项工作。服务请求者是互联网上需要通过Web服务进行自身业务处理或请求调用的用户，他们主要提交需求，在服务代理商维护的Web服务列表中发现自身所需服务，然后绑定和调用服务提供商所提供的服务。</p>
-</li>
-<li><p>服务等级协议SLA </p>
-</li>
-<li><p>该协议是租用服务的用户与服务提供商所签订的使用协议，该协议规定了服务类型，服务质量以及服务费用等内容。基于该协议，服务供应商首先需要满足用户的最低要求条款，比如，最小带宽，服务响应最长时间。在满足以上条件下，服务提供商可以对用户资源使用等方面进行限制，防止用户资源无节制的占据大量资源。 基于云计算的SLA还没有一个统一标准[36]。在云计算出现以前，通常网络服务提供商和用户会根据服务内容来协商，因为通过物联网来访问或者说享用云计算服务，网络延迟，丢包，或者传输失败率等问题是动态变化的，而且云计算服务提供商通常不享有专有的ISP，而且很多时候应用性能所受到的影响不属于云计算的范畴，云计算通常只是提供第三方应用。 </p>
-</li>
-<li><p>本文主要介绍云计算IaaS、PaaS层服务模型的关键技术及各个技术之间的不同。</p>
-</li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-    
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -3395,7 +3464,7 @@ class Consumer implements Runnable{
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
