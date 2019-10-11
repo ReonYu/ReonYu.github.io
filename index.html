@@ -2119,6 +2119,162 @@ class Consumer implements Runnable{
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/11/分布式开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon">
+      <meta itemprop="description" content="挪威的森林">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/07/11/分布式开发/" class="post-title-link" itemprop="url">分布式开发</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-07-11 12:26:09" itemprop="dateCreated datePublished" datetime="2018-07-11T12:26:09+08:00">2018-07-11</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-11 12:31:08" itemprop="dateModified" datetime="2019-10-11T12:31:08+08:00">2019-10-11</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="系统架构基础"><a href="#系统架构基础" class="headerlink" title="[系统架构基础]"></a>[系统架构基础]</h1><p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
+<p>1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consistency</span><br><span class="line">Availability</span><br><span class="line">Partition tolerance</span><br></pre></td></tr></table></figure>
+
+<p>它们的第一个字母分别是 <code>C</code>、<code>A</code>、<code>P</code>。Eric Brewer 说，这三个指标不可能同时做到。这个结论就叫做 <code>CAP</code> 定理。</p>
+<h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><p>它指出对于一个分布式计算系统来说，不可能同时满足以下三点：</p>
+<ul>
+<li>一致性（Consistency） （等同于所有节点访问同一份最新的数据副本）</li>
+<li>可用性（Availability）（每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据）</li>
+<li>分区容错性（Partition tolerance）（以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。）</li>
+</ul>
+<h3 id="数据一致性模型"><a href="#数据一致性模型" class="headerlink" title="数据一致性模型"></a>数据一致性模型</h3><p>一些分布式系统通过复制数据来提高系统的可靠性和容错性，并且将数据的不同的副本存放在不同的机器，由于维护数据副本的一致性代价高，因此许多系统采用弱一致性来提高性能，一些不同的一致性模型也相继被提出。</p>
+<ul>
+<li><strong>强一致性</strong>： 要求无论更新操作实在哪一个副本执行，之后所有的读操作都要能获得最新的数据。</li>
+<li><strong>弱一致性</strong>：用户读到某一操作对系统特定数据的更新需要一段时间，我们称这段时间为“不一致性窗口”。</li>
+<li><strong>最终一致性</strong>：是弱一致性的一种特例，保证用户最终能够读取到某操作对系统特定数据的更新。</li>
+</ul>
+<h4 id="一致性解决方案"><a href="#一致性解决方案" class="headerlink" title="一致性解决方案"></a>一致性解决方案</h4><ol>
+<li>分布式事务：两段提交</li>
+<li>分布式锁</li>
+<li>MQ 消息持久化 重试 幂等</li>
+<li>Paxos 算法</li>
+</ol>
+<h3 id="服务可用性"><a href="#服务可用性" class="headerlink" title="服务可用性"></a>服务可用性</h3><p>可用性，意思是只要收到用户的请求，服务器就必须给出回应。</p>
+<h4 id="高可用解决方案"><a href="#高可用解决方案" class="headerlink" title="高可用解决方案"></a>高可用解决方案</h4><ul>
+<li><strong>负载均衡</strong>：</li>
+<li><strong>降级</strong>：当服务器压力剧增的情况下，根据当前业务情况及流量对一些服务和页面有策略的降级，以此释放服务器资源以保证核心任务的正常运行。</li>
+<li><strong>熔断</strong>：对于目标服务的请求和调用大量超时或失败，这时应该熔断该服务的所有调用，并且对于后续调用应直接返回，从而快速释放资源，确保在目标服务不可用的这段时间内，所有对它的调用都是立即返回，不会阻塞的。再等到目标服务好转后进行接口恢复。</li>
+<li><strong>流量控制</strong>：</li>
+<li><strong>异地多活</strong>：</li>
+</ul>
+<p>熔断是减少由于下游服务故障对自己的影响；而降级则是在整个系统的角度上，考虑业务整体流量，保护核心业务稳定。</p>
+<h3 id="分区容错性"><a href="#分区容错性" class="headerlink" title="分区容错性"></a>分区容错性</h3><p>大多数分布式系统都分布在多个子网络。每个子网络就叫做一个区（partition）。分区容错的意思是，区间通信可能失败。比如，一台服务器放在中国，另一台服务器放在美国，这就是两个区，它们之间可能无法通信。</p>
+<p>般来说，分区容错无法避免，因此可以认为 CAP 的 <code>P</code> 总是成立。CAP 定理告诉我们，剩下的 <code>C</code> 和 <code>A</code> 无法同时做到。</p>
+<h1 id="高并发下的流量控制"><a href="#高并发下的流量控制" class="headerlink" title="高并发下的流量控制"></a>高并发下的流量控制</h1><p>这个时候如果不做任何保护措施，服务器就会承受很大的处理压力，请求量很高，服务器负载也很高，并且当请求超过服务器承载极限的时候，系统就会崩溃，导致所有人都不能访问。</p>
+<p>为了应用服务的高可用，一个常用的办法是对大流量的请求（秒杀/抢购）进行限流，拦截掉大部分请求，只允许一部分请求真正进入后端服务器，这样就可以防止大量请求造成系统压力过大导致的系统崩溃，从而保护服务正常可用。</p>
+<p><code>令牌桶(Token Bucket)</code>、<code>漏桶(leaky bucket)</code>和 <code>计数器</code> 算法是最常用的三种限流的算法。</p>
+<h2 id="限流算法"><a href="#限流算法" class="headerlink" title="限流算法"></a>限流算法</h2><h3 id="计数器"><a href="#计数器" class="headerlink" title="计数器"></a>计数器</h3><p>计数器限流算法也是比较常用的，主要用来限制总并发数。比如限流 <code>qps</code> 为 <code>100</code> ，算法的实现思路就是从第一个请求进来开始计时，在接下去的 <code>1s</code> 内，每来一个请求，就把计数加 <code>1</code> ，如果累加的数字达到了 <code>100</code> ，那么后续的请求就会被全部拒绝。等到 <code>1s</code> 结束后，把计数恢复成 <code>0</code> ，重新开始计数。</p>
+<p>这种实现方式有一个弊端：如果我在单位时间 <code>1s</code> 内的前 <code>10ms</code> ，已经通过了 <code>100</code> 个请求，那后面的 <code>990ms</code> ，只能眼巴巴的把请求拒绝，这种现象称为 <strong>突刺现象</strong>。</p>
+<h3 id="漏桶"><a href="#漏桶" class="headerlink" title="漏桶"></a>漏桶</h3><p>为了消除 <strong>突刺现象</strong>，可以采用漏桶算法实现限流，漏桶算法这个名字就很形象，算法内部有一个容器，类似生活用到的漏斗，当请求进来时，相当于水倒入漏斗，然后从下端小口慢慢匀速的流出。不管上面流量多大，下面流出的速度始终保持不变。</p>
+<p>不管服务调用方多么不稳定，通过漏桶算法进行限流，每 <code>10</code> 毫秒处理一次请求。因为处理的速度是固定的，请求进来的速度是未知的，可能突然进来很多请求，没来得及处理的请求就先放在桶里，既然是个桶，肯定是有容量上限，如果桶满了，那么新进来的请求就丢弃。</p>
+<p><img src="images/cee6a24bae2f1146d8f905a9ede12c23.png" alt></p>
+<p>在算法实现方面，可以 <strong>准备一个队列，用来保存请求，另外通过一个线程池定期从队列中获取请求并执行，可以一次性获取多个并发执行</strong>。</p>
+<p>这种算法，在使用过后也存在弊端：<strong>无法应对短时间的突发流量</strong>，同时它的优点也是可以平滑网络上的突发流量，请求可以被整形成稳定的流量。</p>
+<h3 id="令牌桶"><a href="#令牌桶" class="headerlink" title="令牌桶"></a>令牌桶</h3><p>从某种意义上讲，<strong>令牌桶算法是对漏桶算法的一种改进，桶算法能够限制请求调用的速率，而令牌桶算法能够在限制调用的平均速率的同时还允许一定程度的突发调用</strong>。</p>
+<p>在令牌桶算法中，存在一个桶，用来存放固定数量的令牌。算法中存在一种机制，以一定的速率往桶中放令牌。每次请求调用需要先获取令牌，只有拿到令牌，才有机会继续执行，否则选择选择等待可用的令牌、或者直接拒绝。</p>
+<p>放令牌这个动作是持续不断的进行，如果桶中令牌数达到上限，就丢弃令牌，所以就存在这种情况，桶中一直有大量的可用令牌，这时进来的请求就可以直接拿到令牌执行，比如设置 <code>qps</code> 为 <code>100</code> ，那么限流器初始化完成一秒后，桶中就已经有 100 个令牌了，这时服务还没完全启动好，等启动完成对外提供服务时，该限流器可以抵挡瞬时的 <code>100</code> 个请求。所以，只有桶中没有令牌时，请求才会进行等待，最后相当于以一定的速率执行。</p>
+<p><img src="images/cc2bf6c40bcccedb3e6bb2471ef36e53.png" alt></p>
+<p>实现思路：可以 <strong>准备一个队列，用来保存令牌，另外通过一个线程池定期生成令牌放到队列中，每来一个请求，就从队列中获取一个令牌，并继续执行</strong>。</p>
+<blockquote>
+<p>漏桶 VS 令牌桶：两者主要区别在于“漏桶算法”能够强行限制数据的传输速率，而“令牌桶算法”在能够限制数据的平均传输速率外，还允许某种程度的突发传输。在“令牌桶算法”中，只要令牌桶中存在令牌，那么就允许突发地传输数据直到达到用户配置的门限，所以它适合于具有突发特性的流量。</p>
+</blockquote>
+<h2 id="集群限流"><a href="#集群限流" class="headerlink" title="集群限流"></a>集群限流</h2><h3 id="Redis-请求窗口"><a href="#Redis-请求窗口" class="headerlink" title="Redis 请求窗口"></a>Redis 请求窗口</h3><blockquote>
+<p>采用redis 的计时和计数方式,在规定的时间窗口期,允许通过的最大请求数量</p>
+</blockquote>
+<p>比如为了限制某个资源被每个用户或者商户的访问次数，5s 只能访问 2 次，或者一天只能调用 1000 次，这种需求，单机限流是无法实现的，这时就需要通过集群限流进行实现。</p>
+<p>如何实现？为了控制访问次数，肯定需要一个计数器，而且这个计数器只能保存在第三方服务，比如redis。</p>
+<p>大概思路：每次有相关操作的时候，就向 <code>redis</code> 服务器发送一个 <code>incr</code> 命令，比如需要限制某个用户访问 <code>/index</code> 接口的次数，只需要拼接用户 id 和接口名生成 <code>redis</code> 的 <code>key</code> ，每次该用户访问此接口时，只需要对这个 <code>key</code> 执行 <code>incr</code> 命令，在这个 <code>key</code> 带上过期时间，就可以实现指定时间的访问频率。</p>
+<h3 id="Nginx-限流"><a href="#Nginx-限流" class="headerlink" title="Nginx 限流"></a>Nginx 限流</h3><p>Nginx按请求速率限速模块使用的是漏桶算法，即能够强行保证请求的实时处理速度不会超过设置的阈值。</p>
+<p>Nginx官方版本限制IP的连接和并发分别有两个模块：</p>
+<ul>
+<li><code>limit_req_zone</code> 用来限制单位时间内的请求数，即速率限制,采用的漏桶算法 “leaky bucket”。</li>
+<li><code>limit_req_conn</code> 用来限制同一时间连接数，即并发限制。</li>
+</ul>
+<h1 id="短链接"><a href="#短链接" class="headerlink" title="短链接"></a>短链接</h1><h2 id="使用场景-Scenario"><a href="#使用场景-Scenario" class="headerlink" title="使用场景(Scenario)"></a>使用场景(Scenario)</h2><p>微博和Twitter都有140字数的限制，如果分享一个长网址，很容易就超出限制，发布出去。短网址服务可以把一个长网址变成短网址，方便在社交网络上传播。</p>
+<h2 id="需求-Needs"><a href="#需求-Needs" class="headerlink" title="需求(Needs)"></a>需求(Needs)</h2><p>很显然，要尽可能的短。长度设计为多少才合适呢？</p>
+<h2 id="短网址的长度"><a href="#短网址的长度" class="headerlink" title="短网址的长度"></a>短网址的长度</h2><p>当前互联网上的网页总数大概是 45亿(参考 短网址<em>短网址资讯<code>mrw.so</code>)，45亿 超过了 <code>2^{32}=4294967296232=4294967296</code>，但远远小于64位整数的上限值，那么用一个64位整数足够了。微博的短网址服务用的是长度为 <code>7</code> 的字符串，这个字符串可以看做是62进制的数，那么最大能表示<code>{62}^7=3521614606208627=3521614606208</code>个网址，远远大于 45亿。所以长度为7就足够了。一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，`log</em>{62{(2^{64}-1)=10.7log62(264−1)=10.7`，即字符串最长11就足够了。实际生产中，还可以再短一点，比如新浪微博采用的长度就是7，因为 62^7=3521614606208627=3521614606208，这个量级远远超过互联网上的URL总数了，绝对够用了。现代的web服务器（例如Apache, Nginx）大部分都区分URL里的大小写了，所以用大小写字母来区分不同的URL是没问题的。因此，正确答案：长度不超过7的字符串，由大小写字母加数字共62个字母组成。</p>
+<h2 id="一对一还是一对多映射？"><a href="#一对一还是一对多映射？" class="headerlink" title="一对一还是一对多映射？"></a>一对一还是一对多映射？</h2><p>一个长网址，对应一个短网址，还是可以对应多个短网址？ 这也是个重大选择问题。一般而言，一个长网址，在不同的地点，不同的用户等情况下，生成的短网址应该不一样，这样，在后端数据库中，可以更好的进行数据分析。如果一个长网址与一个短网址一一对应，那么在数据库中，仅有一行数据，无法区分不同的来源，就无法做数据分析了。</p>
+<p>以这个7位长度的短网址作为唯一ID，这个ID下可以挂各种信息，比如生成该网址的用户名，所在网站，HTTP头部的 User Agent等信息，收集了这些信息，才有可能在后面做大数据分析，挖掘数据的价值。短网址服务商的一大盈利来源就是这些数据。</p>
+<p>正确答案：一对多</p>
+<h2 id="如何计算短网址"><a href="#如何计算短网址" class="headerlink" title="如何计算短网址"></a>如何计算短网址</h2><p>现在我们设定了短网址是一个长度为7的字符串，如何计算得到这个短网址呢？</p>
+<p>最容易想到的办法是哈希，先hash得到一个64位整数，将它转化为62进制整，截取低7位即可。但是哈希算法会有冲突，如何处理冲突呢，又是一个麻烦。这个方法只是转移了矛盾，没有解决矛盾，抛弃。</p>
+<p>正确答案：分布式发号器(<code>Distributed ID Generator</code>)</p>
+<h2 id="如何存储"><a href="#如何存储" class="headerlink" title="如何存储"></a>如何存储</h2><p>如果存储短网址和长网址的对应关系？以短网址为 <code>primary key</code>, 长网址为<code>value</code>, 可以用传统的关系数据库存起来，例如<code>MySQL,PostgreSQL</code>，也可以用任意一个分布式 KV 数据库，例如<code>Redis, LevelDB</code>。</p>
+<h2 id="301还是302重定向"><a href="#301还是302重定向" class="headerlink" title="301还是302重定向"></a>301还是302重定向</h2><p>这也是一个有意思的问题。这个问题主要是考察你对301和302的理解，以及浏览器缓存机制的理解。</p>
+<p>301是永久重定向，302是临时重定向。短地址一经生成就不会变化，所以用301是符合http语义的。但是如果用了301， <code>Google</code>，<code>百度</code>等搜索引擎，搜索的时候会直接展示真实地址，那我们就无法统计到短地址被点击的次数了，也无法收集用户的<code>Cookie</code>, <code>User Agent</code> 等信息，这些信息可以用来做很多有意思的大数据分析，也是短网址服务商的主要盈利来源。</p>
+<p>所以，正确答案是302重定向。</p>
+<p>可以抓包看看mrw.so的短网址是怎么做的，使用 Chrome 浏览器，访问这个URL <code>http://mrw.so/4UD39p</code>，是我事先发微博自动生成的短网址。来抓包看看返回的结果是啥，可见新浪微博用的就是302临时重定向。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/20/Mybatis-动态sql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2748,7 +2904,7 @@ class Consumer implements Runnable{
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
