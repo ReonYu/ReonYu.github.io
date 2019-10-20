@@ -1,0 +1,786 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-HK">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="docker,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/avatar.png?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="一、解决的问题  二、与虚拟机的比较  三、优势  四、使用场景  五、镜像与容器  参考资料">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="http://yoursite.com/docker/index.html">
+<meta property="og:site_name" content="Leon">
+<meta property="og:description" content="一、解决的问题  二、与虚拟机的比较  三、优势  四、使用场景  五、镜像与容器  参考资料">
+<meta property="og:locale" content="zh-HK">
+<meta property="og:image" content="http://yoursite.com/docker/e705eb01-9990-424f-8967-f63d4de49904.png">
+<meta property="og:updated_time" content="2019-10-11T10:50:57.092Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker">
+<meta name="twitter:description" content="一、解决的问题  二、与虚拟机的比较  三、优势  四、使用场景  五、镜像与容器  参考资料">
+<meta name="twitter:image" content="http://yoursite.com/docker/e705eb01-9990-424f-8967-f63d4de49904.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/docker/">
+
+
+
+
+
+  <title> docker | Leon </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-HK">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Live For Real</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            Commonweal 404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                docker
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-10T15:10:25+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- GFM-TOC -->
+<ul>
+<li><p><a href="#一解决的问题">一、解决的问题</a></p>
+</li>
+<li><p><a href="#二与虚拟机的比较">二、与虚拟机的比较</a></p>
+</li>
+<li><p><a href="#三优势">三、优势</a></p>
+</li>
+<li><p><a href="#四使用场景">四、使用场景</a></p>
+</li>
+<li><p><a href="#五镜像与容器">五、镜像与容器</a></p>
+</li>
+<li><p><a href="#参考资料">参考资料</a></p>
+<!-- GFM-TOC -->
+
+<a id="more"></a>
+
+
+</li>
+</ul>
+<h1 id="一、解决的问题"><a href="#一、解决的问题" class="headerlink" title="一、解决的问题"></a>一、解决的问题</h1><p>由于不同的机器有不同的操作系统，以及不同的库和组件，在将一个应用部署到多台机器上需要进行大量的环境配置操作。</p>
+<p>Docker 主要解决环境配置问题，它是一种虚拟化技术，对进程进行隔离，被隔离的进程独立于宿主操作系统和其它隔离的进程。使用 Docker 可以不修改应用程序代码，不需要开发人员学习特定环境下的技术，就能够将现有的应用程序部署在其它机器上。</p>
+<h1 id="二、与虚拟机的比较"><a href="#二、与虚拟机的比较" class="headerlink" title="二、与虚拟机的比较"></a>二、与虚拟机的比较</h1><p>虚拟机也是一种虚拟化技术，它与 Docker 最大的区别在于它是通过模拟硬件，并在硬件上安装操作系统来实现。</p>
+<h2 id="启动速度"><a href="#启动速度" class="headerlink" title="启动速度"></a>启动速度</h2><p>启动虚拟机需要先启动虚拟机的操作系统，再启动应用，这个过程非常慢；</p>
+<p>而启动 Docker 相当于启动宿主操作系统上的一个进程。</p>
+<h2 id="占用资源"><a href="#占用资源" class="headerlink" title="占用资源"></a>占用资源</h2><p>虚拟机是一个完整的操作系统，需要占用大量的磁盘、内存和 CPU 资源，一台机器只能开启几十个的虚拟机。</p>
+<p>而 Docker 只是一个进程，只需要将应用以及相关的组件打包，在运行时占用很少的资源，一台机器可以开启成千上万个 Docker。</p>
+<h1 id="三、优势"><a href="#三、优势" class="headerlink" title="三、优势"></a>三、优势</h1><p>除了启动速度快以及占用资源少之外，Docker 具有以下优势：</p>
+<h2 id="更容易迁移"><a href="#更容易迁移" class="headerlink" title="更容易迁移"></a>更容易迁移</h2><p>提供一致性的运行环境。已经打包好的应用可以在不同的机器上进行迁移，而不用担心环境变化导致无法运行。</p>
+<h2 id="更容易维护"><a href="#更容易维护" class="headerlink" title="更容易维护"></a>更容易维护</h2><p>使用分层技术和镜像，使得应用可以更容易复用重复的部分。复用程度越高，维护工作也越容易。</p>
+<h2 id="更容易扩展"><a href="#更容易扩展" class="headerlink" title="更容易扩展"></a>更容易扩展</h2><p>可以使用基础镜像进一步扩展得到新的镜像，并且官方和开源社区提供了大量的镜像，通过扩展这些镜像可以非常容易得到我们想要的镜像。</p>
+<h1 id="四、使用场景"><a href="#四、使用场景" class="headerlink" title="四、使用场景"></a>四、使用场景</h1><h2 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h2><p>持续集成指的是频繁地将代码集成到主干上，这样能够更快地发现错误。</p>
+<p>Docker 具有轻量级以及隔离性的特点，在将代码集成到一个 Docker 中不会对其它 Docker 产生影响。</p>
+<h2 id="提供可伸缩的云服务"><a href="#提供可伸缩的云服务" class="headerlink" title="提供可伸缩的云服务"></a>提供可伸缩的云服务</h2><p>根据应用的负载情况，可以很容易地增加或者减少 Docker。</p>
+<h2 id="搭建微服务架构"><a href="#搭建微服务架构" class="headerlink" title="搭建微服务架构"></a>搭建微服务架构</h2><p>Docker 轻量级的特点使得它很适合用于部署、维护、组合微服务。</p>
+<h2 id="docker与swarm"><a href="#docker与swarm" class="headerlink" title="docker与swarm"></a>docker与swarm</h2><p>Docker集群管理和编排的特性是通过SwarmKit进行构建的， 其中Swarm mode是Docker Engine内置支持的一种默认实现。Docker 1.12以及更新的版本，都支持Swarm mode，我们可以基于Docker Engine来构建Swarm集群，然后就可以将我们的应用服务（Application Service）部署到Swarm集群中。创建Swarm集群的方式很简单，先初始化一个Swarm集群，然后将其他的Node加入到该集群即可。本文主要基于Docker Swarm官网文档，学习总结。</p>
+<p>Docker Swarm具有如下基本特性：</p>
+<p>集群管理集成进Docker Engine<br>使用内置的集群管理功能，我们可以直接通过Docker CLI命令来创建Swarm集群，然后去部署应用服务，而不再需要其它外部的软件来创建和管理一个Swarm集群。</p>
+<p>去中心化设计<br>Swarm集群中包含Manager和Worker两类Node，我们可以直接基于Docker Engine来部署任何类型的Node。而且，在Swarm集群运行期间，我们既可以对其作出任何改变，实现对集群的扩容和缩容等，如添加Manager Node，如删除Worker Node，而做这些操作不需要暂停或重启当前的Swarm集群服务。</p>
+<p>声明式服务模型（Declarative Service Model）<br>在我们实现的应用栈中，Docker Engine使用了一种声明的方式，让我们可以定义我们所期望的各种服务的状态，例如，我们创建了一个应用服务栈：一个Web前端服务、一个后端数据库服务、Web前端服务又依赖于一个消息队列服务。</p>
+<p>服务扩容缩容<br>对于我们部署的每一个应用服务，我们可以通过命令行的方式，设置启动多少个Docker容器去运行它。已经部署完成的应用，如果有扩容或缩容的需求，只需要通过命令行指定需要几个Docker容器即可，Swarm集群运行时便能自动地、灵活地进行调整。</p>
+<p>协调预期状态与实际状态的一致性<br>Swarm集群Manager Node会不断地监控集群的状态，协调集群状态使得我们预期状态和实际状态保持一致。例如我们启动了一个应用服务，指定服务副本为10，则会启动10个Docker容器去运行，如果某个Worker Node上面运行的2个Docker容器挂掉了，则Swarm Manager会选择集群中其它可用的Worker Node，并创建2个服务副本，使实际运行的Docker容器数仍然保持与预期的10个一致。</p>
+<p>多主机网络<br>我们可以为待部署应用服务指定一个Overlay网络，当应用服务初始化或者进行更新时，Swarm Manager在给定的Overlay网络中为Docker容器自动地分配IP地址，实际是一个虚拟IP地址（VIP）。</p>
+<p>服务发现<br>Swarm Manager会给集群中每一个服务分配一个唯一的DNS名称，对运行中的Docker容器进行负载均衡。我们可以通过Swarm内置的DNS Server，查询Swarm集群中运行的Docker容器状态。</p>
+<p>负载均衡<br>在Swarm内部，可以指定如何在各个Node之间分发服务容器（Service Container），实现负载均衡。如果想要使用Swarm集群外部的负载均衡器，可以将服务容器的端口暴露到外部。</p>
+<p>安全策略<br>在Swarm集群内部的Node，强制使用基于TLS的双向认证，并且在单个Node上以及在集群中的Node之间，都进行安全的加密通信。我们可以选择使用自签名的根证书，或者使用自定义的根CA（Root CA）证书。</p>
+<p>滚动更新（Rolling Update）<br>对于服务需要更新的场景，我们可以在多个Node上进行增量部署更新，Swarm Manager支持通过使用Docker CLI设置一个delay时间间隔，实现多个服务在多个Node上依次进行部署。这样可以非常灵活地控制，如果有一个服务更新失败，则暂停后面的更新操作，重新回滚到更新之前的版本。</p>
+<h1 id="五、镜像与容器"><a href="#五、镜像与容器" class="headerlink" title="五、镜像与容器"></a>五、镜像与容器</h1><p>镜像是一种静态的结构，可以看成面向对象里面的类，而容器是镜像的一个实例。</p>
+<p>镜像包含着容器运行时所需要的代码以及其它组件，它是一种分层结构，每一层都是只读的（read-only layers）。构建镜像时，会一层一层构建，前一层是后一层的基础。镜像的这种分层存储结构很适合镜像的复用以及定制。</p>
+<p>构建容器时，通过在镜像的基础上添加一个可写层（writable layer），用来保存着容器运行过程中的修改。</p>
+<h1 id="Docker-Troubleshooting"><a href="#Docker-Troubleshooting" class="headerlink" title="Docker Troubleshooting"></a>Docker Troubleshooting</h1><h3 id="get-Container-ID-through-PID"><a href="#get-Container-ID-through-PID" class="headerlink" title="get Container ID through PID"></a>get Container ID through PID</h3><p>最近使用 <code>top</code> 查看服务器状态时，总是看到有几个应用的占用的资源很高，需要知道容器信息;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -axfo pid,uname,cmd | grep -C 4 $pid #--获取到容器内运行的ID对应于宿主机的ID</span><br><span class="line">docker ps -q | xargs docker inspect -f &apos;&#123;&#123;.State.Pid&#125;&#125;  &#123;&#123;.Config.Hostname&#125;&#125;&apos; | grep $pid</span><br></pre></td></tr></table></figure>
+
+<h3 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h3><ol>
+<li>深入理解Linux操作系统, 掌握主流linux服务器系统安装配置维护能力 </li>
+<li>熟悉常见的服务器基础设施（Nginx、Rabbitmq、Kafka、Mysql、Redis 、ELK、Jenkins、Gitlab、Memcache、Tomcat等）的安装、维护和优化; </li>
+<li>熟悉CI/CD技术和流程，有项目持续集成经验，使用过Jenkins+Maven+Nexus+Git等工具 </li>
+<li>熟悉微服务，网关、熟悉网关配置，能合理的实施负载均衡 </li>
+<li>熟悉docker以及任务编排，熟悉k8s架构，容器化经验2年以上； </li>
+<li>熟悉主流云计算产品，对云计算产品的配置管理有一定经验。 </li>
+<li>熟练掌握开源监控软件zabbix prometheus等 </li>
+<li>熟悉Python语言，熟悉Shell脚本编写，有一定编程能力； </li>
+<li>熟悉shell脚本编写, 具备python和golang语言开发能力 </li>
+<li>熟悉常用NAS设备，精通分布式存储系统ceph </li>
+<li>至少熟悉一种配置管理工具, 如salt, ansible等 </li>
+<li>掌握RAID，ipmi等服务器技术原理和应用 </li>
+</ol>
+<hr>
+<h1 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h1><ul>
+<li>Kubernetes是什么</li>
+</ul>
+<p>Kubernetes是一个开源的容器编排引擎，它支持自动化部署、大规模可伸缩、应用容器化管理。我们在完成一个应用程序的开发时，需要冗余部署该应用的多个实例，同时需要支持对应用的请求进行负载均衡，在Kubernetes中，我们可以把这个应用的多个实例分别启动一个容器，每个容器里面运行一个应用实例，然后通过内置的负载均衡策略，实现对这一组应用实例的管理、发现、访问，而这些细节都不需要应用开发和运维人员去进行复杂的手工配置和处理。<br>Kubernetes是Google基于内部Borg开源的容器编排引擎，关于Borg的设计，可以查看对应的论文《Large-scale cluster management at Google with Borg》。这里，我们先说一说Borg系统，它是Google内部的集群管理系统，使用它能够获得如下好处：</p>
+<p>在一个分布式系统中进行资源管理是非常复杂的，构建于Borg系统之上的其他系统，无需关心这些资源管理的复杂细节<br>在大型分布式系统中处理异常也是非常困难的，Borg也屏蔽了运行于其上系统对失败或异常情况的处理，用户可以将精力集中在开发自己的应用系统上<br>支持高可靠性、高可用性<br>Borg支持不同Workload，并且都能够非常高效地运行<br>从应用的视角来看，Google内部的很多系统都构建于Borg之上：应用框架，如MapReduce、FlumeJava、MillWheel、Pregel；存储系统，如GFS、CFS、Bigtable、Megastore。<br>从用户的视角来看， 运行在Borg集群之上的Workload主要分为两类：一类是long-running服务，这类服务一旦运行就不应该终止，比如Gmail、Google Docs、Google Search；另一类是批量作业，这类批量作业可能运行几秒到几天不等，比如MapReduce作业。</p>
+<ul>
+<li>主要特性</li>
+</ul>
+<p>自动化部署<br>应用部署到容器中，Kubernetes能够根据应用程序的计算资源需求和其它一些限制条件，自动地将运行应用程序的容器调度到集群中指定的Node上，在这个过程中并不会影响应用程序的可用性。</p>
+<p>系统自愈<br>当Kubernetes集群中某些容器失败时，会重新启动他们。当某些Node挂掉后，Kubernetes会自动重新调度这些Node上的容器到其他可用的Node上。如果某些容器没有满足用户定义的健康检查条件，这些容器会被判定为无法正常工作的，集群会自动Kill掉这些容器，在这个过程中直到容器被重新启动或重新调度，直到可用以后才会对调用的客户端可见。</p>
+<p>水平扩展<br>在Kubernetes中，通过一个命令就可以实现应用程序的水平扩展，实现这个功能的是HPA（Horizontal Pod Autoscaler）对象。HPA是通过Kubernetes API Resource和Controller的方式实现的，其中Resource决定了Controller的行为，而Controller周期性地调整Replication Controller或Deployment中的副本数，使得观察到的平均CPU使用情况与用户定义的能够匹配。</p>
+<p>服务发现和负载均衡<br>Kubernetes内置实现了服务发现的功能，他会给每个容器指派一个IP地址，给一组容器指派一个DNS名称，通过这个就可以实现服务的负载均衡功能。</p>
+<p>自动更新和回滚<br>当我们开发的应用程序发生变更，Kubernetes可以实现滚动更新，同时监控应用的状态，确保不会在同一时刻杀掉所有的实例，造成应用在一段时间范围内不可用。如果某些时候应用更新出错，Kubernetes能够自动地将应用恢复到原来正确的状态。</p>
+<p>密钥和配置管理<br>Kubernetes提供了一种机制（ConfigMap），能够使我们的配置数据与应用对应的Docker镜像解耦合，如果配置需要变更，不需要重新构建Docker镜像，这为应用开发部署提供很大的灵活性。<br>同时，对于应用所依赖的一些敏感信息，如用户名和密码、令牌、秘钥等信息，Kubernetes也通过Secret对象实现了将这些敏感配置信息与应用的解耦合，这对应用的快速开发和交付提供了便利，在一定程上提供了也安全保障。</p>
+<p>存储挂载<br>Kubernetes可以支持挂载不同类型存储系统，比如本地存储、公有云存储（如AWS、GCP）、网络存储系统（如NFS、iSCSI、Gluster、Ceph、Cinder、Flocker）等，我们可以进行灵活的选择。</p>
+<p>批量作业执行<br>Kubernetes也支持批量作业的处理、监控、恢复。作业提交以后，直到作业运行完成即退出。如果运行失败，Kubernetes能够使失败的作业自动重新运行，直到作业运行成功为止。</p>
+<p>总体架构</p>
+<p>首先给出一个概念：Kubernetes Control Plane，翻译过来就是“Kubernetes控制平面”，它表示Kubernetes为了实现最终的目标而构建的一组集群范围内的进程，这组进程相互协调，保证整个集群系统达到用户所期望的目标状态，比如，容器失败自动调度并重启，应用服务的扩容缩容，等等。<br>Kubernetes Control Plane管理了Kubernetes集群中的所有Kubernetes对象及其状态，这些对象包括Pod、Service、Volume、Namespace、ReplicaSet、Deployment、StatefulSet、DaemonSet、Job等等。</p>
+<p>Kubernetes Control Plane主要包含两部分，一部分是Kubernetes集群Master上一组关键进程，另一个部分是在每个工作的Node节点上的一组关键进程，下面我们分别详细说明：</p>
+<p>Kubernetes Master</p>
+<p>Kubernetes Master主要由kube-apiserver、kube-controller-manager和kube-scheduler三个进程组成，它们运行在集群中一个单独的节点上，具体说明如下：<br>kube-apiserver进程：想要操作Kubernetes集群中的任何对象，都需要经过kube-apiserver，它封装了对Kubernetes对象的所有操作，以REST接口方式提供给想要与Kubernetes交互的任何客户端。经过kube-apiserver的所有对Kubernetes对象的修改操作都将持久化到etcd存储中。<br>kube-controller-manager进程：负责运行各种Controller，这些Controller主要包括：</p>
+<p>Node Controller<br>Replication Controller<br>Endpoints Controller<br>Service Account<br>Token Controller<br>kube-scheduler进程：负责Kubernetes集群内部的资源调度，主要负责监视Kubernetes集群内部已创建但没有被调度到某个Node上的Pod，然后将该Pod调度到一个选定的Node上面运行。</p>
+<p>Kubernetes Node</p>
+<p>Kubernetes集群中，每个工作的Node节点上主要运行如下两个进程：<br>kubelet进程：kubelet负责监视指派到它所在Node上的Pod，还负责处理如下工作：</p>
+<p>为Pod挂载Volume<br>下载Pod拥有的Secret<br>运行属于Pod的容器<br>周期性地检查Pod中的容器是否存活<br>向Master报告当前Node上Pod的状态信息<br>向Master报告当前Node的状态信息<br>kube-proxy进程：在Kubernetes集群中，每个Node上面都有一个该网络代理进程，它主要负责为Pod对象提供代理：定期从etcd存储中获取所有的Service对象，并根据Service信息创建代理。当某个Client要访问一个Pod时，请求会经过该Node上的代理进程进行请求转发。</p>
+<h2 id="HA"><a href="#HA" class="headerlink" title="HA"></a>HA</h2><p><strong>TTL Mechanism</strong> and <strong>Lease</strong> </p>
+<p><code>bidirectional gRPC stream</code></p>
+<h2 id="自签名SSL证书"><a href="#自签名SSL证书" class="headerlink" title="自签名SSL证书"></a>自签名SSL证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir secrets</span><br><span class="line">$ openssl req -newkey rsa:4096 -nodes -sha256 -keyout secrets/domain.key -x509 -day 365 -out secrets/domain.crt</span><br><span class="line">$ ls secrets</span><br><span class="line">$ openssl rand -hex -out secrets/http.secret 8</span><br><span class="line">$ docker run -i httpd /bin/bash -c &apos;echo my-super-secure-password | /usr/local/apache2/bin/htpasswd -nBi user01&apos; &gt; secrets/registry_passwd</span><br><span class="line">$ kubectl create secret generic registry-secrets --from-file secrets/</span><br></pre></td></tr></table></figure>
+
+<h2 id="集群管理高级"><a href="#集群管理高级" class="headerlink" title="集群管理高级"></a>集群管理高级</h2><h3 id="kubeconfig-高阶配置"><a href="#kubeconfig-高阶配置" class="headerlink" title="kubeconfig 高阶配置"></a>kubeconfig 高阶配置</h3><p><strong>kubeconfig</strong> 管理集群、上下文、认证；可以在不同集群不同上下文进行环境的切换</p>
+<p><code>kubectl config</code></p>
+<p><img src="./e705eb01-9990-424f-8967-f63d4de49904.png" alt="kubeconfig contains three parameters:user, cluster, and context"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 查看 kubernetes 配置</span><br><span class="line">$ kubectl config view</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line"># 备份</span><br><span class="line">$ cp ~/.kube/config ~/original-kubeconfig</span><br><span class="line"></span><br><span class="line"># 查看配置具体选项</span><br><span class="line">$ kubectl config set-credentials -h</span><br><span class="line"># 复制到新目录</span><br><span class="line">$ cp ~/original-kubeconfig ~/new-kubeconfig</span><br><span class="line"># 添加用户</span><br><span class="line">$ kubectl config set-credentials local@local.com --username=local-local --password=123qwe --kubeconfig=&quot;new-kubeconfig&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h4><p><code>Context</code> 包含了cluster, namespaces, user;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 设置Context</span><br><span class="line">S kubectl config set-context &lt;context_name&gt; --user=&lt;credential_name&gt; --namespaces=&lt;namespace_name&gt; --cluster=&lt;cluster_name&gt;</span><br><span class="line">$ kubectl config set-context defalut/local/local --user=local@local.com --namespaces=defalut --cluster=cluster.local</span><br><span class="line"></span><br><span class="line"># 查看配置</span><br><span class="line">$ kubectl config view </span><br><span class="line"></span><br><span class="line"># 当前上下文</span><br><span class="line">$ kubectl config current-context</span><br><span class="line"></span><br><span class="line"># 切换上下文</span><br><span class="line">$ kubectl config use-context defalut/local/local</span><br><span class="line"></span><br><span class="line"># 删除</span><br><span class="line">$ kubectl config delete-cluster local-cluster</span><br><span class="line"></span><br><span class="line">$ kubectl unset local@local.com</span><br><span class="line"></span><br><span class="line">$ cp ./original-kubeconfig ~/.kube/config</span><br></pre></td></tr></table></figure>
+
+<h3 id="node-资源配置"><a href="#node-资源配置" class="headerlink" title="node 资源配置"></a>node 资源配置</h3><h3 id="WebUI"><a href="#WebUI" class="headerlink" title="WebUI"></a>WebUI</h3><h3 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h3><h3 id="Kubernetes-DNS"><a href="#Kubernetes-DNS" class="headerlink" title="Kubernetes DNS"></a>Kubernetes DNS</h3><h3 id="Authentication-and-Authorization"><a href="#Authentication-and-Authorization" class="headerlink" title="Authentication and Authorization"></a>Authentication and Authorization</h3><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://blog.docker.com/2017/08/docker-101-introduction-docker-webinar-recap/" target="_blank" rel="noopener">DOCKER 101: INTRODUCTION TO DOCKER WEBINAR RECAP</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">Docker 入门教程</a></li>
+<li><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Container_vs_Virtual_Machine.php" target="_blank" rel="noopener">Docker container vs Virtual machine</a></li>
+<li><a href="https://linoxide.com/linux-how-to/dockerfile-create-docker-container/" target="_blank" rel="noopener">How to Create Docker Container using Dockerfile</a></li>
+<li><a href="http://www.cnblogs.com/sammyliu/p/5877964.html" target="_blank" rel="noopener">理解 Docker（2）：Docker 镜像</a></li>
+<li><a href="https://yeasy.gitbooks.io/docker_practice/introduction/why.html" target="_blank" rel="noopener">为什么要使用 Docker？</a></li>
+<li><a href="https://www.docker.com/what-docker" target="_blank" rel="noopener">What is Docker</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="noopener">持续集成是什么？</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hbase-协处理器/" rel="next" title="hbase 协处理器">
+                <i class="fa fa-chevron-left"></i> hbase 协处理器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Mybatis-动态sql/" rel="prev" title="Mybatis 动态sql">
+                Mybatis 动态sql <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Leon">
+          <p class="site-author-name" itemprop="name">Leon</p>
+           
+              <p class="site-description motion-element" itemprop="description">挪威的森林</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、解决的问题"><span class="nav-number">1.</span> <span class="nav-text">一、解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、与虚拟机的比较"><span class="nav-number">2.</span> <span class="nav-text">二、与虚拟机的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动速度"><span class="nav-number">2.1.</span> <span class="nav-text">启动速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#占用资源"><span class="nav-number">2.2.</span> <span class="nav-text">占用资源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、优势"><span class="nav-number">3.</span> <span class="nav-text">三、优势</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易迁移"><span class="nav-number">3.1.</span> <span class="nav-text">更容易迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易维护"><span class="nav-number">3.2.</span> <span class="nav-text">更容易维护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更容易扩展"><span class="nav-number">3.3.</span> <span class="nav-text">更容易扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、使用场景"><span class="nav-number">4.</span> <span class="nav-text">四、使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#持续集成"><span class="nav-number">4.1.</span> <span class="nav-text">持续集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供可伸缩的云服务"><span class="nav-number">4.2.</span> <span class="nav-text">提供可伸缩的云服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建微服务架构"><span class="nav-number">4.3.</span> <span class="nav-text">搭建微服务架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker与swarm"><span class="nav-number">4.4.</span> <span class="nav-text">docker与swarm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、镜像与容器"><span class="nav-number">5.</span> <span class="nav-text">五、镜像与容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Troubleshooting"><span class="nav-number">6.</span> <span class="nav-text">Docker Troubleshooting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#get-Container-ID-through-PID"><span class="nav-number">6.0.1.</span> <span class="nav-text">get Container ID through PID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Goal"><span class="nav-number">6.0.2.</span> <span class="nav-text">Goal</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Kubernetes"><span class="nav-number">7.</span> <span class="nav-text">Kubernetes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HA"><span class="nav-number">7.1.</span> <span class="nav-text">HA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自签名SSL证书"><span class="nav-number">7.2.</span> <span class="nav-text">自签名SSL证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群管理高级"><span class="nav-number">7.3.</span> <span class="nav-text">集群管理高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kubeconfig-高阶配置"><span class="nav-number">7.3.1.</span> <span class="nav-text">kubeconfig 高阶配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Context"><span class="nav-number">7.3.1.1.</span> <span class="nav-text">Context</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node-资源配置"><span class="nav-number">7.3.2.</span> <span class="nav-text">node 资源配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebUI"><span class="nav-number">7.3.3.</span> <span class="nav-text">WebUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RESTful-API"><span class="nav-number">7.3.4.</span> <span class="nav-text">RESTful API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kubernetes-DNS"><span class="nav-number">7.3.5.</span> <span class="nav-text">Kubernetes DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authentication-and-Authorization"><span class="nav-number">7.3.6.</span> <span class="nav-text">Authentication and Authorization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

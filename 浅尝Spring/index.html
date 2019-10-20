@@ -1,0 +1,1145 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-HK">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="code,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/avatar.png?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="什么是SpringSpring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。 Spring有哪些优点 轻量级：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spri">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅尝Spring">
+<meta property="og:url" content="http://yoursite.com/浅尝Spring/index.html">
+<meta property="og:site_name" content="Leon">
+<meta property="og:description" content="什么是SpringSpring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。 Spring有哪些优点 轻量级：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spri">
+<meta property="og:locale" content="zh-HK">
+<meta property="og:image" content="http://yoursite.com/assets/spring.png">
+<meta property="og:image" content="http://yoursite.com/assets/beans.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/30/1338346660_4642.gif">
+<meta property="og:image" content="http://yoursite.com/浅尝Spring/imgs/struts2-vs-struts1.png">
+<meta property="og:image" content="http://www.evget.com/images/article/08072801.png">
+<meta property="og:updated_time" content="2019-10-10T05:04:59.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅尝Spring">
+<meta name="twitter:description" content="什么是SpringSpring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。 Spring有哪些优点 轻量级：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spri">
+<meta name="twitter:image" content="http://yoursite.com/assets/spring.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/浅尝Spring/">
+
+
+
+
+
+  <title> 浅尝Spring | Leon </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-HK">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leon</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Live For Real</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            Commonweal 404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/浅尝Spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leon">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅尝Spring
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-10T12:59:34+08:00">
+                2019-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是Spring"><a href="#什么是Spring" class="headerlink" title="什么是Spring"></a>什么是Spring</h2><p>Spring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。</p>
+<h2 id="Spring有哪些优点"><a href="#Spring有哪些优点" class="headerlink" title="Spring有哪些优点"></a>Spring有哪些优点</h2><ul>
+<li><strong>轻量级</strong>：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spring框架大约只有2MB。</li>
+<li><strong>控制反转(IOC)</strong>：Spring使用控制反转技术实现了松耦合。依赖被注入到对象，而不是创建或寻找依赖对象。</li>
+<li><strong>面向切面编程(AOP)</strong>： Spring支持面向切面编程，同时把应用的<strong>业务逻辑与系统的服务分离开来</strong>。</li>
+<li><strong>容器</strong>：Spring包含并管理应用程序对象的配置及生命周期。</li>
+<li><strong>MVC框架</strong>：Spring的web框架是一个设计优良的web MVC框架，很好的取代了一些web框架。</li>
+<li><strong>事务管理</strong>：Spring对下至本地业务上至全局业务(JAT)提供了统一的事务管理接口。</li>
+<li><strong>异常处理</strong>：Spring提供一个方便的API将特定技术的异常(由JDBC, Hibernate, 或JDO抛出)转化为一致的、Unchecked异常。</li>
+</ul>
+<h2 id="Spring框架有哪些模块"><a href="#Spring框架有哪些模块" class="headerlink" title="Spring框架有哪些模块"></a>Spring框架有哪些模块</h2><p>Spring框架至今已集成了20多个模块。这些模块主要被分如下图所示的核心容器、数据访问/集成、Web、AOP（面向切面编程）、测试模块。<br><img src="/assets/spring.png" alt></p>
+<ul>
+<li><strong>核心容器模块</strong>：是spring中最核心的模块。负责Bean的创建、配置和管理。主要包括：beans,core,context,expression等模块。</li>
+<li><strong>Spring的AOP模块</strong>：主要负责对面向切面编程的支持，帮助应用对象解耦。</li>
+<li><strong>数据访问和集成模块</strong>：包括JDBC，ORM，OXM，JMS和事务处理模块，其细节如下：<ul>
+<li>JDBC模块提供了不再需要冗长的JDBC编码相关了JDBC的抽象层。</li>
+<li>ORM（Object Relational Mapping，对象关系映射）模块提供的集成层。流行的对象关系映射API，包括JPA，JDO，Hibernate和iBatis。</li>
+<li>OXM模块提供了一个支持对象/ XML映射实现对JAXB，Castor，使用XMLBeans，JiBX和XStream 的抽象层。</li>
+<li>Java消息服务JMS模块包含的功能为生产和消费的信息。</li>
+<li>事务模块支持编程和声明式事务管理实现特殊接口类，并为所有的POJO。</li>
+</ul>
+</li>
+<li><strong>Web和远程调用</strong>：包括web,servlet,struts,portlet模块。</li>
+<li><strong>测试模块</strong>：test</li>
+</ul>
+<h2 id="什么是控制反转-IOC-？什么是依赖注入？"><a href="#什么是控制反转-IOC-？什么是依赖注入？" class="headerlink" title="什么是控制反转(IOC)？什么是依赖注入？"></a>什么是控制反转(IOC)？什么是依赖注入？</h2><p>传统模式中对象的调用者需要创建被调用对象，两个对象过于耦合，不利于变化和拓展．在spring中，直接操控的对象的调用权交给容器，通过容器来实现对象组件的装配和管理，从而实现对象之间的松耦合。<strong>所谓的“控制反转”概念就是对组件对象控制权的转移，从程序代码本身转移到了外部容器</strong>。</p>
+<p><strong>依赖注入</strong>：对象无需自行创建或管理它们的依赖关系，IoC容器在运行期间，动态地将某种依赖关系注入到对象之中。依赖注入能让相互协作的软件组件保持松散耦合。</p>
+<h2 id="BeanFactory和ApplicationContext有什么区别？"><a href="#BeanFactory和ApplicationContext有什么区别？" class="headerlink" title="BeanFactory和ApplicationContext有什么区别？"></a>BeanFactory和ApplicationContext有什么区别？</h2><ul>
+<li>Bean工厂(BeanFactory)是Spring框架最核心的接口，提供了高级IOC的配置机制．</li>
+<li>应用上下文(ApplicationContext)建立在BeanFacotry基础之上，提供了更多面向应用的功能，如果国际化，属性编辑器，事件等等．</li>
+<li>beanFactory是spring框架的基础设施，是面向spring本身。ApplicationContext是面向使用Spring框架的开发者，几乎所有场合都会用到ApplicationContext.</li>
+</ul>
+<h2 id="Spring有几种配置方式？"><a href="#Spring有几种配置方式？" class="headerlink" title="Spring有几种配置方式？"></a>Spring有几种配置方式？</h2><p>将Spring配置到应用开发中有以下三种方式：</p>
+<ul>
+<li><strong>基于XML的配置</strong>:</li>
+<li><strong>基于注解的配置</strong>： Spring在2.5版本以后开始支持用注解的方式来配置依赖注入。可以用注解的方式来替代XML方式的bean描述，可以将bean描述转移到组件类的内部，只需要在相关类上、方法上或者字段声明上使用注解即可。注解注入将会被容器在XML注入之前被处理，所以后者会覆盖掉前者对于同一个属性的处理结果</li>
+<li><strong>基于Java的配置</strong>： Spring对Java配置的支持是由@Configuration注解和@Bean注解来实现的。由@Bean注解的方法将会实例化、配置和初始化一个新对象，这个对象将由Spring的IoC容器来管理。@Bean声明所起到的作用与<bean> 元素类似。被@Configuration所注解的类则表示这个类的主要目的是作为bean定义的资源。被@Configuration声明的类可以通过在同一个类的内部调用@bean方法来设置嵌入bean的依赖关系。</bean></li>
+</ul>
+<h2 id="Spring-Bean的生命周期"><a href="#Spring-Bean的生命周期" class="headerlink" title="Spring Bean的生命周期"></a>Spring Bean的生命周期</h2><p><img src="/assets/beans.png" alt></p>
+<p>Bean在Spring中的生命周期如下：</p>
+<ul>
+<li><strong>实例化</strong>：Spring通过new关键字将一个Bean进行实例化。</li>
+<li><strong>填入属性</strong>：spring将值和bean引用注入到bean 的属性中。</li>
+<li>如果Bean实现了<strong>BeanNameAware</strong>接口，工厂调用Bean的<strong>setBeanName()</strong>方法传递Bean的ID。</li>
+<li>如果Bean实现了<strong>BeanFactoryAware</strong>接口，工厂调用<strong>setBeanFactory()</strong>方法传入工厂自身。</li>
+<li>如果实现了<strong>ApplicationContextAware</strong>, spring将调用setApplicationContext()方法，将bean所在的上下文的引用 进来。</li>
+<li>如果<strong>BeanPostProcessor</strong>和Bean关联，那么它们的<strong>postProcessBeforeInitialization()</strong>方法将被调用。</li>
+<li>如果Bean指定了init-method方法，它将被调用。</li>
+<li>如果有<strong>BeanPostProcessor</strong>和Bean关联，那么它们的postProcessAfterInitialization()方法将被调用</li>
+<li>最后如果配置了destroy-method方法则注册<strong>DisposableBean</strong>.</li>
+</ul>
+<p><strong>使用：</strong>到这个时候，Bean已经可以被应用系统使用了，并且将被保留在Bean Factory中知道它不再需要。</p>
+<p><strong>销毁</strong>。如果Bean实现了DisposableBean接口，就调用其destroy方法。有两种方法可以把它从Bean Factory中删除掉：</p>
+<ol>
+<li>如果Bean实现了DisposableBean接口，destory()方法被调用。</li>
+<li>如果指定了订制的销毁方法，就调用这个方法。destory-method（）配置时指定。</li>
+</ol>
+<p>对几个重要接口的解释：</p>
+<ul>
+<li><strong>BeanNameAware</strong>: 实现该接口可以获得本身bean的id属性，获得在配置文件中定义好的Bean的ID名</li>
+<li><strong>BeanFactoryAware</strong>：实现这个接口的bean其实是希望知道自己属于哪一个BeanFactory, 是哪个BeanFactory创建的。</li>
+<li><strong>ApplicationContextAware</strong>：当一个类实现了这个接口之后，这个类就可以方便地获得 ApplicationContext 中的所有bean。换句话说，就是这个类可以直接获取Spring配置文件中，所有有引用到的bean对象。</li>
+<li><strong>BeanPostProcessor</strong>是Spring中定义的一个接口，其与InitializingBean和DisposableBean接口类似，也是供Spring进行回调的。Spring将在初始化bean前后对BeanPostProcessor实现类进行回调，Spring容器通过BeanPostProcessor给了我们一个机会对Spring管理的bean进行再加工。比如：我们可以修改bean的属性，可以给bean生成一个动态代理实例等等。参考: <a href="https://www.jianshu.com/p/1417eefd2ab1" target="_blank" rel="noopener">利用BeanPostProcessor做版本切换</a></li>
+</ul>
+<h2 id="Spring-Bean的作用域之间有什么区别"><a href="#Spring-Bean的作用域之间有什么区别" class="headerlink" title="Spring Bean的作用域之间有什么区别"></a>Spring Bean的作用域之间有什么区别</h2><ul>
+<li><strong>singleton</strong>：这种bean范围是默认的，这种范围确保不管接受到多少个请求，每个容器中只有一个bean的实例，单例的模式由bean factory自身来维护。</li>
+<li><strong>prototype</strong>：原形范围与单例范围相反，为每一个bean请求提供一个实例。</li>
+<li><strong>request</strong>：在请求bean范围内会每一个来自<strong>客户端的网络请求</strong>创建一个实例，在请求完成以后，bean会失效并被垃圾回收器回收。</li>
+<li><strong>Session</strong>：与请求范围类似，确保每个session中有一个bean的实例，在session过期后，bean会随之失效。</li>
+<li><strong>global-session</strong>：global-session和Portlet应用相关。当你的应用部署在Portlet容器中工作时，它包含很多portlet。如果你想要声明让所有的portlet共用全局的存储变量的话，那么这全局变量需要存储在global-session中。</li>
+</ul>
+<h2 id="请解释自动装配模式的区别"><a href="#请解释自动装配模式的区别" class="headerlink" title="请解释自动装配模式的区别"></a>请解释自动装配模式的区别</h2><ul>
+<li><p><strong>no</strong>：这是Spring框架的默认设置，在该设置下自动装配是关闭的，开发者需要自行在bean定义中用标签明确的设置依赖关系。</p>
+</li>
+<li><p><strong>byName**</strong>：该选项可以根据bean名称设置依赖关系。当向一个bean中自动装配一个属性时，容器将根据bean的名称自动在在配置文件中查询一个匹配的bean。如果找到的话，就装配这个属性，如果没找到的话就报错。</p>
+</li>
+<li><p><strong>byType</strong>：该选项可以根据bean类型设置依赖关系。当向一个bean中自动装配一个属性时，容器将根据bean的类型自动在在配置文件中查询一个匹配的bean。如果找到的话，就装配这个属性，如果没找到的话就报错。</p>
+</li>
+<li><p><strong>constructor</strong>：造器的自动装配和byType模式类似，但是仅仅适用于与有构造器相同参数的bean，如果在容器中没有找到与构造器参数类型一致的bean，那么将会抛出异常。</p>
+</li>
+<li><p><strong>autodetect</strong>：该模式自动探测<strong>使用构造器自动装配或者byType自动装配</strong>。首先，首先会尝试找合适的带参数的构造器，如果找到的话就是用构造器自动装配，如果在bean内部没有找到相应的构造器或者是无参构造器，容器就会自动选择byTpe的自动装配方式。</p>
+</li>
+</ul>
+<h2 id="Spring-框架中都用到了哪些设计模式"><a href="#Spring-框架中都用到了哪些设计模式" class="headerlink" title="Spring 框架中都用到了哪些设计模式"></a>Spring 框架中都用到了哪些设计模式</h2><ul>
+<li><strong>代理模式</strong>—在AOP和remoting中被用的比较多。 </li>
+<li><strong>单例模式</strong>—在spring配置文件中定义的bean默认为单例模式。</li>
+<li><strong>模板方法</strong>—用来解决代码重复的问题. 比如. RestTemplate, JmsTemplate, JpaTemplate。</li>
+<li><strong>工厂模式</strong>—BeanFactory用来创建对象的实例。</li>
+<li><strong>Builder模式</strong> - 自定义配置文件的解析bean是时采用builder模式，一步一步地构建一个beanDefinition</li>
+<li><strong>策略模式</strong> ：Spring 中策略模式使用有多个地方，如 Bean 定义对象的创建以及代理对象的创建等。这里主要看一下代理对象创建的策略模式的实现。前面已经了解 Spring 的代理方式有两个 <strong>Jdk 动态代理</strong>和<strong>CGLIB 代理</strong>。这两个代理方式的使用正是使用了策略模式。</li>
+</ul>
+<h2 id="AOP（Aspect-Oriented-Programming）是怎么实现的"><a href="#AOP（Aspect-Oriented-Programming）是怎么实现的" class="headerlink" title="AOP（Aspect-Oriented Programming）是怎么实现的"></a>AOP（Aspect-Oriented Programming）是怎么实现的</h2><p>实现AOP的技术，主要分为两大类：</p>
+<ul>
+<li>一是采用<strong>动态代理技术</strong>，利用截取消息的方式，对该消息进行装饰，以取代原有对象行为的执行；</li>
+<li>二是采用<strong>静态织入的方式</strong>，引入特定的语法创建“方面”，从而使得编译器可以在编译期间织入有关“方面”的代码。</li>
+</ul>
+<p>Spring AOP 的实现原理其实很简单：AOP 框架负责动态地生成 AOP 代理类，这个代理类的方法则由 Advice和回调目标对象的方法所组成, 并将该对象可作为目标对象使用。AOP 代理包含了目标对象的全部方法，但AOP代理中的方法与目标对象的方法存在差异，AOP方法在特定切入点添加了<strong>增强处理，并回调了目标对象的方法</strong>。</p>
+<p>Spring AOP使用动态代理技术在运行期织入增强代码。使用两种代理机制：<strong>基于JDK的动态代理</strong>（JDK本身只提供接口的代理）和<strong>基于CGlib的动态代理</strong>。</p>
+<ul>
+<li><strong>(1) JDK的动态代理</strong></li>
+</ul>
+<p>JDK的动态代理主要涉及java.lang.reflect包中的两个类：<strong>Proxy和InvocationHandler</strong>。其中InvocationHandler只是一个接口，可以通过实现该接口定义横切逻辑，并通过反射机制调用目标类的代码，动态的将横切逻辑与业务逻辑织在一起。而Proxy利用InvocationHandler动态创建一个符合某一接口的实例，生成目标类的代理对象。</p>
+<p>其代理对象<strong>必须是某个接口的实现</strong>, 它是通过在运行期间创建一个接口的实现类来完成对目标对象的代理.只能实现接口的类生成代理,而<strong>不能针对类</strong></p>
+<ul>
+<li><strong>(2)CGLib</strong></li>
+</ul>
+<p>CGLib采用<strong>底层的字节码技术</strong>，<strong>为一个类创建子类</strong>，并在子类中采用方法拦截的技术拦截所有父类的调用方法，并顺势织入横切逻辑.它运行期间生成的代理对象是目标类的扩展子类.<strong>所以无法通知final、private的方法</strong>,因为它们不能被覆写.是针对类实现代理,主要是为指定的类生成一个子类,覆盖其中方法.</p>
+<p>在spring中默认情况下使用JDK动态代理实现AOP,如果proxy-target-class设置为true或者使用了优化策略那么会使用CGLIB来创建动态代理.Spring　AOP在这两种方式的实现上基本一样．以JDK代理为例，会使用JdkDynamicAopProxy来创建代理，在invoke()方法首先需要织入到当前类的增强器封装到拦截器链中，然后递归的调用这些拦截器完成功能的织入．最终返回代理对象．</p>
+<p><a href="http://zhengjianglong.cn/2015/12/12/Spring/spring-source-aop/" target="_blank" rel="noopener">http://zhengjianglong.cn/2015/12/12/Spring/spring-source-aop/</a></p>
+<h2 id="介绍spring的IOC实现"><a href="#介绍spring的IOC实现" class="headerlink" title="介绍spring的IOC实现"></a>介绍spring的IOC实现</h2><p>Spring　<strong>IOC主要负责创建和管理bean及bean之间的依赖关系</strong>．Spring　IOC的可分为:IOC容器的初始化和bean的加载．</p>
+<p>在IOC容器初始化阶段主要是完成资源的加载(如定义bean的xml文件)，bean的解析及对解析后得到的beanDefinition的进行注册．以xmlBeanFactory为例，XmlBeanFactory继承了DefaultListableBeanFactory，XmlBeanFactory将读取xml配置文件，解析bean和注册解析后的beanDefinition工作交给XmlBeanDefinitionReader(是BeanDefinitionReader接口的一个个性化实现)来执行.</p>
+<ul>
+<li><p>1) spring中定义了一套资源类，将文件，class等都看做资源．所以首先是将xml文件转化为资源然后用EncodeResouce来封装，该功能主要时考虑Resource可能存在编码要求的情况，如UTF-8等．</p>
+</li>
+<li><p>2) 然后根据xml文件判断xml的约束模式，是DTD还是Schema,以及寻找模式文档(验证文件)的方法(EntityResolver，这部分采用了代理模式和策略模式)．</p>
+</li>
+</ul>
+<p>完成了前面所有的准备工作以后就可以正式的加载配置文件，获取Document和解析注册BeanDefinition．Document的获取以及BeanDefinition的解析注册并不是由<strong>XmlBeanDefinitionReader</strong>完成，XmlBeanDefinitionReader只是将前面的工作完成以后文档加载交给<strong>DefaultDocumentLoader</strong>类来完成．</p>
+<p>而解析交给了<strong>DefaultBeanDefinitionDocumentReader</strong>来处理.bean标签可以分为两种，一种是spring自带的默认标签，另一种就是用户自定义的标签．所以spring针对这两种情况，提供了不同的解析方式. 每种bean的解析完成后都会先注册到容器中然后最后发出响应事件，通知相关的监听器这个bean已经注册完成了．</p>
+<p><strong>bean的加载</strong>:</p>
+<p><a href="http://zhengjianglong.cn/2015/12/06/Spring/spring-source-ioc-bean-parse/" target="_blank" rel="noopener">http://zhengjianglong.cn/2015/12/06/Spring/spring-source-ioc-bean-parse/</a></p>
+<h2 id="spring中bean加载机制，bean生成的具体步骤"><a href="#spring中bean加载机制，bean生成的具体步骤" class="headerlink" title="spring中bean加载机制，bean生成的具体步骤"></a>spring中bean加载机制，bean生成的具体步骤</h2><ol>
+<li>容器寻找Bean的定义信息并且将其实例化。</li>
+<li>如果允许提前暴露工厂，则提前暴露这个bean的工厂，这个工厂主要是返回该未完全处理的bean．主要是用于避免单例属性循环依赖问题．</li>
+<li>受用<strong>依赖注入</strong>，Spring按照Bean定义信息配置Bean的所有属性。</li>
+<li>如果Bean实现了<strong>BeanNameAware</strong>接口，工厂调用Bean的<strong>setBeanName()</strong>方法传递Bean的ID。</li>
+<li>如果Bean实现了<strong>BeanFactoryAware</strong>接口，工厂调用<strong>setBeanFactory()</strong>方法传入工厂自身。</li>
+<li>如果实现了<strong>ApplicationContextAware</strong>, spring将调用setApplicationContext()方法，将bean所在的上下文的引用 进来。</li>
+<li>如果<strong>BeanPostProcessor</strong>和Bean关联，那么它们的<strong>postProcessBeforeInitialization()</strong>方法将被调用。</li>
+<li>如果Bean指定了init-method方法，它将被调用。</li>
+<li>如果有<strong>BeanPostProcessor</strong>和Bean关联，那么它们的postProcessAfterInitialization()方法将被调用</li>
+<li>最后如果配置了destroy-method方法则注册<strong>DisposableBean</strong>.</li>
+</ol>
+<p><a href="http://www.cnblogs.com/ITtangtang/p/3978349.html" target="_blank" rel="noopener">http://www.cnblogs.com/ITtangtang/p/3978349.html</a></p>
+<h2 id="springMVC流程具体叙述下"><a href="#springMVC流程具体叙述下" class="headerlink" title="springMVC流程具体叙述下"></a>springMVC流程具体叙述下</h2><p>当应用启动时, 容器会加载servlet类并调用<strong>init</strong>方法. 在这个阶段，DispatcherServlet在init()完成初始化参数<strong>init-param</strong>的解析和封装、相关配置：</p>
+<ul>
+<li>完成了spring的<strong>WebApplicationContext</strong>的初始化，即完成xml文件的加载、bean的解析和注册等工作。</li>
+<li>另外为servlet功能所用的变量进行初始化, 如:handlerMapping, viewResolvers等.</li>
+</ul>
+<p>当用户发送一个请求时，首先根据请求的类型调用DispatcherServlet不同的方法，这些方法都会转发到doService()中执行．在该方法内部完成以下工作：</p>
+<ol>
+<li><p>spring首先考虑<strong>multipart</strong>的处理, 如果是MultipartContent类型的request,则将该请求转换成MultipartHttpServletRequest类型的request.</p>
+</li>
+<li><p>根据request信息获取对应的<strong>Handler</strong>. 首先根据request获取访问路径,然后根据该路径可以选择直接匹配或通用匹配的方式寻找Handler,即用户定义的controller. Handler在init()方法时已经完成加载且保存到Map中了,只要根据路径就可以得到对应的Handler. 如果不存在则尝试使用默认的Handler. 如果还是没有找到那么就通过response向用户返回错误信息. 找到handler后会将其包装在一个<strong>执行链</strong>中,然后将所有的拦截器也加入到该链中.</p>
+</li>
+<li><p>如果存在handler则根据当前的handler寻找对应的<strong>HandlerAdapter</strong>. 通过遍历所有适配器来选择合适的适配器.</p>
+</li>
+<li><p>SpringMVC允许你通过处理<strong>拦截器</strong>Web请求,进行前置处理和后置处理.所以在正式调用 Handler的逻辑方法时,先执行所有拦截器的<strong>preHandle()</strong>方法.</p>
+</li>
+<li><p>正式执行handle的业务逻辑方法<strong>handle()</strong>,返回ModelAndView.逻辑处理是通过适配器调用handle并返回视图.这过程其实是调用用户controller的业务逻辑.</p>
+</li>
+<li><p>调用拦截器的<strong>postHandle()</strong>方法,完成后置处理.</p>
+</li>
+<li><p>根据视图进行页面跳转.该过程首先会根据视图名字解析得到视图,该过程支持缓存,如果缓存中存在则直接获取,否则创建新的视图并在支持缓存的情况下保存到缓冲中. 该过程完成了像添加前缀后缀, 设置必须的属性等工作.最后就是进行页面跳转处理.</p>
+</li>
+<li><p>调用拦截器的<strong>afterCompletion()</strong></p>
+</li>
+</ol>
+<p> 核心类说明：</p>
+<ul>
+<li><strong>HandlerAdapter</strong>：它的作用用一句话概括就是调用具体的方法对用户发来的请求来进行处理。当handlerMapping获取到执行请求的controller时，DispatcherServlet会根据controller对应的controller类型来调用相应的HandlerAdapter来进行处理。 </li>
+</ul>
+<h2 id="spring各个版本的区别"><a href="#spring各个版本的区别" class="headerlink" title="spring各个版本的区别"></a>spring各个版本的区别</h2><h2 id="ioc注入的方式"><a href="#ioc注入的方式" class="headerlink" title="ioc注入的方式"></a>ioc注入的方式</h2><ul>
+<li>setter方法注入</li>
+<li>构造器注入</li>
+</ul>
+<pre><code>&lt;!--普通构造器注入--&gt;
+&lt;bean id=&quot;helloAction&quot; class=&quot;org.yoo.action.ConstructorHelloAction&quot;&gt;
+&lt;!--type 必须为java.lang.String 因为是按类型匹配的，不是按顺序匹配--&gt;
+
+    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;yoo&quot;/&gt;
+    &lt;!-- 也可以使用index来匹配--&gt;
+    &lt;!--&lt;constructor-arg index=&quot;1&quot; value=&quot;42&quot;/&gt;--&gt;
+    &lt;constructor-arg&gt;&lt;ref bean=&quot;helloService&quot;/&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;</code></pre><ul>
+<li>静态工厂注入  factory-method参数</li>
+<li>实例工厂</li>
+</ul>
+<p><a href="http://blessht.iteye.com/blog/1162131" target="_blank" rel="noopener">http://blessht.iteye.com/blog/1162131</a></p>
+<h2 id="AOP相关概念"><a href="#AOP相关概念" class="headerlink" title="AOP相关概念"></a>AOP相关概念</h2><ul>
+<li><p><strong>方面（Aspect）</strong>：一个<strong>关注点</strong>的模块化，这个关注点实现可能横切多个对象。事务管理是J2EE应用中一个很好的横切关注点例子。方面用Spring的 Advisor或拦截器实现。</p>
+</li>
+<li><p><strong>连接点（Joinpoint）</strong>: 程序执行过程中明确的点，如方法的调用或特定的异常被抛出。可以理解什么时机执行aop的代码。</p>
+</li>
+<li><p><strong>通知（Advice）:</strong> 在特定的连接点，AOP框架执行的<strong>动作</strong>(怎么执行)。各种类型的通知包括“around”、“before”和“throws”等通知。通知类型将在下面讨论。许多AOP框架包括Spring都是以拦截器做通知模型，维护一个“围绕”连接点的拦截器链。Spring中定义了5个advice:</p>
+<ul>
+<li>Interception Around：JointPoint前后调用</li>
+<li>Before：JointPoint前调用</li>
+<li>After Returning：JointPoint后调用</li>
+<li>Throw：JoinPoint抛出异常时调用</li>
+<li>Introduction：JointPoint调用完毕后调用</li>
+</ul>
+</li>
+<li><p><strong>切入点（Pointcut）</strong>: 一系列连接点的集合。AOP框架必须允许开发者指定切入点：例如，使用正则表达式。 Spring定义了Pointcut接口，用来组合MethodMatcher和ClassFilter，可以通过名字很清楚的理解， MethodMatcher是用来检查目标类的方法是否可以被应用此通知，而ClassFilter是用来检查Pointcut是否应该应用到目标类上</p>
+</li>
+<li><p><strong>引入（Introduction）</strong>: 添加方法或字段到被通知的类。 Spring允许引入新的接口到任何被通知的对象。例如，你可以使用一个引入使任何对象实现 IsModified接口，来简化缓存。Spring中要使用Introduction, 可有通过DelegatingIntroductionInterceptor来实现通知，通过DefaultIntroductionAdvisor来配置Advice和代理类要实现的接口</p>
+</li>
+<li><p><strong>目标对象（Target Object）</strong>: 包含连接点的对象。也被称作被通知或被代理对象。POJO</p>
+</li>
+<li><p><strong>AOP代理（AOP Proxy）</strong>: AOP框架创建的对象，包含通知。 在Spring中，AOP代理可以是JDK动态代理或者CGLIB代理。</p>
+</li>
+<li><p><strong>织入（Weaving）</strong>: 组装方面来创建一个被通知对象。这可以在编译时完成（例如使用AspectJ编译器），也可以在运行时完成。Spring和其他纯Java AOP框架一样，在运行时完成织入。</p>
+</li>
+</ul>
+<h2 id="spring何时创建applicationContext-web-xml中使用listener-或dispatcherServlet"><a href="#spring何时创建applicationContext-web-xml中使用listener-或dispatcherServlet" class="headerlink" title="spring何时创建applicationContext(web.xml中使用listener 或dispatcherServlet)"></a>spring何时创建applicationContext(web.xml中使用listener 或dispatcherServlet)</h2><h2 id="listener是监听哪个事件-ServletContext创建事件"><a href="#listener是监听哪个事件-ServletContext创建事件" class="headerlink" title="listener是监听哪个事件(ServletContext创建事件)"></a>listener是监听哪个事件(ServletContext创建事件)</h2><p>ServletContextListener 接口用于监听 ServletContext 对象的创建和销毁事件:</p>
+<ul>
+<li>当 ServletContext 对象被创建时，激发contextInitialized (ServletContextEvent sce)方法</li>
+<li>当 ServletContext 对象被销毁时，激发contextDestroyed(ServletContextEvent sce)方法。</li>
+</ul>
+<h2 id="过滤器与监听器的区别"><a href="#过滤器与监听器的区别" class="headerlink" title="过滤器与监听器的区别"></a>过滤器与监听器的区别</h2><p>Filter可认为是Servlet的一种“变种”，它主要用于对用户请求进行预处理，也可以对HttpServletResponse进行后处理，是个典型的处理链。它与Servlet的区别在于：它不能直接向用户生成响应。完整的流程是：Filter对用户请求进行预处理，接着将请求交给 Servlet进行处理并生成响应，最后Filter再对服务器响应进行后处理。</p>
+<p> Java中的Filter 并不是一个标准的Servlet ，它不能处理用户请求，也不能对客户端生成响应。 主要用于对HttpServletRequest 进行预处理，也可以对HttpServletResponse 进行后处理，是个典型的处理链。优点：过滤链的好处是，执行过程中任何时候都可以打断，只要不执行chain.doFilter()就不会再执行后面的过滤器和请求的内容。而在实际使用时，就要特别注意过滤链的执行顺序问题<br> <a href="http://blog.csdn.net/sd0902/article/details/8395641" target="_blank" rel="noopener">http://blog.csdn.net/sd0902/article/details/8395641</a></p>
+<p>Servlet,Filter都是针对url之类的，而Listener是针对对象的操作的，如session的创建，session.setAttribute的发生，或者在启动服务器的时候将你需要的数据加载到缓存等，在这样的事件发生时做一些事情。<br><a href="http://www.tuicool.com/articles/bmqMjm" target="_blank" rel="noopener">http://www.tuicool.com/articles/bmqMjm</a></p>
+<h2 id="请描述一下java事件监听机制。"><a href="#请描述一下java事件监听机制。" class="headerlink" title="请描述一下java事件监听机制。"></a>请描述一下java事件监听机制。</h2><ul>
+<li>Java的事件监听机制涉及到三个组件：事件源、事件监听器、事件对象</li>
+<li>当事件源上发生操作时，它将会调用事件监听器的一个方法，并在调用这个方法时，会传递事件对象过来</li>
+<li>事件监听器由开发人员编写，开发人员在事件监听器中，通过事件对象可以拿到事件源，从而对事件源上的操作进行处理。</li>
+</ul>
+<h2 id="解释核心容器-应用上下文-模块"><a href="#解释核心容器-应用上下文-模块" class="headerlink" title="解释核心容器(应用上下文)模块"></a>解释核心容器(应用上下文)模块</h2><p>这是Spring的基本模块，它提供了Spring框架的基本功能。BeanFactory 是所有Spring应用的核心。Spring框架是建立在这个模块之上的，这也使得Spring成为一个容器。</p>
+<h2 id="BeanFactory-–-BeanFactory-实例"><a href="#BeanFactory-–-BeanFactory-实例" class="headerlink" title="BeanFactory – BeanFactory 实例"></a>BeanFactory – BeanFactory 实例</h2><p>BeanFactory是工厂模式的一种实现，它使用控制反转将应用的配置和依赖与实际的应用代码分离开来。最常用的BeanFactory实现是XmlBeanFactory类。</p>
+<h2 id="XmlBeanFactory"><a href="#XmlBeanFactory" class="headerlink" title="XmlBeanFactory"></a>XmlBeanFactory</h2><p>最常用的就是org.springframework.beans.factory.xml.XmlBeanFactory，它根据XML文件中定义的内容加载beans。该容器从XML文件中读取配置元数据，并用它来创建一个完备的系统或应用。</p>
+<h2 id="解释AOP模块"><a href="#解释AOP模块" class="headerlink" title="解释AOP模块"></a>解释AOP模块</h2><p>AOP模块用来开发Spring应用程序中具有切面性质的部分。该模块的大部分服务由AOP Aliance提供，这就保证了Spring框架和其他AOP框架之间的互操作性。另外，该模块将元数据编程引入到了Spring。</p>
+<h2 id="解释抽象JDBC和DAO模块"><a href="#解释抽象JDBC和DAO模块" class="headerlink" title="解释抽象JDBC和DAO模块"></a>解释抽象JDBC和DAO模块</h2><p>通过使用抽象JDBC和DAO模块保证了与数据库连接代码的整洁与简单，同时避免了由于未能关闭数据库资源引起的问题。它在多种数据库服务器的错误信息之上提供了一个很重要的异常层。它还利用Spring的AOP模块为Spring应用程序中的对象提供事务管理服务。</p>
+<h2 id="解释对象-关系映射集成模块"><a href="#解释对象-关系映射集成模块" class="headerlink" title="解释对象/关系映射集成模块"></a>解释对象/关系映射集成模块</h2><p>Spring通过提供ORM模块在JDBC的基础上支持对象关系映射工具。这样的支持使得Spring可以集成主流的ORM框架，包括Hibernate, JDO, 及iBATIS SQL Maps。Spring的事务管理可以同时支持以上某种框架和JDBC。</p>
+<h2 id="解释web模块"><a href="#解释web模块" class="headerlink" title="解释web模块"></a>解释web模块</h2><p>Spring的web模块建立在应用上下文(application context)模块之上，提供了一个适合基于web应用程序的上下文环境。该模块还支持了几个面向web的任务，如透明的处理多文件上传请求及将请求参数同业务对象绑定起来。</p>
+<h2 id="解释Spring-MVC模块"><a href="#解释Spring-MVC模块" class="headerlink" title="解释Spring MVC模块"></a>解释Spring MVC模块</h2><p>Spring提供MVC框架构建web应用程序。Spring可以很轻松的同其他MVC框架结合，但Spring的MVC是个更好的选择，因为它通过控制反转将控制逻辑和业务对象完全分离开来。</p>
+<h2 id="ContextLoaderListener是监听什么事件"><a href="#ContextLoaderListener是监听什么事件" class="headerlink" title="ContextLoaderListener是监听什么事件"></a>ContextLoaderListener是监听什么事件</h2><p>ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext的配置信息。因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法。</p>
+<h2 id="Spring-IoC容器"><a href="#Spring-IoC容器" class="headerlink" title="Spring IoC容器"></a>Spring IoC容器</h2><p>Spring IOC负责创建对象、管理对象(通过依赖注入)、整合对象、配置对象以及管理这些对象的生命周期。</p>
+<h2 id="IOC有什么优点？"><a href="#IOC有什么优点？" class="headerlink" title="IOC有什么优点？"></a>IOC有什么优点？</h2><p>IOC或依赖注入减少了应用程序的代码量。它使得应用程序的<strong>测试很简单</strong>，因为在单元测试中不再需要单例或JNDI查找机制。简单的实现以及较少的干扰机制使得<strong>松耦合</strong>得以实现。IOC容器支持勤性单例及延迟加载服务。</p>
+<h2 id="应用上下文是如何实现的？"><a href="#应用上下文是如何实现的？" class="headerlink" title="应用上下文是如何实现的？"></a>应用上下文是如何实现的？</h2><p>ClassPathXmlApplicationContext 容器加载XML文件中beans的定义。XML Bean配置文件的完整路径必须传递给构造器。</p>
+<p>FileSystemXmlApplicationContext 容器也加载XML文件中beans的定义。注意，你需要正确的设置CLASSPATH，因为该容器会在CLASSPATH中查看bean的XML配置文件。</p>
+<p>WebXmlApplicationContext：该容器加载xml文件，这些文件定义了web应用中所有的beans。</p>
+<h2 id="有哪些不同类型的IOC-依赖注入"><a href="#有哪些不同类型的IOC-依赖注入" class="headerlink" title="有哪些不同类型的IOC(依赖注入)"></a>有哪些不同类型的IOC(依赖注入)</h2><p><strong>接口注入</strong>:接口注入的意思是通过接口来实现信息的注入，而其它的类要实现该接口时，就可以实现了注入</p>
+<p>构造器依赖注入：构造器依赖注入在容器触发构造器的时候完成，该构造器有一系列的参数，每个参数代表注入的对象。</p>
+<p>Setter方法依赖注入：首先容器会触发一个无参构造函数或无参静态工厂方法实例化对象，之后容器调用bean中的setter方法完成Setter方法依赖注入。</p>
+<h2 id="你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？"><a href="#你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？" class="headerlink" title="你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？"></a>你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？</h2><p>你可以同时使用两种方式的依赖注入，最好的选择是使用构造器参数实现强制依赖注入，使用setter方法实现可选的依赖关系。</p>
+<h2 id="什么是Spring-Beans"><a href="#什么是Spring-Beans" class="headerlink" title="什么是Spring Beans"></a>什么是Spring Beans</h2><p>Spring Beans是构成Spring应用核心的Java对象。这些对象由Spring IOC容器实例化、组装、管理。这些对象通过容器中配置的元数据创建，例如，使用XML文件中定义的创建。</p>
+<p>在Spring中创建的beans都是单例的beans。在bean标签中有一个属性为”singleton”,如果设为true，该bean是单例的，如果设为false，该bean是原型bean。Singleton属性默认设置为true。因此，spring框架中所有的bean都默认为单例bean。</p>
+<h2 id="Spring-Bean中定义了什么内容？"><a href="#Spring-Bean中定义了什么内容？" class="headerlink" title="Spring Bean中定义了什么内容？"></a>Spring Bean中定义了什么内容？</h2><p>Spring Bean中定义了所有的配置元数据，这些配置信息告知容器如何创建它，它的生命周期是什么以及它的依赖关系。</p>
+<h2 id="如何向Spring-容器提供配置元数据"><a href="#如何向Spring-容器提供配置元数据" class="headerlink" title="如何向Spring 容器提供配置元数据"></a>如何向Spring 容器提供配置元数据</h2><p>有三种方式向Spring 容器提供元数据:</p>
+<ul>
+<li>XML配置文件</li>
+<li>基于注解配置</li>
+<li>基于Java的配置</li>
+</ul>
+<h2 id="Spring框架中单例beans是线程安全的吗？"><a href="#Spring框架中单例beans是线程安全的吗？" class="headerlink" title="Spring框架中单例beans是线程安全的吗？"></a>Spring框架中单例beans是线程安全的吗？</h2><p>不是，Spring框架中的单例beans不是线程安全的。</p>
+<p><strong>Spring框架并没有对单例bean进行任何多线程的封装处理</strong>。关于单例bean的线程安全和并发问题需要开发者自行去搞定。但实际上，大部分的Spring bean并没有可变的状态(比如Serview类和DAO类)，所以在某种程度上说Spring的单例bean是线程安全的。如果你的bean有多种状态的话（比如 View Model 对象），就需要自行保证线程安全。</p>
+<h2 id="哪些是最重要的bean生命周期方法？能重写它们吗？"><a href="#哪些是最重要的bean生命周期方法？能重写它们吗？" class="headerlink" title="哪些是最重要的bean生命周期方法？能重写它们吗？"></a>哪些是最重要的bean生命周期方法？能重写它们吗？</h2><p>有两个重要的bean生命周期方法。</p>
+<ul>
+<li>第一个是setup方法，该方法在容器加载bean的时候被调用。</li>
+<li>第二个是teardown方法，该方法在bean从容器中移除的时候调用。</li>
+<li>bean标签有两个重要的属性(init-method 和 destroy-method)，你可以通过这两个属性定义自己的初始化方法和析构方法。Spring也有相应的注解：@PostConstruct 和 @PreDestroy。</li>
+</ul>
+<h2 id="什么是Spring的内部bean"><a href="#什么是Spring的内部bean" class="headerlink" title="什么是Spring的内部bean"></a>什么是Spring的内部bean</h2><p>当一个bean被用作另一个bean的属性时，这个bean可以被声明为内部bean。在基于XML的配置元数据中，可以通过把元素定义在 或元素内部实现定义内部bean。内部bean总是匿名的并且它们的scope总是prototype。</p>
+<h2 id="如何在Spring中注入Java集合类"><a href="#如何在Spring中注入Java集合类" class="headerlink" title="如何在Spring中注入Java集合类"></a>如何在Spring中注入Java集合类</h2><p>Spring提供如下几种类型的集合配置元素：</p>
+<ul>
+<li>list元素用来注入一系列的值，允许有相同的值。</li>
+<li>set元素用来注入一些列的值，不允许有相同的值。</li>
+<li>map用来注入一组”键-值”对，键、值可以是任何类型的。</li>
+<li>props也可以用来注入一组”键-值”对，这里的键、值都字符串类型。</li>
+</ul>
+<h2 id="什么是bean-wiring？"><a href="#什么是bean-wiring？" class="headerlink" title="什么是bean wiring？"></a>什么是bean wiring？</h2><p>Wiring，或者说bean Wiring是指beans在Spring容器中结合在一起的情况。当装配bean的时候，Spring容器需要知道需要哪些beans以及如何使用依赖注入将它们结合起来。</p>
+<h2 id="什么是bean自动装配？"><a href="#什么是bean自动装配？" class="headerlink" title="什么是bean自动装配？"></a>什么是bean自动装配？</h2><p>Spring容器可以自动配置相互协作beans之间的关联关系。这意味着Spring可以自动配置一个bean和其他协作bean之间的关系，通过检查BeanFactory 的内容里没有使用和&lt; property&gt;元素。</p>
+<h2 id="自动装配有哪些局限性？"><a href="#自动装配有哪些局限性？" class="headerlink" title="自动装配有哪些局限性？"></a>自动装配有哪些局限性？</h2><p>自动装配有如下局限性：</p>
+<ul>
+<li>重写：你仍然需要使用 和&lt; property&gt;设置指明依赖，这意味着总要重写自动装配。</li>
+<li>原生数据类型:你不能自动装配简单的属性，如原生类型、字符串和类。</li>
+<li>模糊特性：自动装配总是没有自定义装配精确，因此，如果可能尽量使用自定义装配。</li>
+</ul>
+<h2 id="你可以在Spring中注入null或空字符串吗"><a href="#你可以在Spring中注入null或空字符串吗" class="headerlink" title="你可以在Spring中注入null或空字符串吗"></a>你可以在Spring中注入null或空字符串吗</h2><p>完全可以。</p>
+<h2 id="什么是Spring基于Java的配置？给出一些注解的例子"><a href="#什么是Spring基于Java的配置？给出一些注解的例子" class="headerlink" title="什么是Spring基于Java的配置？给出一些注解的例子"></a>什么是Spring基于Java的配置？给出一些注解的例子</h2><p>基于Java的配置允许你使用Java的注解进行Spring的大部分配置而非通过传统的XML文件配置。以注解@Configuration为例，它用来标记类，说明作为beans的定义，可以被Spring IOC容器使用。另一个例子是@Bean注解，它表示该方法定义的Bean要被注册进Spring应用上下文中。</p>
+<h2 id="什么是基于注解的容器配置"><a href="#什么是基于注解的容器配置" class="headerlink" title="什么是基于注解的容器配置"></a>什么是基于注解的容器配置</h2><p>另外一种替代XML配置的方式为基于注解的配置，这种方式通过字节元数据装配组件而非使用尖括号声明。开发人员将直接在类中进行配置，通过注解标记相关的类、方法或字段声明，而不再使用XML描述bean之间的连线关系。</p>
+<h2 id="如何开启注解装配？"><a href="#如何开启注解装配？" class="headerlink" title="如何开启注解装配？"></a>如何开启注解装配？</h2><p>注解装配默认情况下在Spring容器中是不开启的。如果想要开启基于注解的装配只需在Spring配置文件中配置元素即可。<a href="context:annotation-config" target="_blank" rel="noopener">context:annotation-config</a></p>
+<h2 id="Required-注解"><a href="#Required-注解" class="headerlink" title="@Required 注解"></a>@Required 注解</h2><p>@Required表明bean的属性必须在配置时设置，可以在bean的定义中明确指定也可通过自动装配设置。如果bean的属性未设置，则抛出BeanInitializationException异常。</p>
+<h2 id="Autowired-注解"><a href="#Autowired-注解" class="headerlink" title="@Autowired 注解"></a>@Autowired 注解</h2><p>@Autowired 注解提供更加精细的控制，包括自动装配在何处完成以及如何完成。它可以像@Required一样自动装配setter方法、构造器、属性或者具有任意名称和/或多个参数的PN方法。</p>
+<h2 id="Qualifier-注解"><a href="#Qualifier-注解" class="headerlink" title="@Qualifier 注解"></a>@Qualifier 注解</h2><p>当有多个相同类型的bean而只有其中的一个需要自动装配时，将@Qualifier 注解和@Autowire 注解结合使用消除这种混淆，指明需要装配的bean。</p>
+<h2 id="在Spring框架中如何更有效的使用JDBC？"><a href="#在Spring框架中如何更有效的使用JDBC？" class="headerlink" title="在Spring框架中如何更有效的使用JDBC？"></a>在Spring框架中如何更有效的使用JDBC？</h2><p>使用Spring JDBC框架，资源管理以及错误处理的代价都会减轻。开发人员只需通过statements和queries语句从数据库中存取数据。Spring框架中通过使用模板类能更有效的使用JDBC，也就是所谓的JdbcTemplate。</p>
+<h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2><p>JdbcTemplate类提供了许多方法，为我们与数据库的交互提供了便利。例如，它可以将数据库的数据转化为原生类型或对象，执行写好的或可调用的数据库操作语句，提供自定义的数据库错误处理功能。</p>
+<h2 id="Spring对DAO的支持"><a href="#Spring对DAO的支持" class="headerlink" title="Spring对DAO的支持"></a>Spring对DAO的支持</h2><p>Spring对数据访问对象(DAO)的支持旨在使它可以与数据访问技术(如 JDBC, Hibernate 及JDO)方便的结合起来工作。这使得我们可以很容易在的不同的持久层技术间切换，编码时也无需担心会抛出特定技术的异常。</p>
+<h2 id="Spring支持的ORM"><a href="#Spring支持的ORM" class="headerlink" title="Spring支持的ORM"></a>Spring支持的ORM</h2><p>Spring支持一下ORM：</p>
+<ul>
+<li>Hibernate</li>
+<li>iBatis</li>
+<li>JPA (Java -Persistence API)</li>
+<li>TopLink</li>
+<li>JDO (Java Data Objects)</li>
+<li>OJB</li>
+</ul>
+<h2 id="Spring支持的事务管理类型"><a href="#Spring支持的事务管理类型" class="headerlink" title="Spring支持的事务管理类型"></a>Spring支持的事务管理类型</h2><p>Spring支持如下两种方式的事务管理：</p>
+<ul>
+<li><p><strong>编码式事务管理</strong>：sping对编码式事务的支持与EJB有很大区别，不像EJB与java事务API耦合在一起．spring通过回调机制将实际的事务实现从事务性代码中抽象出来．<strong>你能够精确控制事务的边界，它们的开始和结束完全取决于你</strong>．</p>
+</li>
+<li><p><strong>声明式事务管理</strong>：这种方式意味着你可以将事务管理和业务代码分离。你只需要通过注解或者XML配置管理事务。通过传播行为，隔离级别，回滚规则，事务超时，只读提示来定义．</p>
+</li>
+</ul>
+<h2 id="Spring框架的事务管理有哪些优点"><a href="#Spring框架的事务管理有哪些优点" class="headerlink" title="Spring框架的事务管理有哪些优点"></a>Spring框架的事务管理有哪些优点</h2><ul>
+<li>它为不同的事务API(如JTA, JDBC, Hibernate, JPA, 和JDO)提供了统一的编程模型。</li>
+<li>它为编程式事务管理提供了一个简单的API而非一系列复杂的事务API(如JTA).</li>
+<li>它支持声明式事务管理。</li>
+<li>它可以和Spring 的多种数据访问技术很好的融合。</li>
+</ul>
+<h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><ul>
+<li><strong>原子性(Atomic)</strong>: 一个操作要么成功，要么全部不执行.</li>
+<li><strong>一致性(Consistent)</strong>: 一旦事务完成，系统必须确保它所建模业务处于一致的状态</li>
+<li><strong>隔离性(Isolated)</strong>: 事务允许多个用户对相同的数据进行操作，每个用户用户的操作相互隔离互补影响．</li>
+<li><strong>持久性(Durable)</strong>: 一旦事务完成，事务的结果应该持久化．</li>
+</ul>
+<h2 id="spring事务定义的传播规则"><a href="#spring事务定义的传播规则" class="headerlink" title="spring事务定义的传播规则"></a>spring事务定义的传播规则</h2><ul>
+<li><strong>PROPAGATION_REQUIRED</strong>: 支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。</li>
+<li><strong>PROPAGATION_SUPPORTS</strong>: 支持当前事务，如果当前没有事务，就以非事务方式执行。</li>
+<li><strong>PROPAGATION_MANDATORY</strong>: 支持当前事务，如果当前没有事务，就抛出异常。</li>
+<li><strong>PROPAGATION_REQUIRES_NEW</strong>: 新建事务，如果当前存在事务，把当前事务挂起。</li>
+<li><strong>PROPAGATION_NOT_SUPPORTED</strong>: 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</li>
+<li><strong>PROPAGATION_NEVER</strong>: 以非事务方式执行，如果当前存在事务，则抛出异常。</li>
+<li><strong>PROPAGATION_NESTED</strong>: 如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则进行与PROPAGATION_REQUIRED类似的操作。 </li>
+</ul>
+<h2 id="spring事务支持的隔离级别"><a href="#spring事务支持的隔离级别" class="headerlink" title="spring事务支持的隔离级别"></a>spring事务支持的隔离级别</h2><p>并发会导致以下问题：</p>
+<ul>
+<li><strong>脏读</strong>：发生在一个事务读取了另一个事务改写但尚未提交的数据．</li>
+<li><strong>不可重复读</strong>：在一个事务执行相同的查询两次或两次以上，每次得到的数据不同．</li>
+<li><strong>幻读</strong>：与不可重复读类似，发生在一个事务读取多行数据，接着另一个并发事务插入一些数据，随后查询中，第一个事务发现多了一些原本不存在的数据．</li>
+</ul>
+<p>spring 事务上提供以下的隔离级别:</p>
+<ul>
+<li><strong>ISOLATION_DEFAULT</strong>: 使用后端数据库默认的隔离级别，大多数数据库系统的默认隔离级别是READ COMMITTED。</li>
+<li><strong>ISOLATION_READ_UNCOMMITTED</strong>: 允许<strong>读取未提交</strong>的数据变更，可能会导致<strong>脏读</strong>，幻读或不可重复读</li>
+<li><strong>ISOLATION_READ_COMMITTD</strong>: 允许读取为<strong>提交数据</strong>,可以阻止脏读，当时幻读或不可重复读仍可能发生</li>
+<li><strong>ISOLATION_REPEATABLE_READ</strong>: 对统一字段多次读取结果是一致的，除非数据是被本事务自己修改．可以阻止脏读，不可重复读，但幻读可能发生</li>
+<li><strong>ISOLATION_SERIALIZABLE</strong>:　完全服从ACID</li>
+</ul>
+<h2 id="你更推荐那种类型的事务管理？"><a href="#你更推荐那种类型的事务管理？" class="headerlink" title="你更推荐那种类型的事务管理？"></a>你更推荐那种类型的事务管理？</h2><p>许多Spring框架的用户选择声明式事务管理，因为这种方式和应用程序的关联较少，因此更加符合轻量级容器的概念。声明式事务管理要优于编程式事务管理，尽管在灵活性方面它弱于编程式事务管理(这种方式允许你通过代码控制业务)。</p>
+<h2 id="有几种不同类型的自动代理？"><a href="#有几种不同类型的自动代理？" class="headerlink" title="有几种不同类型的自动代理？"></a>有几种不同类型的自动代理？</h2><ul>
+<li><strong>BeanNameAutoProxyCreator</strong>：bean名称自动代理创建器</li>
+<li><strong>DefaultAdvisorAutoProxyCreator</strong>：默认通知者自动代理创建器</li>
+<li><strong>Metadata autoproxying</strong>：元数据自动代理</li>
+</ul>
+<h2 id="什么是织入？什么是织入应用的不同点？"><a href="#什么是织入？什么是织入应用的不同点？" class="headerlink" title="什么是织入？什么是织入应用的不同点？"></a>什么是织入？什么是织入应用的不同点？</h2><p>织入是将切面和其他应用类型或对象连接起来创建一个通知对象的过程。织入可以在编译、加载或运行时完成。</p>
+<h2 id="什么是Spring的MVC框架？"><a href="#什么是Spring的MVC框架？" class="headerlink" title="什么是Spring的MVC框架？"></a>什么是Spring的MVC框架？</h2><p>Spring提供了一个功能齐全的MVC框架用于构建Web应用程序。Spring框架可以很容易的和其他的MVC框架融合(如Struts)，该框架使用控制反转(IOC)将控制器逻辑和业务对象分离开来。它也允许以声明的方式绑定请求参数到业务对象上。</p>
+<h2 id="DispatcherServlet"><a href="#DispatcherServlet" class="headerlink" title="DispatcherServlet"></a>DispatcherServlet</h2><p>Spring的MVC框架围绕DispatcherServlet来设计的，它用来处理所有的HTTP请求和响应。</p>
+<h2 id="WebApplicationContext"><a href="#WebApplicationContext" class="headerlink" title="WebApplicationContext"></a>WebApplicationContext</h2><p>WebApplicationContext继承了ApplicationContext，并添加了一些web应用程序需要的功能。和普通的ApplicationContext 不同，WebApplicationContext可以用来处理主题样式，它也知道如何找到相应的servlet。</p>
+<h2 id="什么是Spring-MVC框架的控制器？"><a href="#什么是Spring-MVC框架的控制器？" class="headerlink" title="什么是Spring MVC框架的控制器？"></a>什么是Spring MVC框架的控制器？</h2><p>控制器提供对应用程序行为的访问，通常通过服务接口实现。控制器解析用户的输入，并将其转换为一个由视图呈现给用户的模型。Spring 通过一种极其抽象的方式实现控制器，它允许用户创建多种类型的控制器。</p>
+<h2 id="Controller-annotation"><a href="#Controller-annotation" class="headerlink" title="@Controller annotation"></a>@Controller annotation</h2><p>@Controller注解表示该类扮演控制器的角色。Spring不需要继承任何控制器基类或应用Servlet API。</p>
+<h2 id="RequestMapping-annotation"><a href="#RequestMapping-annotation" class="headerlink" title="@RequestMapping annotation"></a>@RequestMapping annotation</h2><p>@RequestMapping注解用于将URL映射到任何一个类或者一个特定的处理方法上。</p>
+<h2 id="MyBatis-与-Hibernate的区别"><a href="#MyBatis-与-Hibernate的区别" class="headerlink" title="MyBatis 与 Hibernate的区别"></a>MyBatis 与 Hibernate的区别</h2><p>（1）<strong>hibernate是全自动，而mybatis是半自动</strong></p>
+<p>hibernate完全可以通过对象关系模型实现对数据库的操作，拥有完整的JavaBean对象与数据库的映射结构来自动生成sql。而mybatis仅有基本的字段映射，对象数据以及对象实际关系仍然需要通过手写sql来实现和管理。</p>
+<p>（2）<strong>hibernate数据库移植性远大于mybatis</strong></p>
+<p>hibernate通过它强大的映射结构和hql语言，大大降低了对象与数据库（Oracle、MySQL等）的耦合性，而mybatis由于需要手写sql，因此与数据库的耦合性直接取决于程序员写sql的方法，如果sql不具通用性而用了很多某数据库特性的sql语句的话，移植性也会随之降低很多，成本很高。</p>
+<p>（3）<strong>hibernate拥有完整的日志系统，mybatis则欠缺一些</strong></p>
+<p>hibernate日志系统非常健全，涉及广泛，包括：sql记录、关系异常、优化警告、缓存提示、脏数据警告等；而mybatis则除了基本记录功能外，功能薄弱很多。</p>
+<p>（4）mybatis相比hibernate需要关心很多细节</p>
+<p><strong>hibernate配置要比mybatis复杂的多，学习成本也比mybatis高</strong>。但也正因为mybatis使用简单，才导致它要比hibernate关心很多技术细节。mybatis由于不用考虑很多细节，开发模式上与传统jdbc区别很小，因此很容易上手并开发项目，但忽略细节会导致项目前期bug较多，因而开发出相对稳定的软件很慢，而开发出软件却很快。hibernate则正好与之相反。但是如果使用hibernate很熟练的话，实际上开发效率丝毫不差于甚至超越mybatis。</p>
+<p>（5）<strong>sql直接优化上，mybatis要比hibernate方便很多</strong></p>
+<p>由于mybatis的sql都是写在xml里，因此优化sql比hibernate方便很多。而hibernate的sql很多都是自动生成的，无法直接维护sql；虽有hql，但功能还是不及sql强大，见到报表等变态需求时，hql也歇菜，也就是说hql是有局限的；hibernate虽然也支持原生sql，但开发模式上却与orm不同，需要转换思维，因此使用上不是非常方便。总之写sql的灵活度上hibernate不及mybatis。</p>
+<p>（6）缓存机制上，hibernate要比mybatis更好一些</p>
+<p>MyBatis的二级缓存配置都是在每个具体的表-对象映射中进行详细配置，这样针对不同的表可以自定义不同的缓存机制。并且Mybatis可以在命名空间中共享相同的缓存配置和实例，通过Cache-ref来实现。</p>
+<p>而Hibernate对查询对象有着良好的管理机制，用户无需关心SQL。所以在使用二级缓存时如果出现脏数据，系统会报出错误并提示。</p>
+<h2 id="JDBC-和-Hibernate的区别"><a href="#JDBC-和-Hibernate的区别" class="headerlink" title="JDBC 和　Hibernate的区别"></a>JDBC 和　Hibernate的区别</h2><h2 id="Hibernate的原理体系架构"><a href="#Hibernate的原理体系架构" class="headerlink" title="Hibernate的原理体系架构"></a>Hibernate的原理体系架构</h2><p><img src="http://my.csdn.net/uploads/201205/30/1338346660_4642.gif" alt="图片标题"><br><strong>1) SessionFactory (org.hibernate.SessionFactory)</strong><br>针对单个数据库映射关系经过编译后的内存镜像，是线程安全的（不可变）。它是生成Session的工厂，本身要用到ConnectionProvider。该对象可以在进程或集群的级别上，为那些事务之间可以重用的数据提供可选的二级缓存。</p>
+<p><strong>2) Session (org.hibernate.Session)</strong><br>表示应用程序与持久储存层之间交互操作的一个单线程对象，此对象生存期很短。 其隐藏了JDBC连接，也是Transaction的工厂。其会持有一个针对持久化对象的必选（第一级）缓存，在遍历对象图或者根据持久化标识查找对象时会用到。</p>
+<p><strong>3) 事务Transaction (org.hibernate.Transaction)</strong><br>（可选的）应用程序用来指定原子操作单元范围的对象，它是单线程的，生命周期很短。 它通过抽象将应用从底层具体的JDBC、JTA以及CORBA事务隔离开。 某些情况下，一个Session之内可能包含多个Transaction对象。 尽管是否使用该对象是可选的，但无论是使用底层的API还是使用Transaction对象，事务边界的开启与关闭是必不可少的。</p>
+<p><strong>4) ConnectionProvider  (org.hibernate.connection.ConnectionProvider)</strong><br>（可选的）生成JDBC连接的工厂（同时也起到连接池的作用）。 它通过抽象将应用从底层的Datasource或DriverManager隔离开。 仅供开发者扩展/实现用，并不暴露给应用程序使用。</p>
+<p><strong>5)TransactionFactory (org.hibernate.TransactionFactory)</strong><br>（可选的）生成Transaction对象实例的工厂。 仅供开发者扩展/实现用，并不暴露给应用程序使用。</p>
+<p><strong>6) 持久的对象及其集合</strong><br>带有持久化状态的、具有业务功能的单线程对象，此对象生存期很短。 这些对象可能是普通的JavaBeans/POJO，唯一特殊的是他们正与（仅仅一个）Session相关联。 一旦这个Session被关闭，这些对象就会脱离持久化状态，这样就可被应用程序的任何层自由使用。 （例如，用作跟表示层打交道的数据传输对象。）</p>
+<p><strong>7) 瞬态(transient)和脱管(detached)的对象及其集合</strong><br>那些目前没有与session关联的持久化类实例。他们可能是在被应用程序实例化后，尚未进行持久化的对象。也可能是因为实例化他们的Session已经被关闭而脱离持久化的对象。</p>
+<p>参考: <a href="http://blog.sina.com.cn/s/blog_667fe4a501016awl.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_667fe4a501016awl.html</a></p>
+<h2 id="五大核心接口，"><a href="#五大核心接口，" class="headerlink" title="五大核心接口，"></a>五大核心接口，</h2><p>Hibernate的核心接口一共有5个，分别为:Session、SessionFactory、Transaction、Query和 Configuration。这5个核心接口在任何开发中都会用到。通过这些接口，不仅可以对持久化对象进行存取，还能够进行事务控制。下面对这五的核心 接口分别加以介绍。 </p>
+<p><strong>1) Session接口</strong>:<br>Session接口负责执行被持久化对象的CRUD操作(CRUD的任务是完成与数据库的交流，包含了很多常见的 SQL语句。)。但需要注意的是Session对象是非线程安全的。同时，Hibernate的session不同于JSP应用中的HttpSession。这里当使用session这个术语时，其实指的是Hibernate中的session，而以后会将HttpSesion对象称为用户session。</p>
+<p><strong>2) SessionFactory接口</strong><br>SessionFactroy接口负责初始化Hibernate。它充当数据存储源的代理，并负责创建 Session对象。这里用到了工厂模式。需要注意的是SessionFactory并不是轻量级的，因为一般情况下，一个项目通常只需要一个SessionFactory就够，当需要操作多个数据库时，可以为每个数据库指定一个SessionFactory。</p>
+<p><strong>3) Configuration接口</strong><br>Configuration接口负责配置并启动Hibernate，创建SessionFactory对 象。在Hibernate的启动的过程中，Configuration类的实例首先定位映射文档位置、读取配置，然后创建SessionFactory对象。</p>
+<p><strong>4) Transaction接口</strong><br>Transaction接口负责事务相关的操作。它是可选的，开发人员也可以设计编写自己的底层事务处理代码。</p>
+<p><strong>5) Query和Criteria接口</strong>:<br>Query和Criteria接口负责执行各种数据库查询。它可以使用HQL语言或SQL语句两种表达方式。</p>
+<p><a href="http://blog.csdn.net/martinmateng/article/details/50879436" target="_blank" rel="noopener">http://blog.csdn.net/martinmateng/article/details/50879436</a></p>
+<h2 id="Hibernate对象的三种状态转换"><a href="#Hibernate对象的三种状态转换" class="headerlink" title="Hibernate对象的三种状态转换"></a>Hibernate对象的三种状态转换</h2><h3 id="1-瞬时状态-transient"><a href="#1-瞬时状态-transient" class="headerlink" title="1.瞬时状态 (transient)"></a>1.瞬时状态 (transient)</h3><p>特征：</p>
+<ol>
+<li>不处于Session 缓存中</li>
+<li>数据库中没有对象记录</li>
+</ol>
+<p>Java如何进入临时状态：</p>
+<ol>
+<li>通过new语句刚创建一个对象时</li>
+<li>当调用Session 的delete()方法，从Session 缓存中删除一个对象时。</li>
+</ol>
+<h3 id="2-持久化状态-persisted"><a href="#2-持久化状态-persisted" class="headerlink" title="2.持久化状态(persisted)"></a>2.持久化状态(persisted)</h3><p>特征：</p>
+<ol>
+<li>处于Session 缓存中</li>
+<li>持久化对象数据库中设有对象记录</li>
+<li>Session 在特定时刻会保持二者同步</li>
+</ol>
+<p>Java如何进入持久化状态</p>
+<ol>
+<li>Session 的save()把临时－》持久化状态</li>
+<li>Session 的load(),get()方法返回的对象</li>
+<li>Session 的find()返回的list集合中存放的对象</li>
+<li>session 的update(),saveOrupdate()使游离－》持久化</li>
+</ol>
+<h3 id="3-游离状态-detached"><a href="#3-游离状态-detached" class="headerlink" title="3.游离状态(detached)"></a>3.游离状态(detached)</h3><p>特征：</p>
+<ol>
+<li>不再位于Session 缓存中</li>
+<li>游离对象由持久化状态转变而来，数据库中可能还有对应记录。</li>
+</ol>
+<p>Java如何进入持久化状态－》游离状态</p>
+<ol>
+<li>Session 的close()方法</li>
+<li>Session 的evict()方法，从缓存中删除一个对象。提高性能。少用。</li>
+</ol>
+<h2 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h2><h2 id="Hibernate对一二级缓存的使用"><a href="#Hibernate对一二级缓存的使用" class="headerlink" title="Hibernate对一二级缓存的使用"></a>Hibernate对一二级缓存的使用</h2><p>（1）一级缓存就是Session级别的缓存，一个Session做了一个查询操作，它会把这个操作的结果放在一级缓存中，如果短时间内这个session（一定要同一个session）又做了同一个操作，那么hibernate直接从一级缓存中拿，而不会再去连数据库，取数据；</p>
+<p>（2）二级缓存就是SessionFactory级别的缓存，顾名思义，就是查询的时候会把查询结果缓存到二级缓存中，如果同一个sessionFactory创建的某个session执行了相同的操作，hibernate就会从二级缓存中拿结果，而不会再去连接数据库；</p>
+<p>3）Hibernate中提供了两级Cache，第一级别的缓存是Session级别的缓存，它是属于事务范围的缓存。这一级别的缓存由hibernate管理的，一般情况下无需进行干预；第二级别的缓存是SessionFactory级别的缓存，它是属于进程范围或群集范围的缓存。这一级别的缓存可以进行配置和更改，并且可以动态加载和卸载。Hibernate还为查询结果提供了一个查询缓存，它依赖于第二级缓存；</p>
+<p><a href="http://www.open-open.com/lib/view/open1413527015465.html" target="_blank" rel="noopener">http://www.open-open.com/lib/view/open1413527015465.html</a></p>
+<h2 id="Lazy-Load的理解"><a href="#Lazy-Load的理解" class="headerlink" title="Lazy-Load的理解"></a>Lazy-Load的理解</h2><p>在Hibernate框架中，当我们要访问的数据量过大时，明显用缓存不太合适， 因为内存容量有限，为了减少并发量，减少系统资源的消耗，这时Hibernate用懒加载机制来弥补这种缺陷，但是这只是弥补而不是用了懒加载总体性能就提高了。我们所说的懒加载也被称为延迟加载，它在查询的时候不会立刻访问数据库，而是返回代理对象，当真正去使用对象的时候才会访问数据库。</p>
+<p>1、通过Session.load()实现懒加载</p>
+<p>load(Object, Serializable)：根据id查询。查询返回的是代理对象，不会立刻访问数据库，是懒加载的。当真正去使用对象的时候才会访问数据库。用load()的时候会发现不会打印出查询语句，而使用get()的时候会打印出查询语句。<br>使用load()时如果在session关闭之后再查询此对象，会报异常：could not initialize proxy - no Session。处理办法：在session关闭之前初始化一下查询出来的对象：Hibernate.initialize(user);使用load()可以提高效率，因为刚开始的时候并没有查询数据库。但很少使用。</p>
+<p>2、one-to-one(元素)实现了懒加载。</p>
+<p>在一对一的时候，查询主对象时默认不是懒加载。即：查询主对象的时候也会把从对象查询出来。需要把主对象配制成lazy=”true” constrained=”true” fetch=”select”。此时查询主对象的时候就不会查询从对象，从而实现了懒加载。一对一的时候，查询从对象的是默认是懒加载。即：查询从对象的时候不会把主对象查询出来。而是查询出来的是主对象的代理对象。</p>
+<p>3、many-to-one（元素）实现了懒加载。<br>多对一的时候，查询主对象时默认是懒加载。即：查询主对象的时候不会把从对象查询出来。</p>
+<p>4、one-to-many(元素)懒加载：默认会懒加载，这是必须的，是重常用的。<br>一对多的时候，查询主对象时默认是懒加载。即：查询主对象的时候不会把从对象查询出来。</p>
+<p>参考： <a href="http://blog.csdn.net/sanjy523892105/article/details/7071139" target="_blank" rel="noopener">http://blog.csdn.net/sanjy523892105/article/details/7071139</a><br><a href="http://blog.csdn.net/yaorongwang0521/article/details/7074573" target="_blank" rel="noopener">http://blog.csdn.net/yaorongwang0521/article/details/7074573</a></p>
+<h2 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h2><p><strong>悲观锁 (Pessimistic Locking)</strong><br>悲观锁，正如其名，他是对数据库而言的，数据库悲观了，他感觉每一个对他操作的程序都有可能产生并发。它指的是对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度，因此，在整个数据处理过程中，将数据处于锁定状态。悲观锁的实现，往往依靠数据库提供的锁机制（也只有数据库层提供的锁机制才能真正保证数据访问的排他性，否则，即使在本系统中实现了加锁机制，也无法保证外部系统不会修改数据）</p>
+<p>优点：数据的一致性保持得很好<br>缺点：不适合多个用户并发访问。</p>
+<p><strong>乐观锁</strong><br> 相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对长事务而言，这样的开销往往无法承受。乐观锁机制在一定程度上解决了这个问题。乐观锁，大多是基于数据版本（Version）记录机制实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个”version”字段来实现。乐观锁的工作原理：读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</p>
+<h2 id="描述-Struts-体系结构？对应各个部分的开发工作主要包括哪些？"><a href="#描述-Struts-体系结构？对应各个部分的开发工作主要包括哪些？" class="headerlink" title="描述 Struts 体系结构？对应各个部分的开发工作主要包括哪些？"></a>描述 Struts 体系结构？对应各个部分的开发工作主要包括哪些？</h2><p>Struts开源架构很好的实现了MVC模式，MVC即Model-View-Controller的缩写，是一种常用的设计模式。MVC 减弱了业务逻辑接口和数据接口之间的耦合，以及让视图层更富于变化。在Struts2的模型 - 视图 - 控制器模式，实现以下五个核心部件：</p>
+<ul>
+<li>Actions</li>
+<li>Interceptors</li>
+<li>Value Stack / OGNL</li>
+<li>Results / Result types</li>
+<li>View technologies</li>
+</ul>
+<p>Struts 2 从传统的MVC框架操作需要的模型，而不是在控制器角色略有不同，虽然有一些重叠</p>
+<p><strong>模型</strong><br>模型以一个或多个java bean的形式存在。这些bean分为三类：Action Form、Action、JavaBean or EJB。Action Form通常称之为FormBean，封装了来自于Client的用户请求信息，如表单信息。Action通常称之为ActionBean，获取从ActionSevlet传来的FormBean，取出FormBean中的相关信息，并做出相关的处理，一般是调用Java Bean或EJB等。</p>
+<p><strong>视图</strong><br>主要由JSP生成页面完成视图，Struts提供丰富的JSP 标签库： Html，Bean，Logic，Template等</p>
+<p><strong>控制器</strong><br>该控制器负责响应用户输入和执行数据模型对象的相互作用。控制器接收输入，验证输入，然后进行业务操作，修改数据模型的状态。</p>
+<p>这个解释比较好：　<a href="http://www.yiibai.com/struts_2/struts_architecture.html" target="_blank" rel="noopener">http://www.yiibai.com/struts_2/struts_architecture.html</a><br><a href="http://www.cnblogs.com/langtianya/archive/2013/04/09/3011090.html" target="_blank" rel="noopener">http://www.cnblogs.com/langtianya/archive/2013/04/09/3011090.html</a></p>
+<h2 id="什么是Struts2"><a href="#什么是Struts2" class="headerlink" title="什么是Struts2"></a>什么是Struts2</h2><p>Apache Struts2的是一个在Java中构建<strong>Web应用程序开源框架</strong>。 Struts2是基于OpenSymphony的WebWork的框架。它是Struts1的提高，它更加灵活，易于使用和扩展。 Struts2的核心组成部分是Action，拦截器和结果页。</p>
+<p>Struts2提供了许多方法来创建Action类，并<strong>通过struts.xml中或通过注释进行配置</strong>。我们可以创建自己的<strong>拦截器</strong>实现常见任务。 Struts2中自带了很多的<strong>标签，并使用OGNL表达式语言</strong>。我们可以创造我们自己的类型转换器来呈现的结果页面。结果页面可以JSP和FreeMarker的模板。</p>
+<h2 id="Struts-与webWork的区别"><a href="#Struts-与webWork的区别" class="headerlink" title="Struts 与webWork的区别"></a>Struts 与webWork的区别</h2><p>Struts 2是Struts的下一代产品。是在 struts 和WebWork的技术基础上进行了合并，全新的Struts 2框架。其全新的Struts 2的体系结构与Struts 1的体系结构的差别巨大。Struts 2以WebWork为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与Servlet API完全脱离开，所以Struts 2可以理解为WebWork的更新产品。</p>
+<p>Struts和Webwork同为服务于Web的一种MVC框架，从某种程度上看，Struts2是从WebWork2上升级得到的。甚至Apache的官方文档也讲：WebWork2到Struts2是平滑的过渡。我们甚至也可以说Struts2就是WebWork2.3而已。在很多方面Struts仅仅是改变了WebWork下的名称。Struts2对应的有自己的标签，并且功能强大。Webwork也有自己的标签。</p>
+<p>1) 在很多方面Struts2仅仅是改变了WebWork下的名称,如DispatcherUtil 改为了Dispatcher.<br>2) AroundInterceptor：Struts 2不再支持WebWork中的AroundInterceptor。如果应用程序中需要使用AroundInterceptor，则应该自己手动导入WebWork中的AroundInterceptor类。<br>3) IoC容器支持：Struts 2不再支持内建的IoC容器，而改为全面支持Spring的IoC容器，以Spring的IoC容器作为默认的Object工厂。<br>4) 富文本编辑器标签：Struts 2不再支持WebWork的富文本编辑器，如果应用中需要使用富文本编辑器，则应该使用<strong>Dojo</strong>的富文本编辑器。</p>
+<p><a href="http://developer.51cto.com/art/201106/271744.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201106/271744.htm</a></p>
+<h2 id="struts2-与struts1的区别"><a href="#struts2-与struts1的区别" class="headerlink" title="struts2 与struts1的区别"></a>struts2 与struts1的区别</h2><p>Action类,线程安全，测试，标签，验证<br><img src="imgs/struts2-vs-struts1.png"></p>
+<p><strong>Action 类:</strong><br>• Struts1要求Action类继承一个<strong>抽象</strong>基类。Struts1的一个普遍问题是使用抽象类编程而不是接口，而struts2的Action是接口。<br>• Struts 2 Action类可以实现一个Action<strong>接口</strong>，也可实现其他接口，<strong>使可选和定制的服务成为可能</strong>。Struts2提供一个ActionSupport基类去 实现 常用的接口。Action接口不是必须的，任何有execute标识的POJO对象都可以用作Struts2的Action对象。</p>
+<p><strong>线程模式</strong>:<br>• Struts1 Action是单例模式并且必须是线程安全的，因为仅有Action的一个实例来处理所有的请求。单例策略限制了Struts1 Action能作的事，并且要在开发时特别小心。Action资源必须是线程安全的或同步的。(<strong>不是线程安全</strong>)<br>• Struts2 Action对象为每一个请求产生一个实例，因此没有线程安全问题。（实际上，servlet容器给每个请求产生许多可丢弃的对象，并且不会导致性能和垃圾回收问题）(<strong>线程安全</strong>)</p>
+<p><strong>Servlet 依赖</strong>:<br>• Struts1 Action 依赖于Servlet API ,因为当一个Action被调用时HttpServletRequest 和 HttpServletResponse 被传递给execute方法。<br>• Struts 2 Action不依赖于容器，允许Action脱离容器单独被测试。如果需要，Struts2 Action仍然可以访问初始的request和response。但是，其他的元素减少或者消除了直接访问HttpServetRequest 和 HttpServletResponse的必要性。</p>
+<p><strong>可测性</strong>:<br>• 测试Struts1 Action的一个主要问题是execute方法暴露了servlet API（这使得测试要依赖于容器）。一个第三方扩展－－Struts TestCase－－提供了一套Struts1的模拟对象（来进行测试）。<br>• Struts 2 Action可以通过初始化、设置属性、调用方法来测试，“依赖注入”支持也使测试更容易。</p>
+<p><strong>表达式语言</strong>：<br>• Struts1 整合了JSTL，因此使用JSTL EL。这种EL有基本对象图遍历，但是对集合和索引属性的支持很弱。<br>• Struts2可以使用JSTL，但是也支持一个更强大和灵活的表达式语言－－”Object Graph Notation Language” (OGNL). </p>
+<p><strong>绑定值到页面（view）</strong>:<br>• Struts 1使用标准JSP机制把对象绑定到页面中来访问。<br>• Struts 2 使用 “ValueStack”技术，使taglib能够访问值而不需要把你的页面（view）和对象绑定起来。ValueStack策略允许通过一系列名称相同但类型不同的属性重用页面（view）。</p>
+<h2 id="Struts工作流程"><a href="#Struts工作流程" class="headerlink" title="Struts工作流程:"></a>Struts工作流程:</h2><p><img src="http://www.evget.com/images/article/08072801.png" alt="图片标题"><br>Struts2:<br>(1)客户端提交一个HttpServletRequest请求(.action或JSP页面)<br>(2)请求被提交到一系列（主要是三层）的过滤器（Filter），如（ActionContextCleanUp、其他过滤器（SiteMesh等）、 FilterDispatcher）。注意这里是有顺序的，先ActionContextCleanUp，再其他过滤器（SiteMesh等）、最后到FilterDispatcher。<br>(3)FilterDispatcher是Struts2控制器的核心,它通常是过滤器链中的最后一个过滤器,FilterDispatcher进行初始化并启用核心doFilter().FilterDispatcher询问ActionMapper是否需要调用某个Action来处理这个（request）请求，如果ActionMapper决定需要调用某个Action，FilterDispatcher把请求的处理交给ActionProxy。<br>(6)ActionProxy通过<strong>ConfigurationManager</strong>(它会访问struts.xml)询问框架的配置文件,找到需要调用的Action类.<br>(7)ActionProxy创建一个ActionInvocation实例,而ActionInvocation通过代理模式调用Action,(在调用之前会根据配置文件加载相关的所有Interceptor拦截器)<br>(8)Action执行完毕后,返回一个result字符串,此时再按相反的顺序通过Interceptor拦截器.<br>(9)最后ActionInvocation负责根据struts.xml中配置的result元素,找到与返回值对应的result,决定进行下一步输出.</p>
+<h2 id="为什么要使用-Struts2-amp-Struts2-的优点："><a href="#为什么要使用-Struts2-amp-Struts2-的优点：" class="headerlink" title="为什么要使用 Struts2 &amp; Struts2 的优点："></a>为什么要使用 Struts2 &amp; Struts2 的优点：</h2><p>①. 基于 MVC 架构，框架结构清晰。<br>②. 使用 OGNL: OGNL 可以快捷的访问值栈中的数据、调用值栈中对象的方法<br>③. 拦截器: Struts2 的拦截器是一个 Action 级别的 AOP, Struts2 中的许多特性都是通过拦截器来实现的, 例如异常处理，文件上传，验证等。拦截器是可配置与重用的<br>④. 多种表现层技术. 如：JSP、FreeMarker、Velocity 等</p>
+<h2 id="SpringMVC-与-Struts2区别"><a href="#SpringMVC-与-Struts2区别" class="headerlink" title="SpringMVC 与　Struts2区别"></a>SpringMVC 与　Struts2区别</h2><p>1.核心控制器（前端控制器、预处理控制器）：对于使用过mvc框架的人来说这个词应该不会陌生，核心控制器的主要用途是处理所有的请求，然后对那些特殊的请求 （控制器）统一的进行处理(字符编码、文件上传、参数接受、异常处理等等),spring mvc核心控制器是Servlet，而Struts2是Filter。<br>2.控制器实例：Spring Mvc会比Struts快一些（理论上）。Spring Mvc是基于方法设计，而Sturts是基于对象，每次发一次请求都会实例一个action，每个action都会被注入属性，而Spring更像Servlet一样，只有一个实例，每次请求执行对应的方法即可(注意：由于是单例实例，所以应当避免全局变量的修改，这样会产生线程安全问题)。<br>3. 管理方式：大部分的公司的核心架构中，就会使用到spring,而spring mvc又是spring中的一个模块，所以spring对于spring mvc的控制器管理更加简单方便，而且提供了全 注解方式进行管理，各种功能的注解都比较全面，使用简单，而struts2需要采用XML很多的配置参数来管理（虽然也可以采用注解，但是几乎没有公司那 样使用）。<br>4.参数传递：Struts2中自身提供多种参数接受，其实都是通过（ValueStack）进行传递和赋值，而SpringMvc是通过方法的参数进行接收。<br>5.intercepter 的实现机制：struts有以自己的interceptor机制，spring mvc用的是独立的AOP方式。这样导致struts的配置文件量还是比spring mvc大，虽然struts的配置能继承，所以我觉得论使用上来讲，spring mvc使用更加简洁，开发效率Spring MVC确实比struts2高。spring mvc是方法级别的拦截，一个方法对应一个request上下文，而方法同时又跟一个url对应，所以说从架构本身上spring3 mvc就容易实现restful url。struts2是类级别的拦截，一个类对应一个request上下文；实现restful url要费劲，因为struts2 action的一个方法可以对应一个url；而其类属性却被所有方法共享，这也就无法用注解或其他方式标识其所属方法了。spring3 mvc的方法之间基本上独立的，独享request response数据，请求数据通过参数获取，处理结果通过ModelMap交回给框架方法之间不共享变量，而struts2搞的就比较乱，虽然方法之间 也是独立的，但其所有Action变量是共享的，这不会影响程序运行，却给我们编码，读程序时带来麻烦。<br>7.spring mvc处理ajax请求,直接通过返回数据，方法中使用注解@ResponseBody，spring mvc自动帮我们对象转换为JSON数据。</p>
+<h2 id="Filter-Listener-Servlet区别"><a href="#Filter-Listener-Servlet区别" class="headerlink" title="Filter,Listener,Servlet区别"></a>Filter,Listener,Servlet区别</h2><p>1) Filter　实现javax.servlet.Filter接口，在web.xml中配置与标签指定使用哪个Filter实现类过滤哪些URL链接。只在web启动时进行初始化操作。filter流程是<strong>线性</strong>的， url传来之后，检查之后，可保持原来的流程继续向下执行，被下一个filter, servlet接收等，而servlet 处理之后，不会继续向下传递。filter功能可用来保持流程继续按照原来的方式进行下去，或者主导流程，而servlet的功能主要用来主导流程。<br>特点：可以在响应之前修改Request和Response的头部，只能转发请求，不能直接发出响应。filter可用来进行字符编码的过滤，检测用户是否登陆的过滤，禁止页面缓存等<br>2) Servlet 流程是短的，url传来之后，就对其进行处理，之后返回或转向到某一自己指定的页面。它主要用来在业务处理之前进行控制。<br>3) Listener<br>servlet,filter都是针对url之类的，而listener是针对<strong>对象操作</strong>的，如session的创建，session.setAttribute的发生，在这样的事件发<br>生时做一些事情。</p>
+<h2 id="Struts2拦截器和过滤器的区别"><a href="#Struts2拦截器和过滤器的区别" class="headerlink" title="Struts2拦截器和过滤器的区别"></a>Struts2拦截器和过滤器的区别</h2><p>①、过滤器依赖于Servlet容器，而拦截器不依赖于Servlet容器。<br>②、Struts2 拦截器只能对 Action 请求起作用，而过滤器则可以对几乎所有请求起作用。<br>③、拦截器可以访问 Action 上下文(ActionContext)、值栈里的对象(ValueStack)，而过滤器不能.<br>④、在 Action 的生命周期中，拦截器可以多次调用，而过滤器只能在容器初始化时被调用一次。</p>
+<h2 id="Struts的Action是不是线程安全的"><a href="#Struts的Action是不是线程安全的" class="headerlink" title="Struts的Action是不是线程安全的"></a>Struts的Action是不是线程安全的</h2><p> struts2的action是线程安全的，struts1的action不是线程安全的 。<br>对于struts1 ，Action是单例模式，一个实例来处理所有的请求。当第一次**.do的请求过来时，在内存中的actionmapping中找到相对应的action，然后new出这个action放在缓存中，当第二次一样的请求过来时，还是找的这个action，所以对于struts1来说，action是单实例的，只有一个，如果在action中定义变量，就要非常小心了，因为并发问题，可能带来灾难性的后果，也不是不可以，我们可以加锁达到同步，只是在性能上就 要折衷了。<br>声明局部变量，或者扩展RequestProcessor，让每次都创建一个Action，或者在spring中用scope=”prototype”来管理，不申明类变量就可以保证线程安全。因为只存在一个Action类实例，所有线程会共享类变量。<br>struts2 在struts1的基础上做了改进 ，对于struts2 ，每次请求过来都会new一个新的action, 所以说struts2的action没有线程安全问题，是线程安全的，但同时也带来一个问题，每次都new一个action ，这样action的实例太多 ， 在性能方面还是存在一定的缺陷的。</p>
+<h2 id="struts2-0的mvc模式与struts1-0的区别"><a href="#struts2-0的mvc模式与struts1-0的区别" class="headerlink" title="struts2.0的mvc模式与struts1.0的区别?"></a>struts2.0的mvc模式与struts1.0的区别?</h2><p>与struts1最大的不同是：struts2的控制器。struts2的控制器不再像struts1的控制器,需要<strong>继承</strong>一个Action父类,甚至可以无需实现任何接口,struts2的Action就是一个普通的POJO。实际上，Struts2 的Action就是一个包含execute方法的普通Java类该类里包含的多个属性用于封装用户的请求参数。</p>
+<h2 id="你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？"><a href="#你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？" class="headerlink" title="你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？"></a>你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？</h2><p>MVC设计模式（应用观察者模式的框架模式）<br>M: Model(Business process layer)，模型，是应用程序中用于处理应用程序数据逻辑的部分,通常模型对象负责在数据库中存取数据。,并独立于表现层 (Independent of presentation)。<br>V: View(Presentation layer)，视图，通过客户端数据类型显示数据,并回显模型层的执行结果。<br>C: Controller(Control layer)，控制器，也就是<strong>视图层和模型层桥梁</strong>，控制数据的流向，接受视图层发出的事件，并重绘视图<br>优点：<br>1）视图控制模型分离，提高代码重用性。<br>2）提高开发效率。<br>3）便于后期维护，降低维护成本。<br>4）方便多开发人员间的分工。<br>5)结构清晰<br>缺点：<br>1）清晰的构架以代码的复杂性为代价， 对小项目优可能反而降低开发效率。<br>2）运行效率相对较低 </p>
+<p>MVC框架的一种实现模型<br>模型二(Servlet-centric)： JSP+Servlet+JavaBean，以控制为核心，JSP只负责显示和收集数据，Sevlet，连接视图和模型，将视图层数据，发送给模型层，JavaBean，分为业务类和数据实体，业务类处理业务数据，数据实体，承载数据，基本上大多数的项目都是使用这种MVC的实现模式。</p>
+<p>Struts MVC框架(Web application frameworks)  :Struts是使用MVC的实现模式二来实现的，也就是以控制器为核心。</p>
+<p>Struts提供了一些组件使用MVC开发应用程序：<br>Model：Struts 没有提供model 类。这个商业逻辑必须由Web 应用程序的开发者以JavaBean或EJB的形式提供<br>View：Struts提供了action form创建form bean, 用于在controller和view间传输数据。此外，Struts提供了自定义JSP标签库，辅助开发者用JSP创建交互式的以表单为基础的应用程序，应用程序资源文件保留了一些文本常量和错误消息，可转变为其它语言， 可用于JSP中。<br>Controller：Struts提供了一个核心的控制器FilterDispatcher，通过这个核心的控制器来调用其他用户注册了的自定义的控制器Action，自定义Action需要符合Struts的自定义Action规范，还需要在struts-config.xml的特定配置文件中进行配置，接收JSP输入字段形成Action form，然后调用一个Action控制器。Action控制器中提供了model的逻辑接口。</p>
+<h2 id="说出-struts2-中至少-5-个的默认拦截器"><a href="#说出-struts2-中至少-5-个的默认拦截器" class="headerlink" title="说出 struts2 中至少 5 个的默认拦截器"></a>说出 struts2 中至少 5 个的默认拦截器</h2><p>exception；fileUpload；i18n；modelDriven；params；prepare；token；tokenSession；validation 等<br>拦截器的生命周期与工作过程 ?</p>
+<h2 id="每个拦截器都是需要实现-Interceptor-接口"><a href="#每个拦截器都是需要实现-Interceptor-接口" class="headerlink" title="每个拦截器都是需要实现 Interceptor 接口"></a>每个拦截器都是需要实现 Interceptor 接口</h2><p>init()：在拦截器被创建后立即被调用, 它在拦截器的生命周期内只被调用一次. 可以在该方法中对相关资源进行必要的初始化；<br>intercept(ActionInvocation invocation)：每拦截一个动作请求，该方法就会被调用一次；<br>destroy：该方法将在拦截器被销毁之前被调用, 它在拦截器的生命周期内也只被调用一次；</p>
+<h2 id="创建Action类有几种方法？"><a href="#创建Action类有几种方法？" class="headerlink" title="创建Action类有几种方法？"></a>创建Action类有几种方法？</h2><p>实现Action 接口<br>使用Struts2 @Action 元注解<br>继承ActionSupport类，必须实现 execute() 方法，返回一个可配置的字符串</p>
+<p>##Struts2的拦截器执行什么模式？<br><strong>责任链模式</strong><br>过滤器decorator模式和职责链模式</p>
+<h1 id="web-部分"><a href="#web-部分" class="headerlink" title="web 部分"></a>web 部分</h1><h2 id="1-servlet生命周期"><a href="#1-servlet生命周期" class="headerlink" title="1. servlet生命周期"></a>1. servlet生命周期</h2><p>servlet的声明周期周期是由servlet的容器来控制,它可以分为3个阶段:初始化,运行和销毁. </p>
+<h3 id="1-初始化阶段"><a href="#1-初始化阶段" class="headerlink" title="1) 初始化阶段"></a>1) 初始化阶段</h3><p>初始化阶段主要完成以下任务: </p>
+<ul>
+<li>servlet容器加载servlet类,把servlet类的.class文件中的数据读到内存中. </li>
+<li>servlet容器创建一个ServletConfig对象,ServletConfig对象包含了servlet的初始化配置信息. </li>
+<li>servlet容器创建一个servlet对象 </li>
+<li>servlet容器调用servlet的init方法进行初始化. </li>
+</ul>
+<h3 id="2-运行阶段"><a href="#2-运行阶段" class="headerlink" title="2) 运行阶段"></a>2) 运行阶段</h3><p>当servlet容器收到一个请求时,servlet容器会针对这个请求创建servletRequest和servletResponse对象,然后调用service方法.并把这两个参数传递给service方法.service方法通过servletRequest对象获得请求的信息,并处理该请求. 再通过servletResponse对象生成这个请求的相应结果.然后销毁servletRequest和servletResponse对象. 不管这个请求时post还是get提交的,最终这个请求都会由service方法来处理. </p>
+<h3 id="3-销毁阶段"><a href="#3-销毁阶段" class="headerlink" title="3) 销毁阶段"></a>3) 销毁阶段</h3><p>当web应用被终止时,servlet容器会调用servlet对象的destroy方法,然后销毁servlet对象. 同时也会销毁servlet对象相关联的servletConfig对象. 我们可以通过destroy方法释放servlet占用的资源.</p>
+<p><a href="https://reonyu.github.io/" target="_blank" rel="noopener">https://reonyu.github.io/</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/code/" rel="tag"># code</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/面向对象-Java/" rel="next" title="面向对象-Java">
+                <i class="fa fa-chevron-left"></i> 面向对象-Java
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/个人简历/" rel="prev" title="个人简历">
+                个人简历 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Leon">
+          <p class="site-author-name" itemprop="name">Leon</p>
+           
+              <p class="site-description motion-element" itemprop="description">挪威的森林</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring"><span class="nav-number">1.</span> <span class="nav-text">什么是Spring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring有哪些优点"><span class="nav-number">2.</span> <span class="nav-text">Spring有哪些优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring框架有哪些模块"><span class="nav-number">3.</span> <span class="nav-text">Spring框架有哪些模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是控制反转-IOC-？什么是依赖注入？"><span class="nav-number">4.</span> <span class="nav-text">什么是控制反转(IOC)？什么是依赖注入？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeanFactory和ApplicationContext有什么区别？"><span class="nav-number">5.</span> <span class="nav-text">BeanFactory和ApplicationContext有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring有几种配置方式？"><span class="nav-number">6.</span> <span class="nav-text">Spring有几种配置方式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Bean的生命周期"><span class="nav-number">7.</span> <span class="nav-text">Spring Bean的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Bean的作用域之间有什么区别"><span class="nav-number">8.</span> <span class="nav-text">Spring Bean的作用域之间有什么区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请解释自动装配模式的区别"><span class="nav-number">9.</span> <span class="nav-text">请解释自动装配模式的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-框架中都用到了哪些设计模式"><span class="nav-number">10.</span> <span class="nav-text">Spring 框架中都用到了哪些设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP（Aspect-Oriented-Programming）是怎么实现的"><span class="nav-number">11.</span> <span class="nav-text">AOP（Aspect-Oriented Programming）是怎么实现的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍spring的IOC实现"><span class="nav-number">12.</span> <span class="nav-text">介绍spring的IOC实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring中bean加载机制，bean生成的具体步骤"><span class="nav-number">13.</span> <span class="nav-text">spring中bean加载机制，bean生成的具体步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springMVC流程具体叙述下"><span class="nav-number">14.</span> <span class="nav-text">springMVC流程具体叙述下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring各个版本的区别"><span class="nav-number">15.</span> <span class="nav-text">spring各个版本的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ioc注入的方式"><span class="nav-number">16.</span> <span class="nav-text">ioc注入的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP相关概念"><span class="nav-number">17.</span> <span class="nav-text">AOP相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring何时创建applicationContext-web-xml中使用listener-或dispatcherServlet"><span class="nav-number">18.</span> <span class="nav-text">spring何时创建applicationContext(web.xml中使用listener 或dispatcherServlet)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#listener是监听哪个事件-ServletContext创建事件"><span class="nav-number">19.</span> <span class="nav-text">listener是监听哪个事件(ServletContext创建事件)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器与监听器的区别"><span class="nav-number">20.</span> <span class="nav-text">过滤器与监听器的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请描述一下java事件监听机制。"><span class="nav-number">21.</span> <span class="nav-text">请描述一下java事件监听机制。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释核心容器-应用上下文-模块"><span class="nav-number">22.</span> <span class="nav-text">解释核心容器(应用上下文)模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeanFactory-–-BeanFactory-实例"><span class="nav-number">23.</span> <span class="nav-text">BeanFactory – BeanFactory 实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XmlBeanFactory"><span class="nav-number">24.</span> <span class="nav-text">XmlBeanFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释AOP模块"><span class="nav-number">25.</span> <span class="nav-text">解释AOP模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释抽象JDBC和DAO模块"><span class="nav-number">26.</span> <span class="nav-text">解释抽象JDBC和DAO模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释对象-关系映射集成模块"><span class="nav-number">27.</span> <span class="nav-text">解释对象/关系映射集成模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释web模块"><span class="nav-number">28.</span> <span class="nav-text">解释web模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释Spring-MVC模块"><span class="nav-number">29.</span> <span class="nav-text">解释Spring MVC模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContextLoaderListener是监听什么事件"><span class="nav-number">30.</span> <span class="nav-text">ContextLoaderListener是监听什么事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-IoC容器"><span class="nav-number">31.</span> <span class="nav-text">Spring IoC容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOC有什么优点？"><span class="nav-number">32.</span> <span class="nav-text">IOC有什么优点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用上下文是如何实现的？"><span class="nav-number">33.</span> <span class="nav-text">应用上下文是如何实现的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些不同类型的IOC-依赖注入"><span class="nav-number">34.</span> <span class="nav-text">有哪些不同类型的IOC(依赖注入)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？"><span class="nav-number">35.</span> <span class="nav-text">你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring-Beans"><span class="nav-number">36.</span> <span class="nav-text">什么是Spring Beans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Bean中定义了什么内容？"><span class="nav-number">37.</span> <span class="nav-text">Spring Bean中定义了什么内容？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何向Spring-容器提供配置元数据"><span class="nav-number">38.</span> <span class="nav-text">如何向Spring 容器提供配置元数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring框架中单例beans是线程安全的吗？"><span class="nav-number">39.</span> <span class="nav-text">Spring框架中单例beans是线程安全的吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哪些是最重要的bean生命周期方法？能重写它们吗？"><span class="nav-number">40.</span> <span class="nav-text">哪些是最重要的bean生命周期方法？能重写它们吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring的内部bean"><span class="nav-number">41.</span> <span class="nav-text">什么是Spring的内部bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在Spring中注入Java集合类"><span class="nav-number">42.</span> <span class="nav-text">如何在Spring中注入Java集合类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是bean-wiring？"><span class="nav-number">43.</span> <span class="nav-text">什么是bean wiring？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是bean自动装配？"><span class="nav-number">44.</span> <span class="nav-text">什么是bean自动装配？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动装配有哪些局限性？"><span class="nav-number">45.</span> <span class="nav-text">自动装配有哪些局限性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你可以在Spring中注入null或空字符串吗"><span class="nav-number">46.</span> <span class="nav-text">你可以在Spring中注入null或空字符串吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring基于Java的配置？给出一些注解的例子"><span class="nav-number">47.</span> <span class="nav-text">什么是Spring基于Java的配置？给出一些注解的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是基于注解的容器配置"><span class="nav-number">48.</span> <span class="nav-text">什么是基于注解的容器配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何开启注解装配？"><span class="nav-number">49.</span> <span class="nav-text">如何开启注解装配？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Required-注解"><span class="nav-number">50.</span> <span class="nav-text">@Required 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autowired-注解"><span class="nav-number">51.</span> <span class="nav-text">@Autowired 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Qualifier-注解"><span class="nav-number">52.</span> <span class="nav-text">@Qualifier 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Spring框架中如何更有效的使用JDBC？"><span class="nav-number">53.</span> <span class="nav-text">在Spring框架中如何更有效的使用JDBC？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JdbcTemplate"><span class="nav-number">54.</span> <span class="nav-text">JdbcTemplate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring对DAO的支持"><span class="nav-number">55.</span> <span class="nav-text">Spring对DAO的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring支持的ORM"><span class="nav-number">56.</span> <span class="nav-text">Spring支持的ORM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring支持的事务管理类型"><span class="nav-number">57.</span> <span class="nav-text">Spring支持的事务管理类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring框架的事务管理有哪些优点"><span class="nav-number">58.</span> <span class="nav-text">Spring框架的事务管理有哪些优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-number">59.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring事务定义的传播规则"><span class="nav-number">60.</span> <span class="nav-text">spring事务定义的传播规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring事务支持的隔离级别"><span class="nav-number">61.</span> <span class="nav-text">spring事务支持的隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你更推荐那种类型的事务管理？"><span class="nav-number">62.</span> <span class="nav-text">你更推荐那种类型的事务管理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有几种不同类型的自动代理？"><span class="nav-number">63.</span> <span class="nav-text">有几种不同类型的自动代理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是织入？什么是织入应用的不同点？"><span class="nav-number">64.</span> <span class="nav-text">什么是织入？什么是织入应用的不同点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring的MVC框架？"><span class="nav-number">65.</span> <span class="nav-text">什么是Spring的MVC框架？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DispatcherServlet"><span class="nav-number">66.</span> <span class="nav-text">DispatcherServlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebApplicationContext"><span class="nav-number">67.</span> <span class="nav-text">WebApplicationContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring-MVC框架的控制器？"><span class="nav-number">68.</span> <span class="nav-text">什么是Spring MVC框架的控制器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller-annotation"><span class="nav-number">69.</span> <span class="nav-text">@Controller annotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestMapping-annotation"><span class="nav-number">70.</span> <span class="nav-text">@RequestMapping annotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-与-Hibernate的区别"><span class="nav-number">71.</span> <span class="nav-text">MyBatis 与 Hibernate的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC-和-Hibernate的区别"><span class="nav-number">72.</span> <span class="nav-text">JDBC 和　Hibernate的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate的原理体系架构"><span class="nav-number">73.</span> <span class="nav-text">Hibernate的原理体系架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五大核心接口，"><span class="nav-number">74.</span> <span class="nav-text">五大核心接口，</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate对象的三种状态转换"><span class="nav-number">75.</span> <span class="nav-text">Hibernate对象的三种状态转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-瞬时状态-transient"><span class="nav-number">75.1.</span> <span class="nav-text">1.瞬时状态 (transient)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-持久化状态-persisted"><span class="nav-number">75.2.</span> <span class="nav-text">2.持久化状态(persisted)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-游离状态-detached"><span class="nav-number">75.3.</span> <span class="nav-text">3.游离状态(detached)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务管理"><span class="nav-number">76.</span> <span class="nav-text">事务管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate对一二级缓存的使用"><span class="nav-number">77.</span> <span class="nav-text">Hibernate对一二级缓存的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lazy-Load的理解"><span class="nav-number">78.</span> <span class="nav-text">Lazy-Load的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#悲观锁和乐观锁"><span class="nav-number">79.</span> <span class="nav-text">悲观锁和乐观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述-Struts-体系结构？对应各个部分的开发工作主要包括哪些？"><span class="nav-number">80.</span> <span class="nav-text">描述 Struts 体系结构？对应各个部分的开发工作主要包括哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Struts2"><span class="nav-number">81.</span> <span class="nav-text">什么是Struts2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts-与webWork的区别"><span class="nav-number">82.</span> <span class="nav-text">Struts 与webWork的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#struts2-与struts1的区别"><span class="nav-number">83.</span> <span class="nav-text">struts2 与struts1的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts工作流程"><span class="nav-number">84.</span> <span class="nav-text">Struts工作流程:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用-Struts2-amp-Struts2-的优点："><span class="nav-number">85.</span> <span class="nav-text">为什么要使用 Struts2 &amp; Struts2 的优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC-与-Struts2区别"><span class="nav-number">86.</span> <span class="nav-text">SpringMVC 与　Struts2区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter-Listener-Servlet区别"><span class="nav-number">87.</span> <span class="nav-text">Filter,Listener,Servlet区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts2拦截器和过滤器的区别"><span class="nav-number">88.</span> <span class="nav-text">Struts2拦截器和过滤器的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts的Action是不是线程安全的"><span class="nav-number">89.</span> <span class="nav-text">Struts的Action是不是线程安全的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#struts2-0的mvc模式与struts1-0的区别"><span class="nav-number">90.</span> <span class="nav-text">struts2.0的mvc模式与struts1.0的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？"><span class="nav-number">91.</span> <span class="nav-text">你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说出-struts2-中至少-5-个的默认拦截器"><span class="nav-number">92.</span> <span class="nav-text">说出 struts2 中至少 5 个的默认拦截器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个拦截器都是需要实现-Interceptor-接口"><span class="nav-number">93.</span> <span class="nav-text">每个拦截器都是需要实现 Interceptor 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Action类有几种方法？"><span class="nav-number">94.</span> <span class="nav-text">创建Action类有几种方法？</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#web-部分"><span class="nav-number"></span> <span class="nav-text">web 部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-servlet生命周期"><span class="nav-number">1.</span> <span class="nav-text">1. servlet生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-初始化阶段"><span class="nav-number">1.1.</span> <span class="nav-text">1) 初始化阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-运行阶段"><span class="nav-number">1.2.</span> <span class="nav-text">2) 运行阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-销毁阶段"><span class="nav-number">1.3.</span> <span class="nav-text">3) 销毁阶段</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
