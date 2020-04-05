@@ -108,7 +108,7 @@
 <li><strong>事务管理</strong>：Spring对下至本地业务上至全局业务(JAT)提供了统一的事务管理接口。</li>
 <li><strong>异常处理</strong>：Spring提供一个方便的API将特定技术的异常(由JDBC, Hibernate, 或JDO抛出)转化为一致的、Unchecked异常。</li>
 </ul>
-<h2 id="Spring框架有哪些模块"><a href="#Spring框架有哪些模块" class="headerlink" title="Spring框架有哪些模块"></a>Spring框架有哪些模块</h2><p>Spring框架至今已集成了20多个模块。这些模块主要被分如下图所示的核心容器、数据访问/集成、Web、AOP（面向切面编程）、测试模块。<br><img src="/assets/spring.png" alt></p>
+<h2 id="Spring框架有哪些模块"><a href="#Spring框架有哪些模块" class="headerlink" title="Spring框架有哪些模块"></a>Spring框架有哪些模块</h2><p>Spring框架至今已集成了20多个模块。这些模块主要被分如下图所示的核心容器、数据访问/集成、Web、AOP（面向切面编程）、测试模块。<br><img src="/浅尝Spring/spring.png" alt></p>
 <ul>
 <li><strong>核心容器模块</strong>：是spring中最核心的模块。负责Bean的创建、配置和管理。主要包括：beans,core,context,expression等模块。</li>
 <li><strong>Spring的AOP模块</strong>：主要负责对面向切面编程的支持，帮助应用对象解耦。</li>
@@ -136,7 +136,7 @@
 <li><strong>基于注解的配置</strong>： Spring在2.5版本以后开始支持用注解的方式来配置依赖注入。可以用注解的方式来替代XML方式的bean描述，可以将bean描述转移到组件类的内部，只需要在相关类上、方法上或者字段声明上使用注解即可。注解注入将会被容器在XML注入之前被处理，所以后者会覆盖掉前者对于同一个属性的处理结果</li>
 <li><strong>基于Java的配置</strong>： Spring对Java配置的支持是由@Configuration注解和@Bean注解来实现的。由@Bean注解的方法将会实例化、配置和初始化一个新对象，这个对象将由Spring的IoC容器来管理。@Bean声明所起到的作用与<bean> 元素类似。被@Configuration所注解的类则表示这个类的主要目的是作为bean定义的资源。被@Configuration声明的类可以通过在同一个类的内部调用@bean方法来设置嵌入bean的依赖关系。</bean></li>
 </ul>
-<h2 id="Spring-Bean的生命周期"><a href="#Spring-Bean的生命周期" class="headerlink" title="Spring Bean的生命周期"></a>Spring Bean的生命周期</h2><p><img src="/assets/beans.png" alt></p>
+<h2 id="Spring-Bean的生命周期"><a href="#Spring-Bean的生命周期" class="headerlink" title="Spring Bean的生命周期"></a>Spring Bean的生命周期</h2><p><img src="/浅尝Spring/beans.png" alt></p>
 <p>Bean在Spring中的生命周期如下：</p>
 <ul>
 <li><strong>实例化</strong>：Spring通过new关键字将一个Bean进行实例化。</li>
@@ -535,7 +535,7 @@
 <p>Struts和Webwork同为服务于Web的一种MVC框架，从某种程度上看，Struts2是从WebWork2上升级得到的。甚至Apache的官方文档也讲：WebWork2到Struts2是平滑的过渡。我们甚至也可以说Struts2就是WebWork2.3而已。在很多方面Struts仅仅是改变了WebWork下的名称。Struts2对应的有自己的标签，并且功能强大。Webwork也有自己的标签。</p>
 <p>1) 在很多方面Struts2仅仅是改变了WebWork下的名称,如DispatcherUtil 改为了Dispatcher.<br>2) AroundInterceptor：Struts 2不再支持WebWork中的AroundInterceptor。如果应用程序中需要使用AroundInterceptor，则应该自己手动导入WebWork中的AroundInterceptor类。<br>3) IoC容器支持：Struts 2不再支持内建的IoC容器，而改为全面支持Spring的IoC容器，以Spring的IoC容器作为默认的Object工厂。<br>4) 富文本编辑器标签：Struts 2不再支持WebWork的富文本编辑器，如果应用中需要使用富文本编辑器，则应该使用<strong>Dojo</strong>的富文本编辑器。</p>
 <p><a href="http://developer.51cto.com/art/201106/271744.htm" target="_blank" rel="noopener">http://developer.51cto.com/art/201106/271744.htm</a></p>
-<h2 id="struts2-与struts1的区别"><a href="#struts2-与struts1的区别" class="headerlink" title="struts2 与struts1的区别"></a>struts2 与struts1的区别</h2><p>Action类,线程安全，测试，标签，验证<br><img src="imgs/struts2-vs-struts1.png"></p>
+<h2 id="struts2-与struts1的区别"><a href="#struts2-与struts1的区别" class="headerlink" title="struts2 与struts1的区别"></a>struts2 与struts1的区别</h2><p>Action类,线程安全，测试，标签，验证<br><img src="/浅尝Spring/struts2-vs-struts1.png"></p>
 <p><strong>Action 类:</strong><br>• Struts1要求Action类继承一个<strong>抽象</strong>基类。Struts1的一个普遍问题是使用抽象类编程而不是接口，而struts2的Action是接口。<br>• Struts 2 Action类可以实现一个Action<strong>接口</strong>，也可实现其他接口，<strong>使可选和定制的服务成为可能</strong>。Struts2提供一个ActionSupport基类去 实现 常用的接口。Action接口不是必须的，任何有execute标识的POJO对象都可以用作Struts2的Action对象。</p>
 <p><strong>线程模式</strong>:<br>• Struts1 Action是单例模式并且必须是线程安全的，因为仅有Action的一个实例来处理所有的请求。单例策略限制了Struts1 Action能作的事，并且要在开发时特别小心。Action资源必须是线程安全的或同步的。(<strong>不是线程安全</strong>)<br>• Struts2 Action对象为每一个请求产生一个实例，因此没有线程安全问题。（实际上，servlet容器给每个请求产生许多可丢弃的对象，并且不会导致性能和垃圾回收问题）(<strong>线程安全</strong>)</p>
 <p><strong>Servlet 依赖</strong>:<br>• Struts1 Action 依赖于Servlet API ,因为当一个Action被调用时HttpServletRequest 和 HttpServletResponse 被传递给execute方法。<br>• Struts 2 Action不依赖于容器，允许Action脱离容器单独被测试。如果需要，Struts2 Action仍然可以访问初始的request和response。但是，其他的元素减少或者消除了直接访问HttpServetRequest 和 HttpServletResponse的必要性。</p>
@@ -654,7 +654,7 @@
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            项目中的个别问题
+            项目中的些许问题
           
         </div>
       </a>
