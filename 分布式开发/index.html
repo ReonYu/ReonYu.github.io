@@ -1,354 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
+<html lang="zh-HK" >
 
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="路漫漫其修远兮，吾将上下而求索" />
+   
+  <meta name="description" content="挪威的森林" />
   
-
-
-<html class="theme-next mist use-motion" lang="zh-HK">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    分布式开发基础 |  Leon
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
   
+  <link rel="shortcut icon" href="/first.png" />
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="/css/custom.css">
   
-  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
   
   
 
   
-    
-    
-  
 
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="code,">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/avatar.png?v=5.1.0">
-
-
-
-
-
-
-<meta name="description" content="[分布式系统架构基础]分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。 123ConsistencyAvailabilityPartition tolerance  它们的第一个字母分别是 C、A、P。Eric Brewer 说，这三个指标不可能同时">
-<meta name="keywords" content="code">
-<meta property="og:type" content="article">
-<meta property="og:title" content="分布式开发基础">
-<meta property="og:url" content="http://yoursite.com/分布式开发/index.html">
-<meta property="og:site_name" content="Leon">
-<meta property="og:description" content="[分布式系统架构基础]分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。 123ConsistencyAvailabilityPartition tolerance  它们的第一个字母分别是 C、A、P。Eric Brewer 说，这三个指标不可能同时">
-<meta property="og:locale" content="zh-HK">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/cee6a24bae2f1146d8f905a9ede12c23.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/cc2bf6c40bcccedb3e6bb2471ef36e53.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/36bb3e9d1be0ea97b3e836dc467a9c87.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/995c5ddf11013119937692d6448da2e8.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/42e2b6be95abf864362b7e646fea18aa.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/c3cf164028d6832a3465def010665ec3.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/b1f224cb62e2257103969df6b2b02320.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/5479e5bb2009261c1c1f4aa2524c5e48.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/53847a86544edeb54059110633da692c.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/cde28984c2c32a5068b2b31d5ba2040f.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/944a3ed0ab807a87b5c562c58a31ea2b.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/641361c1efdb212bdba9b74168d6334b.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/7ca755dfe9b16f9c130f5de492549a86.png">
-<meta property="og:image" content="http://yoursite.com/分布式开发/images/72025ab7142520ce9e59193eb956b900.png">
-<meta property="og:updated_time" content="2019-10-11T06:31:21.276Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式开发基础">
-<meta name="twitter:description" content="[分布式系统架构基础]分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。 1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。 123ConsistencyAvailabilityPartition tolerance  它们的第一个字母分别是 C、A、P。Eric Brewer 说，这三个指标不可能同时">
-<meta name="twitter:image" content="http://yoursite.com/分布式开发/images/cee6a24bae2f1146d8f905a9ede12c23.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/分布式开发/">
-
-
-
-
-
-  <title> 分布式开发基础 | Leon </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-HK">
+</html>
 
-  
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-分布式开发" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
+  <div class="article-inner">
     
-  
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  分布式开发基础
+</h1>
+ 
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    </header>
     
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Leon</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+    
+    <div class="article-meta">
+      <a href="/分布式开发/" class="article-date">
+  <time datetime="2018-07-11T04:26:09.000Z" itemprop="datePublished">2018-07-11</time>
+</a>
       
-        <p class="site-subtitle">Live For Real</p>
       
-  </div>
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">15.8k</span>
+        </span>
+    </span>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">54 min</span>
+        </span>
+    </span>
 </div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
       
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
-            
-            Commonweal 404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+    </div>
     
 
-  
+    
+    
+    <div class="tocbot"></div>
 
-  
-  
-  
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/分布式开发/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leon">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leon">
-    </span>
 
     
-      <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                分布式开发基础
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-11T12:26:09+08:00">
-                2018-07-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
       
 
       
-        <h1 id="分布式系统架构基础"><a href="#分布式系统架构基础" class="headerlink" title="[分布式系统架构基础]"></a>[分布式系统架构基础]</h1><p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
+      <h1 id="分布式系统架构基础"><a href="#分布式系统架构基础" class="headerlink" title="[分布式系统架构基础]"></a>[分布式系统架构基础]</h1><p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
 <p>1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consistency</span><br><span class="line">Availability</span><br><span class="line">Partition tolerance</span><br></pre></td></tr></table></figure>
 
@@ -750,335 +500,456 @@
 </ul>
 
       
-    </div>
-
-    <div>
-      
-        
-
+      <!-- reward -->
       
     </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/code/" rel="tag"># code</a>
-          
-        </div>
-      
-
-      
-        
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/Mybatis-动态sql/" rel="next" title="Mybatis 动态sql">
-                <i class="fa fa-chevron-left"></i> Mybatis 动态sql
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/mysql-配置安装/" rel="prev" title="mysql 配置安装">
-                mysql 配置安装 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-          
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+            </li>
+          </ul>
         </div>
         
+    <footer class="article-footer">
+      
           
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/分布式开发/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+  <nav class="article-nav">
+    
+      <a href="/mysql-配置安装/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            mysql 配置安装
+          
+        </div>
+      </a>
+    
+    
+      <a href="/Mybatis-动态sql/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Mybatis 动态sql</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
     </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2018-2020
+        Leon
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
   </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
 
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Leon">
-          <p class="site-author-name" itemprop="name">Leon</p>
-           
-              <p class="site-description motion-element" itemprop="description">挪威的森林</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-        
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式系统架构基础"><span class="nav-number">1.</span> <span class="nav-text">[分布式系统架构基础]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP"><span class="nav-number">1.1.</span> <span class="nav-text">CAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据一致性模型"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据一致性模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性解决方案"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">一致性解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务可用性"><span class="nav-number">1.1.2.</span> <span class="nav-text">服务可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高可用解决方案"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">高可用解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分区容错性"><span class="nav-number">1.1.3.</span> <span class="nav-text">分区容错性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高并发下的流量控制"><span class="nav-number">2.</span> <span class="nav-text">高并发下的流量控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#限流算法"><span class="nav-number">2.1.</span> <span class="nav-text">限流算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计数器"><span class="nav-number">2.1.1.</span> <span class="nav-text">计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏桶"><span class="nav-number">2.1.2.</span> <span class="nav-text">漏桶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#令牌桶"><span class="nav-number">2.1.3.</span> <span class="nav-text">令牌桶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群限流"><span class="nav-number">2.2.</span> <span class="nav-text">集群限流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-请求窗口"><span class="nav-number">2.2.1.</span> <span class="nav-text">Redis 请求窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-限流"><span class="nav-number">2.2.2.</span> <span class="nav-text">Nginx 限流</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式缓存"><span class="nav-number">3.</span> <span class="nav-text">分布式缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">3.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题和挑战"><span class="nav-number">3.2.</span> <span class="nav-text">常见问题和挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存雪崩"><span class="nav-number">3.2.1.</span> <span class="nav-text">缓存雪崩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存穿透"><span class="nav-number">3.2.2.</span> <span class="nav-text">缓存穿透</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存预热"><span class="nav-number">3.2.3.</span> <span class="nav-text">缓存预热</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存更新"><span class="nav-number">3.2.4.</span> <span class="nav-text">缓存更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存降级"><span class="nav-number">3.2.5.</span> <span class="nav-text">缓存降级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存与数据库不一致问题"><span class="nav-number">3.2.6.</span> <span class="nav-text">缓存与数据库不一致问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先删除缓存，再更新数据库"><span class="nav-number">3.2.6.1.</span> <span class="nav-text">先删除缓存，再更新数据库</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RPC"><span class="nav-number">4.</span> <span class="nav-text">RPC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用发展流程"><span class="nav-number">4.1.</span> <span class="nav-text">应用发展流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一应用架构"><span class="nav-number">4.1.1.</span> <span class="nav-text">单一应用架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直应用架构"><span class="nav-number">4.1.2.</span> <span class="nav-text">垂直应用架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式服务架构"><span class="nav-number">4.1.3.</span> <span class="nav-text">分布式服务架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流动计算架构"><span class="nav-number">4.1.4.</span> <span class="nav-text">流动计算架构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式锁"><span class="nav-number">5.</span> <span class="nav-text">分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现基于数据库的乐观锁"><span class="nav-number">5.1.</span> <span class="nav-text">实现基于数据库的乐观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-Redis-的分布式锁"><span class="nav-number">5.2.</span> <span class="nav-text">基于 Redis 的分布式锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式-Session"><span class="nav-number">6.</span> <span class="nav-text">分布式 Session</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-Stick"><span class="nav-number">6.1.</span> <span class="nav-text">Session Stick</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session复制"><span class="nav-number">6.2.</span> <span class="nav-text">Session复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session集中管理"><span class="nav-number">6.3.</span> <span class="nav-text">Session集中管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于Cookie管理"><span class="nav-number">6.4.</span> <span class="nav-text">基于Cookie管理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#短链接"><span class="nav-number">7.</span> <span class="nav-text">短链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景-Scenario"><span class="nav-number">7.1.</span> <span class="nav-text">使用场景(Scenario)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求-Needs"><span class="nav-number">7.2.</span> <span class="nav-text">需求(Needs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#短网址的长度"><span class="nav-number">7.3.</span> <span class="nav-text">短网址的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一对一还是一对多映射？"><span class="nav-number">7.4.</span> <span class="nav-text">一对一还是一对多映射？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何计算短网址"><span class="nav-number">7.5.</span> <span class="nav-text">如何计算短网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何存储"><span class="nav-number">7.6.</span> <span class="nav-text">如何存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#301还是302重定向"><span class="nav-number">7.7.</span> <span class="nav-text">301还是302重定向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式事务"><span class="nav-number">8.</span> <span class="nav-text">分布式事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2PC-与-3PC"><span class="nav-number">8.1.</span> <span class="nav-text">2PC 与 3PC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2PC"><span class="nav-number">8.2.</span> <span class="nav-text">2PC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3PC"><span class="nav-number">8.2.1.</span> <span class="nav-text">3PC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息服务"><span class="nav-number">8.3.</span> <span class="nav-text">消息服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Zookeeper"><span class="nav-number">9.</span> <span class="nav-text">Zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式应用"><span class="nav-number">9.1.</span> <span class="nav-text">分布式应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式应用的优点"><span class="nav-number">9.1.1.</span> <span class="nav-text">分布式应用的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式应用的挑战"><span class="nav-number">9.1.2.</span> <span class="nav-text">分布式应用的挑战</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZooKeeper基础"><span class="nav-number">9.2.</span> <span class="nav-text">ZooKeeper基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#架构"><span class="nav-number">9.2.1.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">9.2.2.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Znode"><span class="nav-number">9.2.3.</span> <span class="nav-text">Znode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sessions"><span class="nav-number">9.2.4.</span> <span class="nav-text">Sessions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Watcher"><span class="nav-number">9.2.5.</span> <span class="nav-text">Watcher</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper-工作流程"><span class="nav-number">9.3.</span> <span class="nav-text">Zookeeper 工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ZooKeeper-Service-节点数量的影响"><span class="nav-number">9.3.1.</span> <span class="nav-text">ZooKeeper Service 节点数量的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选举"><span class="nav-number">9.3.2.</span> <span class="nav-text">选举</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景-1"><span class="nav-number">9.4.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布订阅"><span class="nav-number">9.4.1.</span> <span class="nav-text">发布订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名服务"><span class="nav-number">9.4.2.</span> <span class="nav-text">命名服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协调分布式事务"><span class="nav-number">9.4.3.</span> <span class="nav-text">协调分布式事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式锁-1"><span class="nav-number">9.4.4.</span> <span class="nav-text">分布式锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZooKeeper-的缺陷"><span class="nav-number">9.5.</span> <span class="nav-text">ZooKeeper 的缺陷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zookeeper-不是为高可用性设计的"><span class="nav-number">9.5.1.</span> <span class="nav-text">zookeeper 不是为高可用性设计的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zookeeper-的选举过程速度很慢"><span class="nav-number">9.5.2.</span> <span class="nav-text">zookeeper 的选举过程速度很慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zookeeper-的性能是有限的"><span class="nav-number">9.5.3.</span> <span class="nav-text">zookeeper 的性能是有限的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zookeeper-无法进行有效的权限控制"><span class="nav-number">9.5.4.</span> <span class="nav-text">zookeeper 无法进行有效的权限控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#即使有了-zookeeper-也很难避免业务系统的数据不一致"><span class="nav-number">9.5.5.</span> <span class="nav-text">即使有了 zookeeper 也很难避免业务系统的数据不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zookeeper-并不保证读取的是最新数据"><span class="nav-number">9.5.6.</span> <span class="nav-text">Zookeeper 并不保证读取的是最新数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们能做什么"><span class="nav-number">9.5.7.</span> <span class="nav-text">我们能做什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">9.6.</span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-客户端对-ServerList-的轮询机制是什么"><span class="nav-number">9.6.1.</span> <span class="nav-text">1. 客户端对 ServerList 的轮询机制是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-客户端如何正确处理-CONNECTIONLOSS-连接断开-和-SESSIONEXPIRED-Session-过期-两类连接异常"><span class="nav-number">9.6.2.</span> <span class="nav-text">2. 客户端如何正确处理 CONNECTIONLOSS (连接断开) 和 SESSIONEXPIRED (Session 过期)两类连接异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-不同的客户端对同一个节点是否能获取相同的数据"><span class="nav-number">9.6.3.</span> <span class="nav-text">3. 不同的客户端对同一个节点是否能获取相同的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-一个客户端修改了某个节点的数据，其它客户端能够马上获取到这个最新数据吗"><span class="nav-number">9.6.4.</span> <span class="nav-text">4. 一个客户端修改了某个节点的数据，其它客户端能够马上获取到这个最新数据吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-ZK为什么不提供一个永久性的Watcher注册机制"><span class="nav-number">9.6.5.</span> <span class="nav-text">5. ZK为什么不提供一个永久性的Watcher注册机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-使用watch需要注意的几点"><span class="nav-number">9.6.6.</span> <span class="nav-text">6. 使用watch需要注意的几点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-我能否收到每次节点变化的通知"><span class="nav-number">9.6.7.</span> <span class="nav-text">7. 我能否收到每次节点变化的通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-能为临时节点创建子节点吗"><span class="nav-number">9.6.8.</span> <span class="nav-text">8. 能为临时节点创建子节点吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-是否可以拒绝单个IP对ZK的访问-操作"><span class="nav-number">9.6.9.</span> <span class="nav-text">9. 是否可以拒绝单个IP对ZK的访问,操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-在-getChildren-String-path-boolean-watch-注册对节点子节点的变化，那么子节点的子节点变化能通知吗"><span class="nav-number">9.6.10.</span> <span class="nav-text">10. 在[getChildren(String path, boolean watch)]注册对节点子节点的变化，那么子节点的子节点变化能通知吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-创建的临时节点什么时候会被删除，是连接一断就删除吗？延时是多少？"><span class="nav-number">9.6.11.</span> <span class="nav-text">11. 创建的临时节点什么时候会被删除，是连接一断就删除吗？延时是多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-zookeeper是否支持动态进行机器扩容？如果目前不支持，那么要如何扩容呢？"><span class="nav-number">9.6.12.</span> <span class="nav-text">12. zookeeper是否支持动态进行机器扩容？如果目前不支持，那么要如何扩容呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-ZooKeeper集群中个服务器之间是怎样通信的？"><span class="nav-number">9.6.13.</span> <span class="nav-text">13. ZooKeeper集群中个服务器之间是怎样通信的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-zookeeper是否会自动进行日志清理？如果进行日志清理？"><span class="nav-number">9.6.14.</span> <span class="nav-text">14.zookeeper是否会自动进行日志清理？如果进行日志清理？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">9.7.</span> <span class="nav-text">参考文档</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
       </div>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
   
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Leon</span>
-</div>
-
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
+  <div class="logo">
+    <a href="/"><img src="/images/hackerrank.svg" alt="Leon"></a>
+  </div>
+  
+  <ul class="nav nav-main">
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/旅行/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Suche">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
     
     
   </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['人生如逆旅，我亦是行人', '不要忘记25岁，你想成为什么样的人', '腹有诗书气自华'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
   }
+
+</script>
+
+
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
 </script>
 
 
 
 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
 
-
-  
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
+    
+  </div>
 </body>
+
 </html>

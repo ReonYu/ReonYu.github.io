@@ -1,345 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
+<html lang="zh-HK" >
 
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="路漫漫其修远兮，吾将上下而求索" />
+   
+  <meta name="description" content="挪威的森林" />
   
-
-
-<html class="theme-next mist use-motion" lang="zh-HK">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    浅尝Spring |  Leon
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
   
+  <link rel="shortcut icon" href="/first.png" />
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="/css/custom.css">
   
-  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
   
   
 
   
-    
-    
-  
 
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="code,">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/avatar.png?v=5.1.0">
-
-
-
-
-
-
-<meta name="description" content="什么是SpringSpring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。 Spring有哪些优点 轻量级：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spri">
-<meta name="keywords" content="code">
-<meta property="og:type" content="article">
-<meta property="og:title" content="浅尝Spring">
-<meta property="og:url" content="http://yoursite.com/浅尝Spring/index.html">
-<meta property="og:site_name" content="Leon">
-<meta property="og:description" content="什么是SpringSpring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。 Spring有哪些优点 轻量级：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spri">
-<meta property="og:locale" content="zh-HK">
-<meta property="og:image" content="http://yoursite.com/assets/spring.png">
-<meta property="og:image" content="http://yoursite.com/assets/beans.png">
-<meta property="og:image" content="http://my.csdn.net/uploads/201205/30/1338346660_4642.gif">
-<meta property="og:image" content="http://yoursite.com/浅尝Spring/imgs/struts2-vs-struts1.png">
-<meta property="og:image" content="http://www.evget.com/images/article/08072801.png">
-<meta property="og:updated_time" content="2019-10-10T05:04:59.050Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅尝Spring">
-<meta name="twitter:description" content="什么是SpringSpring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。 Spring有哪些优点 轻量级：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spri">
-<meta name="twitter:image" content="http://yoursite.com/assets/spring.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/浅尝Spring/">
-
-
-
-
-
-  <title> 浅尝Spring | Leon </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-HK">
+</html>
 
-  
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-浅尝Spring" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
+  <div class="article-inner">
     
-  
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  浅尝Spring
+</h1>
+ 
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    </header>
     
 
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Leon</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+    
+    <div class="article-meta">
+      <a href="/浅尝Spring/" class="article-date">
+  <time datetime="2019-02-10T04:59:34.000Z" itemprop="datePublished">2019-02-10</time>
+</a>
       
-        <p class="site-subtitle">Live For Real</p>
       
-  </div>
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">18.3k</span>
+        </span>
+    </span>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">65 min</span>
+        </span>
+    </span>
 </div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
       
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
-            
-            Commonweal 404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+    </div>
     
 
-  
+    
+    
+    <div class="tocbot"></div>
 
-  
-  
-  
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/浅尝Spring/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leon">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leon">
-    </span>
 
     
-      <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                浅尝Spring
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-10T12:59:34+08:00">
-                2019-02-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
       
 
       
-        <h2 id="什么是Spring"><a href="#什么是Spring" class="headerlink" title="什么是Spring"></a>什么是Spring</h2><p>Spring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。</p>
+      <h2 id="什么是Spring"><a href="#什么是Spring" class="headerlink" title="什么是Spring"></a>什么是Spring</h2><p>Spring是一个开源的Java EE开发框架。Spring框架的核心功能可以应用在任何Java应用程序中，但对Java EE平台上的Web应用程序有更好的扩展性。Spring框架的目标是使得Java EE应用程序的开发更加简捷，通过使用POJO为基础的编程模型促进良好的编程风格。</p>
 <h2 id="Spring有哪些优点"><a href="#Spring有哪些优点" class="headerlink" title="Spring有哪些优点"></a>Spring有哪些优点</h2><ul>
 <li><strong>轻量级</strong>：Spring在大小和透明性方面绝对属于轻量级的，基础版本的Spring框架大约只有2MB。</li>
 <li><strong>控制反转(IOC)</strong>：Spring使用控制反转技术实现了松耦合。依赖被注入到对象，而不是创建或寻找依赖对象。</li>
@@ -811,335 +570,456 @@
 <p><a href="https://reonyu.github.io/" target="_blank" rel="noopener">https://reonyu.github.io/</a></p>
 
       
-    </div>
-
-    <div>
-      
-        
-
+      <!-- reward -->
       
     </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/code/" rel="tag"># code</a>
-          
-        </div>
-      
-
-      
-        
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/面向对象-Java/" rel="next" title="面向对象-Java">
-                <i class="fa fa-chevron-left"></i> 面向对象-Java
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/个人简历/" rel="prev" title="个人简历">
-                个人简历 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-          
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+            </li>
+          </ul>
         </div>
         
+    <footer class="article-footer">
+      
           
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/浅尝Spring/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+  <nav class="article-nav">
+    
+      <a href="/个人简历/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            个人简历
+          
+        </div>
+      </a>
+    
+    
+      <a href="/面向对象-Java/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">面向对象-Java</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
     </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2018-2020
+        Leon
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
   </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
 
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Leon">
-          <p class="site-author-name" itemprop="name">Leon</p>
-           
-              <p class="site-description motion-element" itemprop="description">挪威的森林</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-        
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring"><span class="nav-number">1.</span> <span class="nav-text">什么是Spring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring有哪些优点"><span class="nav-number">2.</span> <span class="nav-text">Spring有哪些优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring框架有哪些模块"><span class="nav-number">3.</span> <span class="nav-text">Spring框架有哪些模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是控制反转-IOC-？什么是依赖注入？"><span class="nav-number">4.</span> <span class="nav-text">什么是控制反转(IOC)？什么是依赖注入？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeanFactory和ApplicationContext有什么区别？"><span class="nav-number">5.</span> <span class="nav-text">BeanFactory和ApplicationContext有什么区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring有几种配置方式？"><span class="nav-number">6.</span> <span class="nav-text">Spring有几种配置方式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Bean的生命周期"><span class="nav-number">7.</span> <span class="nav-text">Spring Bean的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Bean的作用域之间有什么区别"><span class="nav-number">8.</span> <span class="nav-text">Spring Bean的作用域之间有什么区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请解释自动装配模式的区别"><span class="nav-number">9.</span> <span class="nav-text">请解释自动装配模式的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-框架中都用到了哪些设计模式"><span class="nav-number">10.</span> <span class="nav-text">Spring 框架中都用到了哪些设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP（Aspect-Oriented-Programming）是怎么实现的"><span class="nav-number">11.</span> <span class="nav-text">AOP（Aspect-Oriented Programming）是怎么实现的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍spring的IOC实现"><span class="nav-number">12.</span> <span class="nav-text">介绍spring的IOC实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring中bean加载机制，bean生成的具体步骤"><span class="nav-number">13.</span> <span class="nav-text">spring中bean加载机制，bean生成的具体步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springMVC流程具体叙述下"><span class="nav-number">14.</span> <span class="nav-text">springMVC流程具体叙述下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring各个版本的区别"><span class="nav-number">15.</span> <span class="nav-text">spring各个版本的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ioc注入的方式"><span class="nav-number">16.</span> <span class="nav-text">ioc注入的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP相关概念"><span class="nav-number">17.</span> <span class="nav-text">AOP相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring何时创建applicationContext-web-xml中使用listener-或dispatcherServlet"><span class="nav-number">18.</span> <span class="nav-text">spring何时创建applicationContext(web.xml中使用listener 或dispatcherServlet)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#listener是监听哪个事件-ServletContext创建事件"><span class="nav-number">19.</span> <span class="nav-text">listener是监听哪个事件(ServletContext创建事件)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器与监听器的区别"><span class="nav-number">20.</span> <span class="nav-text">过滤器与监听器的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请描述一下java事件监听机制。"><span class="nav-number">21.</span> <span class="nav-text">请描述一下java事件监听机制。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释核心容器-应用上下文-模块"><span class="nav-number">22.</span> <span class="nav-text">解释核心容器(应用上下文)模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeanFactory-–-BeanFactory-实例"><span class="nav-number">23.</span> <span class="nav-text">BeanFactory – BeanFactory 实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XmlBeanFactory"><span class="nav-number">24.</span> <span class="nav-text">XmlBeanFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释AOP模块"><span class="nav-number">25.</span> <span class="nav-text">解释AOP模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释抽象JDBC和DAO模块"><span class="nav-number">26.</span> <span class="nav-text">解释抽象JDBC和DAO模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释对象-关系映射集成模块"><span class="nav-number">27.</span> <span class="nav-text">解释对象/关系映射集成模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释web模块"><span class="nav-number">28.</span> <span class="nav-text">解释web模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释Spring-MVC模块"><span class="nav-number">29.</span> <span class="nav-text">解释Spring MVC模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContextLoaderListener是监听什么事件"><span class="nav-number">30.</span> <span class="nav-text">ContextLoaderListener是监听什么事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-IoC容器"><span class="nav-number">31.</span> <span class="nav-text">Spring IoC容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOC有什么优点？"><span class="nav-number">32.</span> <span class="nav-text">IOC有什么优点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用上下文是如何实现的？"><span class="nav-number">33.</span> <span class="nav-text">应用上下文是如何实现的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些不同类型的IOC-依赖注入"><span class="nav-number">34.</span> <span class="nav-text">有哪些不同类型的IOC(依赖注入)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？"><span class="nav-number">35.</span> <span class="nav-text">你推荐哪种依赖注入？构造器依赖注入还是Setter方法依赖注入？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring-Beans"><span class="nav-number">36.</span> <span class="nav-text">什么是Spring Beans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Bean中定义了什么内容？"><span class="nav-number">37.</span> <span class="nav-text">Spring Bean中定义了什么内容？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何向Spring-容器提供配置元数据"><span class="nav-number">38.</span> <span class="nav-text">如何向Spring 容器提供配置元数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring框架中单例beans是线程安全的吗？"><span class="nav-number">39.</span> <span class="nav-text">Spring框架中单例beans是线程安全的吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哪些是最重要的bean生命周期方法？能重写它们吗？"><span class="nav-number">40.</span> <span class="nav-text">哪些是最重要的bean生命周期方法？能重写它们吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring的内部bean"><span class="nav-number">41.</span> <span class="nav-text">什么是Spring的内部bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在Spring中注入Java集合类"><span class="nav-number">42.</span> <span class="nav-text">如何在Spring中注入Java集合类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是bean-wiring？"><span class="nav-number">43.</span> <span class="nav-text">什么是bean wiring？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是bean自动装配？"><span class="nav-number">44.</span> <span class="nav-text">什么是bean自动装配？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动装配有哪些局限性？"><span class="nav-number">45.</span> <span class="nav-text">自动装配有哪些局限性？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你可以在Spring中注入null或空字符串吗"><span class="nav-number">46.</span> <span class="nav-text">你可以在Spring中注入null或空字符串吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring基于Java的配置？给出一些注解的例子"><span class="nav-number">47.</span> <span class="nav-text">什么是Spring基于Java的配置？给出一些注解的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是基于注解的容器配置"><span class="nav-number">48.</span> <span class="nav-text">什么是基于注解的容器配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何开启注解装配？"><span class="nav-number">49.</span> <span class="nav-text">如何开启注解装配？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Required-注解"><span class="nav-number">50.</span> <span class="nav-text">@Required 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autowired-注解"><span class="nav-number">51.</span> <span class="nav-text">@Autowired 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Qualifier-注解"><span class="nav-number">52.</span> <span class="nav-text">@Qualifier 注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Spring框架中如何更有效的使用JDBC？"><span class="nav-number">53.</span> <span class="nav-text">在Spring框架中如何更有效的使用JDBC？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JdbcTemplate"><span class="nav-number">54.</span> <span class="nav-text">JdbcTemplate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring对DAO的支持"><span class="nav-number">55.</span> <span class="nav-text">Spring对DAO的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring支持的ORM"><span class="nav-number">56.</span> <span class="nav-text">Spring支持的ORM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring支持的事务管理类型"><span class="nav-number">57.</span> <span class="nav-text">Spring支持的事务管理类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring框架的事务管理有哪些优点"><span class="nav-number">58.</span> <span class="nav-text">Spring框架的事务管理有哪些优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-number">59.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring事务定义的传播规则"><span class="nav-number">60.</span> <span class="nav-text">spring事务定义的传播规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring事务支持的隔离级别"><span class="nav-number">61.</span> <span class="nav-text">spring事务支持的隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你更推荐那种类型的事务管理？"><span class="nav-number">62.</span> <span class="nav-text">你更推荐那种类型的事务管理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有几种不同类型的自动代理？"><span class="nav-number">63.</span> <span class="nav-text">有几种不同类型的自动代理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是织入？什么是织入应用的不同点？"><span class="nav-number">64.</span> <span class="nav-text">什么是织入？什么是织入应用的不同点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring的MVC框架？"><span class="nav-number">65.</span> <span class="nav-text">什么是Spring的MVC框架？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DispatcherServlet"><span class="nav-number">66.</span> <span class="nav-text">DispatcherServlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebApplicationContext"><span class="nav-number">67.</span> <span class="nav-text">WebApplicationContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Spring-MVC框架的控制器？"><span class="nav-number">68.</span> <span class="nav-text">什么是Spring MVC框架的控制器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller-annotation"><span class="nav-number">69.</span> <span class="nav-text">@Controller annotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestMapping-annotation"><span class="nav-number">70.</span> <span class="nav-text">@RequestMapping annotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-与-Hibernate的区别"><span class="nav-number">71.</span> <span class="nav-text">MyBatis 与 Hibernate的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC-和-Hibernate的区别"><span class="nav-number">72.</span> <span class="nav-text">JDBC 和　Hibernate的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate的原理体系架构"><span class="nav-number">73.</span> <span class="nav-text">Hibernate的原理体系架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五大核心接口，"><span class="nav-number">74.</span> <span class="nav-text">五大核心接口，</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate对象的三种状态转换"><span class="nav-number">75.</span> <span class="nav-text">Hibernate对象的三种状态转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-瞬时状态-transient"><span class="nav-number">75.1.</span> <span class="nav-text">1.瞬时状态 (transient)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-持久化状态-persisted"><span class="nav-number">75.2.</span> <span class="nav-text">2.持久化状态(persisted)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-游离状态-detached"><span class="nav-number">75.3.</span> <span class="nav-text">3.游离状态(detached)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务管理"><span class="nav-number">76.</span> <span class="nav-text">事务管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate对一二级缓存的使用"><span class="nav-number">77.</span> <span class="nav-text">Hibernate对一二级缓存的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lazy-Load的理解"><span class="nav-number">78.</span> <span class="nav-text">Lazy-Load的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#悲观锁和乐观锁"><span class="nav-number">79.</span> <span class="nav-text">悲观锁和乐观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述-Struts-体系结构？对应各个部分的开发工作主要包括哪些？"><span class="nav-number">80.</span> <span class="nav-text">描述 Struts 体系结构？对应各个部分的开发工作主要包括哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Struts2"><span class="nav-number">81.</span> <span class="nav-text">什么是Struts2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts-与webWork的区别"><span class="nav-number">82.</span> <span class="nav-text">Struts 与webWork的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#struts2-与struts1的区别"><span class="nav-number">83.</span> <span class="nav-text">struts2 与struts1的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts工作流程"><span class="nav-number">84.</span> <span class="nav-text">Struts工作流程:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用-Struts2-amp-Struts2-的优点："><span class="nav-number">85.</span> <span class="nav-text">为什么要使用 Struts2 &amp; Struts2 的优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC-与-Struts2区别"><span class="nav-number">86.</span> <span class="nav-text">SpringMVC 与　Struts2区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter-Listener-Servlet区别"><span class="nav-number">87.</span> <span class="nav-text">Filter,Listener,Servlet区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts2拦截器和过滤器的区别"><span class="nav-number">88.</span> <span class="nav-text">Struts2拦截器和过滤器的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Struts的Action是不是线程安全的"><span class="nav-number">89.</span> <span class="nav-text">Struts的Action是不是线程安全的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#struts2-0的mvc模式与struts1-0的区别"><span class="nav-number">90.</span> <span class="nav-text">struts2.0的mvc模式与struts1.0的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？"><span class="nav-number">91.</span> <span class="nav-text">你对MVC的理解，MVC有什么优缺点？结合Struts，说明在一个Web应用如何去使用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说出-struts2-中至少-5-个的默认拦截器"><span class="nav-number">92.</span> <span class="nav-text">说出 struts2 中至少 5 个的默认拦截器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每个拦截器都是需要实现-Interceptor-接口"><span class="nav-number">93.</span> <span class="nav-text">每个拦截器都是需要实现 Interceptor 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Action类有几种方法？"><span class="nav-number">94.</span> <span class="nav-text">创建Action类有几种方法？</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#web-部分"><span class="nav-number"></span> <span class="nav-text">web 部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-servlet生命周期"><span class="nav-number">1.</span> <span class="nav-text">1. servlet生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-初始化阶段"><span class="nav-number">1.1.</span> <span class="nav-text">1) 初始化阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-运行阶段"><span class="nav-number">1.2.</span> <span class="nav-text">2) 运行阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-销毁阶段"><span class="nav-number">1.3.</span> <span class="nav-text">3) 销毁阶段</span></a></li></ol></li></ol></li></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
       </div>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
   
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Leon</span>
-</div>
-
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
+  <div class="logo">
+    <a href="/"><img src="/images/hackerrank.svg" alt="Leon"></a>
+  </div>
+  
+  <ul class="nav nav-main">
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/旅行/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Suche">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
     
     
   </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['人生如逆旅，我亦是行人', '不要忘记25岁，你想成为什么样的人', '腹有诗书气自华'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
   }
+
+</script>
+
+
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
 </script>
 
 
 
 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
 
-
-  
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
+    
+  </div>
 </body>
+
 </html>
