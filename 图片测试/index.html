@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">4.9k</span>
+            <span class="post-count">4.8k</span>
         </span>
     </span>
 
@@ -109,10 +109,7 @@
 <p>flume 脚本</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">[hdfs@sparktest hadoop104]$ cat /opt/beh/core/flume/conf/flume-kafka-sales.conf</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">#Name the components on this agent</span><br><span class="line"></span><br><span class="line">agent.sources= r1</span><br><span class="line"></span><br><span class="line">agent.sinks= k1</span><br><span class="line"></span><br><span class="line">agent.channels= c1</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">#Describe/configure the source</span><br><span class="line"></span><br><span class="line">agent.sources.r1.type= spooldir</span><br><span class="line"></span><br><span class="line">agent.sources.r1.spoolDir=/var/lib/hadoop-hdfs/shanghai/data</span><br><span class="line"></span><br><span class="line">agent.sources.r1.channels= c1</span><br><span class="line"></span><br><span class="line">agent.sources.r1.batchSize= 10000</span><br><span class="line"></span><br><span class="line">agent.sources.r1.deserializer.maxLineLength = 20480 #默认按行一次读取的最大长度是2048个字符（一行过长会拆分成两条message到kafka导致数据不准确）</span><br><span class="line"></span><br><span class="line">#interceptor</span><br><span class="line"></span><br><span class="line">agent.sources.r1.interceptors = i2</span><br><span class="line"></span><br><span class="line">agent.sources.r1.interceptors.i2.type=org.apache.flume.sink.solr.morphline.UUIDInterceptor$Builder</span><br><span class="line"></span><br><span class="line">agent.sources.r1.interceptors.i2.headerName=key</span><br><span class="line"></span><br><span class="line">agent.sources.r1.interceptors.i2.preserveExisting=false</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">#Use a channel which buffers events in memory</span><br><span class="line"></span><br><span class="line">agent.channels.c1.type= memory</span><br><span class="line"></span><br><span class="line">agent.channels.c1.capacity= 100000</span><br><span class="line"></span><br><span class="line">agent.channels.c1.transactionCapacity= 10000</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">#Describe/configure the sink</span><br><span class="line"></span><br><span class="line">agent.sinks.k1.type= org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line"></span><br><span class="line">agent.sinks.k1.topic = ESB</span><br><span class="line"></span><br><span class="line">agent.sinks.k1.channel= c1</span><br><span class="line"></span><br><span class="line">agent.sinks.k1.brokerList = hadoop102:9092,hadoop103:9092</span><br><span class="line"></span><br><span class="line">agent.sinks.requiredAcks = 1</span><br><span class="line"></span><br><span class="line">agent.sinks.batchSize = 10000</span><br></pre></td></tr></table></figure>
 
-<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ul>
-<li>Description :</li>
-</ul>
-<p>Flume数据采集异常：java.nio.charset.MalformedInputException: Input length = 1</p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="- Description :"></a>- Description :</h2><p>Flume数据采集异常：java.nio.charset.MalformedInputException: Input length = 1</p>
 <ul>
 <li>Solution :</li>
 </ul>
@@ -126,18 +123,12 @@
 <p>方法二：</p>
 <p>vi中修改文件字符集</p>
 <p>:set encoding/fileencoding=UTF-8</p>
-<ul>
-<li>Description :</li>
-</ul>
-<p>接口机数据延迟 : 以10:01开启的小时任务为例，处理的是9:00-10:00期间，flume监控目录导入kafka中的所有数据，但是处理完插入插入后，发现这期间监控目录中的数据（end_date时间）很大一部分是8:00-9:00（而非9:00-10:00）的数据，这部分最新数据因为延迟下发，在9:00-10:00期间进入监控目录，且延迟下发时间不确定</p>
+<h2 id="Description-1"><a href="#Description-1" class="headerlink" title="- Description :"></a>- Description :</h2><p>接口机数据延迟 : 以10:01开启的小时任务为例，处理的是9:00-10:00期间，flume监控目录导入kafka中的所有数据，但是处理完插入插入后，发现这期间监控目录中的数据（end_date时间）很大一部分是8:00-9:00（而非9:00-10:00）的数据，这部分最新数据因为延迟下发，在9:00-10:00期间进入监控目录，且延迟下发时间不确定</p>
 <ul>
 <li>Solution :</li>
 </ul>
 <p>接口机下发数据延迟无法解决，SparkStreaming实时流无法兼顾ProcessingTime和EventTime,仅能保证，系统时间9:00-10:00flume传入kafka的数据，能够被及时处理（数据本身的EventTime，并不做考虑）</p>
-<ul>
-<li>Description :</li>
-</ul>
-<p>Oracle数据导入异常</p>
+<h2 id="Description-2"><a href="#Description-2" class="headerlink" title="- Description :"></a>- Description :</h2><p>Oracle数据导入异常</p>
 <ul>
 <li>Solution :</li>
 </ul>
@@ -167,10 +158,7 @@
 <p>zkclient-0.3.jar</p>
 <p>ZkClient</p>
 <p>/opt/beh/core/spark/lib</p>
-<ul>
-<li>Description :</li>
-</ul>
-<p>异常重启后的数据处理策略</p>
+<h2 id="Description-3"><a href="#Description-3" class="headerlink" title="- Description :"></a>- Description :</h2><p>异常重启后的数据处理策略</p>
 <ul>
 <li>Solution :</li>
 </ul>
@@ -188,41 +176,22 @@
 <p>而且即便使用方案一，oracle出错时，那一小时的oracle处理结果也不可能在下一小时的处理中表示出来（根据业务逻辑，只能表示为下一小时的处理结果。）</p>
 <p>方案二：最终选择此方案是因为，只要hive不出错，即小时数据已经插入hive里面了，重启时就不重跑这部分数据。虽然oracle出错，这一小时数据是没有的，但是因为hive中数据是存在的，可以手动调用脚本处理后，插入到oracle中。能够保证后面的每次计算都是正确的。</p>
 <p>这样的好处是，在hive插入小时数据前的异常，可以在重启后重新加载并处理这部分数据，在hive插入小时数据后的异常（包括下一小时任务启动前的任何异停止），重启后不再重复消费这部分数据。</p>
-<ul>
-<li>Description :</li>
-</ul>
-<p>Hive表中的前一天数据未处理</p>
+<h2 id="Description-4"><a href="#Description-4" class="headerlink" title="- Description :"></a>- Description :</h2><p>Hive表中的前一天数据未处理</p>
 <ul>
 <li>Solution :</li>
 </ul>
 <p>虽然00:00过后前一天的hvie表被清理，但是事实表明，00:00后还是会像监控目录导入前一天的数据。这些数据的文件名仍为当天（实际证明确是如此），但在当天处理范围内。</p>
 <p>解决方法是hive表中增加了数据本身的end_date属性，在sql脚本处理过程中，对hive表中“当天”数据进行过滤</p>
-<ul>
-<li>Description :</li>
-</ul>
-<p>手动更改zookeeper中offset的程序</p>
+<h2 id="Description-5"><a href="#Description-5" class="headerlink" title="- Description :"></a>- Description :</h2><p>手动更改zookeeper中offset的程序</p>
 <ul>
 <li>Solution :</li>
 </ul>
 <p>需要写zkClient的连接程序，为保证hive表中当天数据完整性和唯一性，不建议修改次offset值，因为程序中的saveOffset是添加在小时数据插入hive之后的，按照程序已经插入zookeeper的offset值，无论任何时间程序停止，任何时间重启，都能保证hive表中当天数据的正确性。</p>
-<ul>
-<li>Description :</li>
-</ul>
-<p>Yarn模式的print输出位置，异常并不打印到控制台</p>
+<h2 id="Description-6"><a href="#Description-6" class="headerlink" title="- Description :"></a>- Description :</h2><p>Yarn模式的print输出位置，异常并不打印到控制台</p>
 <ul>
 <li>Solution :</li>
 </ul>
 <p>异常无法观察，可以使用local模式，将异常打出</p>
-<ul>
-<li>Description :</li>
-</ul>
-<p>flume程序中zookeeper的hosts的写法，以及flume配置文件中brokerList</p>
-<ul>
-<li>Solution :</li>
-</ul>
-<p>Ip1:2181,ip2:2181,ip3:2181</p>
-<p>Ip1:9092,ip2:9092,ip3:9092</p>
-<p>写集群，不写单节点，逗号分隔</p>
 
       
       <!-- reward -->
