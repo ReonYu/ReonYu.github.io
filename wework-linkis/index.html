@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    一些图片 |  Leon&#39;s blog
+    计算中间价-Linkis |  Leon&#39;s blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-一些图片" class="article article-type-post" itemscope
+  <article id="post-wework-linkis" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  一些图片
+  计算中间价-Linkis
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/一些图片/" class="article-date">
-  <time datetime="2020-05-14T06:53:00.000Z" itemprop="datePublished">2020-05-14</time>
+      <a href="/wework-linkis/" class="article-date">
+  <time datetime="2020-06-03T07:53:00.000Z" itemprop="datePublished">2020-06-03</time>
 </a>
       
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">14</span>
+            <span class="post-count">3k</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">10 min</span>
         </span>
     </span>
 </div>
@@ -98,13 +98,126 @@
       
 
       
-      <h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p><img src="/一些图片/15894552423554.jpg" alt></p>
-<p><img src="/一些图片/15894552557366.jpg" alt><br>    <img src="/一些图片/15894552933649.jpg" alt><br><img src="/一些图片/15894552996189.jpg" alt><br><img src="/一些图片/15894553235625.jpg" alt><br><img src="/一些图片/15894553328850.jpg" alt><br><img src="/一些图片/15894553428379.jpg" alt><br><img src="/一些图片/15894553513309.jpg" alt><br><img src="/一些图片/15894553635025.jpg" alt></p>
-<h3 id="two"><a href="#two" class="headerlink" title="two"></a>two</h3><p>下坠<img src="/一些图片/15898794025402.jpg" alt></p>
-<p>跃入虚空<img src="/一些图片/15899590696257.jpg" alt></p>
-<p>珍珠耳环<img src="/一些图片/15899590837436.jpg" alt></p>
-<h2 id="three"><a href="#three" class="headerlink" title="three"></a>three</h2><p><img src="/一些图片/15903871342290.jpg" alt><br><img src="/一些图片/15903871455511.jpg" alt><br><img src="/一些图片/15903871525214.jpg" alt><br><img src="/一些图片/15903871587751.jpg" alt></p>
-<h4 id="four"><a href="#four" class="headerlink" title="four"></a>four</h4><p><img src="/一些图片/15905639693185.jpg" alt></p>
+      <h2 id="Linkis-–-WeBankFinTech"><a href="#Linkis-–-WeBankFinTech" class="headerlink" title="Linkis – WeBankFinTech"></a>Linkis – WeBankFinTech</h2><h3 id="设计初衷"><a href="#设计初衷" class="headerlink" title="设计初衷"></a>设计初衷</h3><hr>
+<p>大数据开源生态圈几乎每个组件都有自己的一套用户权限管理、资源管理、元数据管理、独立的API接入方式和使用方式。</p>
+<p>而且各种新的组件还在不断出现。</p>
+<p>但是，用户的业务需求通常需要多个开源组件协同处理才能实现。</p>
+<p>为了一个业务需求，用户需要学习多个产品的使用手册，需要在多个产品上做重复的定制化开发，才能真正将开源组件引入到实际的生产环境中。</p>
+<p>这给用户带来了极其高昂的学习成本和额外工作量，运维方面也需要大量重复的维护管理工作。</p>
+<p>同时，上层的功能工具产品和底层的计算存储系统耦合度过高，层次结构、调用关系不够清晰和解耦，导致底层环境一旦发生任何改变，都会直接影响业务产品的正常使用。</p>
+<p>如何提供一套统一的数据中间件，对接上层应用工具，屏蔽掉底层的各种调用和使用细节，真正做到让业务用户只需关注业务实现细节，就算底层大数据平台机房扩建、整体搬迁都不受影响，是Linkis的设计初衷！</p>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><hr>
+<p>架构图<br><img src="/wework-linkis/Linkis-UI.png" alt="Linkis-UI"></p>
+<pre><code>如上图所示，我们基于目前流行的SpringCloud微服务技术，新建了多个微服务集群，来提供高可用能力。</code></pre><p>每个微服务集群各自承担系统的一部分功能职责，我们对其进行了如下明确的划分。如：</p>
+<ul>
+<li>统一作业执行服务：一个分布式的REST/WebSocket服务，用于接收用户提交的各种脚本请求。</li>
+</ul>
+<p>目前支持的计算引擎有：Spark、Python、TiSpark、Hive和Shell等。</p>
+<p>支持的脚本语言有：SparkSQL、Spark Scala、Pyspark、R、Python、HQL和Shell等；</p>
+<p>更多关于统一作业执行服务的信息，请查看UJES架构设计文档</p>
+<ul>
+<li>资源管理服务： 支持实时管控每个系统和用户的资源使用情况，限制系统和用户的资源使用量和并发数，并提供实时的资源动态图表，方便查看和管理系统和用户的资源；</li>
+</ul>
+<p>目前已支持的资源类型：Yarn队列资源、服务器（CPU和内存）、用户并发个数等。</p>
+<p>更多关于资源管理服务的信息，请查看RM架构设计文档</p>
+<ul>
+<li><p><del>应用管理服务(开源版本暂无)：管理所有系统的所有用户应用，包括离线批量应用、交互式查询应用和实时流式应用，为离线和交互式应用提供强大的复用能力，并提供应用全生命周期管理，自动释放用户多余的空闲应用；</del></p>
+</li>
+<li><p>统一存储服务：通用的IO架构，能快速对接各种存储系统，提供统一调用入口，支持所有常用格式数据，集成度高，简单易用；</p>
+</li>
+</ul>
+<p>更多统一存储服务的信息，请查看[Storage架构设计文档]</p>
+<ul>
+<li><p>统一上下文服务：统一用户和系统资源文件（JAR、ZIP、Properties等），用户、系统、计算引擎的参数和变量统一管理，一处设置，处处自动引用；</p>
+</li>
+<li><p>物料库：系统和用户级物料管理，可分享和流转，支持全生命周期自动管理；</p>
+</li>
+<li><p>元数据服务：实时的库表结构和分区情况展示。</p>
+</li>
+</ul>
+<p>依赖于这些微服务的相互协作，对外构建一个集中的、统一的大数据平台服务。</p>
+<p>通过这些服务的构建，我们改善了整个大数据平台对外服务的方式和流程。</p>
+<h3 id="业务架构"><a href="#业务架构" class="headerlink" title="业务架构"></a>业务架构</h3><hr>
+<p><img src="/wework-linkis/Executor.png" alt="Executo"></p>
+<p>1) Gateway网关:</p>
+<p>基于Spring Cloud Gateway进行了插件化功能增强，新增了WebSocket一对多能力的网关服务，主要用于解析和路由转发用户的请求到指定微服务。</p>
+<p>2) 统一入口:</p>
+<p>统一入口是用户某一类引擎作业的Job生命周期管理者。</p>
+<p>从作业生成到提交到执行引擎，再到作业信息反馈给用户和作业关闭，Entrance管理了一个作业的全生命周期。</p>
+<p>3) 引擎管理器:</p>
+<p>引擎管理器负责管理引擎的全生命周期。</p>
+<p>负责向资源管理服务申请和锁定资源，并实例化新的引擎，也负责监控引擎的生命状态。</p>
+<p>4) 执行引擎:</p>
+<p>执行引擎是真正执行用户作业的微服务，它由引擎管理器启动。</p>
+<p>为了提升交互性能，引擎服务是直接跟提交给它作业的统一入口进行交互，将作业正确执行，并反馈用户需要的各种信息，如日志、进度、状态和结果集等。</p>
+<p>5) 资源管理服务</p>
+<p>实时管控每个系统和每个用户的资源使用情况，管理微服务集群的资源使用和实际负载，限制系统和用户的资源使用量和并发数。</p>
+<p>6) Eureka</p>
+<p>Eureka是Netflix开发的服务发现框架，SpringCloud将它集成在其子项目spring-cloud-netflix中，以实现SpringCloud的服务发现功能。</p>
+<p>每个微服务都内置了Eureka Client，可以访问Eureka Server，实时获得服务发现的能力。</p>
+<h3 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h3><hr>
+<p><img src="/wework-linkis/15911710772339.png" alt></p>
+<h3 id="执行引擎步骤"><a href="#执行引擎步骤" class="headerlink" title="执行引擎步骤"></a>执行引擎步骤</h3><hr>
+<ol>
+<li><p>网关:<br>UJES的网关，基于Spring Cloud Gateway进行了插件化功能增强，新增了WebSocket一对多能力的网关服务，主要用于转发用户请求到指定的微服务。</p>
+</li>
+<li><p>入口微服务:<br>UJES的入口微服务是用户某一类作业全程的管理者。从作业生成到提交到执行引擎，再到作业信息反馈给用户和作业关闭，入口微服务管理了一个作业的生命周期。</p>
+</li>
+<li><p>引擎管理器:<br>UJES的引擎管理器是处理启动引擎请求的微服务，同时也监控引擎的生命状态。</p>
+</li>
+<li><p>执行引擎:<br>UJES的执行引擎是真正执行用户作业的微服务，它由引擎管理器启动，并和提交给它作业的入口进行交互，将作业正确执行，并反馈用户需要的各种信息。</p>
+</li>
+<li><p>应用管理器:<br>UJES的应用管理微服务是集群中执行引擎实例信息的维系者，入口微服务想要执行作业，总是需要这些信息来获取一个可以使用的执行引擎。</p>
+</li>
+</ol>
+<p><strong>执行主流程</strong></p>
+<ol>
+<li>用户提交作业，网关转发</li>
+</ol>
+<p>用户A通过Restful或者Websocket等方式提交自己的大数据作业到UJES的网关微服务，网关根据指定的作业类型，转发用户请求到指定的入口微服务，如用户提交了一段spark-sql代码，网关会将该作业提交到Spark的入口微服务中。</p>
+<p>由于入口微服务可以是多实例部署的，网关是按照负载均衡的策略进行转发到合适的微服务实例。</p>
+<p>2.入口程序进行解析、检查</p>
+<p>用户的作业被转发到Spark的入口微服务之后，入口中的解析器会将用户提交的作业解析成一个可用于运行的任务，持久器会将任务持久化到数据库。</p>
+<p>同时预设置的拦截器也会进行脚本的自定义变量替换，恶意代码检查等操作。</p>
+<p>如果用户的请求被拦截，那么他的代码将不会被提交到集群进行执行。</p>
+<ol start="3">
+<li>监听器的设置</li>
+</ol>
+<p>任务运行产生的日志、进度、状态、结果等信息产生之后需要进行处理，例如展现给用户或持久化到数据库等，一般这种处理需要采用事件总线和监听器的方式，所以需要为任务设置各类监听器。</p>
+<ol start="4">
+<li>任务进入调度器</li>
+</ol>
+<p>任务生成之后，会进入调度器中等待调度执行。</p>
+<p>调度器中的核心概念是消费队列，消费队列是以消费组作为标识的，消费组一般是以用户所在的系统和用户两者共同确定，如用户Anna在系统Test中向UJES提交了任务，那么消费组可以标记为Test_Anna。</p>
+<p>任务进入调度器之后，会根据组的标识，放置到不同的消费队列等待调度。</p>
+<p>消费队列的线程一般采用单线程的方式实现。</p>
+<ol start="5">
+<li>应用管理微服务的工作——提供执行引擎</li>
+</ol>
+<p>任务一旦被调度，入口微服务就需要通过引擎申请器向应用管理微服务进行申请执行引擎用于执行。</p>
+<p>应用管理微服务会根据用户的消费组信息查看集群中是否有用户可以使用的引擎，如果有可以用于消费组使用的执行引擎，会将该引擎的信息返回给入口微服务，入口微服务会将任务提交到该执行引擎进行执行。</p>
+<p>如果应用管理微服务发现在集群中没有该消费组可以使用的引擎，就会向引擎管理器微服务为该消费组申请一个新的执行引擎。</p>
+<p>入口微服务的消费线程会一直等待直到应用管理微服务返回引擎启动成功、失败或者超时的信息。</p>
+<ol start="6">
+<li>引擎管理器微服务——启动并管理引擎</li>
+</ol>
+<p>引擎管理器微服务是用于启动并管理执行引擎的微服务。</p>
+<p>当引擎管理器收到应用管理微服务启动一个新引擎的请求，请求会携带用户的消费组信息，引擎管理器根据消费组信息去向资源管理器申请资源，如果用户仍然有足够的资源，资源管理器就会允许引擎管理器为用户启动一个新的引擎，并广播到应用管理服务微服务。</p>
+<ol start="7">
+<li>入口微服务提交任务到执行引擎进行执行</li>
+</ol>
+<p>步骤7之后，应用管理微服务已经获取到了新启动的引擎的信息，应用管理微服务会将这个引擎的信息返回给入口微服务，入口微服务获取到这个引擎信息之后，就将任务提交到改引擎去执行。</p>
+<ol start="8">
+<li>入口与引擎的交互</li>
+</ol>
+<p>任务提交到执行引擎之后，任务在运行的时候，会产生日志、进度、结果等信息，这些信息会通过RPC的方式进行返回到入口微服务中，返回信息都会携带任务的唯一标识信息，根据任务的标识信息，入口微服务将这些信息正确地进行处理。</p>
+<ol start="9">
+<li>任务的完成</li>
+</ol>
+<p>任务在执行引擎上运行完毕之后，会将运行成功或者失败的状态信息返回给入口微服务，入口微服务中的任务状态翻转之后，消费队列会继续消费在队列中的任务。</p>
+<h3 id="RPC-架构"><a href="#RPC-架构" class="headerlink" title="RPC 架构"></a>RPC 架构</h3><hr>
+<p>基于Feign的微服务之间HTTP接口的调用，只能满足简单的A微服务实例根据简单的规则随机选择B微服务之中的某个服务实例，而这个B微服务实例如果想异步回传信息给调用方，是根本无法实现的。</p>
+<p>同时，由于Feign只支持简单的服务选取规则，无法做到将请求转发给指定的微服务实例，无法做到将一个请求广播给接收方微服务的所有实例。<br><img src="/wework-linkis/BR%203%20L.png" alt="BR 3 "></p>
 
       
       <!-- reward -->
@@ -159,14 +272,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/一些图片/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/wework-linkis/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book/">book</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
 
 
     </footer>
@@ -177,19 +290,10 @@
   
   <nav class="article-nav">
     
-      <a href="/GitBook/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            GitBook
-          
-        </div>
-      </a>
     
-    
-      <a href="/一些词话/" class="article-nav-link">
+      <a href="/GitHub--Python--引用/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">一些词话</div>
+        <div class="article-nav-title">GitHub--Python--引用</div>
       </a>
     
   </nav>
