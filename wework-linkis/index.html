@@ -100,7 +100,7 @@
       
       <h2 id="Linkis-–-WeBankFinTech"><a href="#Linkis-–-WeBankFinTech" class="headerlink" title="Linkis – WeBankFinTech"></a>Linkis – WeBankFinTech</h2><h3 id="设计初衷"><a href="#设计初衷" class="headerlink" title="设计初衷"></a>设计初衷</h3><hr>
 <p>大数据开源生态圈几乎每个组件都有自己的一套用户权限管理、资源管理、元数据管理、独立的API接入方式和使用方式。</p>
-<p>而且各种新的组件还在不断出现。</p>
+<p>而且各种新的组件还在不断出现。Linkis</p>
 <p>但是，用户的业务需求通常需要多个开源组件协同处理才能实现。</p>
 <p>为了一个业务需求，用户需要学习多个产品的使用手册，需要在多个产品上做重复的定制化开发，才能真正将开源组件引入到实际的生产环境中。</p>
 <p>这给用户带来了极其高昂的学习成本和额外工作量，运维方面也需要大量重复的维护管理工作。</p>
@@ -108,7 +108,7 @@
 <p>如何提供一套统一的数据中间件，对接上层应用工具，屏蔽掉底层的各种调用和使用细节，真正做到让业务用户只需关注业务实现细节，就算底层大数据平台机房扩建、整体搬迁都不受影响，是Linkis的设计初衷！</p>
 <h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><hr>
 <p>架构图<br><img src="/wework-linkis/Linkis-UI.png" alt="Linkis-UI"></p>
-<pre><code>如上图所示，我们基于目前流行的SpringCloud微服务技术，新建了多个微服务集群，来提供高可用能力。</code></pre><p>每个微服务集群各自承担系统的一部分功能职责，我们对其进行了如下明确的划分。如：</p>
+<pre><code>如上图所示，Linkis基于目前流行的SpringCloud微服务技术，新建了多个微服务集群，来提供高可用能力。</code></pre><p>每个微服务集群各自承担系统的一部分功能职责，Linkis对其进行了如下明确的划分。如：</p>
 <ul>
 <li>统一作业执行服务：一个分布式的REST/WebSocket服务，用于接收用户提交的各种脚本请求。</li>
 </ul>
@@ -136,7 +136,7 @@
 </li>
 </ul>
 <p>依赖于这些微服务的相互协作，对外构建一个集中的、统一的大数据平台服务。</p>
-<p>通过这些服务的构建，我们改善了整个大数据平台对外服务的方式和流程。</p>
+<p>通过这些服务的构建，Linkis改善了整个大数据平台对外服务的方式和流程。</p>
 <h3 id="业务架构"><a href="#业务架构" class="headerlink" title="业务架构"></a>业务架构</h3><hr>
 <p><img src="/wework-linkis/Executor.png" alt="Executo"></p>
 <p>1) Gateway网关:</p>
@@ -289,6 +289,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/ife-001/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            前端学习
+          
+        </div>
+      </a>
     
     
       <a href="/GitHub--Python--引用/" class="article-nav-link">
