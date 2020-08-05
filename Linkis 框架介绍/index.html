@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    计算中间价-Linkis |  Leon&#39;s blog
+    计算中间价-Linkis 框架介绍 |  Leon&#39;s blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-wework-linkis" class="article article-type-post" itemscope
+  <article id="post-Linkis 框架介绍" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  计算中间价-Linkis
+  计算中间价-Linkis 框架介绍
 </h1>
  
 
@@ -53,7 +53,7 @@
 
     
     <div class="article-meta">
-      <a href="/wework-linkis/" class="article-date">
+      <a href="/Linkis 框架介绍/" class="article-date">
   <time datetime="2020-06-03T07:53:00.000Z" itemprop="datePublished">2020-06-03</time>
 </a>
       
@@ -107,7 +107,7 @@
 <p>同时，上层的功能工具产品和底层的计算存储系统耦合度过高，层次结构、调用关系不够清晰和解耦，导致底层环境一旦发生任何改变，都会直接影响业务产品的正常使用。</p>
 <p>如何提供一套统一的数据中间件，对接上层应用工具，屏蔽掉底层的各种调用和使用细节，真正做到让业务用户只需关注业务实现细节，就算底层大数据平台机房扩建、整体搬迁都不受影响，是Linkis的设计初衷！</p>
 <h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><hr>
-<p>架构图<br><img src="/wework-linkis/Linkis-UI.png" alt="Linkis-UI"></p>
+<p>架构图<br><img src="/Linkis 框架介绍/Linkis-UI.png" alt="Linkis-UI"></p>
 <pre><code>如上图所示，Linkis基于目前流行的SpringCloud微服务技术，新建了多个微服务集群，来提供高可用能力。</code></pre><p>每个微服务集群各自承担系统的一部分功能职责，Linkis对其进行了如下明确的划分。如：</p>
 <ul>
 <li>统一作业执行服务：一个分布式的REST/WebSocket服务，用于接收用户提交的各种脚本请求。</li>
@@ -138,7 +138,7 @@
 <p>依赖于这些微服务的相互协作，对外构建一个集中的、统一的大数据平台服务。</p>
 <p>通过这些服务的构建，Linkis改善了整个大数据平台对外服务的方式和流程。</p>
 <h3 id="业务架构"><a href="#业务架构" class="headerlink" title="业务架构"></a>业务架构</h3><hr>
-<p><img src="/wework-linkis/Executor.png" alt="Executo"></p>
+<p><img src="/Linkis 框架介绍/Executor.png" alt="Executo"></p>
 <p>1) Gateway网关:</p>
 <p>基于Spring Cloud Gateway进行了插件化功能增强，新增了WebSocket一对多能力的网关服务，主要用于解析和路由转发用户的请求到指定微服务。</p>
 <p>2) 统一入口:</p>
@@ -156,7 +156,7 @@
 <p>Eureka是Netflix开发的服务发现框架，SpringCloud将它集成在其子项目spring-cloud-netflix中，以实现SpringCloud的服务发现功能。</p>
 <p>每个微服务都内置了Eureka Client，可以访问Eureka Server，实时获得服务发现的能力。</p>
 <h3 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h3><hr>
-<p><img src="/wework-linkis/15911710772339.png" alt></p>
+<p><img src="/Linkis 框架介绍/15911710772339.png" alt></p>
 <h3 id="执行引擎步骤"><a href="#执行引擎步骤" class="headerlink" title="执行引擎步骤"></a>执行引擎步骤</h3><hr>
 <ol>
 <li><p>网关:<br>UJES的网关，基于Spring Cloud Gateway进行了插件化功能增强，新增了WebSocket一对多能力的网关服务，主要用于转发用户请求到指定的微服务。</p>
@@ -217,7 +217,7 @@
 <p>任务在执行引擎上运行完毕之后，会将运行成功或者失败的状态信息返回给入口微服务，入口微服务中的任务状态翻转之后，消费队列会继续消费在队列中的任务。</p>
 <h3 id="RPC-架构"><a href="#RPC-架构" class="headerlink" title="RPC 架构"></a>RPC 架构</h3><hr>
 <p>基于Feign的微服务之间HTTP接口的调用，只能满足简单的A微服务实例根据简单的规则随机选择B微服务之中的某个服务实例，而这个B微服务实例如果想异步回传信息给调用方，是根本无法实现的。</p>
-<p>同时，由于Feign只支持简单的服务选取规则，无法做到将请求转发给指定的微服务实例，无法做到将一个请求广播给接收方微服务的所有实例。<br><img src="/wework-linkis/BR%203%20L.png" alt="BR 3 "></p>
+<p>同时，由于Feign只支持简单的服务选取规则，无法做到将请求转发给指定的微服务实例，无法做到将一个请求广播给接收方微服务的所有实例。<br><img src="/Linkis 框架介绍/BR%203%20L.png" alt="BR 3 "></p>
 
       
       <!-- reward -->
@@ -272,7 +272,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/wework-linkis/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/Linkis 框架介绍/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -290,19 +290,19 @@
   
   <nav class="article-nav">
     
-      <a href="/ife-001/" class="article-nav-link">
+      <a href="/工作环境/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            前端学习
+            工作环境描述
           
         </div>
       </a>
     
     
-      <a href="/GitHub--Python--引用/" class="article-nav-link">
+      <a href="/Python 入门实践/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">GitHub--Python--引用</div>
+        <div class="article-nav-title">Python 入门实践</div>
       </a>
     
   </nav>

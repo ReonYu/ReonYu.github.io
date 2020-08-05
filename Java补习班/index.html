@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    简 |  Leon&#39;s blog
+    Java补习班 |  Leon&#39;s blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -36,7 +36,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-简" class="article article-type-post" itemscope
+  <article id="post-Java补习班" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -44,7 +44,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  简
+  Java补习班
 </h1>
  
 
@@ -53,8 +53,8 @@
 
     
     <div class="article-meta">
-      <a href="/简/" class="article-date">
-  <time datetime="2020-04-08T06:53:00.000Z" itemprop="datePublished">2020-04-08</time>
+      <a href="/Java补习班/" class="article-date">
+  <time datetime="2020-04-08T01:16:23.000Z" itemprop="datePublished">2020-04-08</time>
 </a>
       
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">151</span>
+            <span class="post-count">744</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -84,6 +84,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -96,34 +98,33 @@
       
 
       
-      <p>书信</p>
+      <h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p><img src="/Java补习班/ES0701SO.png" alt></p>
 <ul>
-<li><p>思绪翻飞，忆起我的孩子远行之日。恭喜搬迁</p>
-</li>
-<li><p>大学里曾流传一句话：“男生不可不读王小波，女生不可不读周国平。”</p>
-</li>
-<li><p>醉后不知天在水，满船清梦压星河</p>
-</li>
-<li><p>浮生若梦，为欢几何</p>
-</li>
-<li><p>人间自是有情痴，此恨不关风与月</p>
-</li>
-<li><p>似此星辰非昨夜，为谁风露立中宵</p>
-</li>
-<li><p>红豆生南国，春来发几枝。<br>愿君多采撷，此物最相思。</p>
-</li>
-<li><p>弃我去者，昨日之日不可留；乱我心者，今日之日多烦<img src="/简/15895308830018.jpg" alt></p>
-</li>
-<li><p>你在假装什么</p>
-</li>
-<li><p><img src="/简/15895314449950.jpg" alt></p>
-</li>
+<li>类加载问题</li>
 </ul>
-<p><img src="/简/15895315151813.jpg" alt><br><img src="/简/15895315573706.jpg" alt></p>
-<p><img src="/简/15895316616985.jpg" alt></p>
-<p>16 year vs 情深不寿<br><img src="/简/15895348672935.jpg" alt></p>
-<p><img src="/简/15895349399013.jpg" alt><br><img src="/简/15895352574227.jpg" alt></p>
-<p><img src="/简/15895353926724.jpg" alt></p>
+<p>1.以下代码只是初始化一个数组对象,是Object 的一个子类.并不会初始化SuperClass 对象.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SuperClass[] sca = new SuperClass[10];</span><br></pre></td></tr></table></figure>
+
+<p>2.类加载器<br><strong>启动类加载器</strong>（Bootstrap ClassLoader）此类加载器负责将存放在 <jre_home>\lib 目录中的，或者被 -Xbootclasspath 参数所指定的路径中的，并且是虚拟机识别的（仅按照文件名识别，如 rt.jar，名字不符合的类库即使放在 lib 目录中也不会被加载）类库加载到虚拟机内存中。启动类加载器无法被 Java 程序直接引用，用户在编写自定义类加载器时，如果需要把加载请求委派给启动类加载器，直接使用 null 代替即可。</jre_home></p>
+<p><strong>扩展类加载器</strong>（Extension ClassLoader）这个类加载器是由 ExtClassLoader（sun.misc.Launcher$ExtClassLoader）实现的。它负责将 <java_home>/lib/ext 或者被 java.ext.dir 系统变量所指定路径中的所有类库加载到内存中，开发者可以直接使用扩展类加载器。</java_home></p>
+<p><strong>应用程序类加载器</strong>（Application ClassLoader）这个类加载器是由 AppClassLoader（sun.misc.Launcher$AppClassLoader）实现的。由于这个类加载器是 ClassLoader 中的 getSystemClassLoader() 方法的返回值，因此一般称为系统类加载器。它负责加载用户类路径（ClassPath）上所指定的类库，开发者可以直接使用这个类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。</p>
+<p>3.双亲委派模型</p>
+<p><img src="/Java补习班/%E5%8F%8C%E4%BA%B2.png" alt="双亲委派"></p>
+<p>除了顶层的启动类加载器外,其他的都需有自己的父级加载器.父子关系是指组合关系,而不是继承.</p>
+<ul>
+<li>工作流程</li>
+</ul>
+<p>一个类加载器总是将类加载请求发给父级类加载器,只有父级无法加载时再尝试自己的加载器.</p>
+<ul>
+<li>优点</li>
+</ul>
+<p>使得Java对象与他的类加载器一起具有优先级层级关系,使基础类得到统一.</p>
+<ul>
+<li>实现</li>
+</ul>
+<p>抽象类 java.lang.ClassLoader 的代码片段，其中的 loadClass() 方法运行过程如下：先检查类是否已经加载过，如果没有则让父类加载器去加载。当父类加载器加载失败时抛出 ClassNotFoundException，此时尝试自己去加载。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public abstract class ClassLoader &#123;</span><br><span class="line">    // The parent class loader for delegation</span><br><span class="line">    private final ClassLoader parent;</span><br><span class="line"></span><br><span class="line">    public Class&lt;?&gt; loadClass(String name) throws ClassNotFoundException &#123;</span><br><span class="line">        return loadClass(name, false);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundException &#123;</span><br><span class="line">        synchronized (getClassLoadingLock(name)) &#123;</span><br><span class="line">            // First, check if the class has already been loaded</span><br><span class="line">            Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">            if (c == null) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    if (parent != null) &#123;</span><br><span class="line">                        c = parent.loadClass(name, false);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        c = findBootstrapClassOrNull(name);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">                    // ClassNotFoundException thrown if class not found</span><br><span class="line">                    // from the non-null parent class loader</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (c == null) &#123;</span><br><span class="line">                    // If still not found, then invoke findClass in order</span><br><span class="line">                    // to find the class.</span><br><span class="line">                    c = findClass(name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (resolve) &#123;</span><br><span class="line">                resolveClass(c);</span><br><span class="line">            &#125;</span><br><span class="line">            return c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException &#123;</span><br><span class="line">        throw new ClassNotFoundException(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
       <!-- reward -->
@@ -178,14 +179,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/简/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/Java补习班/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book/">book</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
 
 
     </footer>
@@ -196,19 +197,19 @@
   
   <nav class="article-nav">
     
-      <a href="/ 2020-计划/" class="article-nav-link">
+      <a href="/王小波/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            2020-计划
+            王小波
           
         </div>
       </a>
     
     
-      <a href="/王小波/" class="article-nav-link">
+      <a href="/合辑/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">王小波</div>
+        <div class="article-nav-title">年度深度文章/链接合辑</div>
       </a>
     
   </nav>
