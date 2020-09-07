@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans" >
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="Leon,Leon 个人博客,Leon GitHub,Leon @BJ" />
+   
+  <meta name="description" content="Leon Github Pages" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Apache Beam （一） |  Leon&#39;s blog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/first.png" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-Apache Beam （一）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Apache Beam （一）
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/Apache Beam （一）/" class="article-date">
+  <time datetime="2020-08-24T01:53:00.000Z" itemprop="datePublished">2020-08-24</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">4.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">14 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h2 id="Apache-Beam-发展史"><a href="#Apache-Beam-发展史" class="headerlink" title="Apache Beam 发展史"></a>Apache Beam 发展史</h2><p> Beam 在 2016 年 2 月成为 Apache 孵化器项目，并在 2016 年 12 月升级成为 Apache 基金会的顶级项目。通过十五个月的努力，一个稍显混乱的代码库，从多个组织合并，已发展成为数据处理的通用引擎，集成多个处理数据框架，可以做到跨环境。</p>
+<p> Beam 经过三个孵化器版本和三个后孵化器版本的演化和改进，最终在 2017 年 5 月 17 日迎来了它的第一个稳定版 2.0.0。发布稳定版本 3 个月以来，Apache Beam 已经出现明显的增长，无论是通过官方还是社区的贡献数量。Apache Beam 在谷歌云方面也已经展示出了“才干”。</p>
+<p>Beam 2.0.0 改进了用户体验，重点在于框架跨环境的无缝移植能力，这些执行环境包括执行引擎、操作系统、本地集群、云端以及数据存储系统。Beam 的其他特性还包括如下几点：</p>
+<ul>
+<li>API 稳定性和对未来版本的兼容性。</li>
+<li>有状态的数据处理模式，高效的支持依赖于数据的计算。</li>
+<li>支持用户扩展的文件系统，支持 Hadoop 分布式发文件系统及其他。</li>
+<li>提供了一个度量指标系统，可用于跟踪管道的执行状况。</li>
+</ul>
+<p><img src="/Apache Beam （一）/15982358825316.png" alt></p>
+<p>网上已经有很多人写过 Beam 2.0.0 版本之前的资料，但是 2.0.0 版本后 API 很多写法变动较大，本文将带着大家从零基础到 Apache Beam 入门。</p>
+<h2 id="下一代大数据处理统一标准-Apache-Beam"><a href="#下一代大数据处理统一标准-Apache-Beam" class="headerlink" title="下一代大数据处理统一标准 Apache Beam"></a>下一代大数据处理统一标准 Apache Beam</h2><p>BeamSDKs 封装了很多的组件 IO，也就是图左边这些重写的高级 API，使不同的数据源的数据流向后面的计算平台。通过将近一年的发展，Apache Beam 不光组件 IO 更加丰富了，并且计算平台在当初最基本的 Apache Apex、Direct Runner、Apache Flink、Apache Spark、Google Cloud Dataflow 之上，又增加了 Gearpump、Samza 以及第三方的 JStorm 等计算平台。</p>
+<p><img src="/Apache Beam （一）/15982340485903.png" alt="Apache Beam 流程图"><br>为什么说 Apache Beam 会是大数据处理统一标准呢？</p>
+<p>因为很多现在大型公司都在建立自己的“大中台”，建立统一的数据资源池，打通各个部门以及子公司的数据，以解决信息孤岛问题，把这些数据进行集中式管理并且进行后期的数据分析、BI、AI 以及机器学习等工作。这种情况下会出现很多数据源，例如之前用的 MySQL、MongodDB、HDFS、HBase、Solr 等，如果想建立中台就会是一件令人非常苦恼的事情，并且多计算环境更是让技术领导头疼。Apache Beam 的出现正好迎合了这个时代的新需求，它集成了很多数据库常用的数据源并把它们封装成 SDK 的 IO，开发人员没必要深入学习很多技术，只要会写 Beam 程序就可以了，大大节省了人力、时间以及成本。</p>
+<h2 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h2><p><strong>常见场景包括</strong>：</p>
+<ol>
+<li>Beam 可以用于 ETL Job 任务<br>Beam 的数据可以通过 SDKs 的 IO 接入，通过管道可以用后面的 Runners 做清洗。</li>
+<li>Beam 数据仓库快速切换、跨仓库<br>由于 Beam 的数据源是多样 IO，所以用 Beam 可以快速切换任何数据仓库。</li>
+<li>Beam 计算处理平台切换、跨平台</li>
+</ol>
+<p><img src="/Apache Beam （一）/15982351329861.jpg" alt></p>
+<p><strong>三个抽象模块</strong>：</p>
+<ol>
+<li>Modes<br>Modes 是 Beam 的模型或叫数据来源的 IO，它是由多种数据源或仓库的 IO 组成，数据源支持批处理和流处理。</li>
+<li>Pipeline<br>Pipeline 是 Beam 的管道，所有的批处理或流处理都要通过这个管道把数据传输到后端的计算平台。这个管道现在是唯一的。数据源可以切换多种，计算平台或处理平台也支持多种。需要注意的是，管道只有一条，它的作用是连接数据和 Runtimes 平台。</li>
+<li>Runtimes<br>Runtimes 是大数据计算或处理平台，目前支持 Apache Flink、Apache Spark、Direct Pipeline 和 Google Clound Dataflow 四种。其中 Apache Flink 和 Apache Spark 同时支持本地和云端。Direct Pipeline 仅支持本地，Google Clound Dataflow 仅支持云端。除此之外，后期 Beam 国外研发团队还会集成其他大数据计算平台。由于谷歌未进入中国，目前国内开发人员在工作中对谷歌云的使用应该不是很多，主要以前两种为主。</li>
+</ol>
+<p><strong>Beam Model 及其工作流程</strong></p>
+<p>Beam Model 指的是 Beam 的编程范式，即 Beam SDK 背后的设计思想。在介绍 Beam Model 之前，先简要介绍一下 Beam Model 要处理的问题域与一些基本概念。</p>
+<ol>
+<li><p>数据源类型。分布式数据来源类型一般可以分为两类，有界的数据集和无界的数据流。有界的数据集，比如一个 Ceph 中的文件，一个 Mongodb 表等，特点是数据已经存在，数据集有已知的、固定的大小，一般存在磁盘上，不会突然消失。而无界的数据流，比如 Kafka 中流过来的数据流，这种数据的特点是数据动态流入、没有边界、无法全部持久化到磁盘上。Beam 框架设计时需要针对这两种数据的处理进行考虑，即批处理和流处理。</p>
+</li>
+<li><p>时间。分布式框架的时间处理有两种，一种是全量计算，另一种是部分增量计算。我给大家举个例子：例如我们玩“王者农药”游戏，游戏的数据需要实时地流向服务器，掉血情况会随着时间实时变化，但是排行榜的数据则是全部玩家在一定时间内的排名，例如一周或一个月。Beam 针对这两种情况都设计了对应的处理方式。</p>
+</li>
+<li><p>乱序。对于流处理框架处理的数据流来说，数据到达大体分两种，一种是按照 Process Time 定义时间窗口，这种不用考虑乱序问题，因为都是关闭当前窗口后才进行下一个窗口操作，需要等待，所以执行都是有序的。而另一种，Event Time 定义的时间窗口则不需要等待，可能当前操作还没有处理完，就直接执行下一个操作，造成消息顺序处理但结果不是按顺序排序了。例如我们的订单消息，采用了分布式处理，如果下单操作所属服务器处理速度比较慢，而用户支付的服务器速度非常快，这时最后的订单操作时间轴就会出现一种情况，下单在支付的后面。对于这种情况，如何确定迟到数据，以及对于迟到数据如何处理通常是很麻烦的事情。</p>
+</li>
+</ol>
+<p>Beam Model 处理的目标数据是无界的时间乱序数据流，不考虑时间顺序或有界的数据集可看做是无界乱序数据流的一个特例。Beam Model 从下面四个维度归纳了用户在进行数据处理的时候需要考虑的问题：</p>
+<ul>
+<li>What。如何对数据进行计算？例如，机器学习中训练学习模型可以用 Sum 或者 Join 等。在 Beam SDK 中由 Pipeline 中的操作符指定。</li>
+<li>Where。数据在什么范围中计算？例如，基于 Process-Time 的时间窗口、基于 Event-Time 的时间窗口、滑动窗口等等。在 Beam SDK 中由 Pipeline 的窗口指定。</li>
+<li>When。何时输出计算结果？例如，在 1 小时的 Event-Time 时间窗口中，每隔 1 分钟将当前窗口计算结果输出。在 Beam SDK 中由 Pipeline 的 Watermark 和触发器指定。</li>
+<li>How。迟到数据如何处理？例如，将迟到数据计算增量结果输出，或是将迟到数据计算结果和窗口内数据计算结果合并成全量结果输出。在 Beam SDK 中由 Accumulation 指定。<br>Beam Model 将“WWWH”四个维度抽象出来组成了 Beam SDK，用户在基于 Beam SDK 构建数据处理业务逻辑时，每一步只需要根据业务需求按照这四个维度调用具体的 API，即可生成分布式数据处理 Pipeline，并提交到具体执行引擎上执行。“WWWH”四个维度只是从业务的角度看待问题，并不是全部适用于自己的业务。做技术架构一定要结合自己的业务使用相应的技术特性或框架。Beam 做为“一统”的框架，为开发者带来了方便。</li>
+</ul>
+<p>*<em>Beam SDK *</em></p>
+<p>Beam SDK 给上层应用的开发者提供了一个统一的编程接口，开发者不需要了解底层的具体的大数据平台的开发接口是什么，直接通过 Beam SDK 的接口就可以开发数据处理的加工流程，不管输入是用于批处理的有界数据集，还是流式的无界数据集。对于这两类输入数据，Beam SDK 都使用相同的类来表现，并且使用相同的转换操作进行处理。Beam SDK 拥有不同编程语言的实现，目前已经完整地提供了 Java 的 SDK，Python 的 SDK 还在开发中，相信未来会发布更多不同编程语言的 SDK。</p>
+<p>Beam 2.0 的 SDKs 目前有：</p>
+<ul>
+<li><p>Amqp：高级消息队列协议。</p>
+</li>
+<li><p>Cassandra：Cassandra 是一个 NoSQL 列族（column family）实现，使用由 Amazon Dynamo 引入的架构方面的特性来支持 Big Table 数据模型。Cassandra 的一些优势如下所示：</p>
+</li>
+</ul>
+<ol>
+<li>高度可扩展性和高度可用性，没有单点故障</li>
+<li>NoSQL 列族实现</li>
+<li>非常高的写入吞吐量和良好的读取吞吐量</li>
+<li>类似 SQL 的查询语言（从 0.8 版本起），并通过二级索引支持搜索</li>
+<li>可调节的一致性和对复制的支持灵活的模式</li>
+</ol>
+<ul>
+<li><p>Elasticesarch：一个实时的分布式搜索引擎。</p>
+</li>
+<li><p>Google-cloud-platform：谷歌云 IO。</p>
+</li>
+<li><p>Hadoop-file-system：操作 Hadoop 文件系统的 IO。</p>
+</li>
+<li><p>Hadoop-hbase：操作 Hadoop 上的 Hbase 的接口 IO。</p>
+</li>
+<li><p>Hcatalog：Hcatalog 是 Apache 开源的对于表和底层数据管理统一服务平台。</p>
+</li>
+<li><p>Jdbc：连接各种数据库的数据库连接器。</p>
+</li>
+<li><p>Jms：Java 消息服务（Java Message Service，简称 JMS）是用于访问企业消息系统的开发商中立的 API。企业消息系统可以协助应用软件通过网络进行消息交互。JMS 在其中扮演的角色与 JDBC 很相似，正如 JDBC 提供了一套用于访问各种不同关系数据库的公共 API，JMS 也提供了独立于特定厂商的企业消息系统访问方式。</p>
+</li>
+<li><p>Kafka：处理流数据的轻量级大数据消息系统，或叫消息总线。</p>
+</li>
+<li><p>Kinesis：对接亚马逊的服务，可以构建用于处理或分析流数据的自定义应用程序，以满足特定需求。</p>
+</li>
+<li><p>Mongodb：MongoDB 是一个基于分布式文件存储的数据库。</p>
+</li>
+<li><p>Mqtt：IBM 开发的一个即时通讯协议。</p>
+</li>
+<li><p>Solr：亚实时的分布式搜索引擎技术。</p>
+</li>
+<li><p>xml：一种数据格式。</p>
+</li>
+</ul>
+<p><strong>Beam Pipeline Runners</strong></p>
+<p>Beam Pipeline Runner 将用户用 Beam 模型定义开发的处理流程翻译成底层的分布式数据处理平台支持的运行时环境。在运行 Beam 程序时，需要指明底层的正确 Runner 类型，针对不同的大数据平台，会有不同的 Runner。目前 Flink、Spark、Apex 以及谷歌的 Cloud DataFlow 都有支持 Beam 的 Runner。<br>需要注意的是，虽然Apache Beam社区非常希望所有的Beam执行引擎都能够支持Beam SDK定义的功能全集，但是在实际实现中可能无法达到这一期望。例如，基于MapReduce的Runner显然很难实现和流处理相关的功能特性。就目前状态而言，对Beam模型支持最好的就是运行于谷歌云平台之上的Cloud Dataflow，以及可以用于自建或部署在非谷歌云之上的Apache Flink。当然，其它的Runner也正在迎头赶上，整个行业也在朝着支持Beam模型的方向发展。</p>
+<ul>
+<li><p>基础pipeline：<br><img src="/Apache Beam （一）/15982368421802.jpg" alt="-w927"></p>
+</li>
+<li><p>合并pipeline<br><img src="/Apache Beam （一）/15982368874691.jpg" alt="-w927"></p>
+</li>
+<li><p>多源pipeline<br><img src="/Apache Beam （一）/15982369205798.jpg" alt="-w906"></p>
+</li>
+</ul>
+<p>需要注意的是，虽然 Apache Beam 社区非常希望所有的 Beam 执行引擎都能够支持 Beam SDK 定义的功能全集，但是在实际实现中可能无法达到这一期望。例如，基于 MapReduce 的 Runner 显然很难实现和流处理相关的功能特性。就目前状态而言，对 Beam 模型支持最好的就是运行于谷歌云平台之上的 Cloud Dataflow，以及可以用于自建或部署在非谷歌云之上的 Apache Flink。当然，其它的 Runner 也正在迎头赶上，整个行业也在朝着支持 Beam 模型的方向发展。</p>
+<p>Beam 2.0 的 Flink Runners 框架如下：<br><img src="/Apache Beam （一）/15982366258718.png" alt></p>
+<ul>
+<li>Apex</li>
+</ul>
+<p>诞生于 2015 年 6 月的 Apache Apex，其同样源自 DataTorrent 及其令人印象深刻的 RTS 平台，其中包含一套核心处理引擎、仪表板、诊断与监控工具套件外加专门面向数据科学家用户的图形流编程系统 dtAssemble。主要用于流处理，常用于物联网等场景。</p>
+<ul>
+<li>Direct-java</li>
+</ul>
+<p>本地处理和运行 runner。</p>
+<ul>
+<li>Flink_2.10</li>
+</ul>
+<p>Flink 是一个针对流数据和批数据的分布式处理引擎。</p>
+<ul>
+<li>Gearpump</li>
+</ul>
+<p>Gearpump 是一个基于 Akka Actor 的轻量级的实时流计算引擎。如今流平台需要处理来自各种移动端和物联网设备的海量数据，系统要能不间断地提供服务，对数据的处理要能做到不丢失不重复，对各种软硬件错误能平滑处理，对用户的输入要能实时响应。除了这些系统层面的需求外，用户层面的接口还要能做到丰富而灵活，一方面，平台要提供足够丰富的基础设施，能最简化应用程序的编写；另一方面，这个平台应提供具有表现力的编程 API，让用户能灵活表达各种计算，并且整个系统可以定制，允许用户选择调度策略和部署环境，允许用户在不同的指标间做折中取舍，以满足特定的需求。Akka Actor 提供了通信、并发、隔离、容错的基础设施，Gearpump 通过把抽象层次提升到 Actor 这一层，屏蔽了底层的细节，专注于流处理需求本身，能更简单而又高效地解决上述问题。</p>
+<ul>
+<li>Dataflow</li>
+</ul>
+<p>2016 年 2 月份，谷歌及其合作伙伴向 Apache 捐赠了一大批代码，创立了孵化中的 Beam 项目（最初叫 Apache Dataflow）。这些代码中的大部分来自于谷歌 Cloud Dataflow SDK——开发者用来写流处理和批处理管道（pipelines）的库，可在任何支持的执行引擎上运行。当时，支持的主要引擎是谷歌 Cloud Dataflow。</p>
+<ul>
+<li>Spark</li>
+</ul>
+<p>Apache Spark 是一个正在快速成长的开源集群计算系统。Apache Spark 生态系统中的包和框架日益丰富，使得 Spark 能够执行高级数据分析。Apache Spark 的快速成功得益于它的强大功能和易用性。相比于传统的 MapReduce 大数据分析，Spark 效率更高、运行时速度更快。Apache Spark 提供了内存中的分布式计算能力，具有 Java、Scala、Python、R 四种编程语言的 API 编程接口。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Apache Beam 是集成了很多数据模型的一个统一化平台，它为大数据开发工程师频繁换数据源或多数据源、多计算框架提供了集成统一框架平台。Apache Beam社区现在已经集成了数据库的切换IO，未来中文Beam社区还将为Beam集成更多的model和计算框架，为大家提供方便。</p>
+<ul>
+<li>参考文章：</li>
+</ul>
+<p><a href="https://beam.apache.org/documentation/" target="_blank" rel="noopener"> Apache Beam 官网</a></p>
+<p><a href="https://www.infoq.cn/article/KOsUOj8yrFwNbrNe83yQ" target="_blank" rel="noopener">Apache Beam 实战指南</a></p>
+<p><a href="https://github.com/xsm110/Apache-Beam-Example" target="_blank" rel="noopener">GitHub: Apache-Beam-Example</a></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/Apache Beam （一）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/API GetWay/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Apache Beam （一）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/Github 高级用法/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Github 高级用法</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2018-2020
+        Leon
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hackerrank.svg" alt="Leon&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/旅行/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Suche">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1427061139&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
