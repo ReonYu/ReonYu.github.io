@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans" >
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="Leon,Leon 个人博客,Leon GitHub,Leon @BJ" />
+   
+  <meta name="description" content="Leon Github Pages" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     Leon&#39;s blog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/first.png" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-ELK 配置" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+
+    
+    <div class="article-meta">
+      <a href="/ELK 配置/" class="article-date">
+  <time datetime="2020-09-07T07:47:19.960Z" itemprop="datePublished">2020-09-07</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">10 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <hr>
+<p>title: ELK<br>date: 2020-09-03 19:53<br>tags: github</p>
+<hr>
+<h5 id="ELK部署文档"><a href="#ELK部署文档" class="headerlink" title="ELK部署文档"></a>ELK部署文档</h5><p>版本：<br>日志采集所依赖中间件Filebeat，Logstash及Elasticsearch均为5.4.0版本，请前往elastic官方下载正确版本，保证Filebeat，Logstash及Elasticsearch版本一致，否则将会影响使用。kafka版本为2.12-2.00即为12版本的scala和2.00版本的kafka，jkd为1.8版本。</p>
+<h6 id="Filebeat部署"><a href="#Filebeat部署" class="headerlink" title="Filebeat部署"></a>Filebeat部署</h6><ol>
+<li><p>解压<br>将下载好的filebeat软件包进行解压 解压命令 tar -zxvf + filebeat软件包名</p>
+</li>
+<li><p>修改配置<br>进入到解压好的filebeat文件夹内，编辑filebeat.yml文件</p>
+</li>
+<li><p>输入配置</p>
+</li>
+</ol>
+<p>如图所示，<br><img src="/ELK 配置/15994649149068.jpg" alt></p>
+<ul>
+<li>input_type ：*<br>标签及下属内容为一个文件输入源，类型统一为log ； </li>
+<li>paths：<br>下为所监控文件所在路径，路径支持通配符表示， 如 -/opt// 则表示会监控/opt/*/ 目录下的所有文件，此项配置不支持递归，即不会监控/opt/ 目录下的文件 ； </li>
+<li>document_type:<br>文件类型，指定的document_type即为es中存储的数据type的类型 </li>
+<li>close_rename：<br>当所监控文件名称发生变更时，filebeat即关闭对该文件的harvesters，此处 修改为true </li>
+<li>multiline<br>控制filebeat如何处理跨多行日志的选项，多行日志通常发生在java堆栈中<br>multiline.pattern: ‘^\d{4}-\d{2}-d{2}’<br>multiline.negate: true<br>multiline.match: after<br>上面匹配是将多行日志所有不是以时间（2019-05-03）开头的行合并成一行即单条日志多行时进行合并处理 </li>
+<li>tail_files:<br>此处修改为true，如果此选项设置为true，Filebeat将在每个文件的末尾开始读取新文件，而不是开头 </li>
+<li>input_type及下属内容输入源可配置多个调整相应path及document_type即可<br>注： 修改该文件时请严格遵守yml文件格式，注意缩进！ 否则将导致无法启动</li>
+</ul>
+<ol>
+<li>输出配置</li>
+</ol>
+<p><img src="/ELK 配置/15994649406196.jpg" alt></p>
+<p>输出配置可选择直接输出到elasticsearch或者logstash，此处注释掉elasticsearch相关配置，选择输出到logstash。 </p>
+<ul>
+<li>output.logstash：<br>输出到logstash </li>
+<li>hosts：<br>部署logstash的主机名与端口号，多台主机写在中每台用逗号分隔<br>如[“172.16.31.121:5044”，”172.16.31.122:5044”，”172.16.31.123:5044”] </li>
+<li>loadbalance：<br>对填入hosts的主机进行负载均衡分配，此处修改为true</li>
+<li>timeout : 60<br>超时时长此处设置为60秒 减缓网络带来的影响</li>
+</ul>
+<p>5 分发<br>配置修改完成后将filebeat文件夹分发到各个主机<br>6. 启动<br>启动命令： 进入的filebeat的bin目录下 执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./filebeat -e -c filebeat.yml</span><br></pre></td></tr></table></figure>
+
+<p>需在logstash启动成功后再启动filebeat，此方式为前台启动，如启动成功后可修改为后台启动方式 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./filebeat -e -c filebeat.yml &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>nohup ./filebeat -e -c filebeat.yml &gt;/dev/null 2&gt;&amp;1 &amp;  将所有标准输出及标准错误输出到/dev/null空设备，即没有任何输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./filebeat -e -c filebeat.yml &gt; filebeat.log &amp;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Logstash部署"><a href="#Logstash部署" class="headerlink" title="Logstash部署"></a>Logstash部署</h6><ol>
+<li><p>解压<br>将下载好的logstash软件包进行解压 解压命令 tar -zxvf + logstash软件包名</p>
+</li>
+<li><p>修改配置<br>进入到解压好的logstash文件夹内，编辑相关文件</p>
+</li>
+<li><p>修改JVM.options配置<br>进入到logstash的config文件夹内，编辑jvm.options文件，修改堆空间初始大小和总堆最大大小，二者数值建议一致设置为4g 即-Xms4g -Xmx4g 数值根据实际情况可调整大小。</p>
+</li>
+</ol>
+<p><img src="/ELK 配置/15994650588181.jpg" alt></p>
+<ol start="4">
+<li>修改logstash.yml<br>进入到logstash的config文件夹内，编辑logstash.yml文件，修改如下配置<br><img src="/ELK 配置/15994650936558.jpg" alt></li>
+</ol>
+<ul>
+<li>path.data ：<br>数据存储的位置，需确保文件目录已存在，否则会启动报错。 </li>
+<li>pipeline.workers：<br>Pipeling工作线程数，推荐值为机器cpu核数，且数值不得超过cpu核数 </li>
+<li>pipeline.out.workers:<br>输出实际线程数，与Pipeline.workers数值保持一致 </li>
+<li>pipeling.batch.size:<br>单个工作线程在尝试执行过滤器和输出之前收集的最大事件数，默认125；数值越大，处理则通常更高效，但增加了内存开销，推荐值500，如果output压力过大可调高 </li>
+<li>pipeline.batch.delay:<br>此设置调整Logstash管道的延迟，默认5；　在此时间过后，Logstash开始执行过滤器和输出，推荐10（毫秒），如果output压力过大可调高 </li>
+</ul>
+<ol start="5">
+<li>修改管道配置文件<br>本示例中存放于logstash文件夹下的test目录中 （该路径启动时需使用），vim编辑管道文件kafka.conf</li>
+</ol>
+<p><img src="/ELK 配置/15994651095668.jpg" alt></p>
+<p>管道配置文件内如如图，主要分为input、filter和output三个部分，其中input输入部分与filter过滤部分无需修改，只需修改output输出部分。<br>Output部分分为输出到elasticsearch和kafka两部分，输出到es只需修改hosts中es主机的ip地址即可，格式为”es主机IP+端口”，多台主机用逗号分隔，每台主机分别为字符串方式。index最后面–后缀为配置manager时填写的集群名（clusterName）</p>
+<ul>
+<li>flush_size<br>批量写入ES数量，累计缓冲event事件条数达到flush_size值会flush一次，如输出压力过大可适当调大，但会增加内存开销 </li>
+<li>idle_flush_time:<br>批量写入ES频率，距离上次flush的时间之后idle_flush_time秒后也会flush一次,通常会结合flush_size一起来控制写入es的数量和频率，提高es的插入性能，输出压力过大可适当调整。<br>输出到kafka只需修改bootstrap_servers中的kafka主机地址即可，格式为 kafka主机+端口，多台主机间用逗号分隔，所有kafka主机写在同一个字符串引号中。 </li>
+</ul>
+<ol start="6">
+<li><p>（Kafka开启kerberos状态）修改管道配置文件<br>当logstash推送的kafka开启kerberos认证后才需进行此部分的修改，管道配置文件内如上3.2.3介绍，主要分为input、filter和output三个部分，其中input输入部分与filter过滤部分无需修改，只需修改output输出部分的kafka处即可。</p>
+</li>
+<li><p>查看kafka_jaas.conf文件<br>主要目的为获取到该配置文件中serverName属性，如图当前serverName=”kafka”</p>
+</li>
+</ol>
+<p><img src="/ELK 配置/15994651211469.jpg" alt></p>
+<ol start="8">
+<li>修改output输出部分的kafka及参数说明<br><img src="/ELK 配置/15994651310588.jpg" alt></li>
+</ol>
+<p>①topic_id：必填项，指定消费话题，指定某个topic，实际上就是订阅某个主题，然后去消费。<br>②bootstrap_servers：用于建立与集群的初始连接的URL列表，即Kafka的接入地址（生产者）<br>③jass_path：为Kafka提供用户认证和授权服务，此处为设置jass文件的路径。<br>④security_protocol：使用的安全协议，可以为plaintext、ssl、sasl_plaintext、sasl_ssl等等，此处使用sasl_plaintext。<br>⑤kerberos_config：Keberos配置文件的路径。<br>⑥sasl_kerberos_service_name：Kafka服务器运行的Kerberos主题名称。其可以在Kafka的jaas配置中定义，此处名字一定要跟kafka_jaas.conf里面的serverName保持一致。<br>⑦codec：用于输入数据的编码/解码器。<br>⑧compression_type：压缩方式，默认是none，其它可选的是gzip和snappy，我们选择snappy。</p>
+<ol start="9">
+<li><p>分发<br>配置修改完成后将logstash文件夹分发到需要的主机</p>
+</li>
+<li><p>启动<br>启动命令： 进入的logstash的bin目录下 执行命令 </p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./logstash -f ../test/ToKafkaAndEs.conf（-f后增加管道文件路径与名称）</span><br></pre></td></tr></table></figure>
+
+<p>此方式为前台启动，如启动成功后可修改为后台启动方式 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./logstash -f ../test/kafka.conf &gt;/dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>启动前需先启动elasticsearch与kafka </p>
+<h6 id="Elasticsearch部署"><a href="#Elasticsearch部署" class="headerlink" title="Elasticsearch部署"></a>Elasticsearch部署</h6><ol>
+<li><p>解压<br>将下载好的elasticsearch软件包进行解压 解压命令 tar -zxvf + elasticsearch软件包名</p>
+</li>
+<li><p>修改配置<br>进入到解压好的elasticsearch文件夹内，编辑相关文件</p>
+</li>
+<li><p>修改jvm.options<br>进入到elasticsearch的config文件夹内，编辑jvm.options文件，修改堆空间初始大小和总堆最大大小，二者数值建议一致设置为8g 即-Xms8g -Xmx8g 数值根据实际情况可调整大小。</p>
+</li>
+<li><p>修改elasticsearch.yml<br>进入到elasticsearch的config文件夹内，编辑elasticsearch.yml文件<br><img src="/ELK 配置/15994651457211.jpg" alt></p>
+</li>
+</ol>
+<ul>
+<li>cluster.name：<br>Es集群的名称，集群内所有es节点指定相同名称即可 </li>
+<li>node.name<br>节点名称，统一使用为当前节点的ip地址即可 </li>
+<li>path.data: /opt/esuser/es_data/<br>数据存储路径，指定数据存储的目录，前提需要该目录已存在 </li>
+<li>path.logs: /opt/esuser/es_logs/<br>日志存储路径，指定日志存储的目录，前提需要该目录已存在 </li>
+<li>bootstrap.memory_lock: false<br>锁定物理内存地址，防止es内存被交换出去，防止磁盘频繁读，此处关闭 </li>
+<li>bootstrap.system_call_filter: false<br>与上配置相同 </li>
+<li>network.host: 172.16.31.154<br>节点网络访问ip地址，统一指定当前节点的ip地址 </li>
+<li>http.port: 9200<br>访问的都口号 </li>
+<li>discovery.zen.ping.unicast.hosts: [“172.16.31.156”,”172.16.31.155”,”172.16.31.154”]<br>帮助与集群发现集群的主机，具体的值是一个主机数组或逗号分隔的字符串。每个值应采用格式为host：port或host的形式 </li>
+<li>http.cors.enabled: true</li>
+<li>http.cors.allow-origin: “”*<br>上述两项配置为允许es进行跨域请求 </li>
+<li>indices.fielddata.cache.size : 50%<br>节点用于 fielddata 的最大内存，如果 fielddata 达到该阈值，就会把旧数据交换出去 </li>
+<li>indices.breaker.fielddata.limit : 60%<br>默认值是JVM堆内存的60%,注意为了让设置正常生效，一定要确保 indices.breaker.fielddata.limit 的值大于 indices.fielddata.cache.size 的值</li>
+</ul>
+<ol start="5">
+<li><p>分发<br>配置修改完成后将logstash文件夹分发到需要的主机，在修改配置中需对不同主机的修改项即可 </p>
+</li>
+<li><p>配置映射<br>为配合logstash的使用，索引映射统一在es客户端进行管理，进入到elasticsearch目录下的config目录，新建文件夹templates，将制定好的映射模板文件ordiraryjournal.json放入templates目录下，在templates目录下执行命令上传映射模板<br>curl -XPUT ‘<a href="http://172.16.31.154:9200/_template/ordirary_template?pretty&#39;" target="_blank" rel="noopener">http://172.16.31.154:9200/_template/ordirary_template?pretty&#39;</a> -d ‘@ordiraryjournal.json’ (mailto:‘@ordiraryjournal.json’)<br>上传成功后可通过命令</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET &apos;http://172.16.31.154:9200/_template/ordirary_template?pretty&apos;</span><br></pre></td></tr></table></figure>
+
+<p>命令查看模板，如返回模板文件内内容即模板上传成功<br>ordiraryjournal.json模板文件内内容如下<br><img src="/ELK 配置/15994651653201.jpg" alt></p>
+<ol start="7">
+<li>启动<br>进入到elasticsearch的bin目录下 执行启动命令</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./elasticsearch -d</span><br></pre></td></tr></table></figure>
+
+<p> 即可 </p>
+<p>Kafka部署（非kerberos版本）<br>8. 解压<br>将下载好的kafka软件包进行解压 解压命令 tar -zxvf + kafka软件包名，且部署kafka集群需要依赖已经搭建好的zookeeper集群。</p>
+<ol start="9">
+<li>修改配置<br>进入到kafka的config目录下，只需修改server.properties文件即可<br><img src="/ELK 配置/15994651781708.jpg" alt></li>
+</ol>
+<p>注释掉broker.id与listeners采用默认生成策略，同时添加hostname配置 为当前主机的ip地址即可，不同主机只需修改此配置项<br><img src="/ELK 配置/15994651866213.jpg" alt></p>
+<p>修改zookeeper.connect配置项为以搭建好的zookeeper集群ip地址+端口号，以逗号隔离<br>其他采用默认配置 </p>
+<ol start="10">
+<li><p>分发<br>将kafka目录分发到各需要的主机并修改配置中的hostname选项</p>
+</li>
+<li><p>启动<br>进入到kafka的bin目录下 执行启动命令</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kafka-server-start.sh -daemon ../config/server.properties</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://reonyu.github.io/ELK 配置/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/API GetWay/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">API GetWay</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2018-2020
+        Leon
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hackerrank.svg" alt="Leon&#39;s blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/旅行/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+
+
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1427061139&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
